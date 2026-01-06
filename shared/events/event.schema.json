@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://talos.dev/schemas/event.json",
+  "title": "Talos Event",
+  "description": "Cross-package event schema for Talos system communication",
+  "type": "object",
+  "required": ["event_type", "timestamp", "source_package"],
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "description": "Event category and name (e.g., session.opened, gtd.task_completed)",
+      "pattern": "^[a-z]+\\.[a-z_]+$"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp"
+    },
+    "source_package": {
+      "type": "string",
+      "enum": ["core", "telemetry", "gtd", "second-brain"],
+      "description": "Package that emitted this event"
+    },
+    "session_id": {
+      "type": "string",
+      "description": "Optional session context for the event"
+    },
+    "payload": {
+      "type": "object",
+      "description": "Event-specific data"
+    }
+  }
+}

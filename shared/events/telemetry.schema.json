@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://talos.dev/schemas/telemetry-event.json",
+  "title": "Telemetry Event",
+  "description": "Observation events emitted by telemetry package",
+  "allOf": [{ "$ref": "event.json" }],
+  "properties": {
+    "event_type": {
+      "enum": [
+        "telemetry.insight_recorded",
+        "telemetry.friction_logged",
+        "telemetry.pattern_detected",
+        "telemetry.entity_created",
+        "telemetry.relationship_created"
+      ]
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "insight_id": {
+          "type": "string"
+        },
+        "insight_type": {
+          "type": "string",
+          "enum": ["technical", "process", "reflection", "friction"]
+        },
+        "content": {
+          "type": "string"
+        },
+        "entity_type": {
+          "type": "string"
+        },
+        "embedding": {
+          "type": "array",
+          "items": { "type": "number" }
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

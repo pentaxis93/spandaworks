@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://talos.dev/schemas/gtd-event.json",
+  "title": "GTD Event",
+  "description": "Task management events emitted by gtd package",
+  "allOf": [{ "$ref": "event.json" }],
+  "properties": {
+    "event_type": {
+      "enum": [
+        "gtd.task_created",
+        "gtd.task_completed",
+        "gtd.task_modified",
+        "gtd.inbox_processed",
+        "gtd.review_completed",
+        "gtd.project_created",
+        "gtd.project_completed"
+      ]
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "task_uuid": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "description": {
+          "type": "string"
+        },
+        "project": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "priority": {
+          "type": "string",
+          "enum": ["H", "M", "L"]
+        },
+        "context": {
+          "type": "string"
+        },
+        "energy": {
+          "type": "string",
+          "enum": ["high", "medium", "low"]
+        },
+        "review_type": {
+          "type": "string",
+          "enum": ["daily", "weekly"]
+        },
+        "inbox_count": {
+          "type": "integer"
+        },
+        "processed_count": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}
