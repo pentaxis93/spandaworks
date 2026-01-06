@@ -1,0 +1,13 @@
+# workmux configuration for talos
+# Integrated consciousness-aware productivity system
+
+panes:
+  - command: <agent>
+    focus: true
+
+# Talos is a monorepo with Python packages
+# No node_modules or heavy build artifacts to symlink
+
+files:
+  symlink: []
+  copy: []
