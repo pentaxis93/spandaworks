@@ -1,0 +1,105 @@
+# ============================================
+# talos-gtd TaskWarrior Configuration
+# Based on CS Syd + hamlinux patterns
+# Version: MVP 1.0
+# ============================================
+
+# === Data Location ===
+data.location=~/.task
+
+# === User Defined Attributes ===
+
+# Brain power required (GTD energy filtering)
+uda.brainpower.type=string
+uda.brainpower.label=BP
+uda.brainpower.values=H,M,L
+uda.brainpower.default=M
+
+# Time estimate in minutes
+uda.estimate.type=numeric
+uda.estimate.label=Est
+
+# Last reviewed date (for tasksh review)
+uda.reviewed.type=date
+uda.reviewed.label=Reviewed
+
+# === Urgency Coefficients ===
+
+# +next is most important
+urgency.user.tag.next.coefficient=15.0
+
+# Inbox items should surface prominently
+urgency.user.tag.in.coefficient=15.0
+
+# Someday/maybe should NOT appear in next report
+urgency.user.tag.sdm.coefficient=-20.0
+
+# Waiting items slightly deprioritized
+urgency.user.tag.waiting.coefficient=-2.0
+
+# === Custom Reports ===
+
+# Inbox: Items awaiting GTD processing
+report.in.columns=id,entry.age,description
+report.in.description=Inbox - items to process
+report.in.filter=status:pending limit:page (+in)
+report.in.labels=ID,Age,Description
+report.in.sort=entry+
+
+# Someday/Maybe: Deferred possibilities
+report.sdm.columns=id,project,description
+report.sdm.description=Someday/Maybe list
+report.sdm.filter=status:pending +sdm
+report.sdm.labels=ID,Project,Description
+report.sdm.sort=project+,entry+
+
+# Next Actions: GTD-filtered next report
+report.next.description=Next actions (GTD)
+report.next.columns=id,urgency,priority,project,tags,due.remaining,description,brainpower,estimate
+report.next.filter=status:pending -sdm -in -waiting limit:page
+report.next.labels=ID,Urg,P,Project,Tags,Due,Description,BP,Est
+report.next.sort=urgency-
+
+# Waiting For: Delegated/blocked items
+report.waiting.columns=id,project,description,wait.remaining,due
+report.waiting.description=Waiting for (delegated)
+report.waiting.filter=status:pending +waiting
+report.waiting.labels=ID,Project,Description,Wait,Due
+report.waiting.sort=due+,wait+
+
+# No Next Action: Projects missing +next
+report.nna.columns=project
+report.nna.description=Projects without next action
+report.nna.filter=+PENDING +READY -next -waiting -sdm
+report.nna.labels=Project
+
+# Weekly Review: Tasks needing review
+report._reviewed.columns=uuid
+report._reviewed.description=Tasksh review report
+report._reviewed.filter=( reviewed.none: or reviewed.before:now-6days ) and ( +PENDING or +WAITING )
+report._reviewed.sort=reviewed+,modified+
+
+# === Contexts ===
+
+# Work: At computer with internet and phone
+context.work=+@work or +@computer or +@online or +@phone
+
+# Home: Personal errands and home tasks
+context.home=+@home or +@errands
+
+# Focus: Deep work, no interruptions
+context.focus=+@computer -@phone -@online
+
+# Anywhere: Location-independent tasks
+context.anywhere=+@anywhere or +@phone
+
+# === Miscellaneous ===
+
+# Clear screen between tasksh commands
+tasksh.autoclear=1
+
+# Default task command
+default.command=next
+
+# Confirmation for bulk operations
+bulk=3
