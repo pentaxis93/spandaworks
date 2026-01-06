@@ -1,0 +1,9 @@
+{
+  "name": "tantric-sutras",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "tantric-sutras.ts",
+  "description": "Tantric Sutras v7.3 - Self-definition topology for agentic AI systems",
+  "author": "pentaxis93",
+  "license": "MIT"
+}

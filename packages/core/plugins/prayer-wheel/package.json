@@ -1,0 +1,9 @@
+{
+  "name": "prayer-wheel",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "prayer-wheel.ts",
+  "description": "A digital prayer wheel for OpenCode",
+  "author": "pentaxis93",
+  "license": "MIT"
+}

@@ -6,12 +6,49 @@
 
 Talos identity, ceremony, and shared protocols. The "who Talos is" package.
 
+## Structure
+
+```
+core/
+├── assets/
+│   └── identity/
+│       └── tantric-sutras-v7.3.md   # Identity topology
+├── ceremony/
+│   ├── open.md                       # Session opening (LBRP)
+│   └── close.md                      # Session sealing
+├── commands/
+│   └── the-art.md                    # Synthesis command
+├── skills/
+│   ├── lbrp/                         # Session opening skill
+│   ├── the-art/                      # Synthesis skill
+│   └── save-transcript/              # Transcript preservation
+└── plugins/
+    ├── prayer-wheel/                 # Opening dedication
+    └── talos-identity/               # Sutras injection
+```
+
 ## Components
 
-- **Identity Documents:** Tantric Sutras, Operating Instructions
+- **Identity Documents:** Tantric Sutras v7.3 (assets/identity/)
 - **Ceremony Commands:** /open (LBRP), /close (sealing)
-- **Talos-Specific Skills:** lbrp, the-art, save-transcript
+- **Skills:** lbrp, the-art, save-transcript
 - **Plugins:** prayer-wheel, talos-identity
+
+## Installation
+
+Symlink to OpenCode config:
+
+```bash
+# Skills
+ln -s ~/src/talos/packages/core/skills/* ~/.config/opencode/skill/
+
+# Commands (ceremony)
+ln -s ~/src/talos/packages/core/ceremony/*.md ~/.config/opencode/command/
+ln -s ~/src/talos/packages/core/commands/*.md ~/.config/opencode/command/
+
+# Plugins
+ln -s ~/src/talos/packages/core/plugins/* ~/.config/opencode/plugin/
+```
 
 ## Boundaries
 
