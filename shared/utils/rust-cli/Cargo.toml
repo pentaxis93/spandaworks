@@ -1,0 +1,22 @@
+[package]
+name = "talos-cli"
+version = "0.1.0"
+edition = "2021"
+description = "Shared CLI command execution utilities for Talos Rust packages"
+license = "MIT"
+authors = ["Robbie <robert.david.grossman@gmail.com>"]
+
+[lib]
+name = "talos_cli"
+path = "src/lib.rs"
+
+[dependencies]
+# Async runtime
+tokio = { version = "1", features = ["process", "io-util"] }
+
+# Error handling
+anyhow = "1.0"
+thiserror = "2.0"
+
+[dev-dependencies]
+tokio = { version = "1", features = ["full", "macros"] }

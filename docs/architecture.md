@@ -62,6 +62,7 @@ Refined workflows ◄── inform ◄── Second-brain knowledge
 |---------|------|------|--------------|
 | **telemetry** | Nervous system | Knowledge graph, session tracking, pattern detection | Task management |
 | **gtd** | Hands | Task management, MCP tools, inbox processing | Long-term knowledge |
+| **pim** | Senses | Email, calendar, contacts (CLI wrappers) | Data storage |
 | **second-brain** | Memory | Vault structure, processing skills, protocols | Task execution |
 | **core** | Identity | Sutras, ceremony, Talos-specific skills | Domain logic |
 
