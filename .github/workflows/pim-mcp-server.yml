@@ -1,0 +1,56 @@
+name: PIM MCP Server
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'packages/pim/mcp-server/**'
+      - '.github/workflows/pim-mcp-server.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'packages/pim/mcp-server/**'
+      - '.github/workflows/pim-mcp-server.yml'
+
+env:
+  CARGO_TERM_COLOR: always
+
+defaults:
+  run:
+    working-directory: packages/pim/mcp-server
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-action@stable
+        
+      - name: Cache cargo registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            packages/pim/mcp-server/target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('packages/pim/mcp-server/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+      
+      - name: Check formatting
+        run: cargo fmt --check
+        
+      - name: Run clippy
+        run: cargo clippy -- -D warnings
+        
+      - name: Build
+        run: cargo build --release
+        
+      - name: Run tests
+        run: cargo test
+
+  # Integration tests require PIM CLI tools (notmuch, khal, khard, himalaya)
+  # which are only available on the deployment server.
+  # These tests should be run manually on babbie before release.
