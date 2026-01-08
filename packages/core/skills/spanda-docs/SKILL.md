@@ -140,9 +140,9 @@ Because the packages don't just integrate. They recognize each other.
 ```markdown
 ## The Name
 
-Talos was a bronze automaton... A tool made by the ultimate toolmaker.
+[Ancient mythological reference with forced connection to self-observation...]
 
-The name was chosen because this project builds tools that watch themselves work...
+The name was chosen because [elaborate justification that doesn't quite fit]...
 ```
 
 **Good:**
@@ -153,7 +153,7 @@ Spanda (स्पन्द) means "creative pulsation"—the throb of consciousn
 The name reflects what happens when AI and human work together: something lights up.
 ```
 
-**Why:** Talos was a guardian weapon. The connection to self-observation was forced. Better to rename than carry confusion.
+**Why:** Names that require elaborate justification signal misalignment. Better to choose a name that fits naturally.
 
 **Test:** Does this name actually fit what the system does?
 
@@ -264,7 +264,7 @@ When the answer is "confused," cut or rewrite. No exceptions.
 3. Removed "organism" metaphor (organs don't "recognize each other")
 4. Rewrote "What Makes This Different" (philosophy → technical capabilities)
 5. Simplified project status (detailed checklist → honest warning)
-6. Renamed Talos → Spanda (remove tech debt)
+6. Improved naming consistency (remove tech debt)
 7. Added OpenCode requirement (honesty about dependencies)
 
 **Pattern:** Every edit followed the universal test. If it confused strangers, we cut it.

@@ -106,5 +106,5 @@ Use the `/close` command to seal the session with harvest and dedication.
 ## Next Steps
 
 - Read `architecture.md` for system design
-- See `SPANDA-WORKS-SPEC.md` for full specification
+- See `SPANDAWORKS-SPEC.md` for full specification
 - Explore individual package READMEs

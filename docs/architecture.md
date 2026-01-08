@@ -6,7 +6,7 @@ Spandaworks is an integrated consciousness-aware productivity system. The compon
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                       SPANDA WORKS SYSTEM                       │
+│                      SPANDAWORKS SYSTEM                         │
 │                                                                 │
 │  ┌──────────┐    events    ┌─────────────┐                     │
 │  │   GTD    │ ──────────► │  TELEMETRY  │                      │
