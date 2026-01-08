@@ -46,7 +46,7 @@ Configure in your MCP settings (e.g., `~/.config/opencode/mcp.json`):
 ```json
 {
   "mcpServers": {
-    "spanda_gtd": {
+    "spandaworks_gtd": {
       "command": "node",
       "args": ["~/spandaworks/packages/gtd/mcp-server/dist/index.js"]
     }

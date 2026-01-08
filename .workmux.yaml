@@ -1,11 +1,11 @@
-# workmux configuration for spanda-works
+# workmux configuration for spandaworks
 # Integrated consciousness-aware productivity system
 
 panes:
   - command: <agent>
     focus: true
 
-# Spanda Works is a monorepo with Python packages
+# Spandaworks is a monorepo with Python packages
 # No node_modules or heavy build artifacts to symlink
 
 files:

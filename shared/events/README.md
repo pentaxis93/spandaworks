@@ -38,7 +38,7 @@ Cross-package communication schemas for the Spandaworks system.
 Events are transported via JSONL files for ingestion into the Kuzu knowledge graph.
 
 ```
-~/.spanda/events/YYYY-MM-DD.jsonl
+~/.spandaworks/events/YYYY-MM-DD.jsonl
 ```
 
 Each line is a complete JSON event object.

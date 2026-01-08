@@ -137,7 +137,7 @@ git status --short
 # If transmission/response files created for Governance:
 # Check vault for transmission files that should go to outbox
 
-# Move any transmission reports to ~/spanda-outbox/
+# Move any transmission reports to ~/spandaworks-outbox/
 # Example: transmission-*.md or response-*.md files
 ```
 
@@ -148,7 +148,7 @@ Any insights from this session that should be recorded?
 - Update remembrance.md?
 - Create a permanent note?
 - Note a pattern discovered?
-- File transmissions to ~/spanda-outbox/?
+- File transmissions to ~/spandaworks-outbox/?
 
 (Or skip if session was routine)
 ```

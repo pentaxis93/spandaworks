@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://spanda.dev/schemas/event.json",
+  "$id": "https://spandaworks.dev/schemas/event.json",
   "title": "Spandaworks Event",
   "description": "Cross-package event schema for Spandaworks system communication",
   "type": "object",

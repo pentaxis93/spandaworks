@@ -26,9 +26,9 @@ def setup_test_environment():
     TEST_TELEMETRY_PATH = Path(tempfile.mkdtemp()) / "test_telemetry"
 
     # Set environment variables
-    os.environ["SPANDA_DB_PATH"] = str(TEST_DB_PATH)
-    os.environ["SPANDA_TELEMETRY_PATH"] = str(TEST_TELEMETRY_PATH)
-    os.environ["SPANDA_EMBEDDING_CACHE"] = str(Path(tempfile.mkdtemp()) / "embeddings")
+    os.environ["SPANDAWORKS_DB_PATH"] = str(TEST_DB_PATH)
+    os.environ["SPANDAWORKS_TELEMETRY_PATH"] = str(TEST_TELEMETRY_PATH)
+    os.environ["SPANDAWORKS_EMBEDDING_CACHE"] = str(Path(tempfile.mkdtemp()) / "embeddings")
 
     yield
 
@@ -42,9 +42,9 @@ def setup_test_environment():
 @pytest.fixture
 def fresh_db():
     """Provide a fresh database for each test that needs it."""
-    from spanda_telemetry.db.connection import close_connection, get_connection, init_database
-    from spanda_telemetry.db.kuzu_schema import deploy_schema
-    from spanda_telemetry.db.seed import seed_reference_data
+    from spandaworks_telemetry.db.connection import close_connection, get_connection, init_database
+    from spandaworks_telemetry.db.kuzu_schema import deploy_schema
+    from spandaworks_telemetry.db.seed import seed_reference_data
 
     # Close any existing connection first - MUST happen before deletion
     close_connection()
@@ -75,7 +75,7 @@ def fresh_db():
 @pytest.fixture
 def fresh_telemetry():
     """Provide a fresh telemetry sink for each test."""
-    from spanda_telemetry.telemetry.sink import TelemetrySink
+    from spandaworks_telemetry.telemetry.sink import TelemetrySink
 
     # Create new temp directory for this test
     test_path = Path(tempfile.mkdtemp()) / "telemetry"

@@ -6,7 +6,7 @@ class TestGraphQuery:
 
     def test_graph_query_basic(self, fresh_db):
         """Verify graph_query executes basic queries."""
-        from spanda_telemetry.mcp.query import graph_query
+        from spandaworks_telemetry.mcp.query import graph_query
 
         result = graph_query("MATCH (s:OperationalState) RETURN count(s) as count")
 
@@ -19,7 +19,7 @@ class TestGraphQuery:
 
     def test_graph_query_returns_columns(self, fresh_db):
         """Verify graph_query returns column names."""
-        from spanda_telemetry.mcp.query import graph_query
+        from spandaworks_telemetry.mcp.query import graph_query
 
         result = graph_query(
             "MATCH (s:OperationalState) RETURN s.name as name, s.category as category LIMIT 1"
@@ -30,7 +30,7 @@ class TestGraphQuery:
 
     def test_graph_query_returns_rows(self, fresh_db):
         """Verify graph_query returns row data."""
-        from spanda_telemetry.mcp.query import graph_query
+        from spandaworks_telemetry.mcp.query import graph_query
 
         result = graph_query("MATCH (d:Domain) RETURN d.name ORDER BY d.name LIMIT 3")
 
@@ -40,7 +40,7 @@ class TestGraphQuery:
 
     def test_graph_query_blocks_create(self, fresh_db):
         """Verify graph_query blocks CREATE statements."""
-        from spanda_telemetry.mcp.query import graph_query
+        from spandaworks_telemetry.mcp.query import graph_query
 
         result = graph_query("CREATE (x:Test {name: 'test'})")
 
@@ -50,7 +50,7 @@ class TestGraphQuery:
 
     def test_graph_query_blocks_delete(self, fresh_db):
         """Verify graph_query blocks DELETE statements."""
-        from spanda_telemetry.mcp.query import graph_query
+        from spandaworks_telemetry.mcp.query import graph_query
 
         result = graph_query("MATCH (x) DELETE x")
 
@@ -60,7 +60,7 @@ class TestGraphQuery:
 
     def test_graph_query_blocks_set(self, fresh_db):
         """Verify graph_query blocks SET statements."""
-        from spanda_telemetry.mcp.query import graph_query
+        from spandaworks_telemetry.mcp.query import graph_query
 
         result = graph_query("MATCH (s:OperationalState) SET s.name = 'hacked'")
 
@@ -70,7 +70,7 @@ class TestGraphQuery:
 
     def test_graph_query_blocks_merge(self, fresh_db):
         """Verify graph_query blocks MERGE statements."""
-        from spanda_telemetry.mcp.query import graph_query
+        from spandaworks_telemetry.mcp.query import graph_query
 
         result = graph_query("MERGE (x:Test {name: 'test'})")
 
@@ -80,7 +80,7 @@ class TestGraphQuery:
 
     def test_graph_query_blocks_drop(self, fresh_db):
         """Verify graph_query blocks DROP statements."""
-        from spanda_telemetry.mcp.query import graph_query
+        from spandaworks_telemetry.mcp.query import graph_query
 
         result = graph_query("DROP TABLE Test")
 
@@ -90,7 +90,7 @@ class TestGraphQuery:
 
     def test_graph_query_handles_invalid_cypher(self, fresh_db):
         """Verify graph_query handles invalid Cypher syntax."""
-        from spanda_telemetry.mcp.query import graph_query
+        from spandaworks_telemetry.mcp.query import graph_query
 
         result = graph_query("INVALID CYPHER SYNTAX")
 
@@ -99,7 +99,7 @@ class TestGraphQuery:
 
     def test_graph_query_respects_limit(self, fresh_db):
         """Verify graph_query respects row limit."""
-        from spanda_telemetry.mcp.query import graph_query
+        from spandaworks_telemetry.mcp.query import graph_query
 
         # Create many nodes first
         result = graph_query("MATCH (s:OperationalState) RETURN s.name LIMIT 5")
@@ -109,8 +109,8 @@ class TestGraphQuery:
 
     def test_graph_query_with_session_data(self, fresh_db):
         """Verify graph_query can query session data."""
-        from spanda_telemetry.mcp.query import graph_query
-        from spanda_telemetry.mcp.session import session_open
+        from spandaworks_telemetry.mcp.query import graph_query
+        from spandaworks_telemetry.mcp.session import session_open
 
         # Create a session
         session_open(session_id="test-query-session", goal="Test query")
@@ -130,7 +130,7 @@ class TestCountEntities:
 
     def test_count_entities_returns_count(self, fresh_db):
         """Verify count_entities returns entity count."""
-        from spanda_telemetry.mcp.query import count_entities
+        from spandaworks_telemetry.mcp.query import count_entities
 
         count = count_entities("OperationalState")
 
@@ -140,7 +140,7 @@ class TestCountEntities:
 
     def test_count_entities_empty_type(self, fresh_db):
         """Verify count_entities returns 0 for empty tables."""
-        from spanda_telemetry.mcp.query import count_entities
+        from spandaworks_telemetry.mcp.query import count_entities
 
         # Pattern table should be empty by default
         count = count_entities("Pattern")
@@ -153,7 +153,7 @@ class TestFindRecurringFriction:
 
     def test_find_recurring_friction_returns_list(self, fresh_db):
         """Verify find_recurring_friction returns list structure."""
-        from spanda_telemetry.mcp.query import find_recurring_friction
+        from spandaworks_telemetry.mcp.query import find_recurring_friction
 
         result = find_recurring_friction()
 
@@ -161,8 +161,8 @@ class TestFindRecurringFriction:
 
     def test_find_recurring_friction_with_data(self, fresh_db):
         """Verify find_recurring_friction finds recurring frictions."""
-        from spanda_telemetry.mcp.friction import friction_log
-        from spanda_telemetry.mcp.query import find_recurring_friction
+        from spandaworks_telemetry.mcp.friction import friction_log
+        from spandaworks_telemetry.mcp.query import find_recurring_friction
 
         # Create recurring friction
         friction_log(description="Recurring test friction", category="tooling")
@@ -182,7 +182,7 @@ class TestGetSessionSummary:
 
     def test_get_session_summary_nonexistent(self, fresh_db):
         """Verify get_session_summary returns empty for nonexistent session."""
-        from spanda_telemetry.mcp.query import get_session_summary
+        from spandaworks_telemetry.mcp.query import get_session_summary
 
         result = get_session_summary("nonexistent-session")
 

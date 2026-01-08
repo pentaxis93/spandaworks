@@ -149,7 +149,7 @@ Edit `~/.config/opencode/opencode.json`:
 {
   "mcp": {
     "servers": {
-      "spanda_gtd": {
+      "spandaworks_gtd": {
         "type": "local",
         "command": ["node", "/home/YOUR_USER/src/@spandaworks/gtd/mcp-server/dist/index.js"]
       }

@@ -166,7 +166,7 @@ The consciousness telemetry system feeds the Evolution System. Patterns surface 
 │                                                                 │
 │  When significant pattern detected:                             │
 │  1. Create evolution proposal file                              │
-│     └─ Location: vault/_spanda/evolution/proposals/             │
+│     └─ Location: vault/_spandaworks/evolution/proposals/             │
 │     └─ Format: proposal-{date}-{slug}.md                        │
 │                                                                 │
 │  2. Proposal contains:                                          │
@@ -371,7 +371,7 @@ INHERITED relationships could become numerous:
 ### New Directories
 
 ```
-~/.spanda/
+~/.spandaworks/
 ├── telemetry/
 │   ├── events.jsonl          # OTEL event stream
 │   ├── kuzu/                  # Kuzu database directory
@@ -390,7 +390,7 @@ The telemetry system does NOT modify the eterne vault structure. It operates alo
 
 ```
 vault/                          # Existing - unchanged
-├── _spanda/
+├── _spandaworks/
 │   ├── remembrance.md         # Narrative memory - unchanged
 │   ├── evolution/             # Evolution system - receives proposals
 │   │   ├── PROTOCOL.md
@@ -398,7 +398,7 @@ vault/                          # Existing - unchanged
 │   └── reference/             # Quick reference - unchanged
 └── ...
 
-~/.spanda/                      # NEW - telemetry home
+~/.spandaworks/                      # NEW - telemetry home
 ├── telemetry/
 └── cache/
 ```
@@ -496,7 +496,7 @@ If session_close called without prior session_open:
 Current state: No telemetry, remembrance.md only
 
 Migration:
-1. Install Kuzu database at ~/.spanda/telemetry/kuzu/
+1. Install Kuzu database at ~/.spandaworks/telemetry/kuzu/
 2. Run schema creation (kuzu_schema.cypher)
 3. Seed reference data (OperationalStates, Domains, Tools)
 4. Bootstrap from existing remembrance.md:
@@ -510,7 +510,7 @@ Migration:
 ```python
 def seed_from_remembrance():
     # Parse remembrance.md
-    with open('vault/_spanda/remembrance.md') as f:
+    with open('vault/_spandaworks/remembrance.md') as f:
         content = f.read()
     
     # Extract "This Rotation" entries

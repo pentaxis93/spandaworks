@@ -64,7 +64,7 @@ Refined workflows ◄── inform ◄── Second-brain knowledge
 | **gtd** | Hands | Task management, MCP tools, inbox processing | Long-term knowledge |
 | **pim** | Senses | Email, calendar, contacts (CLI wrappers) | Data storage |
 | **second-brain** | Memory | Vault structure, processing skills, protocols | Task execution |
-| **core** | Identity | Sutras, ceremony, Spanda-specific skills | Domain logic |
+| **core** | Identity | Sutras, ceremony, Spandaworks-specific skills | Domain logic |
 
 ## Communication
 

@@ -22,7 +22,7 @@ core/
 │   ├── lbrp/                         # Session opening skill
 │   ├── the-art/                      # Synthesis skill
 │   ├── save-transcript/              # Transcript preservation
-│   └── spanda-docs/                  # Documentation guidelines
+│   └── spandaworks-docs/             # Documentation guidelines
 └── plugins/
     ├── prayer-wheel/                 # Opening dedication
     └── spandaworks-identity/              # Sutras injection
@@ -32,7 +32,7 @@ core/
 
 - **Identity Documents:** Tantric Sutras v7.3 (assets/identity/)
 - **Ceremony Commands:** /open (LBRP), /close (sealing)
-- **Skills:** lbrp, the-art, save-transcript, spanda-docs
+- **Skills:** lbrp, the-art, save-transcript, spandaworks-docs
 - **Plugins:** prayer-wheel, spandaworks-identity
 
 ## Installation

@@ -7,8 +7,8 @@ from pathlib import Path
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
-from spanda_telemetry.db.connection import init_database
-from spanda_telemetry.db.seed import seed_reference_data, verify_reference_data
+from spandaworks_telemetry.db.connection import init_database
+from spandaworks_telemetry.db.seed import seed_reference_data, verify_reference_data
 
 
 def main():

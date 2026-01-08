@@ -71,7 +71,7 @@ echo 'source ~/src/@spandaworks/gtd/config/aliases.sh' >> ~/.zshrc  # or ~/.bash
 {
   "mcp": {
     "servers": {
-      "spanda_gtd": {
+      "spandaworks_gtd": {
         "type": "local",
         "command": ["node", "/path/to/@spandaworks/gtd/mcp-server/dist/index.js"]
       }

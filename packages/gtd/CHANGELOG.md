@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Habits: `get_recurring_tasks`
 - TaskWarrior configuration template (`config/taskrc.template`)
 - Shell aliases for GTD workflows (`config/aliases.sh`)
-- Local telemetry integration (JSONL at `~/.spanda/gtd-telemetry/`)
+- Local telemetry integration (JSONL at `~/.spandaworks/gtd-telemetry/`)
 - Comprehensive documentation:
   - Setup guide
   - GTD workflow guide

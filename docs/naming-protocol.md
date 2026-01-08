@@ -1,6 +1,6 @@
 # Spandaworks Naming Protocol
-**Version:** 1.0  
-**Established:** January 8, 2026  
+**Version:** 1.1  
+**Last Updated:** January 8, 2026  
 **Status:** Canonical  
 
 ---
@@ -648,6 +648,143 @@ https://api.spandaworks.dev/v1/pim/contacts
 
 ---
 
+## System Paths & Configuration
+
+### Local Data Directories
+
+All Spandaworks system data is stored under a single root:
+
+```
+~/.spandaworks/
+├── telemetry/              # Telemetry database and logs
+│   ├── kuzu/               # Knowledge graph database
+│   ├── events.jsonl        # Event stream
+│   └── embeddings/         # Cached embeddings
+├── gtd-telemetry/          # GTD operation logs
+├── cache/                  # Shared cache directory
+│   └── embeddings/         # Model cache
+└── config/                 # System configuration
+```
+
+**Pattern:** `~/.spandaworks/[subsystem]/`
+
+### Environment Variables
+
+| Variable | Purpose | Example |
+|----------|---------|---------|
+| `SPANDAWORKS_DB_PATH` | Override database location | `~/.spandaworks/telemetry/kuzu` |
+| `SPANDAWORKS_SESSION_ID` | Current session identifier | `2026-01-08-naming-001` |
+| `SPANDAWORKS_TELEMETRY_PATH` | Event log location | `~/.spandaworks/telemetry/events.jsonl` |
+| `SPANDAWORKS_EVOLUTION_DIR` | Evolution proposals directory | `~/vault/_spandaworks/evolution/proposals/` |
+
+**Pattern:** `SPANDAWORKS_[COMPONENT]_[PURPOSE]`
+
+### MCP Server Names
+
+MCP server identifiers in OpenCode configuration:
+
+```json
+{
+  "mcp": {
+    "spandaworks_gtd": {
+      "type": "local",
+      "command": ["node", "/path/to/packages/gtd/mcp-server/dist/index.js"]
+    },
+    "spandaworks_pim": {
+      "type": "local",
+      "command": ["/path/to/packages/pim/mcp-server/target/release/spandaworks-pim"]
+    },
+    "spandaworks_telemetry": {
+      "type": "local",
+      "command": ["python", "-m", "spandaworks_telemetry.mcp"]
+    }
+  }
+}
+```
+
+**Pattern:** `spandaworks_[package]` (underscored, not hyphenated)
+
+**Rationale:** MCP server identifiers use underscores (not hyphens) to align with JSON key naming conventions and to avoid ambiguity in configuration contexts.
+
+---
+
+## Telemetry Attribute Namespaces
+
+### OpenTelemetry Custom Attributes
+
+Spandaworks uses the `spandaworks.*` namespace for all custom OpenTelemetry attributes:
+
+```json
+{
+  "spandaworks.session.id": "2026-01-08-naming-001",
+  "spandaworks.session.goal": "Complete naming migration",
+  "spandaworks.session.persona": "assistant",
+  "spandaworks.tool.name": "read",
+  "spandaworks.tool.success": true,
+  "spandaworks.state.from": "exploring",
+  "spandaworks.state.to": "executing"
+}
+```
+
+**Pattern:** `spandaworks.[domain].[attribute]`
+
+### Attribute Domains
+
+| Domain | Purpose | Examples |
+|--------|---------|----------|
+| `spandaworks.session.*` | Session metadata | `session.id`, `session.goal`, `session.persona` |
+| `spandaworks.tool.*` | Tool call tracking | `tool.name`, `tool.success`, `tool.duration_ms` |
+| `spandaworks.state.*` | State transitions | `state.from`, `state.to`, `state.trigger` |
+| `spandaworks.context.*` | Contextual metrics | `context.pressure`, `context.token_count` |
+| `spandaworks.insight.*` | Knowledge capture | `insight.id`, `insight.domain`, `insight.confidence` |
+| `spandaworks.friction.*` | Friction logging | `friction.id`, `friction.category`, `friction.recurrence` |
+| `spandaworks.pattern.*` | Pattern detection | `pattern.id`, `pattern.name`, `pattern.occurrence_count` |
+| `spandaworks.goal.*` | Goal tracking | `goal.id`, `goal.scope`, `goal.status` |
+
+**Why not shorten to `spanda.*`?**
+- Consistency: All package identifiers use "spandaworks"
+- Clarity: No ambiguity about what system generated the telemetry
+- Future-proofing: If "spanda" becomes a generic term, "spandaworks" remains specific
+
+---
+
+## Event Schemas & JSON References
+
+### Schema URLs
+
+Event schemas are identified by canonical URLs:
+
+```json
+{
+  "$schema": "https://spandaworks.dev/schemas/event.json",
+  "$id": "https://spandaworks.dev/schemas/session-event.json"
+}
+```
+
+**Available schemas:**
+- `https://spandaworks.dev/schemas/event.json` - Base event schema
+- `https://spandaworks.dev/schemas/session-event.json` - Session lifecycle events
+- `https://spandaworks.dev/schemas/telemetry-event.json` - Telemetry events
+- `https://spandaworks.dev/schemas/gtd-event.json` - GTD task events
+- `https://spandaworks.dev/schemas/knowledge-event.json` - Knowledge capture events
+
+**Pattern:** `https://spandaworks.dev/schemas/[domain]-event.json`
+
+**Note:** These URLs are canonical identifiers. Actual schema files live in `shared/events/` in the monorepo.
+
+### Event Storage
+
+Events are stored in JSONL format:
+
+```
+~/.spandaworks/telemetry/events.jsonl
+~/.spandaworks/gtd-telemetry/YYYY-MM-DD.jsonl
+```
+
+Each line is a complete JSON event document conforming to a schema.
+
+---
+
 ## Quick Reference
 
 ### Package Naming Summary
@@ -729,6 +866,11 @@ When adding a new package:
 ### All Packages
 - [ ] Documentation URL is simple: `docs.spandaworks.dev/packages/[name]`
 - [ ] Repository field points to: `https://github.com/pentaxis93/spandaworks`
+- [ ] MCP server name (if applicable): `spandaworks_[name]`
+- [ ] System paths use: `~/.spandaworks/[name]/`
+- [ ] Telemetry attributes use: `spandaworks.[name].*`
+- [ ] Event schemas reference: `https://spandaworks.dev/schemas/[name]-event.json`
+- [ ] Environment variables use: `SPANDAWORKS_[NAME]_[PURPOSE]`
 
 ---
 

@@ -28,7 +28,7 @@ export interface GTDTelemetryEvent {
 }
 
 // Telemetry directory
-const TELEMETRY_DIR = join(homedir(), ".spanda", "gtd-telemetry");
+const TELEMETRY_DIR = join(homedir(), ".spandaworks", "gtd-telemetry");
 const TELEMETRY_FILE = join(TELEMETRY_DIR, "events.jsonl");
 
 /**
@@ -153,5 +153,5 @@ export function logGTDFriction(
  */
 export function getCurrentSessionId(): string | undefined {
   // Check environment variable set by LBRP ceremony
-  return process.env.SPANDA_SESSION_ID;
+  return process.env.SPANDAWORKS_SESSION_ID;
 }

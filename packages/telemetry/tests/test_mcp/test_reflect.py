@@ -2,9 +2,9 @@
 
 from datetime import datetime, timezone
 
-from spanda_telemetry.db.connection import get_connection
-from spanda_telemetry.mcp.reflect import get_recent_reflections, reflect
-from spanda_telemetry.mcp.session import session_open
+from spandaworks_telemetry.db.connection import get_connection
+from spandaworks_telemetry.mcp.reflect import get_recent_reflections, reflect
+from spandaworks_telemetry.mcp.session import session_open
 
 
 def _now_iso() -> str:

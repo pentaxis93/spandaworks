@@ -4,8 +4,8 @@ import os
 import tempfile
 from datetime import datetime, timezone
 
-from spanda_telemetry.db.connection import get_connection
-from spanda_telemetry.mcp.patterns import (
+from spandaworks_telemetry.db.connection import get_connection
+from spandaworks_telemetry.mcp.patterns import (
     FRICTION_RECURRENCE_THRESHOLD,
     PATTERN_CONFIRMATION_THRESHOLD,
     PATTERN_EMERGENCE_THRESHOLD,
@@ -303,7 +303,7 @@ class TestPatternCheck:
 
         # Use temp directory for proposals
         with tempfile.TemporaryDirectory() as tmpdir:
-            os.environ["SPANDA_EVOLUTION_DIR"] = tmpdir
+            os.environ["SPANDAWORKS_EVOLUTION_DIR"] = tmpdir
 
             result = pattern_check(session_id="test-session", generate_proposals=True)
 
@@ -324,7 +324,7 @@ class TestPatternCheck:
     def test_pattern_check_no_proposals_when_stable(self, fresh_db):
         """pattern_check doesn't generate proposals when system is stable."""
         with tempfile.TemporaryDirectory() as tmpdir:
-            os.environ["SPANDA_EVOLUTION_DIR"] = tmpdir
+            os.environ["SPANDAWORKS_EVOLUTION_DIR"] = tmpdir
 
             result = pattern_check(generate_proposals=True)
 

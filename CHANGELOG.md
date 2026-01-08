@@ -13,7 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - **core:** Created from opencode-config Spandaworks items
   - Skills: lbrp, the-art, save-transcript
   - Ceremony: open.md, close.md
-  - Plugins: prayer-wheel, spanda-identity
+  - Plugins: prayer-wheel, spandaworks-identity
   - Assets: Tantric Sutras v7.3
 - **second-brain:** Created from eterne vault specifications
   - Vault template with PARA structure

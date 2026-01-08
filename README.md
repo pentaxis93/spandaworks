@@ -111,12 +111,12 @@ Add to `~/.config/opencode/opencode.json`:
 ```json
 {
   "mcp": {
-    "spanda_gtd": {
+    "spandaworks_gtd": {
       "type": "local",
       "command": ["node", "/path/to/spandaworks/packages/gtd/mcp-server/dist/index.js"],
       "enabled": true
     },
-    "spanda_pim": {
+    "spandaworks_pim": {
       "type": "local",
       "command": ["/path/to/spandaworks/packages/pim/mcp-server/target/release/spandaworks-pim"],
       "enabled": true

@@ -33,7 +33,7 @@ spandaworks-cli = { path = "../../../shared/utils/rust-cli" }
 ### Simple Execution
 
 ```rust
-use spanda_cli::run_command_stdout;
+use spandaworks_cli::run_command_stdout;
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
@@ -46,7 +46,7 @@ async fn main() -> anyhow::Result<()> {
 ### With Stdin
 
 ```rust
-use spanda_cli::run_command_with_stdin;
+use spandaworks_cli::run_command_with_stdin;
 
 let email_body = "Hello from Spandaworks!";
 let result = run_command_with_stdin(
@@ -59,7 +59,7 @@ let result = run_command_with_stdin(
 ### Advanced Builder Pattern
 
 ```rust
-use spanda_cli::CommandBuilder;
+use spandaworks_cli::CommandBuilder;
 
 let output = CommandBuilder::new("cargo")
     .args(&["build", "--release"])
@@ -72,7 +72,7 @@ let output = CommandBuilder::new("cargo")
 ### Lossy Execution (for grep-like tools)
 
 ```rust
-use spanda_cli::run_command_stdout_lossy;
+use spandaworks_cli::run_command_stdout_lossy;
 
 // grep returns exit code 1 when no matches found
 // This doesn't treat that as an error

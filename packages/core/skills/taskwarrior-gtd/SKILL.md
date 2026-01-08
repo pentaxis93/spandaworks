@@ -13,7 +13,7 @@ This skill guides Claude in facilitating GTD (Getting Things Done) workflows usi
 
 - TaskWarrior 3.x installed (`task --version`)
 - GTD-configured `.taskrc` (see Configuration section)
-- MCP tools available: `spanda_gtd_*` functions
+- MCP tools available: `spandaworks_gtd_*` functions
 
 ## GTD Overview
 
@@ -36,7 +36,7 @@ The system only works if it's trusted. Trust comes from consistent, complete pra
 For immediate capture, use MCP tools:
 
 ```
-spanda_gtd_add_task(description="...", tags=["in"])
+spandaworks_gtd_add_task(description="...", tags=["in"])
 ```
 
 The `+in` tag marks items for processing. Capture should be frictionless—get it out of your head immediately.
@@ -201,7 +201,7 @@ task add +incubating project:family.mark "Build a bridge—find a way in despite
 
 ### Processing Session Protocol
 
-1. View inbox: `task in` or `spanda_gtd_process_inbox()`
+1. View inbox: `task in` or `spandaworks_gtd_process_inbox()`
 2. Process from top, one item at a time
 3. Never skip—decide and act on each item
 4. Ask the clarifying questions in order
@@ -292,7 +292,7 @@ The weekly review is the critical habit that maintains system trust. **Without r
 
 ### Weekly Review Protocol
 
-Use `spanda_gtd_weekly_review()` for a comprehensive report, then:
+Use `spandaworks_gtd_weekly_review()` for a comprehensive report, then:
 
 #### Step 1: Get Clear
 
@@ -321,7 +321,7 @@ Use `spanda_gtd_weekly_review()` for a comprehensive report, then:
 
 ```bash
 # Full weekly review summary
-spanda_gtd_weekly_review()
+spandaworks_gtd_weekly_review()
 
 # Projects without next actions (stuck)
 task projects | while read p; do task pro:$p +next count | grep -q "^0$" && echo "STUCK: $p"; done
@@ -371,7 +371,7 @@ task +next +@computer brainpower:M estimate.lt:60
 ### MCP Tool for Engagement
 
 ```
-spanda_gtd_get_next_actions(
+spandaworks_gtd_get_next_actions(
   context="computer",
   energy_level="medium",
   time_available="30min"
@@ -565,18 +565,18 @@ alias think='tickle +1d'
 
 | Tool | Purpose |
 |------|---------|
-| `spanda_gtd_add_task` | Create task with full metadata |
-| `spanda_gtd_list_tasks` | Raw task queries |
-| `spanda_gtd_modify_task` | Update task attributes |
-| `spanda_gtd_mark_task_done` | Complete a task |
-| `spanda_gtd_process_inbox` | GTD inbox processing workflow |
-| `spanda_gtd_get_next_actions` | Context-aware task selection |
-| `spanda_gtd_weekly_review` | Comprehensive review report |
-| `spanda_gtd_get_project_status` | Project health analysis |
-| `spanda_gtd_get_waiting_for` | Waiting/delegated items |
-| `spanda_gtd_get_blocked_tasks` | Dependency-blocked tasks |
-| `spanda_gtd_get_recurring_tasks` | Habits and recurring tasks |
-| `spanda_gtd_get_someday_maybe` | Someday/maybe list |
+| `spandaworks_gtd_add_task` | Create task with full metadata |
+| `spandaworks_gtd_list_tasks` | Raw task queries |
+| `spandaworks_gtd_modify_task` | Update task attributes |
+| `spandaworks_gtd_mark_task_done` | Complete a task |
+| `spandaworks_gtd_process_inbox` | GTD inbox processing workflow |
+| `spandaworks_gtd_get_next_actions` | Context-aware task selection |
+| `spandaworks_gtd_weekly_review` | Comprehensive review report |
+| `spandaworks_gtd_get_project_status` | Project health analysis |
+| `spandaworks_gtd_get_waiting_for` | Waiting/delegated items |
+| `spandaworks_gtd_get_blocked_tasks` | Dependency-blocked tasks |
+| `spandaworks_gtd_get_recurring_tasks` | Habits and recurring tasks |
+| `spandaworks_gtd_get_someday_maybe` | Someday/maybe list |
 
 ---
 

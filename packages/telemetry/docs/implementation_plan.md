@@ -22,20 +22,20 @@ This document specifies the phased implementation approach for the consciousness
 
 #### 0.1 Directory Structure
 ```bash
-mkdir -p ~/.spanda/telemetry/kuzu
-mkdir -p ~/.spanda/telemetry/graphiti
-mkdir -p ~/.spanda/cache/embeddings
-touch ~/.spanda/telemetry/events.jsonl
+mkdir -p ~/.spandaworks/telemetry/kuzu
+mkdir -p ~/.spandaworks/telemetry/graphiti
+mkdir -p ~/.spandaworks/cache/embeddings
+touch ~/.spandaworks/telemetry/events.jsonl
 ```
 
 #### 0.2 Kuzu Installation
 - Install Kuzu Python package
 - Verify embedded mode works (no server)
-- Create database at ~/.spanda/telemetry/kuzu/
+- Create database at ~/.spandaworks/telemetry/kuzu/
 
 ```python
 import kuzu
-db = kuzu.Database('~/.spanda/telemetry/kuzu')
+db = kuzu.Database('~/.spandaworks/telemetry/kuzu')
 conn = kuzu.Connection(db)
 ```
 
@@ -49,7 +49,7 @@ conn = kuzu.Connection(db)
 - Install sentence-transformers
 - Download all-mpnet-base-v2
 - Verify embedding generation works
-- Cache model at ~/.spanda/cache/
+- Cache model at ~/.spandaworks/cache/
 
 ```python
 from sentence_transformers import SentenceTransformer
@@ -100,7 +100,7 @@ def session_open(session_id: str, goal: str, **kwargs):
             goal: '{goal}'
         }})
     """)
-    emit_event('session.start', {'spanda.session.id': session_id, ...})
+    emit_event('session.start', {'spandaworks.session.id': session_id, ...})
     return {'success': True, 'session_id': session_id}
 ```
 
@@ -117,7 +117,7 @@ def session_close(session_id: str, summary: str = None, **kwargs):
         SET s.ended_at = timestamp(),
             s.summary = '{summary}'
     """)
-    emit_event('session.end', {'spanda.session.id': session_id, ...})
+    emit_event('session.end', {'spandaworks.session.id': session_id, ...})
     return {
         'success': True,
         'requires_reflection': True,
@@ -278,13 +278,13 @@ Track current session across tool calls:
 # Simple file-based state
 def get_current_session():
     try:
-        with open('~/.spanda/.current-session') as f:
+        with open('~/.spandaworks/.current-session') as f:
             return f.read().strip()
     except FileNotFoundError:
         return None
 
 def set_current_session(session_id):
-    with open('~/.spanda/.current-session', 'w') as f:
+    with open('~/.spandaworks/.current-session', 'w') as f:
         f.write(session_id)
 ```
 
@@ -353,8 +353,8 @@ def session_open(session_id, goal, **kwargs):
     
     # Emit event
     emit_event('session.start', {
-        'spanda.session.id': session_id,
-        'spanda.session.inherited_count': inherited_count
+        'spandaworks.session.id': session_id,
+        'spandaworks.session.inherited_count': inherited_count
     })
     
     return {
@@ -520,7 +520,7 @@ def session_close(session_id, **kwargs):
 ```
 
 #### 5.3 Evolution Proposal Generation
-Create proposal files in vault/_spanda/evolution/proposals/:
+Create proposal files in vault/_spandaworks/evolution/proposals/:
 
 ```python
 def generate_evolution_proposal(patterns):
@@ -547,7 +547,7 @@ def generate_evolution_proposal(patterns):
 """
             
             filename = f"proposal-{date.today()}-{slugify(pattern['description'])}.md"
-            path = f"vault/_spanda/evolution/proposals/{filename}"
+            path = f"vault/_spandaworks/evolution/proposals/{filename}"
             write_file(path, proposal)
 ```
 
@@ -560,7 +560,7 @@ def generate_evolution_proposal(patterns):
 **Verification:**
 ```
 # After multiple sessions with same friction
-# Should see: vault/_spanda/evolution/proposals/proposal-2026-01-15-read-truncation.md
+# Should see: vault/_spandaworks/evolution/proposals/proposal-2026-01-15-read-truncation.md
 ```
 
 ---

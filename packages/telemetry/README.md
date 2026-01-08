@@ -1,4 +1,4 @@
-# Spanda Telemetry
+# Spandaworks Telemetry
 
 Self-reflection infrastructure for AI coding agents. A queryable model of cognition.
 
@@ -109,7 +109,7 @@ python scripts/seed_data.py
 ### MCP Tools (Agent Interface)
 
 ```python
-from spanda_telemetry.mcp import session_open, session_close, journal_write
+from spandaworks_telemetry.mcp import session_open, session_close, journal_write
 
 # Start session with declared goal
 session_open("2026-01-05-feature-work", "Implement user authentication")
@@ -129,7 +129,7 @@ session_close("2026-01-05-feature-work", goal_achieved=True)
 ### Graph Queries
 
 ```python
-from spanda_telemetry.mcp import graph_query
+from spandaworks_telemetry.mcp import graph_query
 
 # Find recurring patterns
 result = graph_query("""

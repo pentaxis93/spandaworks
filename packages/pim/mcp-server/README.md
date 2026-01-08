@@ -48,7 +48,7 @@ Add to `~/.config/opencode/opencode.json`:
 ```json
 {
   "mcp": {
-    "spanda_pim": {
+    "spandaworks_pim": {
       "type": "local",
       "command": ["/path/to/spandaworks/packages/pim/mcp-server/target/release/spandaworks-pim"],
       "enabled": true
@@ -70,7 +70,7 @@ See the [PIM Skill documentation](../../core/skills/pim/SKILL.md) for setup inst
 
 ## Design Philosophy
 
-> "I want the use of these tools to be as natural to Spanda as the use of my hand is to me."
+> "I want the use of these tools to be as natural to the AI as the use of my hand is to me."
 
 Tools are named with simple verbs that match natural language:
 - "What's on my calendar?" → `list_events`

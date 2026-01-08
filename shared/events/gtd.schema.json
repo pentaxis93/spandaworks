@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://spanda.dev/schemas/gtd-event.json",
+  "$id": "https://spandaworks.dev/schemas/gtd-event.json",
   "title": "GTD Event",
   "description": "Task management events emitted by gtd package",
   "allOf": [{ "$ref": "event.json" }],

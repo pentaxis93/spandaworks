@@ -5,7 +5,7 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from spanda_telemetry.extraction.extractor import (
+from spandaworks_telemetry.extraction.extractor import (
     _parse_extraction_response,
     extract_entities,
     extract_single_entity,
@@ -88,7 +88,7 @@ class TestParseExtractionResponse:
 class TestExtractEntitiesOpenAI:
     """Tests for OpenAI extraction (mocked)."""
 
-    @patch("spanda_telemetry.extraction.extractor._get_openai_client")
+    @patch("spandaworks_telemetry.extraction.extractor._get_openai_client")
     def test_extract_insight(self, mock_get_client):
         """Extract an insight from text."""
         mock_client = MagicMock()
@@ -125,7 +125,7 @@ class TestExtractEntitiesOpenAI:
         assert "context windows" in result.entities[0].content.lower()
         assert result.entities[0].confidence > 0.8
 
-    @patch("spanda_telemetry.extraction.extractor._get_openai_client")
+    @patch("spandaworks_telemetry.extraction.extractor._get_openai_client")
     def test_extract_friction(self, mock_get_client):
         """Extract a friction from text."""
         mock_client = MagicMock()
@@ -161,7 +161,7 @@ class TestExtractEntitiesOpenAI:
         assert result.entities[0].entity_type == "Friction"
         assert "database" in result.entities[0].content.lower()
 
-    @patch("spanda_telemetry.extraction.extractor._get_openai_client")
+    @patch("spandaworks_telemetry.extraction.extractor._get_openai_client")
     def test_extract_multiple_entities_with_relationship(self, mock_get_client):
         """Extract multiple entities with relationship."""
         mock_client = MagicMock()
@@ -210,7 +210,7 @@ class TestExtractEntitiesOpenAI:
 class TestExtractSingleEntity:
     """Tests for single entity extraction."""
 
-    @patch("spanda_telemetry.extraction.extractor._get_openai_client")
+    @patch("spandaworks_telemetry.extraction.extractor._get_openai_client")
     def test_extract_single_returns_highest_confidence(self, mock_get_client):
         """Extract single entity returns highest confidence."""
         mock_client = MagicMock()
@@ -248,7 +248,7 @@ class TestExtractSingleEntity:
         assert result.entity_type == "Insight"
         assert result.confidence == 0.95
 
-    @patch("spanda_telemetry.extraction.extractor._get_openai_client")
+    @patch("spandaworks_telemetry.extraction.extractor._get_openai_client")
     def test_extract_single_with_hint_type(self, mock_get_client):
         """Extract single entity with hint prefers matching type."""
         mock_client = MagicMock()
@@ -285,7 +285,7 @@ class TestExtractSingleEntity:
         assert result is not None
         assert result.entity_type == "Friction"
 
-    @patch("spanda_telemetry.extraction.extractor._get_openai_client")
+    @patch("spandaworks_telemetry.extraction.extractor._get_openai_client")
     def test_extract_single_empty_returns_none(self, mock_get_client):
         """Extract single entity returns None on empty response."""
         mock_client = MagicMock()

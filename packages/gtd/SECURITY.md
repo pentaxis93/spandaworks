@@ -30,7 +30,7 @@ If you discover a security vulnerability in @spandaworks/gtd, please report it b
 
 - AI suggestions are advisory only (trust model: AI suggests, human approves)
 - No task modifications happen without explicit user action
-- Telemetry data (if enabled) stays local at `~/.spanda/gtd-telemetry/`
+- Telemetry data (if enabled) stays local at `~/.spandaworks/gtd-telemetry/`
 
 ### MCP Protocol
 

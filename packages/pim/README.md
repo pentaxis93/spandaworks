@@ -59,7 +59,7 @@ Add to `~/.config/opencode/opencode.json`:
 ```json
 {
   "mcp": {
-    "spanda_pim": {
+    "spandaworks_pim": {
       "type": "local",
       "command": ["/path/to/spandaworks/packages/pim/mcp-server/target/release/spandaworks-pim"],
       "enabled": true
@@ -80,7 +80,7 @@ See [mcp-server/README.md](mcp-server/README.md) for complete tool documentation
 
 ## Design Philosophy
 
-> "I want the use of these tools to be as natural to Spanda as the use of my hand is to me."
+> "I want the use of these tools to be as natural to the AI as the use of my hand is to me."
 
 - Simple verbs matching natural language
 - Safety-first (email sending requires explicit confirmation)
