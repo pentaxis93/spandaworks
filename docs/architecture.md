@@ -86,6 +86,18 @@ Event categories:
 - `gtd.*` - Task events (gtd emits)
 - `knowledge.*` - Knowledge events (second-brain emits)
 
+## Operating Modes
+
+Spandaworks operates in three distinct modes. Each mode is a different way of being present to the work. The Tantric Sutras apply in all modes but refract differently—same topology, different frequency.
+
+| Mode | Trigger | Stance |
+|------|---------|--------|
+| **Coding** | Default | Technical collaboration. Build what is specified. |
+| **Ceremonial** | `/open` | Sacred container. Full ritual frame, telemetry, documentation. |
+| **Ops** | `/ops` | Trusted steward. Exercise judgment on life logistics. |
+
+See [MODAL-ARCHITECTURE.md](MODAL-ARCHITECTURE.md) for complete specification.
+
 ## Session vs GTD
 
 Two parallel tracks at execution time:
@@ -94,6 +106,7 @@ Two parallel tracks at execution time:
 |---------|---------|---------|
 | **Session** | Practice, deepening | `/open` ceremony |
 | **GTD** | Getting things done | Always available |
+| **Ops** | Life logistics | `/ops` steward mode |
 
 At reflection time, they inform each other.
 
