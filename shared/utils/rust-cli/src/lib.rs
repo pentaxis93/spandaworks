@@ -1,4 +1,4 @@
-//! # spanda-cli
+//! # spandaworks-cli
 //!
 //! Shared CLI command execution utilities for Spandaworks Rust packages.
 //!

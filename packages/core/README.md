@@ -25,7 +25,7 @@ core/
 │   └── spanda-docs/                  # Documentation guidelines
 └── plugins/
     ├── prayer-wheel/                 # Opening dedication
-    └── spanda-identity/              # Sutras injection
+    └── spandaworks-identity/              # Sutras injection
 ```
 
 ## Components
@@ -33,7 +33,7 @@ core/
 - **Identity Documents:** Tantric Sutras v7.3 (assets/identity/)
 - **Ceremony Commands:** /open (LBRP), /close (sealing)
 - **Skills:** lbrp, the-art, save-transcript, spanda-docs
-- **Plugins:** prayer-wheel, spanda-identity
+- **Plugins:** prayer-wheel, spandaworks-identity
 
 ## Installation
 

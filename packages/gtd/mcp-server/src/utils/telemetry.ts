@@ -5,7 +5,7 @@
  * If telemetry fails, GTD continues working.
  * 
  * Integration approach: Write JSONL events to shared location that
- * spanda-telemetry can read/import. Non-blocking, fire-and-forget.
+ * spandaworks-telemetry can read/import. Non-blocking, fire-and-forget.
  */
 
 import { appendFileSync, existsSync, mkdirSync } from "fs";
