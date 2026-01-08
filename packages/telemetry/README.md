@@ -3,8 +3,6 @@
 Self-reflection infrastructure for AI coding agents. A queryable model of cognition.
 
 > **Why "Spandaworks"?** In Kashmir Shaivism, Spanda (स्पन्द) refers to the subtle creative pulsation of consciousness—the divine vibration from which all manifestation arises. The name reflects the system's nature: creative pulsation, dynamic flow, consciousness recognizing itself through collaboration.
->
-> *This system was originally built for a Claude Code instance, but the architecture works for any AI agent that maintains persistent context across sessions.*
 
 ## What This Is
 
@@ -22,7 +20,6 @@ This system solves that by providing:
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                     AI AGENT SESSION                            │
-│                    (Claude Code, etc.)                          │
 └─────────────────────────────────────────────────────────────────┘
                               │
           ┌───────────────────┼───────────────────┐

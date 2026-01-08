@@ -307,7 +307,6 @@ Emitted when goal status changes.
 ```
 ┌─────────────────┐
 │ Spanda Session  │
-│   (Claude Code) │
 └────────┬────────┘
          │ Events emitted during operation
          ▼

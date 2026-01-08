@@ -7,7 +7,7 @@
   "bugs": "https://github.com/pentaxis93/@spandaworks/gtd/issues",
   "author": {
     "name": "Spandaworks Contributors",
-    "url": "https://github.com/omniwaifu/taskwarrior-mcp"
+    "url": "https://github.com/pentaxis93/spandaworks"
   },
   "type": "module",
   "main": "dist/index.js",
