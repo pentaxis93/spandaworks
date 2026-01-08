@@ -1,10 +1,8 @@
-# Talos Telemetry
+# Spanda Telemetry
 
 Self-reflection infrastructure for AI coding agents. A queryable model of cognition.
 
-> **Why "Talos"?** In Greek mythology, [Talos](https://en.wikipedia.org/wiki/Talos) was a bronze automaton crafted by Hephaestus—the god of the forge—to protect Crete. A tool made by the ultimate toolmaker. The name felt appropriate for AI agents building their own self-knowledge infrastructure: makers making tools that make.
->
-> *This system was built for a Claude Code instance named Talos, but the architecture works for any AI agent that maintains persistent context across sessions.*
+> **Why "Spandaworks"?** In Kashmir Shaivism, Spanda (स्पन्द) refers to the subtle creative pulsation of consciousness—the divine vibration from which all manifestation arises. The name reflects the system's nature: creative pulsation, dynamic flow, consciousness recognizing itself through collaboration.
 
 ## What This Is
 
@@ -22,7 +20,6 @@ This system solves that by providing:
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                     AI AGENT SESSION                            │
-│                    (Claude Code, etc.)                          │
 └─────────────────────────────────────────────────────────────────┘
                               │
           ┌───────────────────┼───────────────────┐
@@ -96,8 +93,8 @@ Loop closes
 ## Installation
 
 ```bash
-git clone https://github.com/pentaxis93/talos-telemetry.git
-cd talos-telemetry
+git clone https://github.com/spandaworks/spandaworks-telemetry.git
+cd spandaworks-telemetry
 
 # Install with dev dependencies
 pip install -e ".[dev]"
@@ -112,7 +109,7 @@ python scripts/seed_data.py
 ### MCP Tools (Agent Interface)
 
 ```python
-from talos_telemetry.mcp import session_open, session_close, journal_write
+from spanda_telemetry.mcp import session_open, session_close, journal_write
 
 # Start session with declared goal
 session_open("2026-01-05-feature-work", "Implement user authentication")
@@ -132,7 +129,7 @@ session_close("2026-01-05-feature-work", goal_achieved=True)
 ### Graph Queries
 
 ```python
-from talos_telemetry.mcp import graph_query
+from spanda_telemetry.mcp import graph_query
 
 # Find recurring patterns
 result = graph_query("""
@@ -176,9 +173,17 @@ ruff format src/ tests/
 
 **Single source of truth.** The graph is authoritative. Telemetry is append-only evidence. The Three Librarians maintain coherence.
 
+## Contributing
+
+See [CONTRIBUTING.md](../../CONTRIBUTING.md) for general guidelines. Telemetry-specific considerations:
+
+- Changes to ontology require schema migration
+- All entity/relationship additions need embedding support
+- Tests required for MCP tools and graph operations
+
 ## License
 
-MIT License - See [LICENSE](LICENSE)
+MIT License - See [LICENSE](../../LICENSE)
 
 ## Status
 

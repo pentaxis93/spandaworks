@@ -1,12 +1,12 @@
 # Setup Guide
 
-Complete installation instructions for talos-gtd.
+Complete installation instructions for @spandaworks/gtd.
 
 ## Prerequisites
 
 ### TaskWarrior 3.x
 
-talos-gtd requires TaskWarrior version 3.x (not 2.x).
+@spandaworks/gtd requires TaskWarrior version 3.x (not 2.x).
 
 **Check your version:**
 ```bash
@@ -65,8 +65,8 @@ You need an MCP-compatible AI client:
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/pentaxis93/talos-gtd.git
-cd talos-gtd
+git clone https://github.com/pentaxis93/@spandaworks/gtd.git
+cd @spandaworks/gtd
 ```
 
 ### 2. Build MCP Server
@@ -110,13 +110,13 @@ The template adds:
 
 **For Zsh:**
 ```bash
-echo 'source ~/src/talos-gtd/config/aliases.sh' >> ~/.zshrc
+echo 'source ~/src/@spandaworks/gtd/config/aliases.sh' >> ~/.zshrc
 source ~/.zshrc
 ```
 
 **For Bash:**
 ```bash
-echo 'source ~/src/talos-gtd/config/aliases.sh' >> ~/.bashrc
+echo 'source ~/src/@spandaworks/gtd/config/aliases.sh' >> ~/.bashrc
 source ~/.bashrc
 ```
 
@@ -131,9 +131,9 @@ Edit `~/.config/claude/claude_desktop_config.json`:
 ```json
 {
   "mcpServers": {
-    "talos-gtd": {
+    "@spandaworks/gtd": {
       "command": "node",
-      "args": ["/home/YOUR_USER/src/talos-gtd/mcp-server/dist/index.js"]
+      "args": ["/home/YOUR_USER/src/@spandaworks/gtd/mcp-server/dist/index.js"]
     }
   }
 }
@@ -149,9 +149,9 @@ Edit `~/.config/opencode/opencode.json`:
 {
   "mcp": {
     "servers": {
-      "talos_gtd": {
+      "spanda_gtd": {
         "type": "local",
-        "command": ["node", "/home/YOUR_USER/src/talos-gtd/mcp-server/dist/index.js"]
+        "command": ["node", "/home/YOUR_USER/src/@spandaworks/gtd/mcp-server/dist/index.js"]
       }
     }
   }
@@ -188,7 +188,7 @@ ti
 
 ```bash
 # Start server manually (for testing)
-node ~/src/talos-gtd/mcp-server/dist/index.js
+node ~/src/@spandaworks/gtd/mcp-server/dist/index.js
 
 # Should output: "MCP TaskWarrior Server running on stdio"
 # Press Ctrl+C to stop
@@ -214,7 +214,7 @@ which task
 
 MCP server not built:
 ```bash
-cd ~/src/talos-gtd/mcp-server
+cd ~/src/@spandaworks/gtd/mcp-server
 npm install
 npm run build
 ```
@@ -237,7 +237,7 @@ Or path is wrong in the source line.
 
 ### TaskWarrior 2.x compatibility
 
-talos-gtd is designed for TaskWarrior 3.x. Some features may work with 2.x but it's not officially supported. Upgrade if possible:
+@spandaworks/gtd is designed for TaskWarrior 3.x. Some features may work with 2.x but it's not officially supported. Upgrade if possible:
 ```bash
 task --version
 # If 2.x, consider upgrading

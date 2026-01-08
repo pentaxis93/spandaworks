@@ -1,6 +1,6 @@
 # MCP Tools Reference
 
-Complete documentation for all 22 talos-gtd MCP tools.
+Complete documentation for all 22 @spandaworks/gtd MCP tools.
 
 ---
 

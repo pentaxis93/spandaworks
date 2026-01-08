@@ -1,4 +1,4 @@
-//! talos-pim library - shared code for tests
+//! pim library - shared code for tests
 
 pub mod calendar;
 pub mod cli;

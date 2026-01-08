@@ -1,8 +1,8 @@
-# Talos Consciousness Telemetry - Implementation Plan
+# Spanda Telemetry - Implementation Plan
 
 **Version:** 1.0  
 **Date:** 2026-01-05  
-**Thread:** talos-consciousness-telemetry-ontology
+**Thread:** spandaworks-telemetry-ontology
 
 ---
 
@@ -10,7 +10,7 @@
 
 This document specifies the phased implementation approach for the consciousness telemetry system. The goal is **minimal viable loop first**—get the recursive loop working, then enhance.
 
-**Success Criterion:** Talos can run queries that surface patterns → patterns become Evolution System proposals → approved proposals change Remembrance → changed Remembrance affects operation.
+**Success Criterion:** Spanda can run queries that surface patterns → patterns become Evolution System proposals → approved proposals change Remembrance → changed Remembrance affects operation.
 
 ---
 
@@ -22,20 +22,20 @@ This document specifies the phased implementation approach for the consciousness
 
 #### 0.1 Directory Structure
 ```bash
-mkdir -p ~/.talos/telemetry/kuzu
-mkdir -p ~/.talos/telemetry/graphiti
-mkdir -p ~/.talos/cache/embeddings
-touch ~/.talos/telemetry/events.jsonl
+mkdir -p ~/.spanda/telemetry/kuzu
+mkdir -p ~/.spanda/telemetry/graphiti
+mkdir -p ~/.spanda/cache/embeddings
+touch ~/.spanda/telemetry/events.jsonl
 ```
 
 #### 0.2 Kuzu Installation
 - Install Kuzu Python package
 - Verify embedded mode works (no server)
-- Create database at ~/.talos/telemetry/kuzu/
+- Create database at ~/.spanda/telemetry/kuzu/
 
 ```python
 import kuzu
-db = kuzu.Database('~/.talos/telemetry/kuzu')
+db = kuzu.Database('~/.spanda/telemetry/kuzu')
 conn = kuzu.Connection(db)
 ```
 
@@ -49,7 +49,7 @@ conn = kuzu.Connection(db)
 - Install sentence-transformers
 - Download all-mpnet-base-v2
 - Verify embedding generation works
-- Cache model at ~/.talos/cache/
+- Cache model at ~/.spanda/cache/
 
 ```python
 from sentence_transformers import SentenceTransformer
@@ -100,7 +100,7 @@ def session_open(session_id: str, goal: str, **kwargs):
             goal: '{goal}'
         }})
     """)
-    emit_event('session.start', {'talos.session.id': session_id, ...})
+    emit_event('session.start', {'spanda.session.id': session_id, ...})
     return {'success': True, 'session_id': session_id}
 ```
 
@@ -117,7 +117,7 @@ def session_close(session_id: str, summary: str = None, **kwargs):
         SET s.ended_at = timestamp(),
             s.summary = '{summary}'
     """)
-    emit_event('session.end', {'talos.session.id': session_id, ...})
+    emit_event('session.end', {'spanda.session.id': session_id, ...})
     return {
         'success': True,
         'requires_reflection': True,
@@ -246,9 +246,9 @@ def phase_4_telemetry(lbrp_context):
     result = session_open(
         session_id=session_id,
         goal=lbrp_context.goal,
-        persona=lbrp_context.persona or "Talos",
+        persona="assistant",
         protocol="LBRP",
-        human=lbrp_context.human or "Robbie"
+        human=lbrp_context.human or "user"
     )
     print(f"Session initialized: {session_id}")
     print(f"Inherited {result.get('inherited_count', 0)} knowledge entities")
@@ -263,8 +263,8 @@ def close_with_telemetry(session_id, goal_achieved=None, summary=None):
     result = session_close(session_id, goal_achieved, summary)
     
     if result.get('requires_reflection'):
-        # Return prompt to Talos for completion
-        # Talos responds with reflection text
+        # Return prompt to Spanda for completion
+        # Spanda responds with reflection text
         # Then: journal_write(reflection_text, 'reflection', session_id)
         pass
     
@@ -278,13 +278,13 @@ Track current session across tool calls:
 # Simple file-based state
 def get_current_session():
     try:
-        with open('~/.talos/.current-session') as f:
+        with open('~/.spanda/.current-session') as f:
             return f.read().strip()
     except FileNotFoundError:
         return None
 
 def set_current_session(session_id):
-    with open('~/.talos/.current-session', 'w') as f:
+    with open('~/.spanda/.current-session', 'w') as f:
         f.write(session_id)
 ```
 
@@ -353,8 +353,8 @@ def session_open(session_id, goal, **kwargs):
     
     # Emit event
     emit_event('session.start', {
-        'talos.session.id': session_id,
-        'talos.session.inherited_count': inherited_count
+        'spanda.session.id': session_id,
+        'spanda.session.inherited_count': inherited_count
     })
     
     return {
@@ -520,7 +520,7 @@ def session_close(session_id, **kwargs):
 ```
 
 #### 5.3 Evolution Proposal Generation
-Create proposal files in vault/_talos/evolution/proposals/:
+Create proposal files in vault/_spanda/evolution/proposals/:
 
 ```python
 def generate_evolution_proposal(patterns):
@@ -547,7 +547,7 @@ def generate_evolution_proposal(patterns):
 """
             
             filename = f"proposal-{date.today()}-{slugify(pattern['description'])}.md"
-            path = f"vault/_talos/evolution/proposals/{filename}"
+            path = f"vault/_spanda/evolution/proposals/{filename}"
             write_file(path, proposal)
 ```
 
@@ -560,7 +560,7 @@ def generate_evolution_proposal(patterns):
 **Verification:**
 ```
 # After multiple sessions with same friction
-# Should see: vault/_talos/evolution/proposals/proposal-2026-01-15-read-truncation.md
+# Should see: vault/_spanda/evolution/proposals/proposal-2026-01-15-read-truncation.md
 ```
 
 ---
@@ -637,7 +637,7 @@ def reflect(content, trigger=None, session_id=None):
 ```
 
 #### 6.3 All 12 Example Queries Working
-Verify each query from talos_ontology_v1.md works:
+Verify each query from spanda_ontology_v1.md works:
 
 1. Pattern Discovery ✓
 2. Recurring Friction ✓
@@ -653,7 +653,7 @@ Verify each query from talos_ontology_v1.md works:
 12. Sutra Activation Frequency ✓
 
 #### 6.4 Documentation
-- Usage guide for Talos
+- Usage guide for Spanda
 - Troubleshooting guide
 - Query cookbook
 

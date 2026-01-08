@@ -1,13 +1,13 @@
 {
-  "name": "talos-gtd-mcp",
+  "name": "@spandaworks/gtd",
   "version": "0.1.0",
   "description": "AI-augmented GTD MCP server for TaskWarrior (forked from omniwaifu/taskwarrior-mcp)",
   "license": "MIT",
-  "homepage": "https://github.com/pentaxis93/talos-gtd",
-  "bugs": "https://github.com/pentaxis93/talos-gtd/issues",
+  "homepage": "https://github.com/pentaxis93/@spandaworks/gtd",
+  "bugs": "https://github.com/pentaxis93/@spandaworks/gtd/issues",
   "author": {
-    "name": "Robbie (forked from omniwaifu)",
-    "url": "https://github.com/omniwaifu/taskwarrior-mcp"
+    "name": "Spandaworks Contributors",
+    "url": "https://github.com/pentaxis93/spandaworks"
   },
   "type": "module",
   "main": "dist/index.js",

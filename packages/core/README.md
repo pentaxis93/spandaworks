@@ -1,10 +1,10 @@
 # Core
 
-**The identity** - defines who Talos is, how sessions flow.
+**The identity** - defines who Spandaworks is, how sessions flow.
 
 ## Purpose
 
-Talos identity, ceremony, and shared protocols. The "who Talos is" package.
+Spandaworks identity, ceremony, and shared protocols. The "who Spandaworks is" package.
 
 ## Structure
 
@@ -21,18 +21,19 @@ core/
 ├── skills/
 │   ├── lbrp/                         # Session opening skill
 │   ├── the-art/                      # Synthesis skill
-│   └── save-transcript/              # Transcript preservation
+│   ├── save-transcript/              # Transcript preservation
+│   └── spanda-docs/                  # Documentation guidelines
 └── plugins/
     ├── prayer-wheel/                 # Opening dedication
-    └── talos-identity/               # Sutras injection
+    └── spandaworks-identity/              # Sutras injection
 ```
 
 ## Components
 
 - **Identity Documents:** Tantric Sutras v7.3 (assets/identity/)
 - **Ceremony Commands:** /open (LBRP), /close (sealing)
-- **Skills:** lbrp, the-art, save-transcript
-- **Plugins:** prayer-wheel, talos-identity
+- **Skills:** lbrp, the-art, save-transcript, spanda-docs
+- **Plugins:** prayer-wheel, spandaworks-identity
 
 ## Installation
 
@@ -40,22 +41,34 @@ Symlink to OpenCode config:
 
 ```bash
 # Skills
-ln -s ~/src/talos/packages/core/skills/* ~/.config/opencode/skill/
+ln -s ~/src/spandaworks/packages/core/skills/* ~/.config/opencode/skill/
 
 # Commands (ceremony)
-ln -s ~/src/talos/packages/core/ceremony/*.md ~/.config/opencode/command/
-ln -s ~/src/talos/packages/core/commands/*.md ~/.config/opencode/command/
+ln -s ~/src/spandaworks/packages/core/ceremony/*.md ~/.config/opencode/command/
+ln -s ~/src/spandaworks/packages/core/commands/*.md ~/.config/opencode/command/
 
 # Plugins
-ln -s ~/src/talos/packages/core/plugins/* ~/.config/opencode/plugin/
+ln -s ~/src/spandaworks/packages/core/plugins/* ~/.config/opencode/plugin/
 ```
 
 ## Boundaries
 
 - Defines identity, does not implement domain logic
 - Provides ceremony structure, does not manage tasks or knowledge
-- Shapes all Talos behavior through topology, not prescription
+- Shapes all Spandaworks behavior through topology, not prescription
 
 ## Language
 
 Markdown (documents), TypeScript (plugins)
+
+## Contributing
+
+See [CONTRIBUTING.md](../../CONTRIBUTING.md) for general guidelines. Core-specific considerations:
+
+- Changes to identity documents (Tantric Sutras) require discussion
+- Ceremony changes should preserve the four-quarter structure
+- Skills and plugins must be symlink-compatible
+
+## License
+
+MIT - See [LICENSE](../../LICENSE) for details.

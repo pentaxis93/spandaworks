@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://talos.dev/schemas/knowledge-event.json",
+  "$id": "https://spanda.dev/schemas/knowledge-event.json",
   "title": "Knowledge Event",
   "description": "Knowledge events emitted by second-brain package",
   "allOf": [{ "$ref": "event.json" }],

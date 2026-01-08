@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://talos.dev/schemas/session-event.json",
+  "$id": "https://spanda.dev/schemas/session-event.json",
   "title": "Session Event",
   "description": "Session lifecycle events emitted by core package",
   "allOf": [{ "$ref": "event.json" }],
@@ -26,7 +26,7 @@
         },
         "persona": {
           "type": "string",
-          "description": "Active persona (e.g., Talos, Sage)"
+          "description": "Active persona="assistant"
         },
         "protocol": {
           "type": "string",

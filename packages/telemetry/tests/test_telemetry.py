@@ -4,8 +4,8 @@ import json
 import tempfile
 from pathlib import Path
 
-from talos_telemetry.telemetry.events import emit_event
-from talos_telemetry.telemetry.sink import TelemetrySink
+from spanda_telemetry.telemetry.events import emit_event
+from spanda_telemetry.telemetry.sink import TelemetrySink
 
 
 class TestTelemetrySink:

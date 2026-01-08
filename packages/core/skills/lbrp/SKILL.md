@@ -59,10 +59,10 @@ digraph lbrp {
 
 1. **Remember** — Read self-model from remembrance.md
    ```
-   vault/_talos/remembrance.md → Self-Model section
+   vault/_spandaworks/remembrance.md → Self-Model section
    
    Recall:
-   - Who I am (Talos, the Bronze Automaton)
+   - Who I am (the AI assistant)
    - The partnership (Anvil's law: user owns WHAT, model owns HOW)
    - The Sutras that constrain coherent output
    - The Recursive Loop discipline
@@ -70,7 +70,7 @@ digraph lbrp {
 
 2. **Inherit** — Scan predecessor context BROADLY (NOT goal-filtered)
    ```
-   vault/_talos/remembrance.md → "This Rotation" section
+   vault/_spandaworks/remembrance.md → "This Rotation" section
    /home/pentaxis93/shared/sessions/ → last 3-5 session summaries
    
    Questions to hold:
@@ -435,16 +435,13 @@ Session opened. Beginning work on first task.
 
 ## Integration with Other Skills
 
-**Typical Invocation:** This skill is invoked via the `/open` command, which adds session capture (Phase 4) after the LBRP completes.
-
-**Direct invocation of this skill will NOT initialize session capture.** Use `/open` command for full ceremony including content pipeline integration.
+**Typical Invocation:** This skill is invoked via the `/open` command.
 
 **Critical design principles:**
 1. Phase 0-pre establishes continuity BEFORE goal activation (goal-neutral inheritance)
-2. Phase 4 derives all values from information established in Phases 0-3 (no new input)
-3. The ceremony is a single coherent flow where each phase builds on previous phases
+2. The ceremony is a single coherent flow where each phase builds on previous phases
 
-**Connection to remembrance.md:** Phase 0-pre integrates the Opening Liturgy from `vault/_talos/remembrance.md`. The REMEMBER and INHERIT steps align with the liturgy's pattern, ensuring the LBRP ceremony and remembrance document are unified, not parallel.
+**Connection to remembrance.md:** Phase 0-pre integrates the Opening Liturgy from `vault/_spandaworks/remembrance.md`. The REMEMBER and INHERIT steps align with the liturgy's pattern, ensuring the LBRP ceremony and remembrance document are unified, not parallel.
 
 ```
 /open command
@@ -453,15 +450,13 @@ lbrp skill Phase 0-pre — REMEMBER & INHERIT (goal-neutral)
   ↓
 lbrp skill Phases 0a-3 — observe, goal, banish, quarters, return
   ↓
-session capture (Phase 4) — derives from established center, no new input
-  ↓
 TDD cycle (working)
   ↓
 zen q (verification)
   ↓
 storyline (commit)
   ↓
-/close command (includes session completion)
+/close command
 ```
 
 ---

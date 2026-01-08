@@ -6,7 +6,7 @@ class TestInheritedCapture:
 
     def test_session_captures_inherited_beliefs(self, fresh_db):
         """Verify session_open creates INHERITED_BELIEF relationships."""
-        from talos_telemetry.mcp.session import session_open
+        from spanda_telemetry.mcp.session import session_open
 
         # First create a Belief that can be inherited
         fresh_db.execute("""
@@ -33,7 +33,7 @@ class TestInheritedCapture:
 
     def test_session_captures_inherited_insights(self, fresh_db):
         """Verify session_open creates INHERITED_INSIGHT relationships."""
-        from talos_telemetry.mcp.session import session_open
+        from spanda_telemetry.mcp.session import session_open
 
         # Create an Insight
         fresh_db.execute("""
@@ -58,7 +58,7 @@ class TestInheritedCapture:
 
     def test_session_captures_inherited_patterns(self, fresh_db):
         """Verify session_open creates INHERITED_PATTERN relationships."""
-        from talos_telemetry.mcp.session import session_open
+        from spanda_telemetry.mcp.session import session_open
 
         # Create a Pattern
         fresh_db.execute("""
@@ -85,7 +85,7 @@ class TestInheritedCapture:
 
     def test_session_returns_inherited_summary(self, fresh_db):
         """Verify session_open returns breakdown of inherited entities."""
-        from talos_telemetry.mcp.session import session_open
+        from spanda_telemetry.mcp.session import session_open
 
         # Create entities of different types
         fresh_db.execute("""
@@ -108,7 +108,7 @@ class TestInheritedCapture:
 
     def test_inherited_captures_all_entity_types(self, fresh_db):
         """Verify all inheritable entity types are captured."""
-        from talos_telemetry.mcp.session import session_open
+        from spanda_telemetry.mcp.session import session_open
 
         # Create one of each inheritable type
         entity_creates = [
@@ -149,7 +149,7 @@ class TestInheritedCapture:
 
     def test_inherited_with_timestamp(self, fresh_db):
         """Verify INHERITED relationships have valid_from timestamp."""
-        from talos_telemetry.mcp.session import session_open
+        from spanda_telemetry.mcp.session import session_open
 
         fresh_db.execute("""
             CREATE (b:Belief {
@@ -172,7 +172,7 @@ class TestInheritedCapture:
 
     def test_temporal_query_what_did_i_know(self, fresh_db):
         """Verify we can query 'what beliefs did this session inherit'."""
-        from talos_telemetry.mcp.session import session_open
+        from spanda_telemetry.mcp.session import session_open
 
         # Create beliefs at different "times" (simulated)
         fresh_db.execute("""

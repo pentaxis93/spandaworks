@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://talos.dev/schemas/event.json",
-  "title": "Talos Event",
-  "description": "Cross-package event schema for Talos system communication",
+  "$id": "https://spanda.dev/schemas/event.json",
+  "title": "Spandaworks Event",
+  "description": "Cross-package event schema for Spandaworks system communication",
   "type": "object",
   "required": ["event_type", "timestamp", "source_package"],
   "properties": {

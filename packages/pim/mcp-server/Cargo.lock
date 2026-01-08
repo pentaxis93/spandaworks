@@ -663,6 +663,32 @@ dependencies = [
 ]
 
 [[package]]
+name = "spandaworks-cli"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "thiserror",
+ "tokio",
+]
+
+[[package]]
+name = "spandaworks-pim"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "chrono",
+ "regex",
+ "rmcp",
+ "serde",
+ "serde_json",
+ "spandaworks-cli",
+ "thiserror",
+ "tokio",
+ "tracing",
+ "tracing-subscriber",
+]
+
+[[package]]
 name = "strsim"
 version = "0.11.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -677,22 +703,6 @@ dependencies = [
  "proc-macro2",
  "quote",
  "unicode-ident",
-]
-
-[[package]]
-name = "talos-pim"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "chrono",
- "regex",
- "rmcp",
- "serde",
- "serde_json",
- "thiserror",
- "tokio",
- "tracing",
- "tracing-subscriber",
 ]
 
 [[package]]

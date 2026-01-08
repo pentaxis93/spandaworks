@@ -1,6 +1,6 @@
-# GTD Workflow with talos-gtd
+# GTD Workflow with @spandaworks/gtd
 
-A practical guide to implementing Getting Things Done with talos-gtd.
+A practical guide to implementing Getting Things Done with @spandaworks/gtd.
 
 ## The GTD Model
 
@@ -12,7 +12,7 @@ GTD (Getting Things Done) is David Allen's productivity methodology built on fiv
 4. **Reflect** - Review the system regularly
 5. **Engage** - Take action with confidence
 
-talos-gtd implements this with TaskWarrior as the backend and MCP tools for AI assistance.
+@spandaworks/gtd implements this with TaskWarrior as the backend and MCP tools for AI assistance.
 
 ---
 

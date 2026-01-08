@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://talos.dev/schemas/telemetry-event.json",
+  "$id": "https://spanda.dev/schemas/telemetry-event.json",
   "title": "Telemetry Event",
   "description": "Observation events emitted by telemetry package",
   "allOf": [{ "$ref": "event.json" }],

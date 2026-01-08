@@ -1,6 +1,6 @@
 # Vault Template
 
-Standard PARA structure for Obsidian vault with Talos operational directories.
+Standard PARA structure for Obsidian vault with Spandaworks operational directories.
 
 ## Structure
 
@@ -18,7 +18,7 @@ vault/
 ├── 05-knowledge/       # Knowledge assets
 │   ├── consolidated/   # Frameworks from fusion
 │   └── patterns/       # Recognized patterns
-├── _talos/             # Talos operational memory
+├── _spandaworks/       # Spandaworks operational memory
 │   ├── reference/      # Quick reference system
 │   ├── protocols/      # Operational protocols
 │   ├── evolution/      # System evolution tracking

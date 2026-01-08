@@ -33,7 +33,7 @@ Files that serve as indexes or containers.
 | Type | Pattern | Location |
 |------|---------|----------|
 | Manifest | `manifest.md` | `00-inbox/alembic/` |
-| Ledger | `session-ledger.md` | `_talos/` |
+| Ledger | `session-ledger.md` | `_spandaworks/` |
 | Framework | `{name}-framework.md` | `05-knowledge/consolidated/` |
 | Pattern | `pattern-{slug}.md` | `05-knowledge/patterns/` |
 

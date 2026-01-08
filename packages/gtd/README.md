@@ -1,4 +1,4 @@
-# talos-gtd
+# @spandaworks/gtd
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![TaskWarrior](https://img.shields.io/badge/TaskWarrior-3.x-green.svg)](https://taskwarrior.org/)
@@ -8,7 +8,7 @@ AI-augmented GTD (Getting Things Done) system using TaskWarrior as the core engi
 
 ## Overview
 
-talos-gtd extends TaskWarrior with 22 MCP tools for GTD workflows, enabling AI assistants to help with task management while maintaining a strict trust model: **AI suggests, human approves**.
+@spandaworks/gtd extends TaskWarrior with 22 MCP tools for GTD workflows, enabling AI assistants to help with task management while maintaining a strict trust model: **AI suggests, human approves**.
 
 ### Key Features
 
@@ -37,8 +37,8 @@ All AI interactions are advisory. The MCP tools read TaskWarrior data and provid
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/pentaxis93/talos-gtd.git
-cd talos-gtd
+git clone https://github.com/pentaxis93/@spandaworks/gtd.git
+cd @spandaworks/gtd
 
 # 2. Build MCP server
 cd mcp-server && npm install && npm run build && cd ..
@@ -47,7 +47,7 @@ cd mcp-server && npm install && npm run build && cd ..
 cat config/taskrc.template >> ~/.taskrc
 
 # 4. Add shell aliases
-echo 'source ~/src/talos-gtd/config/aliases.sh' >> ~/.zshrc  # or ~/.bashrc
+echo 'source ~/src/@spandaworks/gtd/config/aliases.sh' >> ~/.zshrc  # or ~/.bashrc
 
 # 5. Configure your MCP client (see below)
 ```
@@ -58,9 +58,9 @@ echo 'source ~/src/talos-gtd/config/aliases.sh' >> ~/.zshrc  # or ~/.bashrc
 ```json
 {
   "mcpServers": {
-    "talos-gtd": {
+    "@spandaworks/gtd": {
       "command": "node",
-      "args": ["/path/to/talos-gtd/mcp-server/dist/index.js"]
+      "args": ["/path/to/@spandaworks/gtd/mcp-server/dist/index.js"]
     }
   }
 }
@@ -71,9 +71,9 @@ echo 'source ~/src/talos-gtd/config/aliases.sh' >> ~/.zshrc  # or ~/.bashrc
 {
   "mcp": {
     "servers": {
-      "talos_gtd": {
+      "spanda_gtd": {
         "type": "local",
-        "command": ["node", "/path/to/talos-gtd/mcp-server/dist/index.js"]
+        "command": ["node", "/path/to/@spandaworks/gtd/mcp-server/dist/index.js"]
       }
     }
   }
@@ -148,7 +148,7 @@ See [docs/gtd-cheatsheet.md](docs/gtd-cheatsheet.md) for the complete quick refe
 ## Documentation
 
 - [Setup Guide](docs/setup.md) - Detailed installation instructions
-- [GTD Workflow](docs/workflow.md) - How to use talos-gtd for GTD
+- [GTD Workflow](docs/workflow.md) - How to use @spandaworks/gtd for GTD
 - [GTD Cheat Sheet](docs/gtd-cheatsheet.md) - Quick reference (printable)
 - [MCP Tools Reference](docs/mcp-tools.md) - Complete tool documentation
 - [Trust Protocol](docs/trust-protocol.md) - AI trust building process
@@ -160,7 +160,7 @@ Claude / LLM
     │
     │ MCP Protocol
     ▼
-talos-gtd MCP Server (22 tools)
+@spandaworks/gtd MCP Server (22 tools)
     │
     │ CLI / JSON
     ▼
@@ -180,8 +180,12 @@ This project builds on excellent prior work:
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+See [CONTRIBUTING.md](../../CONTRIBUTING.md) for general guidelines and [CONTRIBUTING.md](CONTRIBUTING.md) for GTD-specific development instructions.
+
+## Security
+
+See [SECURITY.md](../../SECURITY.md) for monorepo security policy and [SECURITY.md](SECURITY.md) for GTD-specific security considerations.
 
 ## License
 
-MIT - See [LICENSE](LICENSE) for details.
+MIT - See [LICENSE](../../LICENSE) for details.

@@ -8,8 +8,8 @@ from pathlib import Path
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
-from talos_telemetry.db.connection import init_database
-from talos_telemetry.librarians import Synthesizer, Protector, Pathfinder
+from spanda_telemetry.db.connection import init_database
+from spanda_telemetry.librarians import Synthesizer, Protector, Pathfinder
 
 
 def run_synthesizer():
@@ -74,7 +74,7 @@ def run_pathfinder():
 
 def main():
     """Run librarians based on arguments."""
-    parser = argparse.ArgumentParser(description="Run Talos Telemetry librarians")
+    parser = argparse.ArgumentParser(description="Run Spanda Telemetry librarians")
     parser.add_argument(
         "--librarian",
         choices=["synthesizer", "protector", "pathfinder", "all"],

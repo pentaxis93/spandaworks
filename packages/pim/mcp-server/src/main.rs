@@ -1,4 +1,4 @@
-//! talos-pim: MCP server for Personal Information Management
+//! pim: MCP server for Personal Information Management
 //!
 //! Provides tools for email, calendar, and contacts access via CLI wrappers:
 //! - Email: notmuch (search/read), himalaya (send)
@@ -209,10 +209,10 @@ async fn main() -> Result<()> {
     // Initialize logging to stderr (NEVER stdout - would corrupt JSON-RPC)
     tracing_subscriber::registry()
         .with(fmt::layer().with_writer(std::io::stderr))
-        .with(EnvFilter::from_default_env().add_directive("talos_pim=info".parse()?))
+        .with(EnvFilter::from_default_env().add_directive("pim=info".parse()?))
         .init();
 
-    tracing::info!("Starting talos-pim MCP server");
+    tracing::info!("Starting pim MCP server");
 
     // Create server and run with stdio transport
     let transport = (tokio::io::stdin(), tokio::io::stdout());

@@ -1,6 +1,6 @@
 # GTD Cheat Sheet
 
-Quick reference for talos-gtd. Print this page.
+Quick reference for @spandaworks/gtd. Print this page.
 
 ---
 
@@ -167,4 +167,4 @@ Is it actionable?
 
 ---
 
-*talos-gtd: AI suggests, human approves*
+*@spandaworks/gtd: AI suggests, human approves*
