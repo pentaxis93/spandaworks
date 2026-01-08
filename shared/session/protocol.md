@@ -34,11 +34,11 @@ UNOPENED ─► OPENING ─► OPEN ─► CLOSING ─► CLOSED
 
 ```json
 {
-  "session_id": "2026-01-06-talos-migration-001",
+  "session_id": "2026-01-06-spanda-migration-001",
   "opened_at": "2026-01-06T13:30:00Z",
   "closed_at": null,
-  "goal": "Migrate existing repos into Talos monorepo",
-  "persona": "Talos",
+  "goal": "Migrate existing repos into Spanda Works monorepo",
+  "persona": "Spanda",
   "protocol": "LBRP",
   "human": "Robbie",
   "inherited_count": 42,
@@ -54,7 +54,7 @@ UNOPENED ─► OPENING ─► OPEN ─► CLOSING ─► CLOSED
 | `opened_at` | Yes | ISO 8601 timestamp of session start |
 | `closed_at` | No | ISO 8601 timestamp of session end |
 | `goal` | Yes | Session intention or purpose |
-| `persona` | Yes | Active persona (Talos, Sage, etc.) |
+| `persona` | Yes | Active persona (Spanda, Sage, etc.) |
 | `protocol` | Yes | Ceremony used (typically "LBRP") |
 | `human` | Yes | Human collaborator name |
 | `inherited_count` | Yes | Knowledge state at session start |
@@ -82,7 +82,7 @@ YYYY-MM-DD-slug-NNN
 ```
 
 Examples:
-- `2026-01-06-talos-migration-001`
+- `2026-01-06-spanda-migration-001`
 - `2026-01-06-deep-work-002`
 - `2026-01-06-reflection-001`
 

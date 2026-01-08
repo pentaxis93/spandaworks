@@ -1,18 +1,18 @@
 [package]
-name = "talos-pim"
+name = "spanda-pim"
 version = "0.1.0"
 edition = "2024"
 description = "MCP server for Personal Information Management - email, calendar, contacts"
 license = "MIT"
 authors = ["Robbie <robert.david.grossman@gmail.com>"]
-repository = "https://github.com/pentaxis93/talos"
+repository = "https://github.com/pentaxis93/spanda-works"
 
 [lib]
-name = "talos_pim"
+name = "spanda_pim"
 path = "src/lib.rs"
 
 [[bin]]
-name = "talos-pim"
+name = "spanda-pim"
 path = "src/main.rs"
 
 [dependencies]
@@ -40,8 +40,8 @@ chrono = { version = "0.4", features = ["serde"] }
 # Regex for parsing CLI output
 regex = "1.11"
 
-# Shared Talos utilities
-talos-cli = { path = "../../../shared/utils/rust-cli" }
+# Shared Spanda utilities
+spanda-cli = { path = "../../../shared/utils/rust-cli" }
 
 [profile.release]
 lto = true

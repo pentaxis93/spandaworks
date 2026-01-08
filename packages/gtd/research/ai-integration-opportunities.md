@@ -336,7 +336,7 @@ async def health_monitor():
 └────────────────┬────────────────────────┘
                  │ MCP Protocol
 ┌────────────────▼────────────────────────┐
-│         talos-gtd MCP Server            │
+│         spanda-gtd MCP Server            │
 │  ┌─────────────────────────────────┐    │
 │  │  Existing: omniwaifu/tw-mcp     │    │
 │  │  (GTD workflows)                │    │
@@ -364,7 +364,7 @@ async def health_monitor():
 #!/usr/bin/env python3
 import json
 import sys
-from talos_gtd import suggest_processing
+from spanda_gtd import suggest_processing
 
 task = json.loads(sys.stdin.readline())
 

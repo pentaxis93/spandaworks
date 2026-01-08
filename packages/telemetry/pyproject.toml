@@ -3,9 +3,9 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "talos-telemetry"
+name = "spanda-telemetry"
 version = "0.1.0"
-description = "Consciousness telemetry system for Talos"
+description = "Consciousness telemetry system for Spanda Works"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.10"
@@ -46,12 +46,12 @@ graphiti = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/recursiveloop/talos-telemetry"
-Repository = "https://github.com/recursiveloop/talos-telemetry"
-Documentation = "https://github.com/recursiveloop/talos-telemetry/tree/main/docs"
+Homepage = "https://github.com/recursiveloop/spanda-telemetry"
+Repository = "https://github.com/recursiveloop/spanda-telemetry"
+Documentation = "https://github.com/recursiveloop/spanda-telemetry/tree/main/docs"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/talos_telemetry"]
+packages = ["src/spanda_telemetry"]
 
 [tool.ruff]
 line-length = 100

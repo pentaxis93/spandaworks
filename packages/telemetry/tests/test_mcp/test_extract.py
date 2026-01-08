@@ -2,15 +2,15 @@
 
 from unittest.mock import MagicMock, patch
 
-from talos_telemetry.db.connection import get_connection
-from talos_telemetry.mcp.extract import journal_extract
-from talos_telemetry.mcp.session import session_open
+from spanda_telemetry.db.connection import get_connection
+from spanda_telemetry.mcp.extract import journal_extract
+from spanda_telemetry.mcp.session import session_open
 
 
 class TestJournalExtract:
     """Tests for journal_extract MCP tool."""
 
-    @patch("talos_telemetry.extraction.extractor.extract_entities")
+    @patch("spanda_telemetry.extraction.extractor.extract_entities")
     def test_extract_stores_insight(self, mock_extract, fresh_db):
         """Extract and store an insight from text."""
         # Mock extraction result
@@ -41,7 +41,7 @@ class TestJournalExtract:
         )
         assert query_result.has_next()
 
-    @patch("talos_telemetry.extraction.extractor.extract_entities")
+    @patch("spanda_telemetry.extraction.extractor.extract_entities")
     def test_extract_stores_friction(self, mock_extract, fresh_db):
         """Extract and store a friction from text."""
         mock_entity = MagicMock()
@@ -67,7 +67,7 @@ class TestJournalExtract:
         )
         assert query_result.has_next()
 
-    @patch("talos_telemetry.extraction.extractor.extract_entities")
+    @patch("spanda_telemetry.extraction.extractor.extract_entities")
     def test_extract_multiple_entities(self, mock_extract, fresh_db):
         """Extract multiple entities from text."""
         mock_friction = MagicMock()
@@ -93,7 +93,7 @@ class TestJournalExtract:
         assert len(result["stored_entities"]) == 2
         assert result["extraction_count"] == 2
 
-    @patch("talos_telemetry.extraction.extractor.extract_entities")
+    @patch("spanda_telemetry.extraction.extractor.extract_entities")
     def test_extract_with_session(self, mock_extract, fresh_db):
         """Extract entities linked to session."""
         # Create session first
@@ -124,7 +124,7 @@ class TestJournalExtract:
         """)
         assert rel_result.has_next()
 
-    @patch("talos_telemetry.extraction.extractor.extract_entities")
+    @patch("spanda_telemetry.extraction.extractor.extract_entities")
     def test_extract_with_relationship(self, mock_extract, fresh_db):
         """Extract entities with LED_TO relationship."""
         mock_friction = MagicMock()
@@ -153,7 +153,7 @@ class TestJournalExtract:
         assert len(result["stored_relationships"]) == 1
         assert result["stored_relationships"][0]["type"] == "FRICTION_LED_TO_INSIGHT"
 
-    @patch("talos_telemetry.extraction.extractor.extract_entities")
+    @patch("spanda_telemetry.extraction.extractor.extract_entities")
     def test_extract_empty_result(self, mock_extract, fresh_db):
         """Handle extraction returning no entities."""
         mock_result = MagicMock()
@@ -167,7 +167,7 @@ class TestJournalExtract:
         assert result["stored_entities"] == []
         assert "No entities extracted" in result["message"]
 
-    @patch("talos_telemetry.extraction.extractor.extract_entities")
+    @patch("spanda_telemetry.extraction.extractor.extract_entities")
     def test_extract_stores_belief(self, mock_extract, fresh_db):
         """Extract and store a belief."""
         mock_entity = MagicMock()
@@ -193,7 +193,7 @@ class TestJournalExtract:
         )
         assert query_result.has_next()
 
-    @patch("talos_telemetry.extraction.extractor.extract_entities")
+    @patch("spanda_telemetry.extraction.extractor.extract_entities")
     def test_extract_stores_pattern(self, mock_extract, fresh_db):
         """Extract and store a pattern."""
         mock_entity = MagicMock()

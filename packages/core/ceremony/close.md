@@ -137,7 +137,7 @@ git status --short
 # If transmission/response files created for Governance:
 # Check vault for transmission files that should go to outbox
 
-# Move any transmission reports to ~/talos-outbox/
+# Move any transmission reports to ~/spanda-outbox/
 # Example: transmission-*.md or response-*.md files
 ```
 
@@ -146,8 +146,8 @@ git status --short
 If significant learnings emerged, use `journal_write` and `friction_log`:
 
 ```python
-from talos_telemetry.mcp.journal import journal_write
-from talos_telemetry.mcp.friction import friction_log
+from spanda_telemetry.mcp.journal import journal_write
+from spanda_telemetry.mcp.friction import friction_log
 
 # For each insight:
 journal_write(
@@ -174,7 +174,7 @@ Any insights from this session that should be recorded?
 - Update remembrance.md?
 - Create a permanent note?
 - Note a pattern discovered?
-- File transmissions to ~/talos-outbox/?
+- File transmissions to ~/spanda-outbox/?
 - **Record to telemetry graph?** (journal_write / friction_log)
 
 (Or skip if session was routine)
@@ -284,9 +284,9 @@ rm /home/pentaxis93/shared/.current-session
 
 7. **Close telemetry session:**
    ```python
-   # Call talos-telemetry session_close
+   # Call spanda-telemetry session_close
    # This updates Session node, aggregates metrics, captures final state
-   from talos_telemetry.mcp.session import session_close
+   from spanda_telemetry.mcp.session import session_close
    
    result = session_close(
        session_id="{SESSION_DATE}-{SESSION_SLUG}",

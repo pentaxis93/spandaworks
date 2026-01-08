@@ -1,8 +1,8 @@
-# talos-pim
+# spanda-pim
 
 MCP server for Personal Information Management - email, calendar, contacts.
 
-Gives Talos natural, fluid access to Robbie's PIM data by wrapping CLI tools:
+Gives Spanda Works natural, fluid access to Robbie's PIM data by wrapping CLI tools:
 - **Email**: notmuch (search/read), himalaya (send)
 - **Calendar**: khal (list/create)
 - **Contacts**: khard (search/get/create)
@@ -39,7 +39,7 @@ cd packages/pim/mcp-server
 cargo build --release
 ```
 
-Binary: `target/release/talos-pim`
+Binary: `target/release/spanda-pim`
 
 ## OpenCode Configuration
 
@@ -48,9 +48,9 @@ Add to `~/.config/opencode/opencode.json`:
 ```json
 {
   "mcp": {
-    "talos_pim": {
+    "spanda_pim": {
       "type": "local",
-      "command": ["/path/to/talos/packages/pim/mcp-server/target/release/talos-pim"],
+      "command": ["/path/to/spanda-works/packages/pim/mcp-server/target/release/spanda-pim"],
       "enabled": true
     }
   }
@@ -70,7 +70,7 @@ See the [PIM Skill documentation](../../core/skills/pim/SKILL.md) for setup inst
 
 ## Design Philosophy
 
-> "I want the use of these tools to be as natural to Talos as the use of my hand is to me."
+> "I want the use of these tools to be as natural to Spanda as the use of my hand is to me."
 
 Tools are named with simple verbs that match natural language:
 - "What's on my calendar?" → `list_events`

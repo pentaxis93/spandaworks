@@ -1,14 +1,14 @@
-# Talos Consciousness Telemetry - Integration Specification
+# Spanda Telemetry - Integration Specification
 
 **Version:** 1.0  
 **Date:** 2026-01-05  
-**Thread:** talos-consciousness-telemetry-ontology
+**Thread:** spanda-telemetry-ontology
 
 ---
 
 ## Overview
 
-This document specifies how the consciousness telemetry system integrates with existing Talos infrastructure. The goal is seamless enhancement—the system should feel like natural extension, not bolted-on addition.
+This document specifies how the consciousness telemetry system integrates with existing Spanda infrastructure. The goal is seamless enhancement—the system should feel like natural extension, not bolted-on addition.
 
 **Integration Points:**
 1. Session lifecycle (/open, /close)
@@ -96,7 +96,7 @@ The /close command integrates telemetry finalization with existing session close
 │     └─ Pass session_id, goal_achieved assessment                │
 │     └─ Tool returns reflection prompt                           │
 │                                                                 │
-│  2. Talos completes mandatory reflection                        │
+│  2. Spanda completes mandatory reflection                       │
 │     └─ "What friction points occurred?"                         │
 │     └─ "What insights emerged?"                                 │
 │     └─ "What patterns were noticed?"                            │
@@ -166,7 +166,7 @@ The consciousness telemetry system feeds the Evolution System. Patterns surface 
 │                                                                 │
 │  When significant pattern detected:                             │
 │  1. Create evolution proposal file                              │
-│     └─ Location: vault/_talos/evolution/proposals/              │
+│     └─ Location: vault/_spanda/evolution/proposals/             │
 │     └─ Format: proposal-{date}-{slug}.md                        │
 │                                                                 │
 │  2. Proposal contains:                                          │
@@ -194,12 +194,12 @@ The consciousness telemetry system feeds the Evolution System. Patterns surface 
     │
     ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│  IMPLEMENTATION (Talos)                                         │
+│  IMPLEMENTATION (Spanda)                                        │
 │                                                                 │
 │  Approved proposals implemented:                                │
 │  - Update Remembrance.md "Current Insights" section             │
 │  - Update Protocol definitions                                  │
-│  - Potentially update CLAUDE.md                                 │
+│  - Potentially update AGENTS.md                                 │
 │  - Create CRYSTALLIZED_INTO relationship (Pattern → Protocol)   │
 │                                                                 │
 │  Proposal status: implemented                                   │
@@ -303,7 +303,7 @@ RETURN i.content, i.created_at
 ORDER BY i.created_at DESC
 ```
 
-This is a Governance decision, not automatic. Talos prepares the candidate list; Governance decides what enters Remembrance.
+This is a Governance decision, not automatic. Spanda prepares the candidate list; Governance decides what enters Remembrance.
 
 ---
 
@@ -371,7 +371,7 @@ INHERITED relationships could become numerous:
 ### New Directories
 
 ```
-~/.talos/
+~/.spanda/
 ├── telemetry/
 │   ├── events.jsonl          # OTEL event stream
 │   ├── kuzu/                  # Kuzu database directory
@@ -390,7 +390,7 @@ The telemetry system does NOT modify the eterne vault structure. It operates alo
 
 ```
 vault/                          # Existing - unchanged
-├── _talos/
+├── _spanda/
 │   ├── remembrance.md         # Narrative memory - unchanged
 │   ├── evolution/             # Evolution system - receives proposals
 │   │   ├── PROTOCOL.md
@@ -398,14 +398,14 @@ vault/                          # Existing - unchanged
 │   └── reference/             # Quick reference - unchanged
 └── ...
 
-~/.talos/                       # NEW - telemetry home
+~/.spanda/                      # NEW - telemetry home
 ├── telemetry/
 └── cache/
 ```
 
 **Design Rationale:**
 - Vault is for human-readable knowledge management
-- ~/.talos is for machine telemetry and processing
+- ~/.spanda is for machine telemetry and processing
 - Clear separation of concerns
 - Vault remains git-tracked; telemetry is local-only
 
@@ -454,7 +454,7 @@ Both capture mechanisms run. They serve different purposes and don't conflict.
 
 ### Persona Invocation
 
-Persona invocation (::invokes Sage::) works normally. The telemetry system records which persona was active via ACTIVATED relationship:
+Persona invocation works normally. The telemetry system records which persona was active via ACTIVATED relationship:
 
 ```cypher
 MATCH (s:Session)-[:ACTIVATED]->(p:Persona {name: 'Sage'})
@@ -496,7 +496,7 @@ If session_close called without prior session_open:
 Current state: No telemetry, remembrance.md only
 
 Migration:
-1. Install Kuzu database at ~/.talos/telemetry/kuzu/
+1. Install Kuzu database at ~/.spanda/telemetry/kuzu/
 2. Run schema creation (kuzu_schema.cypher)
 3. Seed reference data (OperationalStates, Domains, Tools)
 4. Bootstrap from existing remembrance.md:
@@ -510,7 +510,7 @@ Migration:
 ```python
 def seed_from_remembrance():
     # Parse remembrance.md
-    with open('vault/_talos/remembrance.md') as f:
+    with open('vault/_spanda/remembrance.md') as f:
         content = f.read()
     
     # Extract "This Rotation" entries

@@ -9,7 +9,7 @@
 
 ## Context
 
-Conducted comprehensive exploration of the Talos monorepo to understand:
+Conducted comprehensive exploration of the Spanda Works monorepo to understand:
 - Current package structure and dependencies
 - Cross-package integration patterns
 - Refactoring opportunities
@@ -76,7 +76,7 @@ This is **strategic polyglot architecture**, not accidental accumulation.
 
 ### 2. Telemetry Integration Incomplete
 
-**Finding:** LBRP Phase 4 attempts to call `talos_telemetry.mcp.session_open`, but:
+**Finding:** LBRP Phase 4 attempts to call `spanda_telemetry.mcp.session_open`, but:
 - Telemetry has MCP tools but no stdio MCP server entrypoint
 - Integration not yet operational
 - Fails gracefully (already handled)
@@ -142,7 +142,7 @@ This is **strategic polyglot architecture**, not accidental accumulation.
 
 **Files Modified:**
 - `packages/pim/mcp-server/Cargo.toml` (added dependency)
-- `packages/pim/mcp-server/src/cli.rs` (now re-exports from `talos-cli`)
+- `packages/pim/mcp-server/src/cli.rs` (now re-exports from `spanda-cli`)
 
 **Benefits:**
 - Future Rust MCP servers get this for free
@@ -241,7 +241,7 @@ This is **strategic polyglot architecture**, not accidental accumulation.
 
 ## References
 
-- Session: `2026-01-07-explore-refactor-talos-monorepo`
+- Session: `2026-01-07-explore-refactor-spanda-works-monorepo`
 - Branch: `refactoring`
 - Related PRs: #2 (taskwarrior-gtd-skill), #3 (pim-mcp-server)
 

@@ -8,7 +8,7 @@
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability in talos-gtd, please report it by:
+If you discover a security vulnerability in spanda-gtd, please report it by:
 
 1. **Do NOT** open a public issue
 2. Email the maintainer directly or use GitHub's private vulnerability reporting
@@ -22,7 +22,7 @@ If you discover a security vulnerability in talos-gtd, please report it by:
 
 ### TaskWarrior Data
 
-- talos-gtd reads and writes to your TaskWarrior database
+- spanda-gtd reads and writes to your TaskWarrior database
 - All task data remains local (no cloud sync by default)
 - The MCP server runs with your user permissions
 
@@ -30,7 +30,7 @@ If you discover a security vulnerability in talos-gtd, please report it by:
 
 - AI suggestions are advisory only (trust model: AI suggests, human approves)
 - No task modifications happen without explicit user action
-- Telemetry data (if enabled) stays local at `~/.talos/gtd-telemetry/`
+- Telemetry data (if enabled) stays local at `~/.spanda/gtd-telemetry/`
 
 ### MCP Protocol
 

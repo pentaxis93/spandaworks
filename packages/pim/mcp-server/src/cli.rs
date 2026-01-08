@@ -1,9 +1,9 @@
 //! CLI command execution utilities
 //!
-//! Re-exports shared talos-cli utilities.
+//! Re-exports shared spanda-cli utilities.
 //! 
-//! This module now delegates to the shared `talos-cli` crate,
-//! which provides consistent CLI wrapping across all Talos Rust packages.
+//! This module now delegates to the shared `spanda-cli` crate,
+//! which provides consistent CLI wrapping across all Spanda Works Rust packages.
 
 // Re-export utilities used by pim package
-pub use talos_cli::{run_command_stdout, run_command_with_stdin};
+pub use spanda_cli::{run_command_stdout, run_command_with_stdin};

@@ -1,1 +1,1 @@
-"""Tests for Talos Telemetry."""
+"""Tests for Spanda Telemetry."""

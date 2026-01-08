@@ -162,7 +162,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "talos-cli"
+name = "spanda-cli"
 version = "0.1.0"
 dependencies = [
  "anyhow",

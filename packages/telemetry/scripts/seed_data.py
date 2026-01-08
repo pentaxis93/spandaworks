@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Seed reference data for Talos Telemetry."""
+"""Seed reference data for Spanda Telemetry."""
 
 import sys
 from pathlib import Path
@@ -7,8 +7,8 @@ from pathlib import Path
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
-from talos_telemetry.db.connection import init_database
-from talos_telemetry.db.seed import seed_reference_data, verify_reference_data
+from spanda_telemetry.db.connection import init_database
+from spanda_telemetry.db.seed import seed_reference_data, verify_reference_data
 
 
 def main():

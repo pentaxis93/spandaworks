@@ -1,13 +1,13 @@
 [package]
-name = "talos-cli"
+name = "spanda-cli"
 version = "0.1.0"
 edition = "2021"
-description = "Shared CLI command execution utilities for Talos Rust packages"
+description = "Shared CLI command execution utilities for Spanda Works Rust packages"
 license = "MIT"
 authors = ["Robbie <robert.david.grossman@gmail.com>"]
 
 [lib]
-name = "talos_cli"
+name = "spanda_cli"
 path = "src/lib.rs"
 
 [dependencies]

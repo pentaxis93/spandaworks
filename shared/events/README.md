@@ -1,6 +1,6 @@
 # Event Schemas
 
-Cross-package communication schemas for the Talos system.
+Cross-package communication schemas for the Spanda Works system.
 
 ## Schemas
 
@@ -38,7 +38,7 @@ Cross-package communication schemas for the Talos system.
 Events are transported via JSONL files for ingestion into the Kuzu knowledge graph.
 
 ```
-~/.talos/events/YYYY-MM-DD.jsonl
+~/.spanda/events/YYYY-MM-DD.jsonl
 ```
 
 Each line is a complete JSON event object.

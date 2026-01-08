@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to Talos will be documented in this file.
+All notable changes to Spanda Works will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
@@ -8,12 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 - Initial monorepo structure with four packages
-- **telemetry:** Migrated from pentaxis93/talos-telemetry (via git subtree)
-- **gtd:** Migrated from pentaxis93/talos-gtd (via git subtree)
-- **core:** Created from opencode-config Talos items
+- **telemetry:** Migrated from pentaxis93/spanda-telemetry (via git subtree)
+- **gtd:** Migrated from pentaxis93/spanda-gtd (via git subtree)
+- **core:** Created from opencode-config Spanda Works items
   - Skills: lbrp, the-art, save-transcript
   - Ceremony: open.md, close.md
-  - Plugins: prayer-wheel, talos-identity
+  - Plugins: prayer-wheel, spanda-identity
   - Assets: Tantric Sutras v7.3
 - **second-brain:** Created from eterne vault specifications
   - Vault template with PARA structure
@@ -27,14 +27,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Documentation: getting-started.md, architecture.md
 
 ### Migration Notes
-- Original repos (talos-telemetry, talos-gtd) preserved with full history via git subtree
-- opencode-config Talos items copied to packages/core/ (symlinks to be created)
+- Original repos (spanda-telemetry, spanda-gtd) preserved with full history via git subtree
+- opencode-config Spanda Works items copied to packages/core/ (symlinks to be created)
 - eterne vault specifications extracted to packages/second-brain/
 
 ## [0.0.0] - Pre-migration
 
 Individual repositories:
-- pentaxis93/talos-telemetry - Knowledge graph and session tracking
-- pentaxis93/talos-gtd - GTD MCP server
+- pentaxis93/spanda-telemetry - Knowledge graph and session tracking
+- pentaxis93/spanda-gtd - GTD MCP server
 - ~/.config/opencode/ - Skills, commands, plugins
 - eterne vault - Second-brain specifications in CLAUDE.md

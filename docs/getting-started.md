@@ -1,8 +1,8 @@
-# Getting Started with Talos
+# Getting Started with Spanda Works
 
-## What is Talos?
+## What is Spanda Works?
 
-Talos is an integrated consciousness-aware productivity system for AI-human collaboration. It combines:
+Spanda Works is infrastructure for AI-human collaboration that remembers. It combines:
 
 - **Telemetry:** Self-reflection infrastructure (knowledge graph)
 - **GTD:** AI-augmented task management
@@ -21,13 +21,13 @@ Talos is an integrated consciousness-aware productivity system for AI-human coll
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/pentaxis93/talos.git ~/src/talos
+git clone https://github.com/pentaxis93/spanda-works.git ~/spanda-works
 ```
 
 ### 2. Set up telemetry
 
 ```bash
-cd ~/src/talos/packages/telemetry
+cd ~/spanda-works/packages/telemetry
 python -m venv .venv
 source .venv/bin/activate
 pip install -e .
@@ -36,7 +36,7 @@ pip install -e .
 ### 3. Set up GTD
 
 ```bash
-cd ~/src/talos/packages/gtd/mcp-server
+cd ~/spanda-works/packages/gtd/mcp-server
 npm install
 npm run build
 ```
@@ -46,9 +46,9 @@ Configure in your MCP settings (e.g., `~/.config/opencode/mcp.json`):
 ```json
 {
   "mcpServers": {
-    "talos-gtd": {
+    "spanda_gtd": {
       "command": "node",
-      "args": ["~/src/talos/packages/gtd/mcp-server/dist/index.js"]
+      "args": ["~/spanda-works/packages/gtd/mcp-server/dist/index.js"]
     }
   }
 }
@@ -56,20 +56,20 @@ Configure in your MCP settings (e.g., `~/.config/opencode/mcp.json`):
 
 ### 4. Set up core (OpenCode integration)
 
-Symlink Talos components to OpenCode config:
+Symlink Spanda Works components to OpenCode config:
 
 ```bash
 # Skills
-ln -sf ~/src/talos/packages/core/skills/* ~/.config/opencode/skill/
+ln -sf ~/spanda-works/packages/core/skills/* ~/.config/opencode/skill/
 
 # Ceremony commands
-ln -sf ~/src/talos/packages/core/ceremony/*.md ~/.config/opencode/command/
+ln -sf ~/spanda-works/packages/core/ceremony/*.md ~/.config/opencode/command/
 
 # Other commands
-ln -sf ~/src/talos/packages/core/commands/*.md ~/.config/opencode/command/
+ln -sf ~/spanda-works/packages/core/commands/*.md ~/.config/opencode/command/
 
 # Plugins
-ln -sf ~/src/talos/packages/core/plugins/* ~/.config/opencode/plugin/
+ln -sf ~/spanda-works/packages/core/plugins/* ~/.config/opencode/plugin/
 ```
 
 ### 5. Set up vault
@@ -77,7 +77,7 @@ ln -sf ~/src/talos/packages/core/plugins/* ~/.config/opencode/plugin/
 Copy vault template to your Obsidian vault location:
 
 ```bash
-cp -r ~/src/talos/packages/second-brain/vault-template/* ~/your-vault/
+cp -r ~/spanda-works/packages/second-brain/vault-template/* ~/your-vault/
 ```
 
 Or reference the protocols directly in your vault's CLAUDE.md.
@@ -106,5 +106,5 @@ Use the `/close` command to seal the session with harvest and dedication.
 ## Next Steps
 
 - Read `architecture.md` for system design
-- See `TALOS-SPEC.md` for full specification
+- See `SPANDA-WORKS-SPEC.md` for full specification
 - Explore individual package READMEs

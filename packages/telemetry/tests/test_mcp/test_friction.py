@@ -6,7 +6,7 @@ class TestFrictionLog:
 
     def test_friction_log_creates_friction(self, fresh_db):
         """Verify friction_log creates Friction entity."""
-        from talos_telemetry.mcp.friction import friction_log
+        from spanda_telemetry.mcp.friction import friction_log
 
         result = friction_log(
             description="Test friction description",
@@ -30,7 +30,7 @@ class TestFrictionLog:
 
     def test_friction_log_stores_embedding(self, fresh_db):
         """Verify friction_log stores embedding."""
-        from talos_telemetry.mcp.friction import friction_log
+        from spanda_telemetry.mcp.friction import friction_log
 
         result = friction_log(
             description="Test friction for embedding",
@@ -50,7 +50,7 @@ class TestFrictionLog:
 
     def test_friction_log_valid_categories(self, fresh_db):
         """Verify friction_log accepts all valid categories."""
-        from talos_telemetry.mcp.friction import friction_log
+        from spanda_telemetry.mcp.friction import friction_log
 
         valid_categories = ["tooling", "conceptual", "process", "environmental", "relational"]
 
@@ -63,7 +63,7 @@ class TestFrictionLog:
 
     def test_friction_log_invalid_category(self, fresh_db):
         """Verify friction_log fails for invalid category."""
-        from talos_telemetry.mcp.friction import friction_log
+        from spanda_telemetry.mcp.friction import friction_log
 
         result = friction_log(
             description="Test friction",
@@ -75,8 +75,8 @@ class TestFrictionLog:
 
     def test_friction_log_with_session(self, fresh_db):
         """Verify friction_log creates PRODUCED_FRICTION relationship."""
-        from talos_telemetry.mcp.friction import friction_log
-        from talos_telemetry.mcp.session import session_open
+        from spanda_telemetry.mcp.friction import friction_log
+        from spanda_telemetry.mcp.session import session_open
 
         # Create session first
         session_open(session_id="test-friction-session", goal="Test friction")
@@ -99,8 +99,8 @@ class TestFrictionLog:
 
     def test_friction_log_blocking(self, fresh_db):
         """Verify friction_log with blocking flag creates BLOCKED_BY relationship."""
-        from talos_telemetry.mcp.friction import friction_log
-        from talos_telemetry.mcp.session import session_open
+        from spanda_telemetry.mcp.friction import friction_log
+        from spanda_telemetry.mcp.session import session_open
 
         session_open(session_id="test-blocking-session", goal="Test blocking")
 
@@ -123,7 +123,7 @@ class TestFrictionLog:
 
     def test_friction_log_recurring_detection(self, fresh_db):
         """Verify friction_log detects and increments recurring frictions."""
-        from talos_telemetry.mcp.friction import friction_log
+        from spanda_telemetry.mcp.friction import friction_log
 
         # Log first friction
         result1 = friction_log(
@@ -148,7 +148,7 @@ class TestFrictionLog:
 
     def test_friction_log_handles_special_characters(self, fresh_db):
         """Verify friction_log properly escapes special characters."""
-        from talos_telemetry.mcp.friction import friction_log
+        from spanda_telemetry.mcp.friction import friction_log
 
         result = friction_log(
             description="Friction with 'quotes' and \"doubles\" and\nnewlines",
@@ -159,7 +159,7 @@ class TestFrictionLog:
 
     def test_friction_log_sets_timestamp(self, fresh_db):
         """Verify friction_log sets occurred_at timestamp."""
-        from talos_telemetry.mcp.friction import friction_log
+        from spanda_telemetry.mcp.friction import friction_log
 
         result = friction_log(
             description="Test friction for timestamp",

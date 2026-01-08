@@ -1,11 +1,11 @@
 -- ============================================================================
--- TALOS CONSCIOUSNESS TELEMETRY - KUZU SCHEMA
+-- SPANDA CONSCIOUSNESS TELEMETRY - KUZU SCHEMA
 -- ============================================================================
 -- Version: 1.0
 -- Date: 2026-01-05
--- Thread: talos-consciousness-telemetry-ontology
+-- Thread: spanda-consciousness-telemetry-ontology
 -- 
--- This schema implements the approved ontology for Talos self-knowledge.
+-- This schema implements the approved ontology for Spanda Works self-knowledge.
 -- 19 entity types, 25 relationship types.
 --
 -- Design Principles:

@@ -25,7 +25,7 @@
 
 ```ini
 # ============================================
-# talos-gtd TaskWarrior Configuration
+# spanda-gtd TaskWarrior Configuration
 # Based on CS Syd + hamlinux patterns
 # Version: MVP 1.0
 # ============================================
@@ -163,7 +163,7 @@ Add to `~/.bashrc` or `~/.zshrc`:
 
 ```bash
 # ============================================
-# talos-gtd Shell Aliases
+# spanda-gtd Shell Aliases
 # ============================================
 
 # === Capture ===
@@ -539,10 +539,10 @@ INFO:
 
 ---
 
-## 10. Repository Structure (talos-gtd)
+## 10. Repository Structure (spanda-gtd)
 
 ```
-talos-gtd/
+spanda-gtd/
 ├── README.md
 ├── config/
 │   ├── taskrc.template       # .taskrc configuration

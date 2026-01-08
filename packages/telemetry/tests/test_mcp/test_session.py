@@ -8,7 +8,7 @@ class TestSessionOpen:
 
     def test_session_open_creates_session_node(self, fresh_db):
         """Verify session_open creates Session node in graph."""
-        from talos_telemetry.mcp.session import session_open
+        from spanda_telemetry.mcp.session import session_open
 
         result = session_open(
             session_id="test-session-001",
@@ -30,7 +30,7 @@ class TestSessionOpen:
 
     def test_session_open_sets_started_at(self, fresh_db):
         """Verify session_open sets started_at timestamp."""
-        from talos_telemetry.mcp.session import session_open
+        from spanda_telemetry.mcp.session import session_open
 
         session_open(session_id="test-session-002", goal="Test timestamp")
 
@@ -44,7 +44,7 @@ class TestSessionOpen:
 
     def test_session_open_returns_inherited_count(self, fresh_db):
         """Verify session_open returns count of inherited entities."""
-        from talos_telemetry.mcp.session import session_open
+        from spanda_telemetry.mcp.session import session_open
 
         # Reference data is seeded, so inherited_count should be > 0
         result = session_open(
@@ -58,7 +58,7 @@ class TestSessionOpen:
 
     def test_session_open_with_custom_persona(self, fresh_db):
         """Verify session_open accepts custom persona."""
-        from talos_telemetry.mcp.session import session_open
+        from spanda_telemetry.mcp.session import session_open
 
         result = session_open(
             session_id="test-session-004",
@@ -70,7 +70,7 @@ class TestSessionOpen:
 
     def test_session_open_with_custom_human(self, fresh_db):
         """Verify session_open accepts custom human collaborator."""
-        from talos_telemetry.mcp.session import session_open
+        from spanda_telemetry.mcp.session import session_open
 
         result = session_open(
             session_id="test-session-005",
@@ -82,7 +82,7 @@ class TestSessionOpen:
 
     def test_session_open_handles_special_characters_in_goal(self, fresh_db):
         """Verify session_open properly escapes special characters."""
-        from talos_telemetry.mcp.session import session_open
+        from spanda_telemetry.mcp.session import session_open
 
         result = session_open(
             session_id="test-session-006",
@@ -100,7 +100,7 @@ class TestSessionOpen:
 
     def test_session_open_duplicate_id_fails(self, fresh_db):
         """Verify session_open fails gracefully for duplicate session_id."""
-        from talos_telemetry.mcp.session import session_open
+        from spanda_telemetry.mcp.session import session_open
 
         # Create first session
         result1 = session_open(session_id="test-session-dup", goal="First session")
@@ -117,7 +117,7 @@ class TestSessionClose:
 
     def test_session_close_updates_session(self, fresh_db):
         """Verify session_close updates Session node."""
-        from talos_telemetry.mcp.session import session_close, session_open
+        from spanda_telemetry.mcp.session import session_close, session_open
 
         # First open a session
         session_open(session_id="test-close-001", goal="Test close")
@@ -147,7 +147,7 @@ class TestSessionClose:
 
     def test_session_close_returns_duration(self, fresh_db):
         """Verify session_close returns duration_seconds."""
-        from talos_telemetry.mcp.session import session_close, session_open
+        from spanda_telemetry.mcp.session import session_close, session_open
 
         session_open(session_id="test-close-002", goal="Test duration")
         time.sleep(0.2)
@@ -159,7 +159,7 @@ class TestSessionClose:
 
     def test_session_close_returns_statistics(self, fresh_db):
         """Verify session_close returns session statistics."""
-        from talos_telemetry.mcp.session import session_close, session_open
+        from spanda_telemetry.mcp.session import session_close, session_open
 
         session_open(session_id="test-close-003", goal="Test stats")
         result = session_close(session_id="test-close-003")
@@ -171,7 +171,7 @@ class TestSessionClose:
 
     def test_session_close_requires_reflection_by_default(self, fresh_db):
         """Verify session_close requires reflection by default."""
-        from talos_telemetry.mcp.session import session_close, session_open
+        from spanda_telemetry.mcp.session import session_close, session_open
 
         session_open(session_id="test-close-004", goal="Test reflection")
         result = session_close(session_id="test-close-004")
@@ -182,7 +182,7 @@ class TestSessionClose:
 
     def test_session_close_can_skip_reflection(self, fresh_db):
         """Verify session_close can skip reflection."""
-        from talos_telemetry.mcp.session import session_close, session_open
+        from spanda_telemetry.mcp.session import session_close, session_open
 
         session_open(session_id="test-close-005", goal="Test skip reflection")
         result = session_close(session_id="test-close-005", skip_reflection=True)
@@ -192,7 +192,7 @@ class TestSessionClose:
 
     def test_session_close_nonexistent_session_fails(self, fresh_db):
         """Verify session_close fails for nonexistent session."""
-        from talos_telemetry.mcp.session import session_close
+        from spanda_telemetry.mcp.session import session_close
 
         result = session_close(session_id="nonexistent-session")
 
@@ -201,7 +201,7 @@ class TestSessionClose:
 
     def test_session_close_handles_special_characters_in_summary(self, fresh_db):
         """Verify session_close properly escapes special characters in summary."""
-        from talos_telemetry.mcp.session import session_close, session_open
+        from spanda_telemetry.mcp.session import session_close, session_open
 
         session_open(session_id="test-close-006", goal="Test escaping")
         result = session_close(
@@ -217,13 +217,13 @@ class TestSessionIntegration:
 
     def test_full_session_lifecycle(self, fresh_db):
         """Test complete session open -> close cycle."""
-        from talos_telemetry.mcp.session import session_close, session_open
+        from spanda_telemetry.mcp.session import session_close, session_open
 
         # Open
         open_result = session_open(
             session_id="test-lifecycle-001",
             goal="Complete lifecycle test",
-            persona="Talos",
+            persona="Spanda",
             human="Robbie",
         )
         assert open_result["success"] is True

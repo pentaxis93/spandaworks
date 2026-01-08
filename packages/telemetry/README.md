@@ -1,10 +1,10 @@
-# Talos Telemetry
+# Spanda Telemetry
 
 Self-reflection infrastructure for AI coding agents. A queryable model of cognition.
 
-> **Why "Talos"?** In Greek mythology, [Talos](https://en.wikipedia.org/wiki/Talos) was a bronze automaton crafted by Hephaestus—the god of the forge—to protect Crete. A tool made by the ultimate toolmaker. The name felt appropriate for AI agents building their own self-knowledge infrastructure: makers making tools that make.
+> **Why "Spanda"?** In Kashmir Shaivism, Spanda (स्पन्द) refers to the subtle creative pulsation of consciousness—the divine vibration from which all manifestation arises. The name reflects the project's evolution from Talos to Spanda Works: from protective automation to creative pulsation, from static guardian to dynamic flow.
 >
-> *This system was built for a Claude Code instance named Talos, but the architecture works for any AI agent that maintains persistent context across sessions.*
+> *This system was originally built for a Claude Code instance, but the architecture works for any AI agent that maintains persistent context across sessions.*
 
 ## What This Is
 
@@ -96,8 +96,8 @@ Loop closes
 ## Installation
 
 ```bash
-git clone https://github.com/pentaxis93/talos-telemetry.git
-cd talos-telemetry
+git clone https://github.com/spanda-works/spanda-telemetry.git
+cd spanda-telemetry
 
 # Install with dev dependencies
 pip install -e ".[dev]"
@@ -112,7 +112,7 @@ python scripts/seed_data.py
 ### MCP Tools (Agent Interface)
 
 ```python
-from talos_telemetry.mcp import session_open, session_close, journal_write
+from spanda_telemetry.mcp import session_open, session_close, journal_write
 
 # Start session with declared goal
 session_open("2026-01-05-feature-work", "Implement user authentication")
@@ -132,7 +132,7 @@ session_close("2026-01-05-feature-work", goal_achieved=True)
 ### Graph Queries
 
 ```python
-from talos_telemetry.mcp import graph_query
+from spanda_telemetry.mcp import graph_query
 
 # Find recurring patterns
 result = graph_query("""

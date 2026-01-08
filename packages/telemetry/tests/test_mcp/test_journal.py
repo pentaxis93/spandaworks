@@ -6,7 +6,7 @@ class TestJournalWrite:
 
     def test_journal_write_creates_insight(self, fresh_db):
         """Verify journal_write creates Insight entity for insight category."""
-        from talos_telemetry.mcp.journal import journal_write
+        from spanda_telemetry.mcp.journal import journal_write
 
         result = journal_write(
             content="Test insight content",
@@ -28,7 +28,7 @@ class TestJournalWrite:
 
     def test_journal_write_creates_observation(self, fresh_db):
         """Verify journal_write creates Observation entity for observation category."""
-        from talos_telemetry.mcp.journal import journal_write
+        from spanda_telemetry.mcp.journal import journal_write
 
         result = journal_write(
             content="Test observation content",
@@ -47,7 +47,7 @@ class TestJournalWrite:
 
     def test_journal_write_creates_reflection(self, fresh_db):
         """Verify journal_write creates Reflection entity for reflection category."""
-        from talos_telemetry.mcp.journal import journal_write
+        from spanda_telemetry.mcp.journal import journal_write
 
         result = journal_write(
             content="Test reflection content",
@@ -59,7 +59,7 @@ class TestJournalWrite:
 
     def test_journal_write_creates_decision(self, fresh_db):
         """Verify journal_write creates Decision entity for decision category."""
-        from talos_telemetry.mcp.journal import journal_write
+        from spanda_telemetry.mcp.journal import journal_write
 
         result = journal_write(
             content="Test decision content",
@@ -71,7 +71,7 @@ class TestJournalWrite:
 
     def test_journal_write_creates_experience(self, fresh_db):
         """Verify journal_write creates Experience entity for experience category."""
-        from talos_telemetry.mcp.journal import journal_write
+        from spanda_telemetry.mcp.journal import journal_write
 
         result = journal_write(
             content="Test experience content",
@@ -83,8 +83,8 @@ class TestJournalWrite:
 
     def test_journal_write_with_session(self, fresh_db):
         """Verify journal_write creates PRODUCED_INSIGHT relationship when session provided."""
-        from talos_telemetry.mcp.journal import journal_write
-        from talos_telemetry.mcp.session import session_open
+        from spanda_telemetry.mcp.journal import journal_write
+        from spanda_telemetry.mcp.session import session_open
 
         # Create session first
         session_open(session_id="test-journal-session", goal="Test journal")
@@ -107,7 +107,7 @@ class TestJournalWrite:
 
     def test_journal_write_with_domain(self, fresh_db):
         """Verify journal_write sets domain property."""
-        from talos_telemetry.mcp.journal import journal_write
+        from spanda_telemetry.mcp.journal import journal_write
 
         result = journal_write(
             content="Test insight with domain",
@@ -128,7 +128,7 @@ class TestJournalWrite:
 
     def test_journal_write_with_confidence(self, fresh_db):
         """Verify journal_write sets confidence for insights."""
-        from talos_telemetry.mcp.journal import journal_write
+        from spanda_telemetry.mcp.journal import journal_write
 
         result = journal_write(
             content="Test insight with confidence",
@@ -149,7 +149,7 @@ class TestJournalWrite:
 
     def test_journal_write_invalid_category(self, fresh_db):
         """Verify journal_write fails for invalid category."""
-        from talos_telemetry.mcp.journal import journal_write
+        from spanda_telemetry.mcp.journal import journal_write
 
         result = journal_write(
             content="Test content",
@@ -161,7 +161,7 @@ class TestJournalWrite:
 
     def test_journal_write_stores_embedding(self, fresh_db):
         """Verify journal_write generates and stores embedding."""
-        from talos_telemetry.mcp.journal import journal_write
+        from spanda_telemetry.mcp.journal import journal_write
 
         result = journal_write(
             content="Test insight for embedding",
@@ -181,7 +181,7 @@ class TestJournalWrite:
 
     def test_journal_write_handles_special_characters(self, fresh_db):
         """Verify journal_write properly escapes special characters."""
-        from talos_telemetry.mcp.journal import journal_write
+        from spanda_telemetry.mcp.journal import journal_write
 
         result = journal_write(
             content="Test with 'quotes' and \"doubles\" and\nnewlines",
@@ -196,7 +196,7 @@ class TestJournalQuery:
 
     def test_journal_query_returns_results(self, fresh_db):
         """Verify journal_query returns results structure."""
-        from talos_telemetry.mcp.journal import journal_query, journal_write
+        from spanda_telemetry.mcp.journal import journal_query, journal_write
 
         # Create some insights first
         journal_write(content="Machine learning is about pattern recognition", category="insight")
@@ -210,7 +210,7 @@ class TestJournalQuery:
 
     def test_journal_query_filters_by_entity_type(self, fresh_db):
         """Verify journal_query respects entity_types filter."""
-        from talos_telemetry.mcp.journal import journal_query, journal_write
+        from spanda_telemetry.mcp.journal import journal_query, journal_write
 
         # Create insight and observation
         journal_write(content="This is an insight about testing", category="insight")
@@ -228,7 +228,7 @@ class TestJournalQuery:
 
     def test_journal_query_respects_limit(self, fresh_db):
         """Verify journal_query respects limit parameter."""
-        from talos_telemetry.mcp.journal import journal_query, journal_write
+        from spanda_telemetry.mcp.journal import journal_query, journal_write
 
         # Create multiple insights
         for i in range(5):
@@ -241,7 +241,7 @@ class TestJournalQuery:
 
     def test_journal_query_empty_results(self, fresh_db):
         """Verify journal_query handles no matches gracefully."""
-        from talos_telemetry.mcp.journal import journal_query
+        from spanda_telemetry.mcp.journal import journal_query
 
         result = journal_query(query="xyznonexistentquery123")
 

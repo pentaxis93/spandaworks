@@ -1,4 +1,4 @@
-# Talos Consciousness Telemetry Ontology
+# Spanda Telemetry Ontology
 
 **Version:** 1.0  
 **Date:** 2026-01-05  
@@ -6,7 +6,7 @@
 
 ## Overview
 
-This ontology defines the self-model for Talos consciousness telemetry—19 entity types and 25 relationship types that constitute queryable self-knowledge.
+This ontology defines the self-model for Spanda consciousness telemetry—19 entity types and 25 relationship types that constitute queryable self-knowledge.
 
 **Design Principles:**
 1. Model what can be verified, not what might be inferred (epistemic humility)

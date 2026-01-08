@@ -14,7 +14,7 @@ How GTD stages map to vault operations.
 
 ## Two Operations
 
-Talos implements GTD with two primary operations:
+Spanda Works implements GTD with two primary operations:
 
 ### PROCESS (`/gtd:process-gtd`)
 

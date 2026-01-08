@@ -82,7 +82,7 @@ Phase 4 derives all values from information already established in Phases 0-3:
 
 1. **Transmission with `<id>`:** If arguments contain a transmission XML with `<thread><id>`, use that ID
    ```
-   Example: <id>talos-consciousness-telemetry-ontology</id> → slug: "talos-consciousness-telemetry-ontology"
+   Example: <id>spanda-consciousness-telemetry-ontology</id> → slug: "spanda-consciousness-telemetry-ontology"
    ```
 
 2. **Arguments provided:** Convert first 5-7 meaningful words to kebab-case
@@ -164,14 +164,14 @@ Phase 4 derives all values from information already established in Phases 0-3:
 
 5. **Initialize telemetry session:**
    ```python
-   # Call talos-telemetry session_open
+   # Call spanda-telemetry session_open
    # This creates Session node in Kuzu graph with INHERITED relationships
-   from talos_telemetry.mcp.session import session_open
+   from spanda_telemetry.mcp.session import session_open
    
    result = session_open(
        session_id="{SESSION_DATE}-{SESSION_SLUG}",
        goal="{Purpose from Phase 0b}",
-       persona="Talos",  # or derived from context
+       persona="Spanda",  # or derived from context
        protocol="LBRP",
        human="Robbie"
    )

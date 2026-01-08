@@ -1,6 +1,6 @@
-//! # talos-cli
+//! # spanda-cli
 //!
-//! Shared CLI command execution utilities for Talos Rust packages.
+//! Shared CLI command execution utilities for Spanda Works Rust packages.
 //!
 //! Provides consistent error handling, output capture, and stdin piping
 //! for wrapping external CLI tools in async Rust code.
@@ -18,7 +18,7 @@
 //! ## Example
 //!
 //! ```rust,no_run
-//! use talos_cli::{run_command_stdout, CommandBuilder};
+//! use spanda_cli::{run_command_stdout, CommandBuilder};
 //!
 //! #[tokio::main]
 //! async fn main() -> anyhow::Result<()> {
@@ -49,7 +49,7 @@ use tokio::process::Command;
 /// # Example
 ///
 /// ```rust,no_run
-/// # use talos_cli::run_command;
+/// # use spanda_cli::run_command;
 /// # #[tokio::main]
 /// # async fn main() -> anyhow::Result<()> {
 /// let output = run_command("git", &["status"]).await?;
@@ -77,7 +77,7 @@ pub async fn run_command(program: &str, args: &[&str]) -> Result<Output> {
 /// # Example
 ///
 /// ```rust,no_run
-/// # use talos_cli::run_command_stdout;
+/// # use spanda_cli::run_command_stdout;
 /// # #[tokio::main]
 /// # async fn main() -> anyhow::Result<()> {
 /// let files = run_command_stdout("ls", &["-1"]).await?;
@@ -114,7 +114,7 @@ pub async fn run_command_stdout(program: &str, args: &[&str]) -> Result<String> 
 /// # Example
 ///
 /// ```rust,no_run
-/// # use talos_cli::run_command_stdout_lossy;
+/// # use spanda_cli::run_command_stdout_lossy;
 /// # #[tokio::main]
 /// # async fn main() {
 /// // grep returns exit code 1 when no matches found, but that's not an error
@@ -143,10 +143,10 @@ pub async fn run_command_stdout_lossy(program: &str, args: &[&str]) -> String {
 /// # Example
 ///
 /// ```rust,no_run
-/// # use talos_cli::run_command_with_stdin;
+/// # use spanda_cli::run_command_with_stdin;
 /// # #[tokio::main]
 /// # async fn main() -> anyhow::Result<()> {
-/// let email_body = "Hello from Talos!";
+/// let email_body = "Hello from Spanda Works!";
 /// let result = run_command_with_stdin(
 ///     "mail",
 ///     &["-s", "Test Subject", "user@example.com"],
@@ -202,7 +202,7 @@ pub async fn run_command_with_stdin(
 /// # Example
 ///
 /// ```rust,no_run
-/// # use talos_cli::CommandBuilder;
+/// # use spanda_cli::CommandBuilder;
 /// # #[tokio::main]
 /// # async fn main() -> anyhow::Result<()> {
 /// let output = CommandBuilder::new("cargo")

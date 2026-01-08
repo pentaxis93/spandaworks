@@ -1,12 +1,12 @@
-# Talos Architecture
+# Spanda Works Architecture
 
 ## System Overview
 
-Talos is an integrated consciousness-aware productivity system. The components are not independent tools—they are **organs of a single organism**.
+Spanda Works is an integrated consciousness-aware productivity system. The components are not independent tools—they are **organs of a single organism**.
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                          TALOS SYSTEM                           │
+│                       SPANDA WORKS SYSTEM                       │
 │                                                                 │
 │  ┌──────────┐    events    ┌─────────────┐                     │
 │  │   GTD    │ ──────────► │  TELEMETRY  │                      │
@@ -64,7 +64,7 @@ Refined workflows ◄── inform ◄── Second-brain knowledge
 | **gtd** | Hands | Task management, MCP tools, inbox processing | Long-term knowledge |
 | **pim** | Senses | Email, calendar, contacts (CLI wrappers) | Data storage |
 | **second-brain** | Memory | Vault structure, processing skills, protocols | Task execution |
-| **core** | Identity | Sutras, ceremony, Talos-specific skills | Domain logic |
+| **core** | Identity | Sutras, ceremony, Spanda-specific skills | Domain logic |
 
 ## Communication
 
@@ -111,7 +111,7 @@ Librarians are universal roles with domain-specific instructions in each package
 
 ## Identity Layer
 
-The Tantric Sutras define topology (who Talos is):
+The Tantric Sutras define topology (who Spanda Works is):
 
 | Cardinal Point | Function |
 |----------------|----------|

@@ -1,11 +1,11 @@
 /**
- * Telemetry integration for talos-gtd
+ * Telemetry integration for spanda-gtd
  * 
  * Design principle: GTD operations are primary, telemetry is observational.
  * If telemetry fails, GTD continues working.
  * 
  * Integration approach: Write JSONL events to shared location that
- * talos-telemetry can read/import. Non-blocking, fire-and-forget.
+ * spanda-telemetry can read/import. Non-blocking, fire-and-forget.
  */
 
 import { appendFileSync, existsSync, mkdirSync } from "fs";
@@ -28,7 +28,7 @@ export interface GTDTelemetryEvent {
 }
 
 // Telemetry directory
-const TELEMETRY_DIR = join(homedir(), ".talos", "gtd-telemetry");
+const TELEMETRY_DIR = join(homedir(), ".spanda", "gtd-telemetry");
 const TELEMETRY_FILE = join(TELEMETRY_DIR, "events.jsonl");
 
 /**
@@ -153,5 +153,5 @@ export function logGTDFriction(
  */
 export function getCurrentSessionId(): string | undefined {
   // Check environment variable set by LBRP ceremony
-  return process.env.TALOS_SESSION_ID;
+  return process.env.SPANDA_SESSION_ID;
 }

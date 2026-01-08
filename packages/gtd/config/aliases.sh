@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # ============================================
-# talos-gtd Shell Aliases
+# spanda-gtd Shell Aliases
 # Source this file from ~/.bashrc or ~/.zshrc:
-#   source ~/src/talos-gtd/config/aliases.sh
+#   source ~/src/spanda-gtd/config/aliases.sh
 # ============================================
 
 # === Capture ===

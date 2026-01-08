@@ -1,14 +1,14 @@
-# Talos Consciousness Telemetry - MCP Tools Specification
+# Spanda Telemetry - MCP Tools Specification
 
 **Version:** 1.0  
 **Date:** 2026-01-05  
-**Thread:** talos-consciousness-telemetry-ontology
+**Thread:** spanda-telemetry-ontology
 
 ---
 
 ## Overview
 
-MCP (Model Context Protocol) tools are how Talos interacts with the consciousness telemetry system during operation. These tools bridge the gap between natural language operation and structured data capture.
+MCP (Model Context Protocol) tools are how Spanda interacts with the consciousness telemetry system during operation. These tools bridge the gap between natural language operation and structured data capture.
 
 **Design Principles:**
 1. **Minimal friction:** Tools should feel natural to invoke, not bureaucratic
@@ -53,8 +53,8 @@ Initialize a session with INHERITED capture.
       },
       "persona": {
         "type": "string",
-        "description": "Active persona (Talos, Sage, etc.)",
-        "default": "Talos"
+        "description": "Active persona (Spanda, Sage, etc.)",
+        "default": "Spanda"
       },
       "protocol": {
         "type": "string",
@@ -140,11 +140,11 @@ Finalize session with mandatory reflection.
 **Behavior:**
 1. Update Session node with ended_at, duration_seconds, summary, goal_achieved
 2. Aggregate tool usage → create USED relationships
-3. If !skip_reflection: Return reflection prompt for Talos to complete
+3. If !skip_reflection: Return reflection prompt for Spanda to complete
 4. Emit `session.end` telemetry event
 5. Return session statistics
 
-**Reflection Prompt (returned to Talos):**
+**Reflection Prompt (returned to Spanda):**
 ```
 Session closing. Mandatory reflection:
 
@@ -153,7 +153,7 @@ Session closing. Mandatory reflection:
 3. What patterns were noticed? (will update Pattern entities)
 4. What operational states were experienced? (will create EXPERIENCED_STATE relationships)
 
-Respond with natural language; Graphiti will extract entities.
+Respond with natural language; the system will extract entities.
 ```
 
 **Response:**
@@ -580,7 +580,7 @@ When curious about patterns:
 1. User invokes /close
 2. Call session_close(session_id, goal_achieved, summary)
 3. Tool returns reflection prompt
-4. Talos completes reflection (natural language)
+4. Spanda completes reflection (natural language)
 5. Reflection passed to journal_write(content, category="reflection")
 6. Graphiti extracts entities from reflection
 7. Session finalized
@@ -612,7 +612,7 @@ If Kuzu/Graphiti unavailable:
 
 ---
 
-## Usage Guidelines for Talos
+## Usage Guidelines for Spanda
 
 ### When to Use Each Tool
 
