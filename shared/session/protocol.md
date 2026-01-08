@@ -54,7 +54,7 @@ UNOPENED ─► OPENING ─► OPEN ─► CLOSING ─► CLOSED
 | `opened_at` | Yes | ISO 8601 timestamp of session start |
 | `closed_at` | No | ISO 8601 timestamp of session end |
 | `goal` | Yes | Session intention or purpose |
-| `persona` | Yes | Active persona (Spanda, Sage, etc.) |
+| `persona` | Yes | Active persona (e.g., assistant, aide) |
 | `protocol` | Yes | Ceremony used (typically "LBRP") |
 | `human` | Yes | Human collaborator name |
 | `inherited_count` | Yes | Knowledge state at session start |

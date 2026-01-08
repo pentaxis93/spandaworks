@@ -246,7 +246,7 @@ def phase_4_telemetry(lbrp_context):
     result = session_open(
         session_id=session_id,
         goal=lbrp_context.goal,
-        persona=lbrp_context.persona or "Spanda",
+        persona="assistant",
         protocol="LBRP",
         human=lbrp_context.human or "Robbie"
     )

@@ -53,7 +53,7 @@ Initialize a session with INHERITED capture.
       },
       "persona": {
         "type": "string",
-        "description": "Active persona (Spanda, Sage, etc.)",
+        "description": "Active persona="assistant",
         "default": "Spanda"
       },
       "protocol": {

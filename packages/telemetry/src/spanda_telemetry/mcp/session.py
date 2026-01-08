@@ -15,7 +15,7 @@ def _now_iso() -> str:
 def session_open(
     session_id: str,
     goal: str,
-    persona: str = "Spanda",
+    persona="assistant",
     protocol: str = "LBRP",
     human: str = "Robbie",
 ) -> dict[str, Any]:

@@ -374,7 +374,7 @@ All actual content (insights, observations, friction descriptions) goes through 
   "attributes": {
     "spanda.session.id": "2026-01-05-spanda-ontology-design",
     "spanda.session.goal": "Design Spanda's self-model ontology",
-    "spanda.session.persona": "Spanda",
+    "spanda.session.persona="assistant",
     "spanda.session.protocol": "LBRP",
     "spanda.session.human": "Robbie",
     "spanda.session.inherited_count": 42
