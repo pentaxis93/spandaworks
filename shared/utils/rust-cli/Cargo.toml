@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 description = "Shared CLI command execution utilities for Spandaworks Rust packages"
 license = "MIT"
-authors = ["Robbie <robert.david.grossman@gmail.com>"]
+authors = ["Spandaworks Contributors"]
 
 [lib]
 name = "spandaworks_cli"

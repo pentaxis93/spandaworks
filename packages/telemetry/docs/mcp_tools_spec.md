@@ -64,7 +64,7 @@ Initialize a session with INHERITED capture.
       "human": {
         "type": "string",
         "description": "Human collaborator",
-        "default": "Robbie"
+        "default": "user"
       }
     },
     "required": ["session_id", "goal"]

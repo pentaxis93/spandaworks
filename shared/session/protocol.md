@@ -40,7 +40,7 @@ UNOPENED ─► OPENING ─► OPEN ─► CLOSING ─► CLOSED
   "goal": "Migrate existing repos into Spandaworks monorepo",
   "persona": "Spanda",
   "protocol": "LBRP",
-  "human": "Robbie",
+  "human": "user",
   "inherited_count": 42,
   "state": "OPEN"
 }

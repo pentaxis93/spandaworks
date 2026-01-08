@@ -248,7 +248,7 @@ def phase_4_telemetry(lbrp_context):
         goal=lbrp_context.goal,
         persona="assistant",
         protocol="LBRP",
-        human=lbrp_context.human or "Robbie"
+        human=lbrp_context.human or "user"
     )
     print(f"Session initialized: {session_id}")
     print(f"Inherited {result.get('inherited_count', 0)} knowledge entities")

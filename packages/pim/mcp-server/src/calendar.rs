@@ -1,7 +1,7 @@
 //! Calendar tools - wraps khal CLI
 //!
 //! Calendars:
-//! - RDG Personal (read/write) - Robbie's main calendar
+//! - RDG Personal (read/write) - the user's main calendar
 //! - Meli (read-only) - Wife's calendar
 //! - Dennis (read-only) - Son's calendar  
 //! - Holidays (read-only) - Hungarian holidays

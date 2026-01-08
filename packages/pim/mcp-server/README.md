@@ -2,7 +2,7 @@
 
 MCP server for Personal Information Management - email, calendar, contacts.
 
-Gives Spandaworks natural, fluid access to Robbie's PIM data by wrapping CLI tools:
+Gives Spandaworks natural, fluid access to the user's PIM data by wrapping CLI tools:
 - **Email**: notmuch (search/read), himalaya (send)
 - **Calendar**: khal (list/create)
 - **Contacts**: khard (search/get/create)

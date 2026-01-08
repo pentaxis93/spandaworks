@@ -224,7 +224,7 @@ class TestSessionIntegration:
             session_id="test-lifecycle-001",
             goal="Complete lifecycle test",
             persona="assistant",
-            human="Robbie",
+            human="user",
         )
         assert open_result["success"] is True
 

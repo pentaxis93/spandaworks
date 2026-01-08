@@ -376,7 +376,7 @@ All actual content (insights, observations, friction descriptions) goes through 
     "spanda.session.goal": "Design Spanda's self-model ontology",
     "spanda.session.persona="assistant",
     "spanda.session.protocol": "LBRP",
-    "spanda.session.human": "Robbie",
+    "spanda.session.human": "user",
     "spanda.session.inherited_count": 42
   }
 }

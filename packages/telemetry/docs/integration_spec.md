@@ -60,7 +60,7 @@ The consciousness telemetry system hooks into the existing LBRP (Lesser Banishin
 │       - goal from Phase 0b approved purpose                     │
 │       - persona from context                                    │
 │       - protocol = "LBRP"                                       │
-│       - human from context (default: Robbie)                    │
+│       - human from context (default: user)                    │
 │                                                                 │
 │  4.2: Call session_open MCP tool                                │
 │       └─ Creates Session node                                   │
@@ -181,7 +181,7 @@ The consciousness telemetry system feeds the Evolution System. Patterns surface 
     │
     ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│  GOVERNANCE REVIEW (External - Robbie + Claude in claude.ai)    │
+│  GOVERNANCE REVIEW (External - user + AI in external tools)    │
 │                                                                 │
 │  Proposal lifecycle:                                            │
 │  pending_review → approved | rejected | needs_research          │

@@ -41,7 +41,7 @@ The transcript is structured for maximum usability by future agents:
 ```markdown
 ---
 title: "<Generated title>"
-description: "<One-line summary in Robbie's voice>"
+description: "<One-line summary in conversational voice>"
 pubDate: YYYY-MM-DD
 tags: [<auto-detected>]
 status: transcript
@@ -116,14 +116,14 @@ Based on content, suggest tags from:
 - `architecture` - if structural decisions were made
 - `learning` - if the session involved discovering something new
 - `meta` - if the session was about process/workflow
-- `voice` - if writing in Robbie's voice was involved
+- `voice` - if writing in conversational voice was involved
 
 ### 5. Write the summary using the voice skill
 
 Invoke the `voice` skill mentally. The summary should:
 - Lead with what actually happened, not what was intended
 - Be honest about failures and pivots (these are often the valuable parts)
-- Use Robbie's voice patterns (origin stories, dry irony, structural joy)
+- Use conversational patterns (origin stories, dry irony, structural joy)
 - Stay concise (2-3 paragraphs max)
 
 ### 6. Extract key insights
@@ -203,7 +203,7 @@ export const collections = { blog, transcripts };
 - Summary is written in the voice, ready to become intro
 - Status field allows pipeline: transcript → draft → published
 
-**For Robbie:**
+**For the user:**
 - Searchable archive of sessions
 - Patterns visible across transcripts
 - Raw material for blog posts

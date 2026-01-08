@@ -17,7 +17,7 @@ def session_open(
     goal: str,
     persona="assistant",
     protocol: str = "LBRP",
-    human: str = "Robbie",
+    human: str = "user",
 ) -> dict[str, Any]:
     """Initialize a telemetry session.
 

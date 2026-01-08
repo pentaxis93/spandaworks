@@ -247,5 +247,5 @@ This is **strategic polyglot architecture**, not accidental accumulation.
 
 ---
 
-**Approved by:** Session work (Robbie + Claude)  
+**Approved by:** Session work  
 **Reviewed by:** N/A (exploration ADR)
