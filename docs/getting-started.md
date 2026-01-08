@@ -56,12 +56,11 @@ Configure in your MCP settings (e.g., `~/.config/opencode/mcp.json`):
 
 ### 4. Set up core (OpenCode integration)
 
-Symlink Spandaworks components to OpenCode config:
+**Skills** are auto-discovered by OpenCode from `.opencode/skill/` when you work in the Spandaworks directory. No installation needed.
+
+**Commands and plugins** require symlinking to OpenCode config:
 
 ```bash
-# Skills
-ln -sf ~/spandaworks/packages/core/skills/* ~/.config/opencode/skill/
-
 # Ceremony commands
 ln -sf ~/spandaworks/packages/core/ceremony/*.md ~/.config/opencode/command/
 

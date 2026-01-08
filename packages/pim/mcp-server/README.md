@@ -66,7 +66,7 @@ The following CLI tools must be installed and configured:
 - **khal** - Calendar viewing and creation
 - **khard** - Contact management
 
-See the [PIM Skill documentation](../../core/skills/pim/SKILL.md) for setup instructions.
+See the [PIM Skill documentation](../../../.opencode/skill/pim/SKILL.md) for setup instructions (if available).
 
 ## Design Philosophy
 

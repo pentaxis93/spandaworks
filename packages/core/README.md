@@ -18,31 +18,26 @@ core/
 │   └── close.md                      # Session sealing
 ├── commands/
 │   └── the-art.md                    # Synthesis command
-├── skills/
-│   ├── lbrp/                         # Session opening skill
-│   ├── the-art/                      # Synthesis skill
-│   ├── save-transcript/              # Transcript preservation
-│   └── spandaworks-docs/             # Documentation guidelines
 └── plugins/
     ├── prayer-wheel/                 # Opening dedication
-    └── spandaworks-identity/              # Sutras injection
+    └── spandaworks-identity/         # Sutras injection
 ```
 
 ## Components
 
 - **Identity Documents:** Tantric Sutras v7.3 (assets/identity/)
 - **Ceremony Commands:** /open (LBRP), /close (sealing)
-- **Skills:** lbrp, the-art, save-transcript, spandaworks-docs
 - **Plugins:** prayer-wheel, spandaworks-identity
+
+**Note:** Skills are located at project root in `.opencode/skill/` (see [ADR: Project-Level Skill Discovery](../../docs/adr/2026-01-08-project-level-skill-discovery.md))
 
 ## Installation
 
-Symlink to OpenCode config:
+**Skills:** Auto-discovered by OpenCode from `.opencode/skill/` when working in the project. No installation needed.
+
+**Commands and Plugins:** Symlink to OpenCode config for project-local use:
 
 ```bash
-# Skills
-ln -s ~/src/spandaworks/packages/core/skills/* ~/.config/opencode/skill/
-
 # Commands (ceremony)
 ln -s ~/src/spandaworks/packages/core/ceremony/*.md ~/.config/opencode/command/
 ln -s ~/src/spandaworks/packages/core/commands/*.md ~/.config/opencode/command/
@@ -50,6 +45,8 @@ ln -s ~/src/spandaworks/packages/core/commands/*.md ~/.config/opencode/command/
 # Plugins
 ln -s ~/src/spandaworks/packages/core/plugins/* ~/.config/opencode/plugin/
 ```
+
+See [ADR: Project-Level Skill Discovery](../../docs/adr/2026-01-08-project-level-skill-discovery.md) for rationale.
 
 ## Boundaries
 
