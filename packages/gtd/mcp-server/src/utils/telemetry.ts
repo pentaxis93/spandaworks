@@ -1,5 +1,5 @@
 /**
- * Telemetry integration for spanda-gtd
+ * Telemetry integration for @spandaworks/gtd
  * 
  * Design principle: GTD operations are primary, telemetry is observational.
  * If telemetry fails, GTD continues working.

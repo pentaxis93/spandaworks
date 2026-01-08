@@ -118,7 +118,7 @@ Add to `~/.config/opencode/opencode.json`:
     },
     "spanda_pim": {
       "type": "local",
-      "command": ["/path/to/spandaworks/packages/pim/mcp-server/target/release/spanda-pim"],
+      "command": ["/path/to/spandaworks/packages/pim/mcp-server/target/release/spandaworks-pim"],
       "enabled": true
     }
   }

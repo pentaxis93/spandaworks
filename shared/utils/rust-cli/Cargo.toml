@@ -1,5 +1,5 @@
 [package]
-name = "spanda-cli"
+name = "spandaworks-cli"
 version = "0.1.0"
 edition = "2021"
 description = "Shared CLI command execution utilities for Spandaworks Rust packages"
@@ -7,7 +7,7 @@ license = "MIT"
 authors = ["Robbie <robert.david.grossman@gmail.com>"]
 
 [lib]
-name = "spanda_cli"
+name = "spandaworks_cli"
 path = "src/lib.rs"
 
 [dependencies]

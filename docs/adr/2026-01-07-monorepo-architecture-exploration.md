@@ -142,7 +142,7 @@ This is **strategic polyglot architecture**, not accidental accumulation.
 
 **Files Modified:**
 - `packages/pim/mcp-server/Cargo.toml` (added dependency)
-- `packages/pim/mcp-server/src/cli.rs` (now re-exports from `spanda-cli`)
+- `packages/pim/mcp-server/src/cli.rs` (now re-exports from `spandaworks-cli`)
 
 **Benefits:**
 - Future Rust MCP servers get this for free

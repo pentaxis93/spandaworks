@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # ============================================
-# spanda-gtd Shell Aliases
+# @spandaworks/gtd Shell Aliases
 # Source this file from ~/.bashrc or ~/.zshrc:
-#   source ~/src/spanda-gtd/config/aliases.sh
+#   source ~/src/@spandaworks/gtd/config/aliases.sh
 # ============================================
 
 # === Capture ===

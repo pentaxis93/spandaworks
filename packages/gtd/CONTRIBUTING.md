@@ -1,12 +1,12 @@
-# Contributing to spanda-gtd
+# Contributing to @spandaworks/gtd
 
-Thank you for your interest in contributing to spanda-gtd!
+Thank you for your interest in contributing to @spandaworks/gtd!
 
 ## How to Contribute
 
 ### Reporting Bugs
 
-1. Check existing [issues](https://github.com/pentaxis93/spanda-gtd/issues) first
+1. Check existing [issues](https://github.com/pentaxis93/@spandaworks/gtd/issues) first
 2. Use the bug report template
 3. Include TaskWarrior version (`task --version`)
 4. Include steps to reproduce
@@ -30,8 +30,8 @@ Thank you for your interest in contributing to spanda-gtd!
 ### Development Setup
 
 ```bash
-git clone https://github.com/pentaxis93/spanda-gtd.git
-cd spanda-gtd/mcp-server
+git clone https://github.com/pentaxis93/@spandaworks/gtd.git
+cd @spandaworks/gtd/mcp-server
 npm install
 npm run build
 npm run typecheck

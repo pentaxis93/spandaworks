@@ -1,10 +1,10 @@
-# spanda-cli
+# spandaworks-cli
 
 Shared CLI command execution utilities for Spandaworks Rust packages.
 
 ## Overview
 
-`spanda-cli` provides a clean, ergonomic API for wrapping external CLI tools in async Rust code. It handles the common patterns needed when building MCP servers that delegate to command-line utilities.
+`spandaworks-cli` provides a clean, ergonomic API for wrapping external CLI tools in async Rust code. It handles the common patterns needed when building MCP servers that delegate to command-line utilities.
 
 **Design extracted from:** `packages/pim/mcp-server/src/cli.rs`
 
@@ -25,7 +25,7 @@ Add to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-spanda-cli = { path = "../../../shared/utils/rust-cli" }
+spandaworks-cli = { path = "../../../shared/utils/rust-cli" }
 ```
 
 ## Usage

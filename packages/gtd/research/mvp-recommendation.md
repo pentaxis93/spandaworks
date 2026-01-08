@@ -25,7 +25,7 @@
 
 ```ini
 # ============================================
-# spanda-gtd TaskWarrior Configuration
+# @spandaworks/gtd TaskWarrior Configuration
 # Based on CS Syd + hamlinux patterns
 # Version: MVP 1.0
 # ============================================
@@ -163,7 +163,7 @@ Add to `~/.bashrc` or `~/.zshrc`:
 
 ```bash
 # ============================================
-# spanda-gtd Shell Aliases
+# @spandaworks/gtd Shell Aliases
 # ============================================
 
 # === Capture ===
@@ -539,10 +539,10 @@ INFO:
 
 ---
 
-## 10. Repository Structure (spanda-gtd)
+## 10. Repository Structure (@spandaworks/gtd)
 
 ```
-spanda-gtd/
+@spandaworks/gtd/
 ├── README.md
 ├── config/
 │   ├── taskrc.template       # .taskrc configuration

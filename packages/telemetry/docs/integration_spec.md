@@ -2,7 +2,7 @@
 
 **Version:** 1.0  
 **Date:** 2026-01-05  
-**Thread:** spanda-telemetry-ontology
+**Thread:** spandaworks-telemetry-ontology
 
 ---
 

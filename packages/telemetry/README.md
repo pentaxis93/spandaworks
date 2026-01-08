@@ -96,8 +96,8 @@ Loop closes
 ## Installation
 
 ```bash
-git clone https://github.com/spandaworks/spanda-telemetry.git
-cd spanda-telemetry
+git clone https://github.com/spandaworks/spandaworks-telemetry.git
+cd spandaworks-telemetry
 
 # Install with dev dependencies
 pip install -e ".[dev]"

@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Initial release of spanda-gtd
+- Initial release of @spandaworks/gtd
 - 22 MCP tools for GTD workflow support:
   - Basic CRUD: `add_task`, `modify_task`, `mark_task_done`, `delete_task`, `list_tasks`, `get_task_details`, `start_task`, `stop_task`, `add_annotation`, `remove_annotation`
   - GTD Workflows: `process_inbox`, `get_next_actions`, `get_waiting_for`, `get_blocked_tasks`, `get_project_status`, `weekly_review`, `get_someday_maybe`

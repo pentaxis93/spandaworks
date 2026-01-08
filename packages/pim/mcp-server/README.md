@@ -1,4 +1,4 @@
-# spanda-pim
+# spandaworks-pim
 
 MCP server for Personal Information Management - email, calendar, contacts.
 
@@ -39,7 +39,7 @@ cd packages/pim/mcp-server
 cargo build --release
 ```
 
-Binary: `target/release/spanda-pim`
+Binary: `target/release/spandaworks-pim`
 
 ## OpenCode Configuration
 
@@ -50,7 +50,7 @@ Add to `~/.config/opencode/opencode.json`:
   "mcp": {
     "spanda_pim": {
       "type": "local",
-      "command": ["/path/to/spandaworks/packages/pim/mcp-server/target/release/spanda-pim"],
+      "command": ["/path/to/spandaworks/packages/pim/mcp-server/target/release/spandaworks-pim"],
       "enabled": true
     }
   }

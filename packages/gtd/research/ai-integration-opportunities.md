@@ -336,7 +336,7 @@ async def health_monitor():
 └────────────────┬────────────────────────┘
                  │ MCP Protocol
 ┌────────────────▼────────────────────────┐
-│         spanda-gtd MCP Server            │
+│         @spandaworks/gtd MCP Server            │
 │  ┌─────────────────────────────────┐    │
 │  │  Existing: omniwaifu/tw-mcp     │    │
 │  │  (GTD workflows)                │    │

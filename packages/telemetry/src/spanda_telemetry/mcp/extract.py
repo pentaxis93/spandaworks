@@ -47,7 +47,7 @@ def journal_extract(
         except ImportError as e:
             return {
                 "success": False,
-                "error": f"Extraction requires LLM package. Install with: pip install spanda-telemetry[extraction]. Details: {e}",
+                "error": f"Extraction requires LLM package. Install with: pip install spandaworks-telemetry[extraction]. Details: {e}",
             }
 
         # Extract entities using LLM

@@ -1,6 +1,6 @@
 # GTD Cheat Sheet
 
-Quick reference for spanda-gtd. Print this page.
+Quick reference for @spandaworks/gtd. Print this page.
 
 ---
 
@@ -167,4 +167,4 @@ Is it actionable?
 
 ---
 
-*spanda-gtd: AI suggests, human approves*
+*@spandaworks/gtd: AI suggests, human approves*
