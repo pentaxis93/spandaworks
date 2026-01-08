@@ -183,12 +183,13 @@ If something emerges from that, we'll see it in the graph.
 
 This is research infrastructure for studying AI-human collaboration.
 
-Contributions should:
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines. Key principles:
+
 - Preserve architectural independence (no cross-package imports)
 - Maintain epistemic humility (track what's verifiable)
 - Extend topology, not prescribe rules
 
-See individual package CONTRIBUTINGs for specifics.
+See individual package READMEs for package-specific development instructions.
 
 ## License
 

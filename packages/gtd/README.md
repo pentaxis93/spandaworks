@@ -180,8 +180,12 @@ This project builds on excellent prior work:
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+See [CONTRIBUTING.md](../../CONTRIBUTING.md) for general guidelines and [CONTRIBUTING.md](CONTRIBUTING.md) for GTD-specific development instructions.
+
+## Security
+
+See [SECURITY.md](../../SECURITY.md) for monorepo security policy and [SECURITY.md](SECURITY.md) for GTD-specific security considerations.
 
 ## License
 
-MIT - See [LICENSE](LICENSE) for details.
+MIT - See [LICENSE](../../LICENSE) for details.

@@ -18,7 +18,7 @@ vault/
 ├── 05-knowledge/       # Knowledge assets
 │   ├── consolidated/   # Frameworks from fusion
 │   └── patterns/       # Recognized patterns
-├── _spanda/            # Spandaworks operational memory
+├── _spandaworks/       # Spandaworks operational memory
 │   ├── reference/      # Quick reference system
 │   ├── protocols/      # Operational protocols
 │   ├── evolution/      # System evolution tracking

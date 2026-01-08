@@ -60,3 +60,15 @@ ln -s ~/src/spandaworks/packages/core/plugins/* ~/.config/opencode/plugin/
 ## Language
 
 Markdown (documents), TypeScript (plugins)
+
+## Contributing
+
+See [CONTRIBUTING.md](../../CONTRIBUTING.md) for general guidelines. Core-specific considerations:
+
+- Changes to identity documents (Tantric Sutras) require discussion
+- Ceremony changes should preserve the four-quarter structure
+- Skills and plugins must be symlink-compatible
+
+## License
+
+MIT - See [LICENSE](../../LICENSE) for details.

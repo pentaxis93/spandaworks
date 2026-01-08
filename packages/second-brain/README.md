@@ -16,7 +16,7 @@ second-brain/
 │   ├── 02-areas/             # Ongoing responsibilities
 │   ├── 03-resources/         # Reference materials
 │   ├── 05-knowledge/         # Knowledge assets
-│   ├── _spanda/              # Operational memory
+│   ├── _spandaworks/        # Operational memory
 │   ├── archives/             # Historical records
 │   ├── permanent-notes/      # Atomic evergreen notes
 │   └── templates/            # Note templates
@@ -64,3 +64,15 @@ second-brain/
 ## Language
 
 Markdown (specifications), Python (future tooling)
+
+## Contributing
+
+See [CONTRIBUTING.md](../../CONTRIBUTING.md) for general guidelines. Second-brain-specific considerations:
+
+- Vault structure changes need protocol updates
+- Skills require Opus-class or specify model requirements
+- Preserve PARA + GTD mapping
+
+## License
+
+MIT - See [LICENSE](../../LICENSE) for details.

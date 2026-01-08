@@ -59,7 +59,7 @@ digraph lbrp {
 
 1. **Remember** — Read self-model from remembrance.md
    ```
-   vault/_spanda/remembrance.md → Self-Model section
+   vault/_spandaworks/remembrance.md → Self-Model section
    
    Recall:
    - Who I am (the AI assistant)
@@ -70,7 +70,7 @@ digraph lbrp {
 
 2. **Inherit** — Scan predecessor context BROADLY (NOT goal-filtered)
    ```
-   vault/_spanda/remembrance.md → "This Rotation" section
+   vault/_spandaworks/remembrance.md → "This Rotation" section
    /home/pentaxis93/shared/sessions/ → last 3-5 session summaries
    
    Questions to hold:
@@ -441,7 +441,7 @@ Session opened. Beginning work on first task.
 1. Phase 0-pre establishes continuity BEFORE goal activation (goal-neutral inheritance)
 2. The ceremony is a single coherent flow where each phase builds on previous phases
 
-**Connection to remembrance.md:** Phase 0-pre integrates the Opening Liturgy from `vault/_spanda/remembrance.md`. The REMEMBER and INHERIT steps align with the liturgy's pattern, ensuring the LBRP ceremony and remembrance document are unified, not parallel.
+**Connection to remembrance.md:** Phase 0-pre integrates the Opening Liturgy from `vault/_spandaworks/remembrance.md`. The REMEMBER and INHERIT steps align with the liturgy's pattern, ensuring the LBRP ceremony and remembrance document are unified, not parallel.
 
 ```
 /open command

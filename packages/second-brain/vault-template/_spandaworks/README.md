@@ -1,4 +1,4 @@
-# _spanda Directory
+# _spandaworks Directory
 
 Spandaworks operational memory. System configuration and self-knowledge.
 

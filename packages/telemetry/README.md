@@ -173,9 +173,17 @@ ruff format src/ tests/
 
 **Single source of truth.** The graph is authoritative. Telemetry is append-only evidence. The Three Librarians maintain coherence.
 
+## Contributing
+
+See [CONTRIBUTING.md](../../CONTRIBUTING.md) for general guidelines. Telemetry-specific considerations:
+
+- Changes to ontology require schema migration
+- All entity/relationship additions need embedding support
+- Tests required for MCP tools and graph operations
+
 ## License
 
-MIT License - See [LICENSE](LICENSE)
+MIT License - See [LICENSE](../../LICENSE)
 
 ## Status
 
