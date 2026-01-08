@@ -1,4 +1,4 @@
-"""MCP tools module - Model Context Protocol tools for Spanda Works."""
+"""MCP tools module - Model Context Protocol tools for Spandaworks."""
 
 from spanda_telemetry.mcp.extract import journal_extract
 from spanda_telemetry.mcp.friction import friction_log

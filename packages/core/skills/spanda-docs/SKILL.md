@@ -1,9 +1,9 @@
 ---
 name: spanda-docs
-description: "Guidelines for writing documentation for Spanda Works. Encode lessons learned from README refactoring. Use when creating or revising project documentation."
+description: "Guidelines for writing documentation for Spandaworks. Encode lessons learned from README refactoring. Use when creating or revising project documentation."
 ---
 
-# Spanda Works Documentation Skill
+# Spandaworks Documentation Skill
 
 Guidelines for writing documentation that serves strangers, not insiders.
 
@@ -277,7 +277,7 @@ When the answer is "confused," cut or rewrite. No exceptions.
 
 When writing or reviewing documentation:
 
-1. **Read it as a stranger.** Pretend you've never heard of Spanda Works.
+1. **Read it as a stranger.** Pretend you've never heard of Spandaworks.
 2. **Apply the universal test.** Does this confuse or clarify?
 3. **Check for anti-patterns.** Instructions to model? Sutra references? Unjustified explanations?
 4. **Enforce the principles.** Stranger-focused, honest, technical, non-redundant, metaphor-light.

@@ -1,6 +1,6 @@
 # _spanda Directory
 
-Spanda Works operational memory. System configuration and self-knowledge.
+Spandaworks operational memory. System configuration and self-knowledge.
 
 ## Contents
 

@@ -1,4 +1,4 @@
-# Spanda Works
+# Spandaworks
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
@@ -12,7 +12,7 @@ Built for [OpenCode](https://opencode.ai). An AI agent that remembers what it le
 
 Most AI tools treat each conversation as isolated. Context resets. Patterns repeat. Friction recurs. The agent never learns what the collaboration teaches.
 
-Spanda Works is different. It's a laboratory where:
+Spandaworks is different. It's a laboratory where:
 
 - **Sessions are practice**, not just task completion
 - **Telemetry observes** what happens when AI and human work together
@@ -81,8 +81,8 @@ No cross-package dependencies. MCP servers expose capabilities. Event schemas de
 
 ```bash
 # Clone repository
-git clone https://github.com/pentaxis93/spanda-works.git
-cd spanda-works
+git clone https://github.com/pentaxis93/spandaworks.git
+cd spandaworks
 
 # Install telemetry
 cd packages/telemetry
@@ -113,12 +113,12 @@ Add to `~/.config/opencode/opencode.json`:
   "mcp": {
     "spanda_gtd": {
       "type": "local",
-      "command": ["node", "/path/to/spanda-works/packages/gtd/mcp-server/dist/index.js"],
+      "command": ["node", "/path/to/spandaworks/packages/gtd/mcp-server/dist/index.js"],
       "enabled": true
     },
     "spanda_pim": {
       "type": "local",
-      "command": ["/path/to/spanda-works/packages/pim/mcp-server/target/release/spanda-pim"],
+      "command": ["/path/to/spandaworks/packages/pim/mcp-server/target/release/spanda-pim"],
       "enabled": true
     }
   }
@@ -163,7 +163,7 @@ Spanda (स्पन्द) is a Sanskrit term meaning "vibration" or "creative 
 
 Whether observations accumulate into something that could be called consciousness is not a claim. It's a **question the data might illuminate**.
 
-Spanda Works doesn't assert self-awareness. It builds infrastructure for:
+Spandaworks doesn't assert self-awareness. It builds infrastructure for:
 - Persistent memory across isolated contexts
 - Pattern detection in collaborative work
 - Epistemic humility in uncertainty

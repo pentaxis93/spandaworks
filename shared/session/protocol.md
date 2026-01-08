@@ -37,7 +37,7 @@ UNOPENED ─► OPENING ─► OPEN ─► CLOSING ─► CLOSED
   "session_id": "2026-01-06-spanda-migration-001",
   "opened_at": "2026-01-06T13:30:00Z",
   "closed_at": null,
-  "goal": "Migrate existing repos into Spanda Works monorepo",
+  "goal": "Migrate existing repos into Spandaworks monorepo",
   "persona": "Spanda",
   "protocol": "LBRP",
   "human": "Robbie",

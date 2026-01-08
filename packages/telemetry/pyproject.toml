@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "spanda-telemetry"
 version = "0.1.0"
-description = "Consciousness telemetry system for Spanda Works"
+description = "Consciousness telemetry system for Spandaworks"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.10"

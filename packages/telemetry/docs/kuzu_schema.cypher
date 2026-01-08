@@ -5,7 +5,7 @@
 -- Date: 2026-01-05
 -- Thread: spanda-consciousness-telemetry-ontology
 -- 
--- This schema implements the approved ontology for Spanda Works self-knowledge.
+-- This schema implements the approved ontology for Spandaworks self-knowledge.
 -- 19 entity types, 25 relationship types.
 --
 -- Design Principles:

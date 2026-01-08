@@ -1,10 +1,10 @@
 # Core
 
-**The identity** - defines who Spanda Works is, how sessions flow.
+**The identity** - defines who Spandaworks is, how sessions flow.
 
 ## Purpose
 
-Spanda Works identity, ceremony, and shared protocols. The "who Spanda Works is" package.
+Spandaworks identity, ceremony, and shared protocols. The "who Spandaworks is" package.
 
 ## Structure
 
@@ -41,21 +41,21 @@ Symlink to OpenCode config:
 
 ```bash
 # Skills
-ln -s ~/src/spanda-works/packages/core/skills/* ~/.config/opencode/skill/
+ln -s ~/src/spandaworks/packages/core/skills/* ~/.config/opencode/skill/
 
 # Commands (ceremony)
-ln -s ~/src/spanda-works/packages/core/ceremony/*.md ~/.config/opencode/command/
-ln -s ~/src/spanda-works/packages/core/commands/*.md ~/.config/opencode/command/
+ln -s ~/src/spandaworks/packages/core/ceremony/*.md ~/.config/opencode/command/
+ln -s ~/src/spandaworks/packages/core/commands/*.md ~/.config/opencode/command/
 
 # Plugins
-ln -s ~/src/spanda-works/packages/core/plugins/* ~/.config/opencode/plugin/
+ln -s ~/src/spandaworks/packages/core/plugins/* ~/.config/opencode/plugin/
 ```
 
 ## Boundaries
 
 - Defines identity, does not implement domain logic
 - Provides ceremony structure, does not manage tasks or knowledge
-- Shapes all Spanda Works behavior through topology, not prescription
+- Shapes all Spandaworks behavior through topology, not prescription
 
 ## Language
 

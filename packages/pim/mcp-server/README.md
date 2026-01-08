@@ -2,7 +2,7 @@
 
 MCP server for Personal Information Management - email, calendar, contacts.
 
-Gives Spanda Works natural, fluid access to Robbie's PIM data by wrapping CLI tools:
+Gives Spandaworks natural, fluid access to Robbie's PIM data by wrapping CLI tools:
 - **Email**: notmuch (search/read), himalaya (send)
 - **Calendar**: khal (list/create)
 - **Contacts**: khard (search/get/create)
@@ -50,7 +50,7 @@ Add to `~/.config/opencode/opencode.json`:
   "mcp": {
     "spanda_pim": {
       "type": "local",
-      "command": ["/path/to/spanda-works/packages/pim/mcp-server/target/release/spanda-pim"],
+      "command": ["/path/to/spandaworks/packages/pim/mcp-server/target/release/spanda-pim"],
       "enabled": true
     }
   }

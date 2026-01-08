@@ -151,6 +151,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "spanda-cli"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "thiserror",
+ "tokio",
+]
+
+[[package]]
 name = "syn"
 version = "2.0.114"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -159,15 +168,6 @@ dependencies = [
  "proc-macro2",
  "quote",
  "unicode-ident",
-]
-
-[[package]]
-name = "spanda-cli"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "thiserror",
- "tokio",
 ]
 
 [[package]]

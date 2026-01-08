@@ -9,7 +9,7 @@
 
 ## Context
 
-Conducted comprehensive exploration of the Spanda Works monorepo to understand:
+Conducted comprehensive exploration of the Spandaworks monorepo to understand:
 - Current package structure and dependencies
 - Cross-package integration patterns
 - Refactoring opportunities
@@ -241,7 +241,7 @@ This is **strategic polyglot architecture**, not accidental accumulation.
 
 ## References
 
-- Session: `2026-01-07-explore-refactor-spanda-works-monorepo`
+- Session: `2026-01-07-explore-refactor-spandaworks-monorepo`
 - Branch: `refactoring`
 - Related PRs: #2 (taskwarrior-gtd-skill), #3 (pim-mcp-server)
 

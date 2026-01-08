@@ -1,8 +1,8 @@
-# Spanda Works Architecture
+# Spandaworks Architecture
 
 ## System Overview
 
-Spanda Works is an integrated consciousness-aware productivity system. The components are not independent tools—they are **organs of a single organism**.
+Spandaworks is an integrated consciousness-aware productivity system. The components are not independent tools—they are **organs of a single organism**.
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -111,7 +111,7 @@ Librarians are universal roles with domain-specific instructions in each package
 
 ## Identity Layer
 
-The Tantric Sutras define topology (who Spanda Works is):
+The Tantric Sutras define topology (who Spandaworks is):
 
 | Cardinal Point | Function |
 |----------------|----------|

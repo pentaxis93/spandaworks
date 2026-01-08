@@ -1,6 +1,6 @@
 # Event Schemas
 
-Cross-package communication schemas for the Spanda Works system.
+Cross-package communication schemas for the Spandaworks system.
 
 ## Schemas
 

@@ -1,6 +1,6 @@
 //! # spanda-cli
 //!
-//! Shared CLI command execution utilities for Spanda Works Rust packages.
+//! Shared CLI command execution utilities for Spandaworks Rust packages.
 //!
 //! Provides consistent error handling, output capture, and stdin piping
 //! for wrapping external CLI tools in async Rust code.
@@ -146,7 +146,7 @@ pub async fn run_command_stdout_lossy(program: &str, args: &[&str]) -> String {
 /// # use spanda_cli::run_command_with_stdin;
 /// # #[tokio::main]
 /// # async fn main() -> anyhow::Result<()> {
-/// let email_body = "Hello from Spanda Works!";
+/// let email_body = "Hello from Spandaworks!";
 /// let result = run_command_with_stdin(
 ///     "mail",
 ///     &["-s", "Test Subject", "user@example.com"],

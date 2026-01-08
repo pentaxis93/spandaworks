@@ -1,6 +1,6 @@
 # Librarians: Universal Identity and Protocols
 
-Librarians are high-level agentic workers that maintain the Spanda Works system. They are universal roles with domain-specific instructions.
+Librarians are high-level agentic workers that maintain the Spandaworks system. They are universal roles with domain-specific instructions.
 
 ## The Three Librarians
 
@@ -122,4 +122,4 @@ The GTD weekly review incorporates librarian reports:
 2. Synthesizer report: What was consolidated? What synthesis opportunities remain?
 3. Pathfinder report: What patterns emerged? What optimizations are suggested?
 
-This creates a unified reflection surface across all Spanda Works packages.
+This creates a unified reflection surface across all Spandaworks packages.

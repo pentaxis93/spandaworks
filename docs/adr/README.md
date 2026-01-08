@@ -1,6 +1,6 @@
 # Architecture Decision Records (ADRs)
 
-This directory contains Architecture Decision Records for the Spanda Works monorepo.
+This directory contains Architecture Decision Records for the Spandaworks monorepo.
 
 ## What is an ADR?
 

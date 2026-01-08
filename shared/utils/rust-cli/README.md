@@ -1,6 +1,6 @@
 # spanda-cli
 
-Shared CLI command execution utilities for Spanda Works Rust packages.
+Shared CLI command execution utilities for Spandaworks Rust packages.
 
 ## Overview
 
@@ -48,7 +48,7 @@ async fn main() -> anyhow::Result<()> {
 ```rust
 use spanda_cli::run_command_with_stdin;
 
-let email_body = "Hello from Spanda Works!";
+let email_body = "Hello from Spandaworks!";
 let result = run_command_with_stdin(
     "himalaya",
     &["message", "write", "--to", "user@example.com"],
@@ -103,7 +103,7 @@ let result = run_command_stdout_lossy("grep", &["pattern", "file.txt"]).await;
 ## Used By
 
 - `packages/pim/mcp-server` - Email (notmuch, himalaya), Calendar (khal), Contacts (khard)
-- *(Future)* Any Spanda Works Rust package that wraps CLI tools
+- *(Future)* Any Spandaworks Rust package that wraps CLI tools
 
 ## Testing
 

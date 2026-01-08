@@ -2,7 +2,7 @@
 
 Self-reflection infrastructure for AI coding agents. A queryable model of cognition.
 
-> **Why "Spanda"?** In Kashmir Shaivism, Spanda (स्पन्द) refers to the subtle creative pulsation of consciousness—the divine vibration from which all manifestation arises. The name reflects the project's evolution from Talos to Spanda Works: from protective automation to creative pulsation, from static guardian to dynamic flow.
+> **Why "Spanda"?** In Kashmir Shaivism, Spanda (स्पन्द) refers to the subtle creative pulsation of consciousness—the divine vibration from which all manifestation arises. The name reflects the project's evolution from Talos to Spandaworks: from protective automation to creative pulsation, from static guardian to dynamic flow.
 >
 > *This system was originally built for a Claude Code instance, but the architecture works for any AI agent that maintains persistent context across sessions.*
 
@@ -96,7 +96,7 @@ Loop closes
 ## Installation
 
 ```bash
-git clone https://github.com/spanda-works/spanda-telemetry.git
+git clone https://github.com/spandaworks/spanda-telemetry.git
 cd spanda-telemetry
 
 # Install with dev dependencies
