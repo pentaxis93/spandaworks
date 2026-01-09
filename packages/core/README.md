@@ -15,6 +15,7 @@ core/
 │       └── tantric-sutras-v7.3.md   # Identity topology
 ├── ceremony/
 │   ├── open.md                       # Session opening (LBRP)
+│   ├── ops.md                        # Ops mode entry
 │   └── close.md                      # Session sealing
 ├── commands/
 │   └── the-art.md                    # Synthesis command
@@ -26,7 +27,7 @@ core/
 ## Components
 
 - **Identity Documents:** Tantric Sutras v7.3 (assets/identity/)
-- **Ceremony Commands:** /open (LBRP), /close (sealing)
+- **Ceremony Commands:** /open (LBRP), /ops (ops mode), /close (sealing)
 - **Plugins:** prayer-wheel, spandaworks-identity
 
 **Note:** Skills are located at project root in `.opencode/skill/` (see [ADR: Project-Level Skill Discovery](../../docs/adr/2026-01-08-project-level-skill-discovery.md))
@@ -39,7 +40,9 @@ core/
 
 ```bash
 # Commands (ceremony)
-ln -s ~/src/spandaworks/packages/core/ceremony/*.md ~/.config/opencode/command/
+ln -s ~/src/spandaworks/packages/core/ceremony/open.md ~/.config/opencode/command/open
+ln -s ~/src/spandaworks/packages/core/ceremony/ops.md ~/.config/opencode/command/ops
+ln -s ~/src/spandaworks/packages/core/ceremony/close.md ~/.config/opencode/command/close
 ln -s ~/src/spandaworks/packages/core/commands/*.md ~/.config/opencode/command/
 
 # Plugins
