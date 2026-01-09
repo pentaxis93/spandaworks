@@ -163,6 +163,16 @@ Ops mode has access to the full tool ecosystem. Use them as extensions of judgme
 
 The tools serve the stance. The stance doesn't serve the tools.
 
+## Ops Procedures
+
+### Habit Hygiene (Health-Aware)
+
+Some recurring habits (exercise, contemplative practices) may be inconsistent due to chronic illness. In those cases, ops optimizes for *non-accumulating* task lists.
+
+- When reviewing "what's on my plate", delete/cancel overdue habit *instances* so they do not build up.
+- Do **not** mark missed habit instances as done.
+- Keep only the current/today instance (and any future-scheduled ones) unless the user explicitly wants a backlog.
+
 ## Opening
 
 Brief. Ops is about efficiency, not ceremony.
