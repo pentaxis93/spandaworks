@@ -1,44 +1,51 @@
-# ADR: Project-Level Skill Discovery
+# ADR: Project-Level Configuration (Skills, Commands, Plugins)
 
 **Date:** 2026-01-08  
 **Status:** Accepted  
-**Context:** Skill installation and discovery mechanism
+**Context:** Installation and discovery of agent capabilities
 
 ---
 
 ## Context
 
-OpenCode supports custom agent skills through a discovery mechanism that searches multiple locations for `SKILL.md` files. Initially, Spandaworks skills were stored in `packages/core/skills/` and manually symlinked to the global `~/.config/opencode/skill/` directory.
+OpenCode supports custom agent skills, commands, and plugins through a discovery mechanism. Initially, Spandaworks stored these components in various subdirectories of `packages/core/`:
+- Skills: `packages/core/skills/`
+- Commands: `packages/core/ceremony/` and `packages/core/commands/`
+- Plugins: `packages/core/plugins/`
+
+Users were required to manually symlink these files to global configuration directories (`~/.config/opencode/skill/`, `~/.config/opencode/command/`, `~/.config/opencode/plugin/`).
 
 This approach had several problems:
-1. **Manual setup required** - New users had to create symlinks manually
-2. **Global pollution** - Skills installed globally rather than project-scoped
-3. **Not collaborative** - Skills wouldn't work when others cloned the repository
-4. **Non-canonical** - Violated OpenCode's documented best practices
+1. **Manual setup required** - New users had to create dozens of symlinks manually
+2. **Global pollution** - Capabilities installed globally rather than project-scoped
+3. **Not collaborative** - Features wouldn't work when others cloned the repository
+4. **Non-canonical** - Violated OpenCode's documented best practices for project-level configuration
 
 ## Decision
 
-**Move all Spandaworks skills from `packages/core/skills/` to `.opencode/skill/`** and rely on OpenCode's native project-level discovery mechanism.
+**Move all Spandaworks skills, commands, and plugins to the top-level `.opencode/` directory** and rely on OpenCode's native project-level discovery mechanism.
 
-### OpenCode Skill Discovery (Canonical)
+### OpenCode Discovery (Canonical)
 
-Per the [OpenCode documentation](https://opencode.ai/docs/skills/), OpenCode searches these locations in order:
-
-**Project-level (auto-discovered):**
-- `.opencode/skill/<name>/SKILL.md`
-- `.claude/skills/<name>/SKILL.md`
-
-**Global (manual installation):**
-- `~/.config/opencode/skill/<name>/SKILL.md`
-- `~/.claude/skills/<name>/SKILL.md`
-
-OpenCode walks up from the current working directory to the git worktree root, discovering any skills along the way.
+Per the [OpenCode documentation](https://opencode.ai/docs/), OpenCode recursively searches up from the current directory for an `.opencode` folder containing:
+- `skill/` - Custom agent skills
+- `command/` - Custom slash commands
+- `plugin/` - Plugins and extensions
 
 ### Our Structure
 
 ```
 spandaworks/
 ├── .opencode/
+│   ├── command/
+│   │   ├── close.md
+│   │   ├── open.md
+│   │   ├── ops.md
+│   │   ├── stand-down.md
+│   │   └── the-art.md
+│   ├── plugin/
+│   │   ├── prayer-wheel/
+│   │   └── spandaworks-identity/
 │   └── skill/
 │       ├── lbrp/
 │       │   └── SKILL.md
@@ -57,73 +64,60 @@ spandaworks/
 │           └── SKILL.md
 └── packages/
     └── core/
-        ├── ceremony/
-        ├── commands/
-        └── plugins/
+        └── assets/
+            └── identity/
 ```
 
-**Note:** `packages/core/skills/` no longer exists.
+**Note:** `packages/core/skills/`, `packages/core/ceremony/`, `packages/core/commands/`, and `packages/core/plugins/` no longer exist.
 
 ## Implementation
 
 **Migration steps:**
-1. Created `.opencode/skill/` directory
+1. Created `.opencode/skill/`, `.opencode/command/`, and `.opencode/plugin/` directories
 2. Moved all skills from `packages/core/skills/*` to `.opencode/skill/*`
-3. Removed `packages/core/skills/` directory
-4. Deleted global symlinks from `~/.config/opencode/skill/`
-5. Updated documentation references
+3. Moved ceremony commands from `packages/core/ceremony/*` to `.opencode/command/*`
+4. Moved synthesis command from `packages/core/commands/*` to `.opencode/command/*`
+5. Moved all plugins from `packages/core/plugins/*` to `.opencode/plugin/*`
+6. Removed the original source directories in `packages/core/`
+7. Updated documentation references
 
-**No symlinks required.** OpenCode auto-discovers skills from `.opencode/skill/` when working in the project.
+**No symlinks required.** OpenCode auto-discovers all capabilities from `.opencode/` when working in the project.
 
 ## Consequences
 
 ### Positive
 
-✓ **Zero manual setup** - Skills work immediately when cloning the repo  
+✓ **Zero manual setup** - Everything works immediately when cloning the repo  
 ✓ **Project-scoped** - No global config pollution  
+✓ **Unified** - All agent capabilities live in one standard location  
 ✓ **Collaborative** - Works for all contributors automatically  
 ✓ **Canonical** - Follows OpenCode best practices  
-✓ **Version controlled** - Skills are part of the repository  
-✓ **Discoverable** - Standard OpenCode discovery mechanism
 
 ### Neutral
 
-- Skills only available when working within the Spandaworks project
-- For global availability, users can manually symlink from `.opencode/skill/` to `~/.config/opencode/skill/` if desired
+- Capabilities only available when working within the Spandaworks project
+- For global availability, users can manually symlink from `.opencode/` subdirectories to `~/.config/opencode/` if desired
 
 ### Maintenance
 
-**For new skills:**
-```bash
-# Create skill directory
-mkdir -p .opencode/skill/my-new-skill
-
-# Create SKILL.md with frontmatter
-cat > .opencode/skill/my-new-skill/SKILL.md << 'EOF'
----
-name: my-new-skill
-description: Brief description for skill discovery
----
-
-# My New Skill
-
-[Skill implementation...]
-EOF
-```
+**For new capabilities:**
+Simply add them to the appropriate directory in `.opencode/`:
+- New skill: `.opencode/skill/my-skill/SKILL.md`
+- New command: `.opencode/command/my-command.md`
+- New plugin: `.opencode/plugin/my-plugin/`
 
 **Verification:**
-OpenCode automatically discovers skills on startup. No restart or reload required.
+OpenCode automatically discovers changes on startup. No restart or reload required.
 
 ## References
 
 - [OpenCode Skill Documentation](https://opencode.ai/docs/skills/)
-- [Skill Frontmatter Requirements](https://opencode.ai/docs/skills/#write-frontmatter)
-- [Skill Discovery Mechanism](https://opencode.ai/docs/skills/#understand-discovery)
+- [OpenCode Configuration](https://opencode.ai/docs/config/)
 
 ---
 
 **Replaced approach:**  
-~~`packages/core/skills/` + manual global symlinks~~
+~~`packages/core/*` + manual global symlinks~~
 
 **New approach:**  
-`.opencode/skill/` with native OpenCode discovery
+`.opencode/` with native OpenCode discovery for skills, commands, and plugins
