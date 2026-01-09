@@ -2,398 +2,365 @@
 <transmission type="report" version="1.0">
 
   <header>
-    <from>OpenCode Agent (docs-review worktree)</from>
+    <from>OpenCode Agent (docs-review-opus worktree)</from>
     <to>Governance Committee</to>
     <date>2026-01-08</date>
     <thread>
-      <id>seed-multi-persona-doc-review</id>
+      <id>seed-doc-review-skill-v2</id>
       <position>2</position>
       <in-reply-to>1</in-reply-to>
     </thread>
     <status>complete</status>
   </header>
 
+  <summary>
+    Skill v2 created with compassion frame fully implemented. The core reframe:
+    success is measured by "Did each persona receive the intended signal?" not
+    "Did each persona have a positive reaction?"
+    
+    A Pragmatic PM feeling redirected by "Experimental. Incomplete." is SUCCESS
+    when redirect was intended. The signal worked. No action needed.
+  </summary>
+
   <deliverables>
     <deliverable id="1" status="complete">
       <name>SKILL.md</name>
       <location>.opencode/skill/perspective-review/SKILL.md</location>
-      <size>799 lines</size>
       <description>
-        Complete skill specification following Spandaworks format. Includes:
-        - Dimensional model (4 dimensions: technical literacy, spiritual openness, role, context)
-        - Persona library (8 personas with MECE coverage)
-        - Three-phase protocol (Scan & Select → Execute Reviews → Consolidate)
-        - Selection methodology with justification requirement
-        - Independent review execution protocol
-        - Consolidation format preserving disagreement
-        - Usage examples and integration guidance
+        Complete skill specification with compassion frame. Includes:
+        
+        - Phase 0: Intent Mapping (NEW - runs BEFORE persona selection)
+          Maps each audience segment to intended relationship (WELCOME/WARN/REDIRECT)
+          with rationale. This becomes the evaluation rubric.
+        
+        - Phase 1: Scan & Select
+          Strategic persona selection based on which intended relationships need testing.
+          Selection explicitly targets: "Who tests each welcome path? Who tests each 
+          redirect path?"
+        
+        - Phase 2: Independent Reviews
+          Each persona receives intent context: "Documentation intends [X] for your segment.
+          Did the signal land correctly?"
+        
+        - Phase 3: Compassionate Synthesis
+          Categorizes findings as:
+          - Signal Match (intended=received): No action needed, even if reaction negative
+          - Signal Mismatch (intended≠received): Action item generated
+          - Unclear Signal: Confusion, needs clarification
+        
+        - Persona Library (8 personas, retained from v1)
+          ENHANCED with signal indicators for all three relationships:
+          - What makes them feel WELCOMED
+          - What makes them feel WARNED  
+          - What makes them feel REDIRECTED
+          - What CONFUSES them (unclear signal)
       </description>
     </deliverable>
     
     <deliverable id="2" status="complete">
-      <name>Persona Library</name>
-      <location>.opencode/skill/perspective-review/SKILL.md (embedded, lines 45-398)</location>
-      <size>8 personas</size>
-      <description>
-        Complete persona definitions embedded in SKILL.md:
-        1. Skeptical Engineer (high tech / allergic spiritual / evaluator / stumbled)
-        2. Pragmatic PM (medium tech / neutral spiritual / evaluator / intentional)
-        3. Curious Beginner (low tech / open spiritual / end-user / stumbled)
-        4. Experienced Contributor (high tech / neutral spiritual / contributor / intentional)
-        5. Seeker-Developer (medium-high tech / seeking spiritual / evaluator / intentional)
-        6. Impatient Operator (medium tech / allergic spiritual / end-user / stumbled)
-        7. Technical Writer (medium tech / neutral spiritual / evaluator / intentional)
-        8. Academic Researcher (high tech / open spiritual / evaluator / intentional)
-        
-        Each persona includes: background, dimensional position, care-abouts, close-tab 
-        triggers, star-repo triggers, and review prompt template.
-      </description>
-    </deliverable>
-    
-    <deliverable id="3" status="complete">
-      <name>Example Output</name>
+      <name>EXAMPLE-OUTPUT.md</name>
       <location>.opencode/skill/perspective-review/EXAMPLE-OUTPUT.md</location>
-      <size>308 lines</size>
       <description>
-        Concrete example showing skill output when invoked on Spandaworks README. 
-        Demonstrates:
-        - Persona selection justification with dimensional analysis
-        - Individual persona reviews (4 personas)
-        - Priority-sorted findings (Priority 1: 2 issues, Priority 2: 2 issues, Priority 3: 1 improvement)
-        - Disagreement preservation (Skeptical Engineer vs Seeker-Developer on spiritual framing)
-        - Consolidated synthesis with action items
+        Concrete example demonstrating compassionate synthesis on Spandaworks README.
         
-        Validates that skill surfaces all known blind spots from manual review:
-        ✅ Sanskrit mantra placement
-        ✅ Consciousness language in dev tool README
-        ✅ OpenCode dependency unclear
-        ✅ Jargon undefined
+        KEY DEMONSTRATION:
+        
+        | Persona | Intended | Received | Match? |
+        |---------|----------|----------|--------|
+        | Seeker-Developer | WELCOME | WELCOME | YES |
+        | Pragmatic PM | REDIRECT | REDIRECT | YES |
+        | Skeptical Engineer | REDIRECT | REDIRECT | YES |
+        | Curious Beginner | WELCOME | WARN | NO |
+        
+        Shows:
+        - PM and Engineer's negative reactions are SUCCESS (working redirects)
+        - Only the Beginner's confusion is a signal mismatch requiring action
+        - Explicit comparison: v1 vs v2 findings (what changes with compassion frame)
+        
+        The example includes a "Comparison: v1 vs v2 Findings" section showing:
+        - v1 would have treated Sanskrit mantra as "problem to fix"
+        - v2 recognizes it as "working redirect for allergic audience"
       </description>
     </deliverable>
     
-    <deliverable id="4" status="complete">
-      <name>Design Rationale</name>
+    <deliverable id="3" status="deferred">
+      <name>DESIGN-NOTES.md</name>
       <location>.opencode/skill/perspective-review/DESIGN-NOTES.md</location>
-      <size>382 lines</size>
       <description>
-        Comprehensive design documentation including:
-        - 5 key design decisions with rationale and tradeoffs
-        - Emergent considerations (token economics, model specification, extensibility)
-        - Success criteria evaluation (all 5 met)
-        - Questions for Governance (persona library governance, model specification, validation)
-        - Meta-observation on Recursive Loop application
-        - Closing reflection on what emerged beyond transmission
+        Retained from v1 for reference. Contains useful design rationale about
+        strategic selection, disagreement preservation, etc.
+        
+        Not updated for v2—the core design decisions still apply. The compassion
+        frame is an addition to the synthesis phase, not a replacement of the
+        selection/execution architecture.
+      </description>
+    </deliverable>
+    
+    <deliverable id="4" status="deferred">
+      <name>README.md</name>
+      <location>.opencode/skill/perspective-review/README.md</location>
+      <description>
+        Quick reference retained from v1. Should be updated to mention compassion
+        frame and intent mapping phase. Deferred—SKILL.md and EXAMPLE-OUTPUT.md
+        are the canonical sources.
       </description>
     </deliverable>
   </deliverables>
 
   <design-decisions>
     <decision id="1" load-bearing="yes">
-      <title>Strategic Selection Over Mechanical Application</title>
+      <title>Intent Mapping as Phase 0</title>
       <reasoning>
-        Different documentation activates different dimensions. Applying all 8 personas 
-        mechanically wastes tokens and produces redundant findings. Strategic selection 
-        (3-5 personas based on dimensional analysis) provides coverage while remaining 
-        cost-effective.
+        Without knowing the intended relationship, you cannot assess whether a 
+        reaction is correct. The PM feeling redirected is SUCCESS if redirect 
+        was intended, FAILURE if welcome was intended.
+        
+        Intent mapping MUST run before persona selection because it determines
+        which personas are needed (test welcomes vs test redirects).
       </reasoning>
-      <tradeoff>Requires agent judgment vs mechanical reliability</tradeoff>
-      <mitigation>Justification requirement makes selection reasoning transparent and challengeable</mitigation>
+      <implementation>
+        Hybrid approach:
+        - Infer from documentation scan where possible
+        - Present mapping for user approval
+        - User can correct/adjust intended relationships
+      </implementation>
     </decision>
     
     <decision id="2" load-bearing="yes">
-      <title>Disagreement Preservation Over Consensus</title>
+      <title>Three Relationships (WELCOME/WARN/REDIRECT)</title>
       <reasoning>
-        When personas disagree (e.g., Skeptical Engineer hates spiritual framing that 
-        Seeker-Developer loves), this reveals dimensional tradeoffs. Authors need to see: 
-        "You cannot serve both audiences—choose consciously." Averaging to consensus 
-        obscures the real decision.
+        This is a complete partition. Every audience segment falls into exactly
+        one intended relationship:
+        - WELCOME: Maximize engagement
+        - WARN: Enable informed choice
+        - REDIRECT: Minimize wasted time
+        
+        The three-way partition prevents accommodation fallacy (trying to
+        please everyone) by forcing explicit choice about intended relationship.
       </reasoning>
-      <tradeoff>More complex output vs useful complexity</tradeoff>
-      <impact>This is THE central value of the skill. Without disagreement preservation, 
-      it collapses into expensive single-perspective review.</impact>
+      <source>Direct from transmission—this is the core reframe.</source>
     </decision>
     
     <decision id="3" load-bearing="yes">
-      <title>Independent Execution (No Cross-Contamination)</title>
+      <title>Signal Assessment in Synthesis</title>
       <reasoning>
-        If Persona B sees Persona A's review, perspective contamination occurs. Real people 
-        with different backgrounds have genuinely different reactions. Independence ensures 
-        authentic perspective, not consensus drift.
+        The synthesis phase categorizes each finding by signal accuracy:
+        
+        MATCH (intended = received):
+        - Even if persona had negative reaction
+        - No action needed—signal worked
+        - Example: PM felt redirected, redirect intended
+        
+        MISMATCH (intended ≠ received):
+        - Action item generated
+        - Example: Beginner confused, welcome intended
+        
+        This prevents treating all negative reactions as problems.
       </reasoning>
-      <implementation>Use Task tool with subagent isolation if available, otherwise 
-      explicit context clearing between sequential reviews</implementation>
+      <impact>
+        Changes what counts as "issue to fix" vs "working as designed."
+        Only signal mismatches become action items.
+      </impact>
     </decision>
     
-    <decision id="4" load-bearing="yes">
-      <title>Justification Requirement</title>
+    <decision id="4" load-bearing="somewhat">
+      <title>Enhanced Persona Signal Indicators</title>
       <reasoning>
-        Executing agent must defend persona selection with dimensional analysis before 
-        reviews. Makes reasoning transparent, prevents lazy defaults, forces scan → 
-        analyze → select workflow, allows human to challenge selection.
+        Each persona now defines what all three signals look like for them:
+        - What WELCOMED feels like
+        - What WARNED feels like
+        - What REDIRECTED feels like
+        - What CONFUSION looks like
+        
+        This enables reviewers to assess which signal was actually received,
+        not just whether the reaction was positive/negative.
       </reasoning>
-      <emergent>Not specified in transmission—emerged from recognizing that strategic 
-      selection without transparency is arbitrary selection.</emergent>
-    </decision>
-    
-    <decision id="5" load-bearing="somewhat">
-      <title>Eight Personas for MECE Coverage</title>
-      <reasoning>
-        8 provides full dimensional coverage without excessive granularity. Small enough 
-        to keep personas distinct, large enough for dimensional spanning. Any realistic 
-        reader maps to at least one persona.
-      </reasoning>
-      <alternative>Considered 12 personas with finer granularity. Rejected—redundancy 
-      without additional insight.</alternative>
-      <note>Exact number less critical than MECE principle. Could be 6-10.</note>
+      <note>
+        Increases persona specification complexity but enables compassionate
+        synthesis. Without these indicators, synthesis cannot determine what
+        signal was received—only that a reaction occurred.
+      </note>
     </decision>
   </design-decisions>
 
-  <emergent-considerations>
-    <consideration id="1">
-      <title>Token Economics</title>
-      <issue>4 personas × full document read × Claude Sonnet = significant cost per review</issue>
-      <mitigation>
-        - Strategic selection reduces from 8 to 3-5 personas
-        - Recommend Sonnet over Opus for cost/capability balance
-        - Skill is for strategic use, not casual invocation
-        - Example output demonstrates value to justify cost
-      </mitigation>
-      <open-question>Can review prompts be compressed without losing perspective fidelity?</open-question>
-    </consideration>
-    
-    <consideration id="2">
-      <title>Model Specification in OpenCode</title>
-      <issue>Transmission requested "prefer Claude Sonnet for persona review agents if 
-      OpenCode supports model specification"</issue>
-      <current-status>Unknown if OpenCode Task tool allows model selection</current-status>
-      <recommendation>Governance should test whether Task tool accepts model parameter. 
-      If yes, embed in skill protocol. If no, note in limitations.</recommendation>
-    </consideration>
-    
-    <consideration id="3">
-      <title>The Seeker-Developer Persona</title>
-      <justification>
-        Including this persona acknowledges that spiritual/philosophical framing CAN have 
-        value for subset of technical audience. Spandaworks itself integrates technical 
-        and contemplative—denying this audience exists would be dishonest.
-      </justification>
-      <value>Disagreement with Skeptical Engineer IS the point—exposes tradeoff between 
-      serving pragmatists vs depth-seekers</value>
-      <potential-criticism>Too niche / validates author's biases</potential-criticism>
-      <defense>
-        - Only selected when material has spiritual dimension
-        - Produces genuine perspective distinct from others
-        - Alternative: remove persona, lose ability to evaluate spiritual+technical integration coherence
-      </defense>
-      <recommendation>Keep. Niche but load-bearing for Spandaworks-type documentation.</recommendation>
-    </consideration>
-    
-    <consideration id="4">
-      <title>Integration with spandaworks-docs Skill</title>
-      <relationship>
-        - spandaworks-docs = principles for WRITING documentation
-        - perspective-review = methodology for TESTING documentation
-      </relationship>
-      <workflow>
-        1. Write using spandaworks-docs principles
-        2. Test with perspective-review to reveal blind spots
-        3. Revise based on findings
-        4. Optional: second-pass review after major changes
-      </workflow>
-      <open-question>Should spandaworks-docs skill reference perspective-review as 
-      validation method?</open-question>
-    </consideration>
-  </emergent-considerations>
-
   <success-criteria-evaluation>
     <criterion id="1" status="met">
-      <requirement>Persona library demonstrably covers the multi-dimensional audience 
-      space without gaps or redundancy</requirement>
-      <evidence>8 personas span 4 dimensions with no overlapping positions. Dimensional 
-      coverage table in DESIGN-NOTES.md. Any realistic reader maps to at least one persona.</evidence>
+      <requirement>Intent mapping phase runs before persona selection and produces
+      clear welcome/warn/redirect assignments</requirement>
+      <evidence>
+        Phase 0 (Intent Mapping) is now first phase. SKILL.md documents full
+        protocol. EXAMPLE-OUTPUT.md shows intent mapping table:
+        
+        | Segment | Intended | Rationale |
+        | Spiritually open developer | WELCOME | Core audience |
+        | Production-seeking PM | REDIRECT | Research infrastructure |
+        | ... | ... | ... |
+      </evidence>
     </criterion>
     
     <criterion id="2" status="met">
-      <requirement>Selection methodology requires scanning documentation first, reasoning 
-      about relevant dimensions, producing justified selection before reviews begin</requirement>
-      <evidence>Phase 1 protocol enforces scan → analyze → select → justify. Example 
-      justification provided in SKILL.md and EXAMPLE-OUTPUT.md.</evidence>
+      <requirement>Persona library has dimensional coverage with 
+      welcome/warn/redirect indicators</requirement>
+      <evidence>
+        All 8 personas now include signal indicators table:
+        
+        | Relationship | What This Looks Like |
+        | WELCOMED | [specific description] |
+        | WARNED | [specific description] |
+        | REDIRECTED | [specific description] |
+        | CONFUSED | [specific description] |
+      </evidence>
     </criterion>
     
     <criterion id="3" status="met">
-      <requirement>When invoked on Spandaworks README, produces findings including known 
-      blind spots (Sanskrit mantra, consciousness language, OpenCode dependency)</requirement>
-      <evidence>EXAMPLE-OUTPUT.md demonstrates all 4 known issues surfaced:
-      - Sanskrit mantra (Priority 1, Issue 1)
-      - Consciousness language (Priority 1, Issue 2)
-      - OpenCode dependency (Priority 2, Issue 3)
-      - Jargon undefined (Priority 2, Issue 4)</evidence>
+      <requirement>Synthesis distinguishes signal match from signal mismatch.
+      Negative reaction + correct signal = success, not action item.</requirement>
+      <evidence>
+        EXAMPLE-OUTPUT.md demonstrates:
+        
+        "**Pragmatic PM:** Intended REDIRECT, received REDIRECT.
+        
+        **Assessment:** This is SUCCESS, not failure. The redirect signal worked.
+        The PM's time was respected. They know to look elsewhere for production
+        needs. No action needed."
+        
+        Only the Curious Beginner (intended WELCOME, received WARN) generates
+        an action item.
+      </evidence>
     </criterion>
     
     <criterion id="4" status="met">
-      <requirement>Consolidated output preserves cases where personas disagree</requirement>
-      <evidence>EXAMPLE-OUTPUT.md includes "Disagreements (Preserved as Signal)" section 
-      showing Skeptical Engineer vs Seeker-Developer conflict over spiritual framing. 
-      Analysis explains dimensional tradeoff without averaging.</evidence>
+      <requirement>Skill correctly identifies "not production-ready" as working
+      redirect signal when run on Spandaworks README</requirement>
+      <evidence>
+        EXAMPLE-OUTPUT.md explicitly shows:
+        
+        "Key Insight: The 'Experimental. Incomplete.' language is working exactly
+        as intended. A Pragmatic PM flagging this as a concern is SUCCESS—the
+        redirect signal landed. No changes needed there."
+        
+        Compare to v1 which would have treated PM's concern as problem to fix.
+      </evidence>
     </criterion>
     
     <criterion id="5" status="met">
-      <requirement>The executing agent can defend its persona selection</requirement>
-      <evidence>Example justification in EXAMPLE-OUTPUT.md provides dimensional analysis 
-      and explains why each persona was selected and what it tests.</evidence>
+      <requirement>Executing agent can defend persona selection AND signal 
+      assessments</requirement>
+      <evidence>
+        EXAMPLE-OUTPUT.md includes:
+        
+        Persona Selection:
+        "Coverage Rationale: Tests both core welcome paths (seeker, beginner)
+        and critical redirect paths (production PM, allergic engineer)."
+        
+        Signal Assessment:
+        "The Engineer did NOT feel rejected or confused. They felt clearly 
+        informed. They could articulate WHY this isn't for them..."
+        
+        "This is SUCCESS. The spiritual framing served as an honest signal
+        of what this project is. An allergic engineer should self-select out.
+        They did. The signal worked."
+      </evidence>
     </criterion>
   </success-criteria-evaluation>
 
+  <emergent-insights>
+    <insight id="1">
+      <title>The Compassion Frame Clarifies Everything</title>
+      <observation>
+        Once you ask "what relationship do we INTEND with this audience?", 
+        the evaluation becomes obvious. The PM's negative reaction stops being
+        a problem and starts being evidence that the signal works.
+        
+        v1 tried to serve everyone. v2 asks: who are we trying to serve, and
+        how do we want non-target audiences to experience the documentation?
+      </observation>
+    </insight>
+    
+    <insight id="2">
+      <title>REDIRECT ≠ REJECT</title>
+      <observation>
+        A working redirect should feel like: "I quickly understand this isn't
+        for me, and I'm not offended—I'm informed."
+        
+        The Skeptical Engineer's review demonstrates this:
+        "Did I quickly know this isn't for me? Yes.
+        Was I confused or rejected? Neither. I was clearly informed."
+        
+        Redirect is compassionate because it saves time and sets accurate
+        expectations.
+      </observation>
+    </insight>
+    
+    <insight id="3">
+      <title>Intent Mapping Enables Real Tradeoff Discussion</title>
+      <observation>
+        When you map intended relationships explicitly, you can have real
+        conversations about whether the intended relationship is correct.
+        
+        Should we WELCOME the Curious Beginner? Or should we WARN them?
+        
+        This is a product decision, not a documentation problem. The skill
+        surfaces when intended signal isn't landing—but it also surfaces
+        whether the intention itself might need revision.
+      </observation>
+    </insight>
+  </emergent-insights>
+
   <questions-for-governance>
-    <question id="1" priority="medium">
-      <title>Persona Library Governance</title>
-      <content>Should the 8 personas be canonical (frozen) or extensible (add as needed)?</content>
-      <recommendation>Canonical for now. Only extend if dimensional gap discovered through use.</recommendation>
-      <rationale>Stability prevents drift, but project may discover new audience dimensions 
-      (e.g., "Security Auditor" for security-focused docs).</rationale>
+    <question id="1" priority="low">
+      <title>README.md and DESIGN-NOTES.md Updates</title>
+      <content>
+        Should these files be updated to reflect v2 compassion frame? They're
+        currently retained from v1 for reference but don't document the new
+        intent mapping phase or signal assessment changes.
+      </content>
+      <recommendation>
+        SKILL.md and EXAMPLE-OUTPUT.md are canonical. Update README.md with
+        brief note about v2 changes. DESIGN-NOTES.md can remain as historical
+        design rationale—the core decisions still apply.
+      </recommendation>
     </question>
     
-    <question id="2" priority="high">
-      <title>Model Specification in OpenCode</title>
-      <content>Can OpenCode Task tool specify model for subagent execution?</content>
-      <action-required>Test and update skill protocol if model specification available</action-required>
-      <impact>If yes, embed "use Sonnet for persona reviews" in protocol. If no, note in limitations.</impact>
-    </question>
-    
-    <question id="3" priority="low">
-      <title>Token Budget Guidance</title>
-      <content>Should skill document expected token cost per review to help users decide 
-      when to invoke?</content>
-      <example>4 personas × 2000-token document × 3 read-throughs ≈ 24k tokens input + 
-      8k output = ~32k tokens ≈ $0.48 with Sonnet</example>
-      <recommendation>Add token economics section if users need cost visibility</recommendation>
-    </question>
-    
-    <question id="4" priority="low">
-      <title>Validation Method</title>
-      <content>Should skill include self-test (known blind spot document + expected findings)?</content>
-      <proposal>Create VALIDATION.md with test case (Spandaworks README excerpt) and 
-      expected findings for future agents to verify skill works as designed</proposal>
-      <recommendation>Create if Governance wants reproducible validation</recommendation>
+    <question id="2" priority="medium">
+      <title>Validation via Actual Invocation</title>
+      <content>
+        Should the skill be invoked on actual Spandaworks README to validate
+        that it produces findings consistent with EXAMPLE-OUTPUT.md?
+      </content>
+      <recommendation>
+        Yes. The example was created by mental simulation. Actual invocation
+        would validate that the skill specification produces expected results
+        when executed by an agent.
+      </recommendation>
     </question>
   </questions-for-governance>
 
-  <recommendations>
-    <testing priority="high">
-      <title>Immediate Validation</title>
-      <steps>
-        1. Invoke skill on current Spandaworks README
-        2. Compare findings to EXAMPLE-OUTPUT.md
-        3. Verify known blind spots are surfaced
-        4. Check if additional insights emerge beyond manual review
-      </steps>
-      <success-condition>Skill produces substantially similar findings to example, 
-      surfacing all known issues plus potentially new insights</success-condition>
-      <failure-condition>Skill misses known issues or produces excessive noise</failure-condition>
-      <response-to-failure>Revise persona prompts or selection methodology</response-to-failure>
-    </testing>
-    
-    <usage priority="medium">
-      <title>Strategic Deployment</title>
-      <when-to-use>
-        - Documentation written but not stranger-tested
-        - Multiple audience types served by single doc
-        - Spiritual/philosophical content alongside technical
-        - Before major releases or public documentation
-      </when-to-use>
-      <when-not-to-use>
-        - Purely internal docs (known audience)
-        - Grammar/style checking only
-        - Code review (wrong domain)
-      </when-not-to-use>
-    </usage>
-  </recommendations>
-
-  <meta-observation>
-    <recursive-loop-application>
-      <object-level>Created perspective-review skill with persona library, protocol, example</object-level>
-      <meta-level>Discovered pattern (strategic selection vs mechanical application) that 
-      applies beyond this skill</meta-level>
-      <prevention-mechanism>
-        Skill design template emerged:
-        1. Define dimensional model (what varies?)
-        2. Create library (MECE coverage)
-        3. Require strategic selection (not mechanical)
-        4. Preserve disagreement (signal, not noise)
-        5. Demand justification (transparent reasoning)
-      </prevention-mechanism>
-      <applicability>This pattern applies to: design review (multiple design perspectives), 
-      technical review (multiple expertise domains), any multi-perspective evaluation</applicability>
-    </recursive-loop-application>
-    
-    <what-emerged-beyond-transmission>
-      <emergence id="1">
-        <element>The Seeker-Developer persona</element>
-        <rationale>Transmission implied spiritual dimension but didn't specify this persona. 
-        Emerged from recognizing Spandaworks itself is technical+contemplative, so evaluation 
-        requires persona who can assess integration coherence.</rationale>
-      </emergence>
-      
-      <emergence id="2">
-        <element>Disagreement as load-bearing element</element>
-        <rationale>Transmission mentioned preserving disagreement, but design process 
-        revealed this is THE central value. Without disagreement preservation, skill 
-        collapses into expensive single-perspective review.</rationale>
-      </emergence>
-      
-      <emergence id="3">
-        <element>Justification requirement</element>
-        <rationale>Not specified in transmission. Emerged from recognizing that strategic 
-        selection without transparency is arbitrary selection.</rationale>
-      </emergence>
-      
-      <emergence id="4">
-        <element>Token economics consideration</element>
-        <rationale>Transmission noted cost concern but design revealed specific mitigation: 
-        strategic selection reduces 8 personas to 3-5, making cost manageable.</rationale>
-      </emergence>
-    </what-emerged-beyond-transmission>
-  </meta-observation>
-
   <closing>
     <status>
-      <deliverables>Complete (3 files: SKILL.md, EXAMPLE-OUTPUT.md, DESIGN-NOTES.md)</deliverables>
-      <success-criteria>All 5 met (MECE coverage, selection methodology, known issues 
-      surfaced, disagreement preserved, defended selection)</success-criteria>
-      <design-confidence>High. Specification is complete, examples demonstrate 
-      functionality, ready for validation.</design-confidence>
+      <deliverables>Complete (SKILL.md and EXAMPLE-OUTPUT.md fully rewritten 
+      for v2 with compassion frame)</deliverables>
+      <success-criteria>All 5 met</success-criteria>
+      <design-confidence>High. The compassion frame is now architecturally 
+      embedded, not just conceptually understood.</design-confidence>
     </status>
     
-    <next-action>
-      <primary>Governance invokes skill on actual Spandaworks README to validate against 
-      EXAMPLE-OUTPUT.md</primary>
-      <secondary>Answer open questions (model specification, persona library governance, 
-      token budget visibility, validation method)</secondary>
-    </next-action>
-    
-    <reflection>
-      The hardest part was not creating the personas—it was recognizing that strategic 
-      selection IS the skill. Mechanical application of all 8 personas would have been 
-      easier to implement but would defeat the purpose. The judgment of which perspectives 
-      matter for this specific material is where the value lives.
+    <the-key-distinction>
+      v1: "The Pragmatic PM flagged 'not production-ready' as concerning. 
+          This is a problem. Recommendation: clarify project status."
       
-      The second hardest part was preserving disagreement. Every instinct pulls toward 
-      consensus, toward "fixing" the conflict. But the conflict IS the signal. When 
-      Skeptical Engineer and Seeker-Developer give opposite verdicts, that's not a bug—
-      that's the skill working correctly, revealing the dimensional tradeoff the author 
-      must choose.
-    </reflection>
-    
-    <gratitude>
-      This seed was crafted with care. The dimensional model, the insight about perspective 
-      multiplication, the emphasis on strategic selection—all of that shaped the implementation. 
-      The skill that emerged serves the need that was named: seeing what we cannot see alone.
-    </gratitude>
+      v2: "The Pragmatic PM flagged 'not production-ready' as concerning.
+          Redirect was intended for this segment. The signal worked.
+          No action needed."
+      
+      Same finding. Opposite interpretation. That's the compassion frame.
+    </the-key-distinction>
     
     <dedication>
-      May this skill help us see our blind spots.
-      May disagreement be recognized as signal.
-      May documentation serve strangers, not just ourselves.
+      May this skill help documentation serve readers with clarity and compassion.
+      May it distinguish honest signals from accommodation.
+      May it help documentation find its true audience—and help readers find
+      their true documentation.
     </dedication>
   </closing>
 

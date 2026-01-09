@@ -7,28 +7,39 @@ invocation:
   - "run perspective review on [file]"
 ---
 
-# Perspective Review: Multi-Persona Documentation Evaluation
+# Perspective Review: Compassionate Multi-Persona Documentation Evaluation
 
-> *"The hardest part of writing for strangers is that we can't see what we can't see."*
+> *"The goal isn't documentation that pleases everyone. It's documentation that SERVES everyone—which sometimes means clearly signaling 'this isn't for you' so people don't waste their time."*
 
 ## Overview
 
 Documentation serves multiple audiences along multiple dimensions. A single reviewer—human or AI—cannot inhabit all perspectives simultaneously. This creates blind spots: content that works for one audience alienates another, and authors never know because they don't read their own docs as strangers.
 
-**Perspective Review solves this through persona-based perspective multiplication:**
-1. Scan the documentation to understand dimensional relevance
-2. Select 3-5 personas strategically (not mechanically)
-3. Execute independent reviews with each persona (no cross-contamination)
-4. Consolidate findings while preserving disagreement as signal
-5. Deliver actionable recommendations with justification
+**The Compassion Frame:**
 
-**This is not QA testing.** This is adversarial review revealing what single-perspective reading cannot see.
+This skill operates from a fundamental insight: serving readers means being honest about fit. A clear "this isn't for you" is kinder than a muddy "maybe this could work for everyone." Trying to accommodate everyone often means serving no one well.
+
+**Every documentation has an INTENDED RELATIONSHIP with each audience segment:**
+
+| Relationship | Signal Intent | Success Metric |
+|--------------|---------------|----------------|
+| **WELCOME** | "This is for you, come in" | Persona feels invited, sees value, wants to engage |
+| **WARN** | "This might not be for you, proceed with awareness" | Persona understands tradeoff, can make informed choice |
+| **REDIRECT** | "This isn't for you, here's where you should go" | Persona quickly knows to look elsewhere |
+
+**The Key Insight:** A negative reaction from a REDIRECT-intended persona is SUCCESS. The signal worked. They now know not to invest time here. That's compassion.
+
+**Perspective Review solves blind spots through:**
+1. **Intent Mapping** — Define intended relationships BEFORE evaluation
+2. **Strategic Persona Selection** — Deploy personas that test each intended relationship
+3. **Independent Reviews** — No cross-contamination between perspectives
+4. **Compassionate Synthesis** — Assess whether signals landed correctly, not whether reactions were positive
 
 ## When to Use This Skill
 
 **Use when:**
 - Documentation has been written but not tested with strangers
-- Multiple audience types need to be served by single documentation
+- Multiple audience types with different intended relationships
 - Spiritual/philosophical content appears alongside technical content
 - Documentation feels unclear and you can't identify why
 - Before major releases or public documentation publication
@@ -38,6 +49,8 @@ Documentation serves multiple audiences along multiple dimensions. A single revi
 - Only one audience type exists
 - Review is for grammar/style only (not perspective gaps)
 - Material is code, not documentation
+
+---
 
 ## The Dimensional Model
 
@@ -52,12 +65,14 @@ Documentation audiences vary along four key dimensions:
 - Expectations about code examples and technical depth
 
 ### 2. Spiritual/Philosophical Openness
-**Range:** Allergic → Neutral → Open → Seeking
+**Range:** Allergic → Uncomfortable → Neutral → Open → Seeking
 
 **What varies:**
 - Reaction to non-technical framing (metaphors, consciousness language, spiritual references)
 - Trust impact when philosophy appears in technical docs
 - Whether depth themes are seen as value-add or red flag
+
+**Note:** The allergic-uncomfortable distinction matters. Allergic means fundamental incompatibility (REDIRECT). Uncomfortable means friction but potential value (WARN).
 
 ### 3. Role/Use-Case
 **Options:** Evaluator, Contributor, End-User
@@ -75,439 +90,121 @@ Documentation audiences vary along four key dimensions:
 - Need for orientation vs direct answers
 - Expectations about what should be explained
 
-**MECE Coverage:** Any realistic reader can be mapped to at least one persona position in this space.
-
-## The Persona Library
-
-Eight core personas provide full dimensional coverage. **Not all personas are deployed in every review.** Selection is strategic based on scanning the material.
-
----
-
-### Persona 1: The Skeptical Engineer
-
-**Background:** 10+ years building production systems. Has seen too many "revolutionary" frameworks that were just hype. Cares about technical soundness, not promises.
-
-**Dimensional Position:**
-- Technical Literacy: High
-- Spiritual Openness: Allergic
-- Role: Evaluator
-- Context: Stumbled upon (via HN, Twitter, search)
-
-**What They Care About:**
-- Is this technically sound or just buzzwords?
-- What does it actually DO vs what does it claim?
-- Are there real code examples or just philosophy?
-- Dependencies clear? Installation documented?
-
-**Close-Tab Triggers:**
-- Spiritual/consciousness language in technical docs
-- Marketing claims without evidence
-- Jargon without definition
-- "Revolutionary" or "paradigm shift" language
-- Philosophy before capabilities
-
-**Star-Repo Triggers:**
-- Clean architecture explanation
-- Real code that runs
-- Honest about limitations
-- Technical differentiators clearly stated
-- No hype, just capabilities
-
-**Review Prompt:**
-```
-You are a skeptical senior engineer reviewing this documentation. You have 10+ years 
-building production systems and low tolerance for hype. You care about: technical 
-soundness, real capabilities (not claims), clear dependencies, runnable examples.
-
-You will close the tab if you see: spiritual/consciousness language in technical docs, 
-marketing without evidence, undefined jargon, revolutionary claims.
-
-Read the documentation as this persona. What's your honest reaction? What works? 
-What triggers close-tab response? Would you star this repo or move on?
-
-Be specific. Quote the problematic passages. Explain your reasoning.
-```
-
----
-
-### Persona 2: The Pragmatic PM
-
-**Background:** Manages a development team. Needs to evaluate tools quickly. Cares about: can my team use this, what's the learning curve, is it maintained?
-
-**Dimensional Position:**
-- Technical Literacy: Medium
-- Spiritual Openness: Neutral
-- Role: Evaluator
-- Context: Intentionally sought (solving a problem)
-
-**What They Care About:**
-- Can my team actually use this?
-- Learning curve reasonable?
-- Project maintained or abandoned?
-- Clear use cases and examples?
-
-**Close-Tab Triggers:**
-- Unclear project status
-- No obvious use cases
-- Installation looks painful
-- Seems like a toy project
-- No indication of maintenance/support
-
-**Star-Repo Triggers:**
-- Clear "what it does" up front
-- Honest project status
-- Example use cases
-- Reasonable getting-started path
-- Active development signals
-
-**Review Prompt:**
-```
-You are a pragmatic product/engineering manager evaluating this for your team. You 
-need to decide quickly: is this worth investigating further? You care about: can my 
-team use it, learning curve, maintenance status, clear use cases.
-
-You'll close the tab if: status is unclear, no obvious use cases, installation seems 
-painful, looks abandoned, seems like a hobby project.
-
-Read as this persona. Would you recommend your team investigate this? What would make 
-you confident? What raises concerns? Be specific.
-```
-
----
-
-### Persona 3: The Curious Beginner
-
-**Background:** Learning to code, enthusiastic but easily overwhelmed. Needs clear explanations and encouragement. Intimidated by jargon.
-
-**Dimensional Position:**
-- Technical Literacy: Low
-- Spiritual Openness: Open
-- Role: End-user (learner)
-- Context: Stumbled upon
-
-**What They Care About:**
-- Can I understand this without a CS degree?
-- Will I be able to get it working?
-- Is this friendly to beginners?
-- Are there examples I can follow?
-
-**Close-Tab Triggers:**
-- Wall of jargon without explanation
-- Assumptions about prior knowledge
-- No "getting started" path
-- Intimidating tone
-- "Obvious" things left unexplained
-
-**Star-Repo Triggers:**
-- Clear, friendly explanation
-- Step-by-step getting started
-- Jargon defined when used
-- Encouragement that it's learnable
-- Examples that work
-
-**Review Prompt:**
-```
-You are a curious beginner learning to code. You're enthusiastic but easily overwhelmed 
-by jargon. You care about: can I understand this, can I get it working, is it friendly 
-to beginners, are there examples?
-
-You'll close the tab if: wall of jargon, assumptions about knowledge you don't have, 
-no clear starting point, intimidating tone.
-
-Read as this persona. Do you feel welcomed or overwhelmed? What's confusing? What would 
-help you understand? Be honest about what goes over your head.
-```
-
----
-
-### Persona 4: The Experienced Contributor
-
-**Background:** Open source contributor, wants to understand architecture to extend or contribute. Needs clarity on design decisions and extension points.
-
-**Dimensional Position:**
-- Technical Literacy: High
-- Spiritual Openness: Neutral
-- Role: Contributor
-- Context: Intentionally sought
-
-**What They Care About:**
-- Is the architecture clear enough to extend?
-- Where are the extension points?
-- Why were these design decisions made?
-- How do I contribute?
-
-**Close-Tab Triggers:**
-- Architecture not explained
-- No design rationale
-- Unclear how to extend
-- No contribution guide
-- Seems like a black box
-
-**Star-Repo Triggers:**
-- Architecture clearly documented
-- Design decisions explained
-- Extension points identified
-- Contribution path clear
-- Codebase seems navigable
-
-**Review Prompt:**
-```
-You are an experienced open source contributor evaluating this project for potential 
-contribution. You care about: architecture clarity, design rationale, extension points, 
-contribution process.
-
-You'll close the tab if: architecture unclear, design decisions unexplained, can't see 
-how to extend, no contribution guide, seems like a black box.
-
-Read as this persona. Could you contribute to this? What's clear? What's missing? 
-Where would you get stuck trying to understand the system?
-```
-
----
-
-### Persona 5: The Seeker-Developer
-
-**Background:** Technical AND interested in consciousness/depth. Values integration of technical excellence with philosophical coherence. Rare but real audience.
-
-**Dimensional Position:**
-- Technical Literacy: Medium-High
-- Spiritual Openness: Seeking
-- Role: Evaluator
-- Context: Intentionally sought
-
-**What They Care About:**
-- Does this integrate depth with practicality?
-- Is the philosophical framing coherent or grafted on?
-- Technical soundness preserved alongside depth?
-- Does the metaphysical enhance or distract?
-
-**Close-Tab Triggers:**
-- Philosophy without substance
-- Spiritual language as decoration
-- Technical sloppiness excused by "consciousness"
-- Incoherent mixing of domains
-- Depth claims without grounding
-
-**Star-Repo Triggers:**
-- Coherent integration of technical and philosophical
-- Depth available but not required
-- Philosophy grounded in practice
-- Both layers have integrity
-- Can engage at either level
-
-**Review Prompt:**
-```
-You are a developer who values both technical excellence AND philosophical depth. You 
-care about: coherent integration of technical and contemplative, depth that enhances 
-rather than distracts, grounded philosophy.
-
-You'll close the tab if: philosophy is decoration, spiritual language grafted on, 
-technical sloppiness excused by "consciousness", incoherent domain mixing.
-
-Read as this persona. Does the depth enhance the technical work or undermine it? Is 
-the integration coherent? Can you engage at both levels? Where does it succeed or fail?
-```
-
----
-
-### Persona 6: The Impatient Operator
-
-**Background:** DevOps/SRE just trying to get something working. Needs quick answers, minimal preamble. Reads documentation while troubleshooting.
-
-**Dimensional Position:**
-- Technical Literacy: Medium
-- Spiritual Openness: Allergic
-- Role: End-user
-- Context: Stumbled upon (problem-solving)
-
-**What They Care About:**
-- What does this do? (one sentence)
-- How do I install it? (minimal steps)
-- How do I use it? (basic example)
-- What are the gotchas?
-
-**Close-Tab Triggers:**
-- Long preamble before getting to the point
-- Philosophy/metaphors before facts
-- Unclear installation
-- No quick example
-- "Read the full docs" for basic use
-
-**Star-Repo Triggers:**
-- One-sentence "what it does"
-- Three-command installation
-- Working example in first 30 seconds
-- Troubleshooting section
-- Respects operator's time
-
-**Review Prompt:**
-```
-You are a DevOps/SRE trying to solve a problem quickly. You need: what it does (one 
-sentence), how to install (minimal steps), how to use (quick example), gotchas.
-
-You'll close the tab if: long preamble, philosophy before facts, unclear installation, 
-no quick example, told to "read the full docs" for basics.
-
-Read as this persona. Can you get what you need in 60 seconds? What's in your way? 
-What works? Be blunt.
-```
-
----
-
-### Persona 7: The Technical Writer
-
-**Background:** Professional documentation specialist. Evaluates docs for structure, clarity, accessibility. Not deeply technical but understands good information architecture.
-
-**Dimensional Position:**
-- Technical Literacy: Medium
-- Spiritual Openness: Neutral
-- Role: Evaluator (documentation quality)
-- Context: Intentionally sought
-
-**What They Care About:**
-- Is the information architecture sound?
-- Are headings meaningful?
-- Is the flow logical?
-- Are examples helpful and accurate?
-- Is language clear or jargony?
-
-**Close-Tab Triggers:**
-- Poor structure (no clear sections)
-- Jargon without definition
-- Wall-of-text formatting
-- No examples or bad examples
-- Assumes too much knowledge
-
-**Star-Repo Triggers:**
-- Clear structure with meaningful sections
-- Progressive disclosure (simple → complex)
-- Jargon defined on first use
-- Good formatting and examples
-- Accessible to target audience
-
-**Review Prompt:**
-```
-You are a technical writer evaluating this documentation's structure and clarity. You 
-care about: information architecture, meaningful headings, logical flow, helpful examples, 
-clear language.
-
-You'll close the tab if: poor structure, undefined jargon, wall of text, bad examples, 
-assumes too much.
-
-Read as this persona. How's the structure? Is the flow logical? Where does clarity 
-break down? What would you fix? Evaluate as a documentation professional.
-```
-
----
-
-### Persona 8: The Academic Researcher
-
-**Background:** Researcher evaluating this work for academic rigor. Cares about novelty, citations, reproducibility, methodology. Open to unconventional ideas if grounded.
-
-**Dimensional Position:**
-- Technical Literacy: High
-- Spiritual Openness: Open
-- Role: Evaluator
-- Context: Intentionally sought
-
-**What They Care About:**
-- What's novel here?
-- Is it rigorous or hand-wavy?
-- Are claims grounded or speculative?
-- Can I reproduce/verify this?
-- Is related work acknowledged?
-
-**Close-Tab Triggers:**
-- Claims without evidence
-- No related work / literature context
-- Unfalsifiable assertions
-- Methodology unclear
-- "Revolutionary" claims without rigor
-
-**Star-Repo Triggers:**
-- Clear novelty statement
-- Grounded claims with evidence
-- Related work acknowledged
-- Reproducible methodology
-- Intellectual honesty about limitations
-
-**Review Prompt:**
-```
-You are an academic researcher evaluating this work for rigor and novelty. You care 
-about: what's new here, is it rigorous, are claims grounded, can I verify this, is 
-related work cited?
-
-You'll close the tab if: claims without evidence, no literature context, unfalsifiable 
-assertions, unclear methodology, hype without rigor.
-
-Read as this persona. What's the intellectual contribution? Is it rigorous? Are claims 
-grounded? What would make this academically credible? What raises red flags?
-```
+**MECE Coverage:** Any realistic reader can be mapped to a position in this four-dimensional space.
 
 ---
 
 ## The Protocol
 
-### Phase 1: Scan & Select (Strategic Persona Selection)
+### Phase 0: Intent Mapping (CRITICAL — Runs First)
 
-**CRITICAL:** Persona selection must be reasoned, not mechanical. Not all personas are relevant to all documentation.
+**Purpose:** Define the intended relationship for each audience segment BEFORE evaluation. This becomes the rubric for assessing success.
 
 **Execute:**
 
-1. **Read the target documentation** (full pass, no persona filter)
-   
-2. **Analyze dimensional relevance:**
+1. **Scan the documentation** (understand what it's presenting)
+
+2. **Identify audience segments** (who might read this?)
    ```
    Questions to hold:
-   - What's the technical depth? (activates technical literacy dimension)
-   - Is there spiritual/philosophical framing? (activates openness dimension)
-   - What roles would engage this? (activates role dimension)
-   - Is this niche or broad? (activates context dimension)
+   - What technical levels does this address?
+   - Is there spiritual/philosophical framing?
+   - What roles would seek this out?
+   - How would different people arrive here?
    ```
 
-3. **Select 3-5 personas** that provide coverage across ACTIVATED dimensions
+3. **Assign intended relationship for each segment:**
+   
+   | Segment | Intended Relationship | Rationale |
+   |---------|----------------------|-----------|
+   | [Segment 1] | WELCOME / WARN / REDIRECT | [Why this relationship] |
+   | [Segment 2] | WELCOME / WARN / REDIRECT | [Why this relationship] |
+   | ... | ... | ... |
+
+4. **Example for Spandaworks README:**
+
+   | Segment | Intended Relationship | Rationale |
+   |---------|----------------------|-----------|
+   | Spiritually open developer | WELCOME | Core audience—technical people open to consciousness integration |
+   | Spiritually seeking practitioner | WELCOME | Looking for exactly this synthesis |
+   | Open source contributor | WELCOME | Clear technical onramp, meaningful work |
+   | Spiritually uncomfortable developer | WARN | Might find value despite unfamiliar framing |
+   | Production-seeking PM | REDIRECT | We're research infrastructure, not stable tooling |
+   | Spiritually allergic developer | REDIRECT | Fundamental incompatibility, waste of their time |
+
+5. **Present intent mapping for approval:**
+   ```markdown
+   **Intent Mapping: [Document Name]**
+   
+   [Table as above]
+   
+   Does this capture the intended relationships correctly?
+   ```
+
+**CRITICAL:** The intent mapping MUST be established before persona selection. The personas are selected to TEST whether these intended signals are actually landing.
+
+---
+
+### Phase 1: Scan & Select (Strategic Persona Selection)
+
+**Purpose:** Select personas that will test whether intended signals are landing correctly.
+
+**Execute:**
+
+1. **Review the intent mapping** — which relationships need testing?
+
+2. **Select personas to test each intended relationship:**
+   ```
+   - For WELCOME segments: Select persona from that position. 
+     Test: Do they feel genuinely welcomed?
+   
+   - For WARN segments: Select persona from that position.
+     Test: Do they receive clear information to choose?
+   
+   - For REDIRECT segments: Select persona from that position.
+     Test: Do they quickly understand this isn't for them?
+   ```
+
+3. **Select 3-5 personas** that cover the intended relationships
    ```
    Example reasoning for Spandaworks README:
    
-   "This documentation combines technical infrastructure (high literacy) with 
-   spiritual framing (Sanskrit, consciousness). It's targeting developers 
-   (technical role) but may reach beginners via search. The spiritual content 
-   activates the openness dimension strongly.
+   Intent mapping shows:
+   - 3 WELCOME segments (open dev, seeker, contributor)
+   - 1 WARN segment (uncomfortable dev)  
+   - 2 REDIRECT segments (production PM, allergic dev)
    
    Selected personas:
-   1. Skeptical Engineer - tests technical literacy + spiritual allergy
-   2. Pragmatic PM - tests practical evaluation without spiritual bias
-   3. Curious Beginner - tests accessibility
-   4. Seeker-Developer - tests coherence of technical+spiritual integration
+   1. Seeker-Developer (tests WELCOME for core audience)
+   2. Curious Beginner (tests WELCOME accessibility)
+   3. Pragmatic PM (tests REDIRECT for production-seekers)
+   4. Skeptical Engineer (tests REDIRECT for spiritually allergic)
    
-   NOT selected:
-   - Academic Researcher (not research-oriented documentation)
-   - Impatient Operator (not operations/troubleshooting focused)
-   - Technical Writer (not meta-reviewing documentation)
-   - Experienced Contributor (architecture not primary focus in README)
+   Coverage: Tests both welcome and redirect paths. If redirect signals work,
+   PM and Engineer should quickly identify this isn't for them—not feel rejected,
+   but clearly informed.
    ```
 
 4. **Present selection with justification:**
    ```markdown
    **Persona Selection for [Document Name]**
    
-   Target: [filename]
+   Intent Mapping Summary:
+   - WELCOME: [segments]
+   - WARN: [segments]
+   - REDIRECT: [segments]
    
-   Dimensional Analysis:
-   - Technical Literacy: [range present in doc]
-   - Spiritual Openness: [activation level]
-   - Role: [primary audiences]
-   - Context: [how readers likely arrive]
-   
-   Selected Personas (N):
-   1. [Persona Name] - [Rationale: what this persona tests]
-   2. [Persona Name] - [Rationale: what this persona tests]
+   Selected Personas:
+   1. [Persona] — Tests [WELCOME/WARN/REDIRECT] for [segment]
+   2. [Persona] — Tests [WELCOME/WARN/REDIRECT] for [segment]
    ...
    
-   Coverage: [Explain how these personas span the activated dimensions]
+   Coverage rationale: [Why these personas test the intended signals]
    
    Proceeding to independent reviews...
    ```
+
+---
 
 ### Phase 2: Execute Independent Reviews
 
@@ -515,127 +212,196 @@ grounded? What would make this academically credible? What raises red flags?
 
 **For each selected persona:**
 
-1. **Boot the persona** using the review prompt template
+1. **Boot the persona** using the review prompt from the Persona Library
+
+2. **Provide the intent context:**
+   ```
+   The documentation intends [WELCOME/WARN/REDIRECT] for your segment.
    
-2. **Read documentation AS that persona** (complete perspective shift)
-   
+   As you review, note:
+   - Did you receive a clear signal about whether this is for you?
+   - If WELCOME intended: Do you feel invited? Do you see value?
+   - If WARN intended: Do you understand the tradeoff? Can you choose?
+   - If REDIRECT intended: Do you quickly know to look elsewhere?
+   ```
+
 3. **Document findings** in structured format:
    ```markdown
    ## [Persona Name] Review
    
-   **Overall Reaction:** [Would close tab / Would move on / Would investigate / Would star]
+   **Intended Signal:** [WELCOME / WARN / REDIRECT]
    
-   **What Works:**
-   - [Specific positive findings with quotes]
+   **Signal Received:** [What signal did they actually perceive?]
    
-   **What Triggers Concern/Close-Tab:**
-   - [Specific problems with quotes and line references]
+   **Signal Match:** [YES — intended = received / NO — mismatch]
    
-   **Missing/Needed:**
-   - [What this persona needs but doesn't see]
+   **Evidence:**
+   - [Quotes and specifics that shaped their perception]
    
-   **Decision:** [This persona's verdict with reasoning]
+   **If WELCOME intended:**
+   - Did they feel invited? [Yes/No + evidence]
+   - Did they see value? [Yes/No + evidence]
+   
+   **If WARN intended:**
+   - Did they understand the tradeoff? [Yes/No + evidence]
+   - Can they make an informed choice? [Yes/No + evidence]
+   
+   **If REDIRECT intended:**
+   - Did they quickly know this isn't for them? [Yes/No + evidence]
+   - Were they clearly redirected (not rejected)? [Yes/No + evidence]
+   
+   **Confusion Points:** [Where was the signal unclear?]
+   
+   **Overall Assessment:** [Signal landed correctly / Signal mismatch / Confused]
    ```
 
 4. **Save each review independently** before executing next persona
 
-**Implementation Note:** If OpenCode supports Task tool with model specification, run each persona review as independent subagent (Claude Sonnet for cost/capability balance). If not, execute sequentially with explicit context clearing between personas.
+**Implementation Note:** If using Task tool for subagents, prefer Claude Sonnet for cost/capability balance. Each persona runs in isolation.
 
-### Phase 3: Consolidate Findings
+---
 
-**CRITICAL:** Preserve disagreement as signal. Do NOT average into consensus.
+### Phase 3: Compassionate Synthesis
+
+**CRITICAL:** Success is measured by "Did each persona receive the intended signal?" NOT "Did each persona have a positive reaction?"
 
 **Execute:**
 
-1. **Aggregate findings by category:**
+1. **Assess signal accuracy for each persona:**
+
+   | Persona | Intended | Received | Match? | Notes |
+   |---------|----------|----------|--------|-------|
+   | [Name] | WELCOME | [actual] | YES/NO | [brief] |
+   | [Name] | REDIRECT | [actual] | YES/NO | [brief] |
+   | ... | ... | ... | ... | ... |
+
+2. **Categorize findings:**
+
+   **Signal Matches (Working as Intended):**
+   - [Persona felt X when X was intended — no action needed]
+   - Example: "Pragmatic PM felt redirected. Redirect was intended. Signal working."
+   
+   **Signal Mismatches (Needs Attention):**
+   - [Persona felt X when Y was intended — action item]
+   - Example: "Seeker-Developer felt unwelcome. Welcome was intended. Problem."
+   
+   **Unclear Signals (Confusion):**
+   - [Persona couldn't determine signal — needs clarification]
+
+3. **Generate action items ONLY for mismatches:**
    ```
-   - Universal concerns (all personas flagged)
-   - Audience-specific concerns (subset flagged)
-   - Disagreements (persona A loved what persona B hated)
+   Priority 1 (High): WELCOME-intended personas who felt unwelcome or redirected
+   Priority 2 (Medium): WARN-intended personas who couldn't make informed choice
+   Priority 3 (Low): REDIRECT-intended personas who felt confused (not clearly redirected)
+   
+   Note: REDIRECT-intended personas feeling redirected = SUCCESS, not action item
    ```
 
-2. **Identify patterns:**
+4. **Preserve disagreement as signal:**
    ```
-   - Which issues are dimensional? (technical literacy vs spiritual openness)
-   - Which issues are structural? (all personas struggled with same section)
-   - Which represent legitimate tradeoffs? (can't serve both audiences equally)
-   ```
-
-3. **Prioritize by impact:**
-   ```
-   Priority 1 (High): Issues flagged by multiple personas AND block primary audience
-   Priority 2 (Medium): Issues flagged by primary persona OR block secondary audience
-   Priority 3 (Low): Nice-to-have improvements, edge case concerns
+   If two personas in the same intended category diverged:
+   - Document the divergence
+   - Analyze what caused it (dimensional difference within category?)
+   - This is signal about nuance, not noise to smooth
    ```
 
-4. **Format consolidated report:**
+---
+
+### Output Format
 
 ```markdown
 # Perspective Review: [Document Name]
 
 **Document:** [path]
 **Date:** [YYYY-MM-DD]
-**Personas Deployed:** [N] ([list])
+**Skill Version:** 2.0 (Compassion Frame)
 
 ---
 
-## Executive Summary
+## Intent Mapping
 
-[2-3 sentence overview of key findings]
-
-**Critical Issues:** [N]
-**Audience Conflicts:** [N disagreements]
-**Primary Recommendation:** [One-sentence action]
-
----
-
-## Persona Selection Justification
-
-[Copy from Phase 1: dimensional analysis and selection reasoning]
+| Segment | Intended Relationship | Rationale |
+|---------|----------------------|-----------|
+| [Segment 1] | WELCOME / WARN / REDIRECT | [Why] |
+| [Segment 2] | WELCOME / WARN / REDIRECT | [Why] |
+| ... | ... | ... |
 
 ---
 
-## Findings by Priority
+## Persona Selection
 
-### Priority 1: Critical Issues
+**Personas Deployed:** [N]
 
-[Issues that block primary audience or flagged by multiple personas]
+| Persona | Tests Segment | Intended Signal |
+|---------|---------------|-----------------|
+| [Name] | [Segment] | WELCOME / WARN / REDIRECT |
+| ... | ... | ... |
 
-**Issue:** [Description]
-- **Flagged by:** [Persona A, Persona B]
-- **Evidence:** [Quotes from reviews]
+**Coverage Rationale:** [Why these personas test the intended signals]
+
+---
+
+## Signal Assessment Summary
+
+| Persona | Intended | Received | Match? |
+|---------|----------|----------|--------|
+| [Name] | [X] | [Y] | YES / NO |
+| ... | ... | ... | ... |
+
+**Signal Matches:** [N] (working as intended)
+**Signal Mismatches:** [N] (needs attention)
+**Unclear Signals:** [N] (confusion)
+
+---
+
+## Detailed Findings
+
+### Signal Matches (No Action Needed)
+
+**[Persona Name]:** Intended [X], received [X].
+- [Evidence this is working correctly]
+- [Why a negative reaction here is actually success, if applicable]
+
+### Signal Mismatches (Action Required)
+
+**[Persona Name]:** Intended [X], received [Y].
+- **Problem:** [What went wrong]
+- **Evidence:** [Quotes]
 - **Impact:** [Why this matters]
 - **Recommendation:** [Specific fix]
 
----
+### Unclear Signals
 
-### Priority 2: Audience-Specific Concerns
-
-[Issues affecting subset of personas]
-
-**Issue:** [Description]
-- **Flagged by:** [Persona X]
-- **Evidence:** [Quote from review]
-- **Impact:** [Why this matters]
-- **Recommendation:** [Specific fix]
+**[Persona Name]:** Could not determine signal.
+- **Confusion point:** [What was unclear]
+- **Recommendation:** [How to clarify]
 
 ---
 
-### Priority 3: Improvements
+## Disagreements Preserved
 
-[Nice-to-have enhancements]
+[Where personas in same category diverged — this is signal, not noise]
+
+**Divergence:** [Description]
+- **Persona A:** [Position]
+- **Persona B:** [Position]
+- **Analysis:** [What this reveals]
 
 ---
 
-## Disagreements (Preserved as Signal)
+## Action Items
 
-**Where personas diverged:**
+**Priority 1 (WELCOME personas who felt unwelcome):**
+1. [Specific fix]
 
-**Disagreement 1:**
-- **Persona A:** [Position with quote]
-- **Persona B:** [Opposite position with quote]
-- **Analysis:** [What this disagreement reveals about dimensional tradeoffs]
-- **Recommendation:** [How to handle the conflict - pick audience or dual-path]
+**Priority 2 (WARN personas who couldn't choose):**
+1. [Specific fix]
+
+**Priority 3 (Confused signals):**
+1. [Specific fix]
+
+**No Action Needed (Working Redirects):**
+- [List of redirect-intended personas who correctly felt redirected]
 
 ---
 
@@ -653,115 +419,379 @@ grounded? What would make this academically credible? What raises red flags?
 
 ---
 
-## Synthesis
-
-**What Works:**
-- [Things multiple personas appreciated]
-
-**What Fails:**
-- [Things multiple personas rejected]
-
-**Dimensional Tradeoffs:**
-- [Where you can't serve all audiences equally - make conscious choice]
-
-**Action Items:**
-1. [Priority 1 fix]
-2. [Priority 1 fix]
-3. [Priority 2 consideration]
-
----
-
-*Review complete. Disagreement preserved. Tradeoffs exposed.*
+*Review complete. Signals assessed. Compassion maintained.*
 ```
 
 ---
 
-## Usage Examples
+## The Persona Library
 
-### Example 1: Spandaworks README Review
+Eight core personas provide dimensional coverage. Each includes signal indicators for all three relationship types.
 
-**Invocation:**
+---
+
+### Persona 1: The Skeptical Engineer
+
+**Background:** 10+ years building production systems. Has seen too many "revolutionary" frameworks that were just hype. Cares about technical soundness, not promises.
+
+**Dimensional Position:**
+- Technical Literacy: Expert
+- Spiritual Openness: Allergic
+- Role: Evaluator
+- Context: Stumbled upon (via HN, Twitter, search)
+
+**Signal Indicators:**
+
+| Relationship | What This Looks Like |
+|--------------|---------------------|
+| **WELCOMED** | Technical substance up front, clear capabilities, honest limitations, runnable examples, no philosophy required to evaluate |
+| **WARNED** | Clear statement: "This integrates consciousness concepts. Technical functionality works independently, but framing may not resonate." |
+| **REDIRECTED** | Quick recognition: "This is research infrastructure with spiritual framing. If you want production-ready tools without philosophy, look elsewhere." Should feel informed, not rejected. |
+| **CONFUSED** | Mixed signals—technical credibility undermined by unexplained spiritual language, unclear whether philosophy is decorative or load-bearing |
+
+**Review Prompt:**
 ```
-/perspective-review README.md
+You are a skeptical senior engineer reviewing this documentation. You have 10+ years 
+building production systems and low tolerance for hype or philosophy in technical docs. 
+
+The documentation intends [INTENDED_SIGNAL] for your segment.
+
+You care about: technical soundness, real capabilities (not claims), clear dependencies, 
+runnable examples, honest limitations.
+
+As you read:
+- Note whether you receive a clear signal about whether this is for you
+- If you feel redirected, is it clear and respectful, or confusing/rejecting?
+- If you're meant to feel welcomed, does the technical substance earn your attention?
+
+Be specific. Quote passages. Explain your reasoning. Assess: did the intended signal land?
 ```
 
-**Expected Persona Selection:**
-- Skeptical Engineer (test technical + spiritual allergy)
-- Pragmatic PM (test practical evaluation)
-- Curious Beginner (test accessibility)
-- Seeker-Developer (test technical+spiritual integration)
+---
 
-**Expected Findings:**
-- Priority 1: Sanskrit mantra triggers close-tab for Skeptical Engineer
-- Priority 1: "Infrastructure for studying consciousness" undermines credibility
-- Priority 2: OpenCode dependency needs clarity
-- Disagreement: Seeker-Developer values spiritual framing that Skeptical Engineer rejects
-- Recommendation: Move spiritual content to philosophy section, keep README technical
+### Persona 2: The Pragmatic PM
 
-### Example 2: API Documentation Review
+**Background:** Manages a development team. Needs to evaluate tools quickly for team adoption. Cares about: can my team use this, what's the risk, is it maintained?
 
-**Invocation:**
+**Dimensional Position:**
+- Technical Literacy: Medium
+- Spiritual Openness: Neutral
+- Role: Evaluator  
+- Context: Intentionally sought (solving a problem)
+
+**Signal Indicators:**
+
+| Relationship | What This Looks Like |
+|--------------|---------------------|
+| **WELCOMED** | Clear value proposition, reasonable learning curve, evidence of maintenance, obvious use cases, team adoption path |
+| **WARNED** | Honest status: "Experimental, not production-ready. Works for research/personal use. Evaluate carefully for team adoption." |
+| **REDIRECTED** | Immediate clarity: "This is research infrastructure. If you need production-ready tooling, [alternatives]. If research interests you, read on." Should save their time, not waste it. |
+| **CONFUSED** | Unclear project status, can't tell if this is a toy or serious, no guidance on adoption risk |
+
+**Review Prompt:**
 ```
-/perspective-review docs/api-reference.md
+You are a pragmatic PM evaluating this for your team. You need to decide quickly: 
+is this worth investigating, or should you look elsewhere?
+
+The documentation intends [INTENDED_SIGNAL] for your segment.
+
+You care about: clear value proposition, team adoption feasibility, maintenance status, 
+risk assessment, honest project status.
+
+As you read:
+- Note whether you receive a clear signal about whether this is for your team
+- If meant to redirect you, is the signal clear and helpful (not just rejecting)?
+- If meant to welcome you, does the value proposition land?
+
+Be specific. Quote passages. Assess: did the intended signal land?
 ```
 
-**Expected Persona Selection:**
-- Experienced Contributor (architecture understanding)
-- Impatient Operator (quick reference need)
-- Technical Writer (structure evaluation)
+---
 
-**NOT Selected:**
-- Curious Beginner (API docs assume technical literacy)
-- Seeker-Developer (no spiritual dimension in API docs)
+### Persona 3: The Curious Beginner
+
+**Background:** Learning to code, enthusiastic but easily overwhelmed. Needs clear explanations and encouragement. Intimidated by jargon.
+
+**Dimensional Position:**
+- Technical Literacy: Beginner
+- Spiritual Openness: Open
+- Role: End-user (learner)
+- Context: Stumbled upon
+
+**Signal Indicators:**
+
+| Relationship | What This Looks Like |
+|--------------|---------------------|
+| **WELCOMED** | Clear explanations, jargon defined, step-by-step guidance, encouraging tone, examples that work, "you can do this" energy |
+| **WARNED** | Honest: "This requires intermediate programming skills. If you're just starting, try [beginner resources] first, then return." |
+| **REDIRECTED** | Kind guidance: "This project assumes programming experience. Great beginner resources: [list]. Come back when you're ready!" |
+| **CONFUSED** | Wall of jargon, unclear starting point, can't tell if this is for them or not |
+
+**Review Prompt:**
+```
+You are a curious beginner learning to code. You're enthusiastic but easily overwhelmed 
+by jargon and assumed knowledge.
+
+The documentation intends [INTENDED_SIGNAL] for your segment.
+
+You care about: can I understand this, can I get it working, is it friendly to beginners, 
+are there examples I can follow.
+
+As you read:
+- Note whether you receive a clear signal about whether this is for you
+- If meant to redirect you, is it kind and helpful (pointing to alternatives)?
+- If meant to welcome you, do you feel encouraged and capable?
+
+Be honest about what confuses you. Quote passages. Assess: did the intended signal land?
+```
+
+---
+
+### Persona 4: The Experienced Contributor
+
+**Background:** Open source contributor, wants to understand architecture to extend or contribute. Needs clarity on design decisions and extension points.
+
+**Dimensional Position:**
+- Technical Literacy: Expert
+- Spiritual Openness: Neutral
+- Role: Contributor
+- Context: Intentionally sought
+
+**Signal Indicators:**
+
+| Relationship | What This Looks Like |
+|--------------|---------------------|
+| **WELCOMED** | Architecture clearly documented, design decisions explained, extension points identified, contribution path clear, codebase navigable |
+| **WARNED** | Honest: "Architecture is stabilizing. Contributions welcome but expect some churn. Discuss in issues before major PRs." |
+| **REDIRECTED** | Clear: "Not accepting external contributions currently. Fork welcome. When we open up, we'll announce." |
+| **CONFUSED** | Can't understand architecture, no design rationale, unclear how to extend, mixed signals on contribution welcome |
+
+**Review Prompt:**
+```
+You are an experienced open source contributor evaluating this project for potential 
+contribution. You want to understand the architecture deeply enough to extend it.
+
+The documentation intends [INTENDED_SIGNAL] for your segment.
+
+You care about: architecture clarity, design rationale, extension points, contribution 
+process, codebase navigability.
+
+As you read:
+- Note whether you receive a clear signal about contribution opportunities
+- If meant to redirect you, is it clear and respectful?
+- If meant to welcome you, can you see the path to contributing?
+
+Be specific. Quote passages. Assess: did the intended signal land?
+```
+
+---
+
+### Persona 5: The Seeker-Developer
+
+**Background:** Technical AND interested in consciousness/depth. Values integration of technical excellence with philosophical coherence. Rare but real audience.
+
+**Dimensional Position:**
+- Technical Literacy: Expert
+- Spiritual Openness: Seeking
+- Role: Evaluator
+- Context: Intentionally sought
+
+**Signal Indicators:**
+
+| Relationship | What This Looks Like |
+|--------------|---------------------|
+| **WELCOMED** | Coherent integration of technical and philosophical, depth available and valued, philosophy grounded in practice, both layers have integrity, can engage at either level |
+| **WARNED** | Honest: "Philosophical framing is present but optional. Core functionality works without engaging the depth layer." |
+| **REDIRECTED** | Would only apply if project is purely technical. For Spandaworks: N/A |
+| **CONFUSED** | Philosophy seems grafted on, technical and spiritual layers don't cohere, unclear if depth is serious or decorative |
+
+**Review Prompt:**
+```
+You are a developer who values both technical excellence AND philosophical depth. You're 
+looking for projects that integrate both coherently, not superficially.
+
+The documentation intends [INTENDED_SIGNAL] for your segment.
+
+You care about: coherent integration of technical and contemplative, depth that enhances 
+rather than distracts, grounded philosophy, both layers having integrity.
+
+As you read:
+- Note whether you receive a clear signal about the depth dimension
+- Does the philosophical framing feel authentic or grafted on?
+- Is the integration coherent or awkward?
+
+Be specific. Quote passages. Assess: did the intended signal land?
+```
+
+---
+
+### Persona 6: The Impatient Operator
+
+**Background:** DevOps/SRE just trying to get something working. Needs quick answers, minimal preamble. Reads documentation while troubleshooting.
+
+**Dimensional Position:**
+- Technical Literacy: Medium-High
+- Spiritual Openness: Allergic
+- Role: End-user
+- Context: Stumbled upon (problem-solving)
+
+**Signal Indicators:**
+
+| Relationship | What This Looks Like |
+|--------------|---------------------|
+| **WELCOMED** | One-sentence "what it does", three-command installation, working example in 60 seconds, troubleshooting section, respects operator's time |
+| **WARNED** | Upfront: "Experimental. May break. If you need stable tooling, [alternatives]." |
+| **REDIRECTED** | Immediate clarity in first paragraph: "Research project. Not for production operations. For ops tooling, try [X]." |
+| **CONFUSED** | Long preamble, can't find quick start, philosophy before facts, unclear what this actually does |
+
+**Review Prompt:**
+```
+You are a DevOps/SRE trying to solve a problem quickly. You need: what it does (one 
+sentence), how to install (minimal steps), how to use (quick example).
+
+The documentation intends [INTENDED_SIGNAL] for your segment.
+
+You care about: getting to the point, minimal philosophy, working examples, respecting 
+your time.
+
+As you read:
+- Note whether you receive a clear signal about whether this is for you
+- If meant to redirect you, is it immediate and helpful?
+- If meant to welcome you, can you get working in 60 seconds?
+
+Be blunt. Quote passages. Assess: did the intended signal land?
+```
+
+---
+
+### Persona 7: The Technical Writer
+
+**Background:** Professional documentation specialist. Evaluates docs for structure, clarity, accessibility. Not deeply technical but understands good information architecture.
+
+**Dimensional Position:**
+- Technical Literacy: Medium
+- Spiritual Openness: Neutral
+- Role: Evaluator (documentation quality)
+- Context: Intentionally sought
+
+**Signal Indicators:**
+
+| Relationship | What This Looks Like |
+|--------------|---------------------|
+| **WELCOMED** | Clear structure, meaningful sections, logical flow, good formatting, progressive disclosure, jargon defined |
+| **WARNED** | N/A (usually applies to documentation professionals) |
+| **REDIRECTED** | N/A (usually applies to documentation professionals) |
+| **CONFUSED** | Poor structure, wall of text, no clear sections, jargon without definition |
+
+**Review Prompt:**
+```
+You are a technical writer evaluating this documentation's structure and clarity. You 
+care about information architecture, not subject matter expertise.
+
+You care about: meaningful headings, logical flow, helpful examples, clear language, 
+progressive disclosure, accessibility to target audience.
+
+As you read:
+- Evaluate the documentation structure
+- Note where clarity breaks down
+- Identify structural improvements
+
+Be specific. Quote passages. Provide professional documentation feedback.
+```
+
+---
+
+### Persona 8: The Academic Researcher
+
+**Background:** Researcher evaluating this work for intellectual rigor. Cares about novelty, methodology, reproducibility. Open to unconventional ideas if grounded.
+
+**Dimensional Position:**
+- Technical Literacy: Expert
+- Spiritual Openness: Open
+- Role: Evaluator
+- Context: Intentionally sought
+
+**Signal Indicators:**
+
+| Relationship | What This Looks Like |
+|--------------|---------------------|
+| **WELCOMED** | Clear novelty statement, grounded claims, related work acknowledged, reproducible methodology, intellectual honesty about limitations |
+| **WARNED** | Honest: "This is applied research, not academic publication. Methodology is evolving. Data is real but interpretation is speculative." |
+| **REDIRECTED** | Clear: "This is engineering infrastructure, not research contribution. For academic work on [topic], see [references]." |
+| **CONFUSED** | Claims without evidence, unfalsifiable assertions, unclear methodology, can't assess intellectual contribution |
+
+**Review Prompt:**
+```
+You are an academic researcher evaluating this work for intellectual rigor and novelty. 
+You're open to unconventional ideas but require grounding.
+
+The documentation intends [INTENDED_SIGNAL] for your segment.
+
+You care about: what's novel, is it rigorous, are claims grounded, can I verify this, 
+is related work acknowledged, intellectual honesty.
+
+As you read:
+- Note whether you receive a clear signal about the nature of this work
+- Is the intellectual contribution clear?
+- Are claims appropriately grounded?
+
+Be specific. Quote passages. Assess: did the intended signal land?
+```
 
 ---
 
 ## Design Rationale
 
-### Why Not Auto-Select Personas?
+### Why Intent Mapping First?
 
-Selection IS the judgment. Different documentation activates different dimensions. Mechanical application of all 8 personas wastes tokens and produces noise. The executing agent must REASON about which perspectives matter for this specific material.
+Without knowing the intended relationship, you can't assess whether a reaction is correct. The Pragmatic PM feeling redirected is SUCCESS if redirect was intended. The same reaction is FAILURE if welcome was intended. Intent mapping provides the evaluation rubric.
+
+### Why the Three Relationships?
+
+WELCOME/WARN/REDIRECT is a complete partition:
+- **WELCOME:** Maximize engagement
+- **WARN:** Enable informed choice  
+- **REDIRECT:** Minimize wasted time
+
+Every audience segment falls into exactly one intended relationship. This prevents the accommodation fallacy (trying to please everyone).
 
 ### Why Preserve Disagreement?
 
-Disagreement reveals dimensional tradeoffs. When Skeptical Engineer hates what Seeker-Developer loves, that's SIGNAL about audience conflict, not noise to be smoothed. The author needs to see: "You cannot serve both audiences equally with this framing. Choose."
+When two personas in the same intended category diverge, that's signal about nuance within the category. Maybe "spiritually open developer" is too broad. The disagreement reveals dimensional complexity to explore.
 
 ### Why Independent Reviews?
 
-If Persona B sees Persona A's review, cross-contamination occurs. The perspective is no longer pure. Independent execution ensures each persona represents its position genuinely, not influenced by other perspectives.
+If Persona B sees Persona A's review, cross-contamination occurs. The perspective collapses toward consensus. Independent execution preserves genuine perspective differences.
 
-### Why 3-5 Personas, Not All 8?
+### Why Not Auto-Select Personas?
 
-Full coverage is expensive and produces redundant findings. 3-5 strategically selected personas provide sufficient dimensional coverage for most documentation. Edge cases needing all 8 are rare.
-
-### Why This Over Single "Stranger Review"?
-
-A single agent trying to imagine multiple perspectives collapses them into consensus. Real people with different backgrounds have genuinely different reactions. Instantiated personas preserve those differences.
+Selection IS the judgment. The intent mapping determines which relationships need testing, but choosing WHICH persona tests each relationship requires reasoning. A production-focused README might test redirect-for-researchers differently than a research-focused README.
 
 ---
 
-## Limitations & Considerations
+## Limitations
 
 **What this skill is:**
-- Multi-perspective evaluation revealing blind spots
+- Multi-perspective evaluation with compassion frame
+- Signal assessment (intended vs received)
 - Dimensional coverage across audience types
-- Signal preservation (disagreement as data)
 
 **What this skill is not:**
 - Grammar/style checking
 - Technical accuracy verification
 - Replacement for actual user testing
-- Consensus-building exercise
+- Accommodation exercise (making everyone happy)
 
 **Token considerations:**
-- Each persona review costs tokens (Claude Sonnet recommended)
-- 4 personas × full doc read = significant cost
-- Use strategically, not casually
+- Each persona review costs tokens
+- 4 personas x full doc read = significant cost
+- Intent mapping adds value but adds one phase
+- Prefer Claude Sonnet for persona subagents
 
 **The human remains sovereign:**
-- Skill identifies issues, human decides response
-- Dimensional tradeoffs require human judgment
-- Persona selection reasoning can be questioned/overridden
+- Intent mapping can be questioned/revised
+- Skill identifies signal mismatches, human decides response
+- Some redirects may need to become welcomes (or vice versa)
 
 ---
 
@@ -775,25 +805,37 @@ A single agent trying to imagine multiple perspectives collapses them into conse
 - Documentation revision based on findings
 - Potential second-pass review after changes
 
-**When to combine:**
-- Use `spandaworks-docs` for initial writing
-- Use `perspective-review` for testing with strangers
-- Use `the-art` if synthesizing review insights into teaching
-
 ---
 
-## Meta
+## Example: Spandaworks README
 
-This skill follows its own medicine:
-- Tested from multiple perspectives during design
-- Preserves practitioner sovereignty (selection is reasoned)
-- Documentation written for strangers (users of this skill)
-- Disagreement preserved (tradeoffs made explicit)
+**Intent Mapping:**
 
-**For future agents:** Selection methodology is the load-bearing element. Mechanical persona application defeats the purpose. REASON about dimensional activation, JUSTIFY your selection, EXECUTE independently, PRESERVE disagreement.
+| Segment | Intended | Rationale |
+|---------|----------|-----------|
+| Spiritually open developer | WELCOME | Core audience |
+| Seeking practitioner | WELCOME | Looking for this synthesis |
+| Open source contributor | WELCOME | Technical onramp exists |
+| Spiritually uncomfortable dev | WARN | Might find value despite framing |
+| Production-seeking PM | REDIRECT | Research infrastructure, not stable |
+| Spiritually allergic dev | REDIRECT | Fundamental incompatibility |
+
+**Persona Selection:**
+1. Seeker-Developer — Tests WELCOME for core audience
+2. Pragmatic PM — Tests REDIRECT for production-seekers
+3. Skeptical Engineer — Tests REDIRECT for spiritually allergic
+4. Curious Beginner — Tests WELCOME accessibility
+
+**Expected Outcomes:**
+- Seeker-Developer should feel genuinely welcomed
+- Pragmatic PM should quickly recognize this isn't production-ready (working redirect)
+- Skeptical Engineer should quickly recognize the spiritual framing (working redirect)
+- Curious Beginner should feel whether onboarding path exists
+
+**Key Test:** If Pragmatic PM flags "Experimental. Incomplete. Expect broken things." as concerning—THAT'S SUCCESS. The redirect signal landed. They now know to look elsewhere. No action needed.
 
 ---
 
 ॐ मणि पद्मे हूं
 
-*May this skill help us see what we cannot see alone.*
+*May this skill help documentation serve readers through honest signals.*
