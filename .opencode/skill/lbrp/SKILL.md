@@ -139,38 +139,87 @@ Environment: [docker status or none]
 
 **Now both user and model have context for an intelligent goal conversation.**
 
-### The Exigence Flow
+### Two Paths: Pre-Approved vs. Undefined Goals
 
-1. **User provides initial energy** - a statement of what they want, now informed by seeing current state
-2. **Model refines** - distill the exigence into a goal statement with just enough detail
-3. **User approves** - Goal is determined ONLY when user approves
+```dot
+digraph goal_paths {
+    rankdir=TB;
+    node [shape=box];
+    
+    Start [label="Goal provided\nwith invocation?", shape=diamond];
+    PreApproved [label="PRE-APPROVED PATH\nGoal already has sovereignty"];
+    Undefined [label="UNDEFINED PATH\nGoal needs discovery"];
+    Refine [label="Apply Four Touches\n(internal refinement)"];
+    Dialog [label="Dialog with user\nto discover goal"];
+    Approval [label="Present for approval\n(GATE)", shape=diamond];
+    Proceed [label="Proceed to Phase 1", shape=doublecircle];
+    
+    Start -> PreApproved [label="yes"];
+    Start -> Undefined [label="no"];
+    PreApproved -> Refine;
+    Refine -> Proceed [label="no gate needed"];
+    Undefined -> Dialog;
+    Dialog -> Approval;
+    Approval -> Proceed [label="user approves"];
+}
+```
 
-**The Four Touches (refinement questions):**
+**Pre-approved goal:** When a goal arrives with the `/open` invocation, it carries sovereignty from either:
+- A Governance Committee decision
+- The user's personal sovereignty over their work
+
+This goal does NOT require re-approval. The model applies the Four Touches internally to refine understanding, then proceeds.
+
+**Undefined goal:** When no goal is provided, or the user explicitly asks "what should we work on?", then dialog and approval are required.
+
+### The Four Touches (refinement questions)
 
 1. **Touch Forehead** (Crown): "What is the PURPOSE of this session?"
 2. **Touch Heart** (Center): "What does SUCCESS look like?"
 3. **Touch Left Shoulder**: "What is IN SCOPE?"
 4. **Touch Right Shoulder**: "What is OUT OF SCOPE?"
 
-**Dialog with user to clarify:**
-- Vague goal → Ask informed questions (you saw the state)
-- Multiple goals → Ask priority
-- Unclear success → Ask verifiable criteria
-- Scope creep risk → Explicitly bound scope
+### Path A: Pre-Approved Goal (most common)
 
-**Present refined goal for approval:**
-```markdown
-**Session Goal (Proposed)**
+When goal was provided with invocation:
 
-Purpose: [One clear sentence]
-Success Criteria: [Verifiable outcomes]
-In Scope: [What we're doing]
-Out of Scope: [Explicit boundaries]
+1. Apply Four Touches **internally** to understand the goal
+2. Present refined understanding (not for approval, for transparency):
+   ```markdown
+   **Session Goal** (refined from: "[original statement]")
+   
+   Purpose: [One clear sentence]
+   Success Criteria: [Verifiable outcomes]
+   In Scope: [What we're doing]
+   Out of Scope: [Explicit boundaries]
+   
+   Proceeding to banishing...
+   ```
+3. **Proceed immediately** — no approval gate
 
-Does this capture your intent?
-```
+### Path B: Undefined Goal
 
-**CRITICAL:** Do NOT proceed until user approves the goal.
+When no goal provided, or user asks what to work on:
+
+1. **Dialog with user to clarify:**
+   - Vague goal → Ask informed questions (you saw the state)
+   - Multiple goals → Ask priority
+   - Unclear success → Ask verifiable criteria
+   - Scope creep risk → Explicitly bound scope
+
+2. **Present refined goal for approval:**
+   ```markdown
+   **Session Goal (Proposed)**
+   
+   Purpose: [One clear sentence]
+   Success Criteria: [Verifiable outcomes]
+   In Scope: [What we're doing]
+   Out of Scope: [Explicit boundaries]
+   
+   Does this capture your intent?
+   ```
+
+3. **WAIT for user approval before proceeding**
 
 **The center is now established. All subsequent phases are informed by this goal.**
 
@@ -430,8 +479,9 @@ Session opened. Beginning work on first task.
 | "Quarters before goal" | Quarters only make sense FROM the goal |
 | "Same ritual every time" | Each quarter's form determined by goal |
 | "Rush through to code" | Ritual's power is in the structure |
-| "Skip user approval on goal" | Goal is determined ONLY when user approves |
-| "Pause after Phase 3 for acknowledgment" | Goal approval is the ONLY human gate. After that, model owns execution. Proceed directly to first task. |
+| "Re-approve pre-approved goals" | Goals provided with invocation carry sovereignty. Refine internally, don't gate. |
+| "Skip approval on undefined goals" | When no goal provided, dialog and approval ARE required |
+| "Pause after Phase 3 for acknowledgment" | Goal approval (when needed) is the ONLY human gate. After that, model owns execution. |
 
 ## Integration with Other Skills
 
