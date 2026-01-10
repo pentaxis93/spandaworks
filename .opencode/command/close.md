@@ -1,5 +1,6 @@
 ---
 description: Close session with sealing ceremony - review work, clean workspace, dedicate merit
+model: anthropic/claude-sonnet-4-5-20250929
 ---
 
 # Session Closing (Sealing Ceremony)

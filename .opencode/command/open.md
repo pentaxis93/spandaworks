@@ -1,5 +1,6 @@
 ---
 description: Open session with LBRP ritual - inherit continuity, observe state, define goal, prepare workspace
+model: anthropic/claude-sonnet-4-5-20250929
 ---
 
 # Session Opening (LBRP)
