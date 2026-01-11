@@ -19,7 +19,7 @@ bun.lock
 "#;
 
 /// Options for the init command
-#[derive(Debug, Clone)]
+#[derive(Default)]
 pub struct InitOptions {
     /// Comma-separated list of skills to install (None = all)
     pub skills: Option<Vec<String>>,
@@ -29,17 +29,6 @@ pub struct InitOptions {
     pub force: bool,
     /// Show what would be created without creating
     pub dry_run: bool,
-}
-
-impl Default for InitOptions {
-    fn default() -> Self {
-        Self {
-            skills: None,
-            no_skills: false,
-            force: false,
-            dry_run: false,
-        }
-    }
 }
 
 /// Result of the init operation
@@ -122,7 +111,7 @@ pub fn run_in_directory(base_path: &Path, options: &InitOptions) -> Result<InitR
 
         // Extract each skill
         for skill in skills_to_install {
-            let skill_path = skill_dir.join(&skill.name);
+            let skill_path = skill_dir.join(skill.name);
             let skill_file = skill_path.join("SKILL.md");
 
             let should_write = if skill_file.exists() {

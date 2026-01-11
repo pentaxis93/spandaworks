@@ -2,7 +2,7 @@
 //!
 //! System health checks for aiandi dependencies and configuration.
 
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 use std::process::Command;
 
 use colored::Colorize;
@@ -80,7 +80,7 @@ pub fn check_command(name: &str, version_arg: &str) -> HealthCheck {
 }
 
 /// Check if a directory exists
-pub fn check_directory(path: &PathBuf, name: &str) -> HealthCheck {
+pub fn check_directory(path: &Path, name: &str) -> HealthCheck {
     let description = format!("{} ({})", name, path.display());
 
     if path.exists() {
@@ -110,7 +110,7 @@ pub fn check_directory(path: &PathBuf, name: &str) -> HealthCheck {
 }
 
 /// Check if a file exists
-pub fn check_file(path: &PathBuf, name: &str) -> HealthCheck {
+pub fn check_file(path: &Path, name: &str) -> HealthCheck {
     let description = format!("{} ({})", name, path.display());
 
     if path.exists() {
