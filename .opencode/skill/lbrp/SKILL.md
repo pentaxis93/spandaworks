@@ -1,3 +1,8 @@
+---
+name: lbrp
+description: "Lesser Banishing Ritual of the Pentagram - opening ceremony for coding sessions. Establishes continuity through explicit inheritance, shows current state to inform goal setting, establishes the goal as sacred center, then addresses four quarters radiating from that center."
+---
+
 # LBRP: Lesser Banishing Ritual of the Pentagram (Opening Ritual)
 
 **Version 3.0 — Precise Loading Architecture**
