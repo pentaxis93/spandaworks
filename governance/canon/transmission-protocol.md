@@ -40,32 +40,56 @@ For multi-transmission dialogues, explicit threading prevents lost context and e
 
 ---
 
-## Inbox/Outbox Protocol
+## Delivery Mechanism: OpenCode SDK
 
-Within aiandi, agent communication uses inbox/outbox directories:
+Within aiandi, agent communication uses **transmission artifacts + OpenCode SDK invocation**.
 
-| Directory | Purpose |
-|-----------|---------|
-| `{domain}/sessions/inbox/` | Incoming transmissions to process |
-| `{domain}/sessions/inbox/processed/` | Handled transmissions (archived) |
-| `{domain}/sessions/outbox/` | Outgoing transmissions |
-| `{domain}/sessions/outbox/sent/` | Sent transmissions (archived) |
+**Key insight:** The transmission file is the **payload**. The SDK call is the **delivery mechanism**.
 
-**Governance paths:**
-- `governance/sessions/inbox/`
-- `governance/sessions/outbox/`
+### The Protocol
 
-**Execution paths (example):**
-- `ops/inbox/`
-- `ops/outbox/`
+1. **Governance writes transmission** — Structured XML artifact to `governance/sessions/outbox/`
+2. **Governance commits transmission** — `git add` + `git commit`
+3. **Governance invokes execution agent via SDK:**
 
-**Protocol:**
-1. Sender writes transmission to recipient's inbox
-2. Recipient processes and moves to `inbox/processed/`
-3. Recipient writes response to own outbox (or sender's inbox)
-4. After confirmation, move to `outbox/sent/`
+```javascript
+import { createOpencodeClient } from "@opencode-ai/sdk"
+import fs from "fs"
 
-**Note:** For cross-repository communication, transmissions may still need manual delivery via Robbie.
+const client = createOpencodeClient({ baseUrl: "http://localhost:4096" })
+
+// Create execution session
+const session = await client.session.create({
+  body: { title: "Governance: Transmission Execution" }
+})
+
+// Inject transmission as context (no AI response yet)
+await client.session.prompt({
+  path: { id: session.id },
+  body: {
+    noReply: true,  // Adds to context without triggering AI
+    parts: [{
+      type: "text",
+      text: fs.readFileSync('governance/sessions/outbox/Transmission_X.xml', 'utf-8')
+    }]
+  }
+})
+
+// Trigger execution
+await client.session.prompt({
+  path: { id: session.id },
+  body: {
+    model: { providerID: "anthropic", modelID: "claude-3-5-sonnet-20241022" },
+    parts: [{ type: "text", text: "Execute the transmission above." }]
+  }
+})
+```
+
+**What this means:**
+- Execution agents **do not poll an inbox**
+- They are **invoked programmatically** in fresh OpenCode sessions
+- The transmission provides complete context
+- The SDK call delivers and triggers execution
 
 ---
 
@@ -389,7 +413,7 @@ When transmitting between different AI substrates (Claude ↔ Gemini):
 
   <response-spec>
     <format>Transmission (type="report") with findings per research question</format>
-    <delivery>governance/sessions/inbox/</delivery>
+    <delivery>Execution agent writes to own outbox; Governance reads from git</delivery>
     <success-criteria>
       Governance can make go/no-go decision with clear understanding 
       of requirements and tradeoffs.
@@ -415,6 +439,7 @@ When transmitting between different AI substrates (Claude ↔ Gemini):
 | 1.3 | 2026-01-08 | Corrected spelling to "Spandaworks" (one word) |
 | 1.4 | 2026-01-08 | Updated vault paths to `_spandaworks/` |
 | 1.5 | 2026-01-11 | **Major revision:** Adapted for aiandi architecture. Added inbox/outbox protocol section. Updated all paths for governance integration. Added boot artifact type. Removed vault-specific references. |
+| 1.6 | 2026-01-11 | **Correction:** Replaced inbox/outbox polling model with SDK invocation model. Execution agents invoked programmatically via OpenCode SDK, not via filesystem polling. |
 
 ---
 

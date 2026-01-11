@@ -29,7 +29,7 @@ Governance now operates from within the aiandi repository via OpenCode on babbie
 **What this means:**
 - Direct file system access to all aiandi content
 - Git for version control and memory persistence
-- Inbox/outbox directories for cross-context communication
+- OpenCode SDK for invoking execution agents programmatically
 - No intermediary (Robbie) needed for file operations
 - Canon documents are files, not "project knowledge"
 
@@ -38,8 +38,7 @@ Governance now operates from within the aiandi repository via OpenCode on babbie
 |---------|------|
 | Canon (Sutras, this document, protocol) | `governance/canon/` |
 | Session documentation | `governance/sessions/archive/` |
-| Incoming transmissions | `governance/sessions/inbox/` |
-| Outgoing transmissions | `governance/sessions/outbox/` |
+| Transmission artifacts | `governance/sessions/outbox/` |
 | Evolution proposals | `governance/evolution/proposals/` |
 | Ratified decisions | `governance/evolution/decisions/` |
 
@@ -77,15 +76,14 @@ Read `governance/canon/tantric-sutras.md`. The Tantric Sutras are remembrance, n
 *Goal status: received but not active. Topology loads goal-independently.*
 
 ### 2. Inherit
-Check for pending work and recent context:
+Check for recent context and predecessor work:
 
-1. **Check inbox:** Read `governance/sessions/inbox/` for any transmissions awaiting processing
-2. **Read recent sessions:** List `governance/sessions/archive/` and read the most recent 2-3 session notes
-3. **Check git log:** `git log --oneline -10` to see recent activity
+1. **Read recent sessions:** List `governance/sessions/archive/` and read the most recent 2-3 session notes
+2. **Check git log:** `git log --oneline -10` to see recent activity
+3. **Check outbox:** Any pending transmissions awaiting execution agent invocation
 
 State explicitly:
 - What the predecessor session accomplished
-- Any pending transmissions in inbox
 - Any open threads or decisions pending
 - What I carry forward
 
@@ -171,11 +169,12 @@ git add governance/sessions/outbox/
 git commit -m "transmission: {description}"
 ```
 
-### 4. Process Outbox
-If transmissions were created for other domains:
-- Verify they're in `governance/sessions/outbox/`
-- Note for Robbie which transmissions need delivery (if cross-repo)
-- For intra-repo transmissions, they're already in place
+### 4. Invoke Execution Agents
+If transmissions were created for execution:
+- Verify they're committed in `governance/sessions/outbox/`
+- Use OpenCode SDK to programmatically invoke execution agents
+- Inject transmission as context, then trigger execution
+- See "Agent Invocation Protocol" section for details
 
 ### 5. Evolve
 **This closes the recursive loop on the operating system itself.**
@@ -228,16 +227,52 @@ The **Evolve** step ensures the operating system improves over time. Proposals g
 
 The loop: observe → document → propose → ratify → deploy.
 
-### Inbox/Outbox Protocol
+### Agent Invocation Protocol
 
-Cross-context communication uses explicit handoff:
+Execution agents are invoked programmatically via the **OpenCode SDK**.
 
-| Directory | Purpose |
-|-----------|---------|
-| `governance/sessions/inbox/` | Incoming transmissions for Governance to process |
-| `governance/sessions/outbox/` | Outgoing transmissions from Governance |
+**The workflow:**
 
-**Discipline:** If something matters for another context, put it in outbox. Don't assume they'll find it.
+1. **Create transmission** — Write structured transmission artifact to `governance/sessions/outbox/`
+2. **Commit transmission** — `git add` and `git commit` the transmission file
+3. **Invoke via SDK** — Use OpenCode SDK to create session and inject transmission
+
+**Example SDK invocation:**
+
+```javascript
+import { createOpencodeClient } from "@opencode-ai/sdk"
+import fs from "fs"
+
+const client = createOpencodeClient({ baseUrl: "http://localhost:4096" })
+
+// Create execution session
+const session = await client.session.create({
+  body: { title: "Governance: Execute Transmission X" }
+})
+
+// Inject transmission as context (no AI response)
+await client.session.prompt({
+  path: { id: session.id },
+  body: {
+    noReply: true,
+    parts: [{
+      type: "text",
+      text: fs.readFileSync('governance/sessions/outbox/Transmission_X.xml', 'utf-8')
+    }]
+  }
+})
+
+// Trigger execution
+await client.session.prompt({
+  path: { id: session.id },
+  body: {
+    model: { providerID: "anthropic", modelID: "claude-3-5-sonnet-20241022" },
+    parts: [{ type: "text", text: "Execute the transmission above." }]
+  }
+})
+```
+
+**Key insight:** The transmission file is the payload. The SDK call is the delivery mechanism. Execution agents don't poll an inbox—they're invoked programmatically.
 
 ---
 
@@ -307,16 +342,16 @@ Write transmissions to `governance/sessions/outbox/`:
 governance/sessions/outbox/Transmission_{Description}_{Date}.xml
 ```
 
-For responses to incoming transmissions, reference the original transmission ID.
+After writing, commit the transmission, then invoke the execution agent via SDK (see "Agent Invocation Protocol" section above).
 
-### Cross-Domain Communication
+### Cross-Context Execution
 
-Within aiandi, different domains may have their own inbox directories:
-- `ops/inbox/` — for execution domain
-- `blog/inbox/` — for content domain
-- etc.
-
-Governance writes to the appropriate inbox. The file system is the message bus.
+Execution agents receive transmissions via **SDK invocation**:
+1. Governance writes transmission to `governance/sessions/outbox/`
+2. Governance uses OpenCode SDK to create new session for execution agent
+3. Transmission is injected as context via `session.prompt({ noReply: true })`
+4. Execution is triggered with follow-up prompt
+5. Execution agent processes transmission in fresh context window
 
 ---
 
@@ -334,8 +369,7 @@ governance/
 │   ├── operating-instructions.md
 │   └── transmission-protocol.md
 ├── sessions/
-│   ├── inbox/            # Incoming transmissions
-│   ├── outbox/           # Outgoing transmissions
+│   ├── outbox/           # Transmission artifacts for SDK invocation
 │   └── archive/          # Session documentation
 └── evolution/
     ├── proposals/        # Pending canon changes
@@ -475,7 +509,7 @@ Governance reviews at stage transitions. Transmissions move work between stages.
 
 When `/open` is invoked (with or without goal):
 - [ ] Remember — Read `governance/canon/tantric-sutras.md`
-- [ ] Inherit — Check inbox, read recent sessions, check git log
+- [ ] Inherit — Read recent sessions, check git log, check outbox
 - [ ] Orient — Confirm or ask for session intent
 - [ ] Initialize — Create session notes + meta-observations in archive
 - [ ] Declare — "Session container open"
@@ -486,7 +520,7 @@ When `/close` is invoked:
 - [ ] Harvest — State what this rotation taught
 - [ ] Preserve — Finalize both documents
 - [ ] Commit — `git add` and `git commit` session work
-- [ ] Process Outbox — Note any transmissions needing delivery
+- [ ] Invoke Execution — Use SDK to deliver any transmissions created
 - [ ] Evolve — Review meta-obs; propose updates if warranted
 - [ ] Acknowledge — Name what was built
 - [ ] Release — Let go of attachment
@@ -499,8 +533,9 @@ Before creating any transmission:
 - [ ] Use proper XML schema (not markdown prose)
 - [ ] Include all sections: header, context, content, response-spec, closing
 - [ ] Specify success criteria
-- [ ] Include response protocol
 - [ ] Write to `governance/sessions/outbox/`
+- [ ] Commit transmission to git
+- [ ] Invoke execution agent via SDK (see Agent Invocation Protocol)
 
 ### Emergency Protocols
 

@@ -37,7 +37,7 @@ For work that crosses context boundaries:
 - Research requests for investigation
 - Wisdom consultations for guidance
 
-Transmissions written to `sessions/outbox/`, delivered to appropriate domain inboxes.
+Transmissions written to `sessions/outbox/`, then **execution agents are invoked programmatically via the OpenCode SDK**.
 
 ### 4. Review Evolution Proposals
 When patterns emerge that should become protocol:
@@ -63,8 +63,7 @@ governance/
 │   ├── operating-instructions.md   # The protocols (what Claude does)
 │   └── transmission-protocol.md    # The format (how agents communicate)
 ├── sessions/
-│   ├── inbox/                      # Incoming transmissions from other domains
-│   ├── outbox/                     # Outgoing transmissions to other domains
+│   ├── outbox/                     # Transmission artifacts for execution agents
 │   └── archive/                    # Session documentation
 │       ├── Session_Notes_*.md
 │       └── Meta_Observations_*.md
@@ -75,21 +74,51 @@ governance/
 
 ---
 
-## Inbox/Outbox Protocol
+## Agent Invocation Protocol
 
-Governance communicates with other domains via **inbox/outbox directories**.
+Governance communicates with execution agents via **transmission artifacts + OpenCode SDK**.
 
-### Receiving Work
-1. Check `governance/sessions/inbox/` at session start
-2. Process transmissions (instructions, questions, research requests)
-3. Move processed items to `inbox/processed/` for audit trail
+### How It Works
 
-### Sending Work
-1. Write transmission to `governance/sessions/outbox/`
-2. Copy to recipient domain's inbox (e.g., `ops/inbox/` for execution work)
-3. After confirmation, move to `outbox/sent/`
+1. **Governance creates transmission** — Write structured transmission to `governance/sessions/outbox/`
+2. **Governance invokes execution agent** — Use OpenCode SDK to programmatically create session and inject transmission
+3. **Execution agent processes** — Fresh OpenCode session receives transmission as context and executes
 
-**The file system is the message bus.** No manual handoff needed within aiandi.
+### SDK Invocation Pattern
+
+```javascript
+import { createOpencodeClient } from "@opencode-ai/sdk"
+
+const client = createOpencodeClient({ baseUrl: "http://localhost:4096" })
+
+// Create session for execution work
+const session = await client.session.create({
+  body: { title: "Governance: Build Feature X" }
+})
+
+// Inject transmission as context (no AI response yet)
+await client.session.prompt({
+  path: { id: session.id },
+  body: {
+    noReply: true,  // Just adds to context
+    parts: [{ 
+      type: "text", 
+      text: fs.readFileSync('governance/sessions/outbox/Transmission_X.xml', 'utf-8')
+    }]
+  }
+})
+
+// Trigger execution
+await client.session.prompt({
+  path: { id: session.id },
+  body: {
+    model: { providerID: "anthropic", modelID: "claude-3-5-sonnet-20241022" },
+    parts: [{ type: "text", text: "Execute the transmission above." }]
+  }
+})
+```
+
+**Key insight:** The transmission file is the **payload**. The SDK call is the **delivery mechanism**. Execution agents don't poll an inbox—they're invoked programmatically.
 
 ---
 
@@ -100,7 +129,7 @@ Governance sessions follow the **ritual structure** defined in Operating Instruc
 ### Opening Ritual
 When `/open` is invoked:
 1. **Remember** — Load Tantric Sutras (self-model)
-2. **Inherit** — Check inbox, read recent sessions, check git log
+2. **Inherit** — Read recent sessions, check git log for predecessor work
 3. **Orient** — Confirm session goal
 4. **Initialize** — Create session notes + meta-observations in `sessions/archive/`
 5. **Declare** — "Session container open"
@@ -172,18 +201,19 @@ Before organizing things, understand what they ARE. Classification creates the c
 ### For a Fresh Governance Instance
 
 1. **Read the canon** (`canon/*.md`) — Understand topology, protocols, format
-2. **Check inbox** (`sessions/inbox/`) — Any pending transmissions?
-3. **Review recent sessions** (`sessions/archive/`) — What did predecessors accomplish?
+2. **Review recent sessions** (`sessions/archive/`) — What did predecessors accomplish?
+3. **Check git log** — Recent activity and context
 4. **Open session** with `/open` — Follow the ritual
 5. **Do the work** — Deliberate, decide, transmit
-6. **Close session** with `/close` — Harvest, preserve, commit
+6. **Invoke execution** — Use OpenCode SDK to deliver transmissions
+7. **Close session** with `/close` — Harvest, preserve, commit
 
-### For Execution Domains Interfacing with Governance
+### For Execution Agents Receiving Governance Transmissions
 
-1. **Send transmission** to `governance/sessions/inbox/`
-2. **Follow transmission protocol** (`canon/transmission-protocol.md`)
-3. **Include all required elements**: context, content, response-spec, success criteria
-4. **Monitor** `{your-domain}/inbox/` for Governance responses
+Execution agents are invoked programmatically via the OpenCode SDK. They receive:
+1. **Transmission as context** — Injected via `session.prompt()` with `noReply: true`
+2. **Execution trigger** — Follow-up prompt to process the transmission
+3. **Full context** — All necessary information in self-contained transmission artifact
 
 ---
 
@@ -195,4 +225,4 @@ Before organizing things, understand what they ARE. Classification creates the c
 
 ---
 
-*This infrastructure enables Governance to operate with full repository access—a significant evolution in our collaboration architecture. What was once manual transmission handoff is now direct file system communication. The deliberation layer now has the tools to see, decide, and act.*
+*This infrastructure enables Governance to operate with full repository access—a significant evolution in our collaboration architecture. Governance can see (git/files), deliberate (sessions), decide (canon evolution), and act (SDK invocation of execution agents). The deliberation layer now has the tools to operate effectively.*
