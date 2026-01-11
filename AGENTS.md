@@ -23,6 +23,20 @@ There is no separate "outputs" directory.
 This project is "aiandi" (AI and I). The name "spandaworks" is deprecated.
 All new code, documentation, and references should use "aiandi".
 
+### Test-Driven Development (TDD)
+
+All development follows TDD discipline:
+
+1. **RED** — Write a failing test that defines expected behavior
+2. **GREEN** — Write minimal code to make the test pass
+3. **REFACTOR** — Improve code quality while keeping tests green
+
+No production code without a failing test first. Tests are not afterthoughts;
+they are the specification. The test suite is the executable documentation
+of what the system does.
+
+Run tests frequently: `cargo test`
+
 ## Build & Test
 
 ```bash

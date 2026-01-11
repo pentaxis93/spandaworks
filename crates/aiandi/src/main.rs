@@ -17,14 +17,11 @@ struct Cli {
 #[derive(Subcommand)]
 enum Commands {
     /// Capture items to GTD inbox
-    Inbox {
-        /// Item to capture
-        item: String,
-    },
+    Inbox(inbox::Args),
     /// Initialize aiandi for OpenCode
     Init(init::Args),
-    /// Start HTTP server for inbox capture
-    Serve,
+    /// Start MCP server for OpenCode integration
+    Serve(serve::Args),
     /// Check aiandi installation and configuration
     Doctor,
 }
@@ -33,9 +30,9 @@ fn main() {
     let cli = Cli::parse();
 
     match &cli.command {
-        Commands::Inbox { item } => inbox::run(item),
+        Commands::Inbox(args) => inbox::run_from_args(args),
         Commands::Init(args) => init::run_from_args(args),
-        Commands::Serve => serve::run(),
+        Commands::Serve(args) => serve::run_from_args(args),
         Commands::Doctor => doctor::run(),
     }
 }
