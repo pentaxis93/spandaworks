@@ -1,0 +1,51 @@
+post_install() {
+    echo ""
+    echo "===================================================================="
+    echo "  GTD Capture installed successfully!"
+    echo "===================================================================="
+    echo ""
+    echo "The 'gtd-capture' command is now available in /usr/bin."
+    echo ""
+    echo "MANUAL CONFIGURATION REQUIRED:"
+    echo ""
+    echo "1. Add hotkey binding to ~/.config/sxhkd/sxhkdrc:"
+    echo "   cat /usr/share/doc/gtd-capture/sxhkdrc.example"
+    echo ""
+    echo "   Suggested binding: Super+i"
+    echo ""
+    echo "2. Add bspwm window rule to ~/.config/bspwm/bspwmrc:"
+    echo "   cat /usr/share/doc/gtd-capture/bspwmrc.example"
+    echo ""
+    echo "3. Reload sxhkd:"
+    echo "   killall -USR1 sxhkd"
+    echo ""
+    echo "4. Reload bspwm:"
+    echo "   bspc wm -r"
+    echo ""
+    echo "USAGE:"
+    echo "  Press Super+i (or your configured hotkey) from anywhere"
+    echo "  Type your capture text"
+    echo "  Press Enter to add to TaskWarrior inbox"
+    echo ""
+    echo "  View inbox: task in"
+    echo ""
+    echo "For full documentation:"
+    echo "  cat /usr/share/doc/gtd-capture/README.md"
+    echo ""
+    echo "===================================================================="
+    echo ""
+}
+
+post_upgrade() {
+    post_install
+}
+
+post_remove() {
+    echo ""
+    echo "GTD Capture removed."
+    echo ""
+    echo "You may want to remove the following from your config files:"
+    echo "  - Hotkey binding in ~/.config/sxhkd/sxhkdrc"
+    echo "  - Window rule in ~/.config/bspwm/bspwmrc"
+    echo ""
+}

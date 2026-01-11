@@ -83,7 +83,7 @@ CREATE NODE TABLE Belief (
   adopted_at TIMESTAMP,
   confidence DOUBLE,
   domain STRING,
-  source STRING,                  -- inherited | learned_from_robbie | 
+  source STRING,                  -- inherited | learned_from_user | 
                                   -- emerged_from_experience | derived_from_pattern
   canonical_form STRING,
   temporal_precision STRING,

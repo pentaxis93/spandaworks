@@ -1,0 +1,29 @@
+# Maintainer: Robert Grossman <robbie@aiandi.dev>
+pkgname=gtd-capture
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="Frictionless GTD inbox capture via hotkey for bspwm + wofi + TaskWarrior"
+arch=('any')
+url="https://github.com/yourusername/gtd-capture"
+license=('MIT')
+depends=('wofi' 'task' 'libnotify' 'bspwm' 'sxhkd')
+optdepends=('chezmoi: for dotfile management')
+source=("gtd-capture.sh"
+        "gtd-capture.install"
+        "sxhkdrc.example"
+        "bspwmrc.example"
+        "README.md")
+sha256sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
+install=gtd-capture.install
+
+package() {
+    # Install the capture script
+    install -Dm755 "$srcdir/gtd-capture.sh" "$pkgdir/usr/bin/gtd-capture"
+    
+    # Install example config snippets
+    install -Dm644 "$srcdir/sxhkdrc.example" "$pkgdir/usr/share/doc/$pkgname/sxhkdrc.example"
+    install -Dm644 "$srcdir/bspwmrc.example" "$pkgdir/usr/share/doc/$pkgname/bspwmrc.example"
+    
+    # Install documentation
+    install -Dm644 "$srcdir/README.md" "$pkgdir/usr/share/doc/$pkgname/README.md"
+}

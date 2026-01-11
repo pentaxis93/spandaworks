@@ -1,8 +1,8 @@
-# spandaworks-pim
+# aiandi-pim
 
 MCP server for Personal Information Management - email, calendar, contacts.
 
-Gives Spandaworks natural, fluid access to the user's PIM data by wrapping CLI tools:
+Gives aiandi natural, fluid access to the user's PIM data by wrapping CLI tools:
 - **Email**: notmuch (search/read), himalaya (send)
 - **Calendar**: khal (list/create)
 - **Contacts**: khard (search/get/create)
@@ -41,6 +41,8 @@ cargo build --release
 
 Binary: `target/release/spandaworks-pim`
 
+> **Note:** Binary name is still `spandaworks-pim` for now. Will be renamed to `aiandi-pim` in future release.
+
 ## OpenCode Configuration
 
 Add to `~/.config/opencode/opencode.json`:
@@ -48,9 +50,9 @@ Add to `~/.config/opencode/opencode.json`:
 ```json
 {
   "mcp": {
-    "spandaworks_pim": {
+    "aiandi_pim": {
       "type": "local",
-      "command": ["/path/to/spandaworks/packages/pim/mcp-server/target/release/spandaworks-pim"],
+      "command": ["/path/to/aiandi/packages/pim/mcp-server/target/release/spandaworks-pim"],
       "enabled": true
     }
   }
