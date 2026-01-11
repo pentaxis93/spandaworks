@@ -1,12 +1,14 @@
 use clap::{Parser, Subcommand};
 
 mod commands;
+mod skills;
 
 use commands::{doctor, inbox, init, serve};
 
 #[derive(Parser)]
 #[command(name = "aiandi")]
 #[command(about = "Infrastructure for AI-human collaboration", long_about = None)]
+#[command(version)]
 struct Cli {
     #[command(subcommand)]
     command: Commands,
@@ -20,7 +22,7 @@ enum Commands {
         item: String,
     },
     /// Initialize aiandi for OpenCode
-    Init,
+    Init(init::Args),
     /// Start HTTP server for inbox capture
     Serve,
     /// Check aiandi installation and configuration
@@ -32,7 +34,7 @@ fn main() {
 
     match &cli.command {
         Commands::Inbox { item } => inbox::run(item),
-        Commands::Init => init::run(),
+        Commands::Init(args) => init::run_from_args(args),
         Commands::Serve => serve::run(),
         Commands::Doctor => doctor::run(),
     }
