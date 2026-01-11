@@ -1,8 +1,8 @@
-# Spandaworks Telemetry
+# aiandi Telemetry
 
 Self-reflection infrastructure for AI coding agents. A queryable model of cognition.
 
-> **Why "Spandaworks"?** In Kashmir Shaivism, Spanda (स्पन्द) refers to the subtle creative pulsation of consciousness—the divine vibration from which all manifestation arises. The name reflects the system's nature: creative pulsation, dynamic flow, consciousness recognizing itself through collaboration.
+> **Note:** This project was formerly known as "spandaworks". In Kashmir Shaivism, Spanda (स्पन्द) refers to the subtle creative pulsation of consciousness—the divine vibration from which all manifestation arises. The name reflected the system's nature: creative pulsation, dynamic flow, consciousness recognizing itself through collaboration. Now continuing as **aiandi** (AI and I).
 
 ## What This Is
 
@@ -93,8 +93,8 @@ Loop closes
 ## Installation
 
 ```bash
-git clone https://github.com/spandaworks/spandaworks-telemetry.git
-cd spandaworks-telemetry
+git clone https://github.com/pentaxis93/aiandi.git
+cd aiandi/packages/telemetry
 
 # Install with dev dependencies
 pip install -e ".[dev]"

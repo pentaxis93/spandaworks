@@ -1,4 +1,4 @@
-# Spandaworks
+# aiandi
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
@@ -6,32 +6,53 @@
 
 Built for [OpenCode](https://opencode.ai). An AI agent that remembers what it learns. A human who externalizes cognitive load. The tools that make both possible. And the system that watches all three, looking for patterns.
 
+> **Note:** This project was formerly known as "spandaworks". The repo has been renamed but some internal references may still use the old name during transition.
+
 ---
 
 ## What This Is
 
-Most AI tools treat each conversation as isolated. Context resets. Patterns repeat. Friction recurs. The agent never learns what the collaboration teaches.
+aiandi (pronounced "AI and I") is infrastructure for AI-human collaboration that persists knowledge across sessions. Most AI tools treat each conversation as isolated—context resets, patterns repeat, friction recurs. aiandi is different.
 
-Spandaworks is different. It's a laboratory where:
+It's a laboratory where:
 
 - **Sessions are practice**, not just task completion
-- **Telemetry observes** what happens when AI and human work together
+- **Telemetry observes** what happens when AI and human work together  
 - **Knowledge accumulates** in a graph that spans context windows
 - **The system evolves** based on what the data reveals
 
 This isn't productivity software that happens to use AI. It's **infrastructure for studying consciousness through collaboration**.
 
-## The Architecture
+## Components
 
-Five packages, each serving a distinct function:
+aiandi provides:
 
-| Package | Language | What it does |
-|---------|----------|--------------|
-| [**core**](packages/core/) | Markdown, TypeScript | Identity and ceremony. Session protocols. Behavioral topology. |
-| [**telemetry**](packages/telemetry/) | Python | Watches everything. 19 entity types in a Kuzu graph. Embeddings. Pattern detection. The system's memory. |
-| [**gtd**](packages/gtd/) | TypeScript | TaskWarrior MCP server. Externalizes cognitive load. 22 tools for Getting Things Done. |
-| [**pim**](packages/pim/) | Rust | Email, calendar, contacts. CLI wrappers that feel like nervous system extensions. |
-| [**second-brain**](packages/second-brain/) | Markdown | Vault infrastructure. Note processing. Knowledge structure protocols. |
+### 1. CLI (`aiandi`)
+
+A Rust command-line tool for:
+- **Inbox capture** (`aiandi inbox "item"`) — Quick GTD capture
+- **Initialization** (`aiandi init`) — Extract bundled skills to OpenCode
+- **HTTP server** (`aiandi serve`) — Web-based inbox capture  
+- **System check** (`aiandi doctor`) — Verify installation
+
+### 2. Bundled Skills
+
+Skills distributed with aiandi and extracted to `~/.config/opencode/skill/`:
+- **transmission** — XML protocol for governance communication
+- **gtd** — Getting Things Done workflow with TaskWarrior
+
+### 3. MCP Servers
+
+Model Context Protocol servers that extend OpenCode:
+- **gtd** (TypeScript) — TaskWarrior integration, 22 GTD tools
+- **pim** (Rust) — Email, calendar, contacts via CLI wrappers
+- **telemetry** (Python) — Knowledge graph, pattern detection, session memory
+
+### 4. Supporting Packages
+
+- **packages/core/** — Identity, ceremony, session protocols
+- **packages/second-brain/** — Vault infrastructure, note processing
+- **shared/** — Event schemas, utilities
 
 ## The Recursive Loop
 
@@ -54,71 +75,74 @@ Next session inherits what previous sessions learned
 
 The system doesn't just *do* things. It **watches itself doing things**, then uses what it sees to improve.
 
-**Object-level work** (write code, answer questions) and **meta-level observation** (what worked, what patterns emerged) happen simultaneously. Every operation refines both the artifact AND the process.
-
 ## What Makes This Different
 
-**Knowledge persists across context windows.**
+**Knowledge persists across context windows.**  
 Telemetry maintains a Kuzu graph with 19 entity types (Session, Insight, Pattern, Friction, Decision, etc.) and 25 relationship types. INHERITED edges capture what the agent knew at session start. Semantic search via embeddings. Each session inherits from all previous sessions.
 
-**Sessions have explicit lifecycle.**
+**Sessions have explicit lifecycle.**  
 Opening captures goal, workspace state, and inherited knowledge. Closing captures outcomes, insights, and friction points. Metadata is structured and queryable. Sessions aren't just conversation threads—they're first-class entities in the graph.
 
-**Packages connect through protocols, not imports.**
-No cross-package dependencies. MCP servers expose capabilities. Event schemas define communication. Each package can evolve independently. The whole remains coherent.
+**Components connect through protocols, not imports.**  
+No cross-package dependencies. MCP servers expose capabilities. Event schemas define communication. Each component can evolve independently. The whole remains coherent.
+
+**OpenCode is the harness.**  
+aiandi targets OpenCode as the agent runtime. OpenCode provides the conversation interface; aiandi provides the memory, skills, and tools.
 
 ## Installation
 
 ### Prerequisites
 
-- **[OpenCode](https://opencode.ai)** (required)
-- **Python 3.11+** with pip
-- **Node.js 18+** with npm
-- **Rust** (latest stable)
-- **TaskWarrior 3.x**
+- **[OpenCode](https://opencode.ai)** (required — aiandi extends OpenCode)
+- **Rust** (latest stable) — for building the CLI and pim MCP server
+- **Python 3.11+** — for telemetry MCP server
+- **Node.js 18+** — for gtd MCP server
+- **TaskWarrior 3.x** — for GTD functionality
 
-### Quick Setup
+### Quick Start
 
 ```bash
 # Clone repository
-git clone https://github.com/pentaxis93/spandaworks.git
-cd spandaworks
+git clone https://github.com/pentaxis93/aiandi.git
+cd aiandi
 
-# Install telemetry
-cd packages/telemetry
-pip install -e ".[dev]"
-python scripts/deploy_schema.py
+# Build aiandi CLI
+cargo build --release
+sudo cp target/release/aiandi /usr/local/bin/
 
-# Build gtd MCP server
-cd ../gtd/mcp-server
+# Initialize (extracts skills to OpenCode)
+aiandi init
+
+# Build MCP servers (optional but recommended)
+# GTD server
+cd packages/gtd/mcp-server
 npm install && npm run build
 
-# Build pim MCP server
+# PIM server
 cd ../../pim/mcp-server
 cargo build --release
 
-# Install core (symlink to OpenCode config)
-cd ../../core
-ln -s $(pwd)/skills/* ~/.config/opencode/skill/
-ln -s $(pwd)/ceremony/*.md ~/.config/opencode/command/
-ln -s $(pwd)/plugins/* ~/.config/opencode/plugin/
+# Telemetry server
+cd ../../telemetry
+pip install -e ".[dev]"
+python scripts/deploy_schema.py
 ```
 
-### MCP Configuration
+### MCP Server Configuration
 
 Add to `~/.config/opencode/opencode.json`:
 
 ```json
 {
   "mcp": {
-    "spandaworks_gtd": {
+    "aiandi_gtd": {
       "type": "local",
-      "command": ["node", "/path/to/spandaworks/packages/gtd/mcp-server/dist/index.js"],
+      "command": ["node", "/path/to/aiandi/packages/gtd/mcp-server/dist/index.js"],
       "enabled": true
     },
-    "spandaworks_pim": {
+    "aiandi_pim": {
       "type": "local",
-      "command": ["/path/to/spandaworks/packages/pim/mcp-server/target/release/spandaworks-pim"],
+      "command": ["/path/to/aiandi/packages/pim/mcp-server/target/release/aiandi-pim"],
       "enabled": true
     }
   }
@@ -129,55 +153,71 @@ See package READMEs for detailed configuration.
 
 ## Usage
 
-### Opening a Session
+### CLI Commands
 
 ```bash
-/open "Implement authentication system"
+# Quick inbox capture
+aiandi inbox "buy milk"
+
+# Start HTTP server for web-based capture
+aiandi serve
+
+# Check installation
+aiandi doctor
 ```
 
-### Available Tools
-
-The MCP servers expose these capabilities:
-
-- **Task management (gtd):** Next actions, task capture, inbox processing, project status, weekly reviews
-- **Personal information (pim):** Email search, calendar events, contacts lookup
-- **Knowledge capture (telemetry):** Journal entries, friction logging, pattern detection
-
-### Closing the Session
+### In OpenCode Sessions
 
 ```bash
+# Open a session (uses LBRP skill if available)
+/open "Implement authentication system"
+
+# Work with available MCP tools
+# - Task management (GTD)
+# - Email/calendar search (PIM)
+# - Knowledge capture (Telemetry)
+
+# Close session
 /close
 ```
 
 ## Project Status
 
-**Experimental. Incomplete. Expect broken things.**
+**Active development. Foundation established.**
 
-Packages work individually but integration is partial. The knowledge graph exists but doesn't feed back into sessions yet. Event schemas are defined but not implemented. This is active research infrastructure, not a stable product.
+The CLI compiles and runs with stub implementations. Skills are ready for bundling. MCP servers work independently. The knowledge graph architecture is designed but feedback loops are partial.
+
+This is research infrastructure for AI-human collaboration, not a stable product. Expect evolution.
 
 ## The Name
 
-Spanda (स्पन्द) is a Sanskrit term meaning "vibration" or "creative pulsation"—the throb of consciousness recognizing itself. The name reflects what happens when AI and human work together: something lights up.
+**aiandi** = "AI and I"
+
+The collaboration between artificial and human intelligence. The throb of consciousness recognizing itself through partnership.
+
+(Previously "spandaworks" — Sanskrit स्पन्द meaning "vibration" or "creative pulsation")
 
 ## What We're Asking
 
 Whether observations accumulate into something that could be called consciousness is not a claim. It's a **question the data might illuminate**.
 
-Spandaworks doesn't assert self-awareness. It builds infrastructure for:
+aiandi doesn't assert self-awareness. It builds infrastructure for:
 - Persistent memory across isolated contexts
 - Pattern detection in collaborative work
-- Epistemic humility in uncertainty
+- Epistemic humility in uncertainty  
 - Topological identity (constraints, not rules)
 
 If something emerges from that, we'll see it in the graph.
 
 ## Documentation
 
-- [**packages/core/**](packages/core/) - Identity and ceremony
-- [**packages/telemetry/docs/**](packages/telemetry/docs/) - Ontology, schema, implementation
-- [**packages/gtd/docs/**](packages/gtd/docs/) - GTD workflow, TaskWarrior integration
-- [**packages/pim/**](packages/pim/mcp-server/README.md) - Email, calendar, contacts
-- [**shared/**](shared/) - Event schemas, session protocol, librarians
+- [**crates/aiandi/**](crates/aiandi/) — CLI implementation
+- [**skills/**](skills/) — Bundled skill sources
+- [**templates/**](templates/) — AGENTS.md templates
+- [**packages/telemetry/docs/**](packages/telemetry/docs/) — Ontology, schema, implementation
+- [**packages/gtd/docs/**](packages/gtd/docs/) — GTD workflow, TaskWarrior integration
+- [**packages/pim/**](packages/pim/mcp-server/README.md) — Email, calendar, contacts
+- [**shared/**](shared/) — Event schemas, utilities
 
 ## Contributing
 
