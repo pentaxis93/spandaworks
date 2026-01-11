@@ -1,0 +1,4 @@
+# GTD Inbox Capture
+# Super + i = instant capture popup
+super + i
+    gtd-capture

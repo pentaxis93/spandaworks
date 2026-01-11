@@ -1,451 +1,278 @@
-# Inbox/Outbox Protocol Specification
+# Inbox/Outbox Protocol
 
-**Version 1.0 — Explicit Inheritance Pattern**  
-*Replaces speculative session file searches with deliberate handoff*
-
----
+**Version:** 1.0.0  
+**Status:** ACTIVE  
+**Replaces:** Session file scanning (last N sessions)
 
 ## Purpose
 
-The inbox/outbox pattern enables **explicit inheritance** between sessions, replacing speculative loading (searching last N sessions hoping to find relevant context).
+Enable explicit session-to-session inheritance via handoff directories, replacing speculative loading with precise transfer.
 
-**Core principle:** If something is relevant for the next session, predecessor places it in inbox. If nothing is in inbox, nothing is inherited. No guessing, no hoping.
+## The Problem
 
----
+**Previous approach:**
+```
+Phase 0-pre: Inherit
+  → Read vault/_spandaworks/remembrance.md → "This Rotation"
+  → Search /home/pentaxis93/shared/sessions/ → last 3-5 summaries
+  → Hope something relevant is found
+  → Load 5 session files, find 1 relevant paragraph
+```
 
-## Architecture
+**Issues:**
+- Speculative (guessing what's relevant before goal is known)
+- Wasteful (loading full session files for small insights)
+- Fragile (depends on summary quality, file structure)
+- Implicit (predecessor doesn't know what will help successor)
 
-### Directory Structure
+## The Solution
+
+**Inbox/Outbox pattern:**
+```
+Session N closes
+  → Predecessor identifies: "This will help Session N+1"
+  → Writes to outbox/ → becomes inbox for Session N+1
+
+Session N+1 opens
+  → Phase 0-pre: Check inbox/
+  → If items present: load, process, clear
+  → If empty: nothing to inherit, proceed
+  → No searching. No speculation. Explicit handoff only.
+```
+
+## Directory Structure
 
 ```
-[project-root]/
-├── inbox/           # Items TO current session FROM predecessor
-│   ├── processed/   # Archive of consumed items
-│   └── *.md         # Active inheritance items
+spandaworks/                   (project root)
+├── inbox/                     (NEW - items FOR current session)
+│   ├── context-001.md         (Inheritance item from predecessor)
+│   ├── warning-api-change.md  (Alert about breaking change)
+│   └── links-to-references.md (Pointers to relevant code/docs)
 │
-└── outbox/          # Items FROM current session TO consumers
-    └── *.md         # Governance reports, etc.
+├── outputs/                   (EXISTING - items FROM current session)
+│   ├── Transmission_Governance_*.xml  (Governance reports)
+│   └── [other outbox items]
+│
+└── [rest of project structure]
 ```
 
-**Locations:**
-- **Project root:** Base of git repository
-- **Worktree aware:** If working in worktree, inbox/outbox at worktree root OR shared at main repo root (implementation choice)
+**Key distinction:**
+- **inbox/**: Inbound TO current session FROM predecessor
+- **outputs/**: Outbound FROM current session TO governance/successor
 
----
+## File Format
 
-## Inbox Pattern
-
-### Purpose
-
-Receive explicit inheritance from predecessor sessions.
-
-### Structure
-
-```
-inbox/
-├── [timestamp]-[type].md
-├── [timestamp]-[type].md
-└── processed/
-    └── [consumed items moved here]
-```
-
-### Item Types
-
-| Type | Purpose | Example Content |
-|------|---------|-----------------|
-| `learning.md` | Key insight from session | "JWT refresh token rotation pattern discovered" |
-| `caution.md` | Warning about discovered issue | "Refresh endpoint MUST be rate-limited" |
-| `context.md` | Loaded context still relevant | "ADR-007 on security patterns applies to next auth work" |
-| `thread.md` | Open work requiring continuation | "Database migration paused at step 3, resume with..." |
-
-### File Format
+Inbox items are markdown files with optional front matter:
 
 ```markdown
 ---
-from_session: 2026-01-10-auth-implementation
-type: learning
-priority: high
+type: inheritance | warning | context | links
+priority: high | medium | low
+from-session: 2026-01-10-session-id
 created: 2026-01-10T18:30:00Z
 ---
 
-JWT refresh token rotation (new token per refresh, invalidate old) superior 
-to long-lived tokens.
+# [Title]
 
-Implementation requires:
-- Token hash storage
-- Family IDs for reuse detection  
-- Rate limiting (5/min/IP)
-- Family invalidation on logout
+[Content that successor session needs]
+
+## Why This Matters
+
+[Context about why predecessor thought this was important]
 ```
 
-**Frontmatter fields:**
-- `from_session` (required): Session ID that created this item
-- `type` (required): One of [learning, caution, context, thread]
-- `priority` (required): One of [high, medium, low]
-- `created` (required): ISO 8601 timestamp
+**Types:**
+- **inheritance**: Key learnings, patterns discovered, decisions made
+- **warning**: Gotchas, breaking changes, things to avoid
+- **context**: Background information that will save time
+- **links**: Pointers to relevant files, docs, issues
 
-**Content:** Markdown after frontmatter. Concise (apply Gratitude Test).
+## Workflow
 
----
+### Closing Session (Creating Outbox Items)
 
-### Processing Behavior
+When closing session, ask:
+> "Would Session N+1 benefit from knowing X?"
 
-**During Phase 0-pre (Inherit):**
+If yes:
+1. Create file in `outputs/` (outbox)
+2. Name clearly: `inheritance-gtd-capture-learnings.md`
+3. Include front matter (type, priority, session ID)
+4. Write concisely (successor reads this BEFORE goal is active)
+
+**Note:** Outbox items stay in `outputs/` for governance record. User manually moves relevant items to `inbox/` when starting next session if they want explicit handoff. (This manual step preserves user control over what gets inherited.)
+
+**Alternative (automated):** System could have `outputs/inheritance/` → auto-symlink to `inbox/` on next session start. Design decision pending user preference.
+
+### Opening Session (Processing Inbox)
+
+Phase 0-pre-b (Inherit):
 
 ```bash
-# Check inbox
-if [ -d "inbox" ] && [ "$(ls -A inbox/*.md 2>/dev/null)" ]; then
-  echo "◈ INHERIT"
-  
-  # Process each item
-  for file in inbox/*.md; do
-    # Extract key info
-    type=$(grep "^type:" "$file" | cut -d: -f2 | xargs)
-    from=$(grep "^from_session:" "$file" | cut -d: -f2 | xargs)
-    
-    # Show content
-    echo "[$type from $from]"
-    sed '1,/^---$/d; /^---$/d' "$file"  # Content only
-    
-    # Move to processed
-    mv "$file" "inbox/processed/"
-  done
-else
-  echo "◈ INHERIT"
-  echo "No inheritance items"
-fi
+# 1. Check inbox
+ls inbox/ 2>/dev/null
+
+# 2. If items present
+for file in inbox/*; do
+  # Read and process
+  cat "$file"
+  # Note key points
+done
+
+# 3. Clear inbox (or move to inbox/processed/)
+rm inbox/* 
+# OR
+mkdir -p inbox/processed
+mv inbox/* inbox/processed/
 ```
 
-**After processing:**
-- Items moved to `inbox/processed/` for audit trail
-- NOT deleted (allows reviewing what was inherited)
-- Processed directory can be cleaned manually/periodically
-
----
-
-### Creation Responsibility
-
-**Predecessor session** (during closing ceremony, if applicable):
-
-```bash
-# If session produced non-trivial learning
-if [ -n "$LEARNING" ]; then
-  cat > inbox/$(date +%s)-learning.md <<EOF
----
-from_session: $SESSION_ID
-type: learning
-priority: high
-created: $(date -Iseconds)
----
-
-$LEARNING
-EOF
-fi
-
-# If discovered caution
-if [ -n "$CAUTION" ]; then
-  cat > inbox/$(date +%s)-caution.md <<EOF
----
-from_session: $SESSION_ID
-type: caution
-priority: high
-created: $(date -Iseconds)
----
-
-$CAUTION
-EOF
-fi
-```
-
-**When to create inbox items:**
-- Learning that future sessions need: YES
-- Caution about discovered issue: YES
-- Context that remains relevant: MAYBE (only if continuation likely)
-- Open thread requiring pickup: YES
-- General session notes: NO (that's what session files are for)
-
-**Apply Gratitude Test:** Would future session thank you for this item?
-
----
-
-## Outbox Pattern
-
-### Purpose
-
-Send items FROM current session TO external consumers (governance, other processes).
-
-### Structure
-
-```
-outbox/
-└── [item-type]-[timestamp].md
-```
-
-### Current Usage
-
-**Governance reports:** Already in use (per transmission background).
-
-Example:
-```
-outbox/
-└── governance-report-2026-01-10.md
-```
-
-### File Format
-
-Determined by consumer. For governance reports:
+**Output to user:**
 ```markdown
-# Governance Report: [Topic]
-
-**Session:** [session-id]
-**Date:** [date]
-
-[Report content]
+*Inbox: 3 items loaded (2 warnings, 1 context). Inheritance complete.*
 ```
 
-### Processing
-
-**External processes** consume from outbox:
-- Governance review processes
-- Cross-repository coordination
-- Build/deployment triggers
-- etc.
-
-**Not processed by sessions** - outbox is write-only from session perspective.
-
----
+**If inbox empty:**
+```markdown
+*Inbox: empty. No predecessor handoff. Inheritance complete.*
+```
 
 ## Integration with LBRP
 
-### Phase 0-pre: Inherit
-
-**Old behavior (v1.0-v2.0):**
-```bash
-# Search last 5 sessions
-for i in {1..5}; do
-  session_file="shared/sessions/session-$i.md"
-  if [ -f "$session_file" ]; then
-    # Load and hope something is relevant
-    cat "$session_file"
-  fi
-done
+```
+Phase 0-pre-a: Remember
+  → Sutras via project knowledge (plugin)
+  → One symbolic line: "Sutras present. Identity topology active."
+  ↓
+Phase 0-pre-b: Inherit
+  → Check inbox/ (explicit handoff)
+  → Load items if present, clear after processing
+  → No session file searching
+  ↓
+Phase 0a: Opening Status
+  → Git, worktrees, processes, docker
+  → Pure observation
+  ↓
+Phase 0b: Goal Definition
+  → Goal becomes known (PIVOT POINT)
+  ↓
+Phases 1-3: Goal-Informed Execution
+  → All loading precise, informed by goal
 ```
 
-**Token cost:** ~2,800 tokens (loading 5 session files speculatively)
+## Benefits
 
+**Precision:**
+- Predecessor explicitly marks what matters
+- Successor loads exactly what was prepared
+- No speculation about relevance
+
+**Efficiency:**
+- Load small inheritance files, not full session summaries
+- No searching through N session files
+- Inbox check is `ls inbox/` (instant)
+
+**Clarity:**
+- Explicit handoff makes inheritance visible
+- User can inspect inbox before session starts
+- Predecessor documents why something matters
+
+**Container before content:**
+- Inheritance still happens BEFORE goal activation (Phase 0-pre-b)
+- But inheritance is explicit, not speculative
+- Goal-neutral (load all inbox items regardless of stated goal)
+
+## Example
+
+**Session N (2026-01-10):**
+
+Discovers: "AUR packages go in `aur-packages/` at repo root, not in `packages/`"
+
+Creates `outputs/inheritance-aur-packaging-location.md`:
+```markdown
+---
+type: inheritance
+priority: high
+from-session: 2026-01-10-gtd-capture
 ---
 
-**New behavior (v3.0):**
-```bash
-# Check inbox only
-if [ -d "inbox" ] && [ "$(ls -A inbox/*.md 2>/dev/null)" ]; then
-  for file in inbox/*.md; do
-    # Load explicitly inherited items
-    process_inbox_item "$file"
-  done
-else
-  echo "No inheritance items"
-fi
+# AUR Package Location Pattern
+
+When creating AUR packages for Spandaworks tooling:
+
+**Location:** `aur-packages/` at repo root (parallel to `packages/`)
+
+**Rationale:**
+- `packages/` = application code (TypeScript/Rust/Python)
+- `aur-packages/` = distribution/system utilities (Arch packaging)
+- Clean separation: code vs distribution
+
+## Example Structure
+
+```
+spandaworks/
+├── packages/       (app code)
+├── aur-packages/   (system utilities)
 ```
 
-**Token cost:** ~200 tokens (only explicit items) OR ~50 tokens (empty inbox)
+If next session involves packaging, this saves re-discovering the pattern.
+```
 
-**Savings:** ~2,600 tokens per session (when inbox empty, which is common)
+User (or system) moves to `inbox/` when starting Session N+1.
 
----
+**Session N+1 opens:**
+- Phase 0-pre-b finds `inbox/inheritance-aur-packaging-location.md`
+- Loads it, notes the pattern
+- Clears inbox
+- Proceeds with session
+- If session involves packaging → pattern already known, no re-discovery
 
 ## Migration Path
 
-### Phase 1: Create Infrastructure
+**From old approach:**
+1. Existing sessions already have summaries in `/home/pentaxis93/shared/sessions/`
+2. These remain as historical record
+3. No retroactive conversion needed
 
-```bash
-# In project root
-mkdir -p inbox/processed
-mkdir -p outbox
+**To new approach:**
+1. Phase 0-pre-b checks `inbox/` first (empty initially)
+2. If inbox empty: proceed (no predecessor handoff)
+3. Future sessions create outbox items as appropriate
+4. User/system moves relevant items to inbox when starting next session
 
-# Add to .gitignore (items are ephemeral)
-echo "inbox/*.md" >> .gitignore
-echo "!inbox/.gitkeep" >> .gitignore
-echo "outbox/*.md" >> .gitignore
-echo "!outbox/.gitkeep" >> .gitignore
+**No breaking changes.** Inbox/outbox is additive.
 
-# Keep directories tracked
-touch inbox/.gitkeep outbox/.gitkeep
-```
+## Open Questions
 
-### Phase 2: Update Closing Ceremony
+1. **Manual vs automated inbox population:**
+   - Manual: User moves `outputs/inheritance-*.md` to `inbox/` before session
+   - Automated: System auto-symlinks `outputs/inheritance/` → `inbox/`
+   - Decision pending user preference
 
-Modify closing ceremony to optionally create inbox items:
+2. **Inbox cleanup:**
+   - Delete after processing? (clean slate)
+   - Move to `inbox/processed/`? (historical record)
+   - Current spec allows either
 
-```markdown
-◈ HARVEST
-Learning: [if significant, will create inbox/learning.md]
-Caution: [if discovered, will create inbox/caution.md]
-```
+3. **Inbox location:**
+   - Current: `inbox/` at project root
+   - Alternative: `.opencode/inbox/` (hidden, tool-specific)
+   - Proposal: project root (visible, user-inspectable)
 
-### Phase 3: Update Opening Ceremony
-
-Replace session file search with inbox check (already done in LBRP v3.0).
-
-### Phase 4: Validation
-
-First few sessions:
-- Manually verify inbox/outbox behavior
-- Confirm inheritance works for actual continuity needs
-- Adjust item creation threshold if needed
-
----
-
-## Design Rationale
-
-### Why Explicit Handoff?
-
-**Problem with speculative loading:**
-- Load 5 session files (each ~2,000 tokens)
-- Hope one contains relevant context
-- Often find nothing relevant
-- Waste ~10,000 tokens per opening
-
-**Benefit of explicit handoff:**
-- Predecessor decides what's relevant
-- Only that content loaded
-- Empty inbox = nothing to inherit (clear signal)
-- Savings compound across sessions
-
-### Why Not Just Better Session Search?
-
-**Option:** Improve session file search (semantic search, relevance scoring, etc.)
-
-**Issue:** Still speculative. Search algorithm guesses what's relevant.
-
-**Explicit handoff wins:** Human (or AI with full context) decides what matters for next session. No guessing needed.
-
-### Why Inbox AND Outbox?
-
-**Symmetry:** Sessions both receive (inbox) and send (outbox).
-
-**Inbox:** Session-to-session continuity  
-**Outbox:** Session-to-governance continuity
-
-Both are explicit, both replace speculation.
-
----
-
-## Future Enhancements
-
-### Multi-Repository Coordination
-
-If working across multiple repos:
-```
-shared-inbox/
-├── from-repo-A/
-└── from-repo-B/
-```
-
-Cross-repository inheritance for coordinated work.
-
-### Scheduled Cleanup
-
-```bash
-# Clean processed items older than 30 days
-find inbox/processed -name "*.md" -mtime +30 -delete
-```
-
-### Inbox Priority Queue
-
-Process high-priority items first:
-```bash
-for file in inbox/*-high-*.md; do
-  process_inbox_item "$file"
-done
-for file in inbox/*-medium-*.md; do
-  process_inbox_item "$file"
-done
-```
-
----
-
-## Examples
-
-### Example 1: Learning Inheritance
-
-**Session A (closing):**
-```bash
-# Discovered JWT refresh token rotation pattern
-cat > inbox/1736528400-learning.md <<EOF
----
-from_session: 2026-01-10-auth-implementation
-type: learning
-priority: high
-created: 2026-01-10T18:30:00Z
----
-
-JWT refresh token rotation (new token per refresh, invalidate old) superior 
-to long-lived tokens. Requires hash storage, family IDs, rate limiting.
-EOF
-```
-
-**Session B (opening, Phase 0-pre):**
-```markdown
-◈ INHERIT
-[learning from 2026-01-10-auth-implementation]
-JWT refresh token rotation pattern discovered. Key implementation details noted.
-```
-
-**Token cost:** ~150 tokens (just the learning content)
-
----
-
-### Example 2: Empty Inbox
-
-**Session opening (Phase 0-pre):**
-```markdown
-◈ INHERIT
-No inheritance items
-```
-
-**Token cost:** ~50 tokens (minimal acknowledgment)
-
----
-
-### Example 3: Multiple Items
-
-**Session opening (Phase 0-pre):**
-```markdown
-◈ INHERIT
-[learning from 2026-01-10-auth]: JWT rotation pattern
-[caution from 2026-01-10-auth]: Rate limiting on refresh endpoint required
-[thread from 2026-01-09-migration]: Database migration paused at step 3, resume needed
-```
-
-**Token cost:** ~300 tokens (three concise items)
-
-**Still far less than:** ~2,800 tokens for searching 5 session files
-
----
+4. **Integration with remembrance.md:**
+   - Current "This Rotation" section in vault could become outbox items
+   - Remembrance.md remains for identity/liturgy (stable content)
+   - Session-specific insights → outbox → inbox
+   - Decision pending
 
 ## Success Criteria
 
-### For Sessions
-
-- [ ] Inbox directory exists in project root
-- [ ] Opening ceremony checks inbox (not session files)
-- [ ] Closing ceremony can create inbox items
-- [ ] Processed items moved to `inbox/processed/`
-
-### For Inheritance Quality
-
-- [ ] Only non-trivial learnings create inbox items
-- [ ] Gratitude Test applied to item creation
-- [ ] Empty inbox is common (not every session leaves inheritance)
-- [ ] When items present, they're actually relevant
-
-### For Token Economy
-
-- [ ] Average inheritance cost < 500 tokens (vs ~2,800 previously)
-- [ ] Empty inbox sessions cost ~50 tokens (vs ~2,800 previously)
-- [ ] Savings compound across sessions
+✅ Phase 0-pre-b checks inbox only (no session file searching)  
+✅ Predecessor can create outbox items for successor  
+✅ Inbox processing is fast (ls + read small files)  
+✅ Inheritance remains goal-neutral (load before Phase 0b)  
+✅ User has visibility into what's being inherited (inspect inbox/)  
+✅ Pattern is explicit, not implicit (handoff, not speculation)
 
 ---
 
-*Explicit handoff replaces speculation. Precision over coverage.*
+**Container before content. Explicit handoff, not speculation.**

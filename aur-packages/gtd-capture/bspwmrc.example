@@ -1,0 +1,2 @@
+# Make wofi windows float and center
+bspc rule -a wofi state=floating center=true
