@@ -31,3 +31,9 @@ kuzu_data/
 # Environment
 .env
 .env.local
+
+# Inbox/Outbox - track structure, not ephemeral content
+inbox/*.md
+outbox/*.md
+!inbox/.gitkeep
+!outbox/.gitkeep
