@@ -34,6 +34,16 @@ kuzu_data/
 
 # Inbox/Outbox - track structure, not ephemeral content
 inbox/*.md
+inbox/*.xml
 outbox/*.md
+outbox/*.xml
 !inbox/.gitkeep
 !outbox/.gitkeep
+
+# Archived transmissions (keep structure, not contents)
+inbox/processed/*.xml
+inbox/processed/*.md
+outbox/processed/*.xml
+outbox/processed/*.md
+!inbox/processed/.gitkeep
+!outbox/processed/.gitkeep

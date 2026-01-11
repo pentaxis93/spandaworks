@@ -113,7 +113,7 @@ Governance → Agent directives.
   
   <response-spec>
     <format>Reply with transmission type="report"</format>
-    <delivery>Save to outputs/</delivery>
+    <delivery>Save to outbox/</delivery>
   </response-spec>
 </transmission>
 ```
@@ -243,7 +243,7 @@ This creates traceable conversation chains across sessions.
 
 ## File Naming
 
-Save transmissions to `outputs/` directory:
+Save transmissions to `outbox/` directory:
 
 ```
 Transmission_[Thread-ID]_[Type]_[Brief-Description].xml
@@ -274,12 +274,16 @@ Transmissions integrate with:
 
 1. **Opening (LBRP)** — Governance places instruction transmissions in inbox/
 2. **Work** — Agent executes, potentially emitting intermediate transmissions
-3. **Closing** — Agent writes report transmission to outputs/
+3. **Closing** — Agent writes report transmission to outbox/
 4. **Inheritance** — Next session reads report from inbox/ (if placed there)
+
+After processing:
+- Incoming transmissions move from inbox/ to inbox/processed/
+- Outgoing transmissions move from outbox/ to outbox/processed/
 
 ## Examples
 
-See `outputs/` directory for real transmission examples:
+See `outbox/processed/` directory for archived transmission examples:
 - Security audit reports
 - Implementation reports
 - Architecture proposals
