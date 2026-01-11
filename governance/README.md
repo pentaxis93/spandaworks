@@ -120,6 +120,18 @@ await client.session.prompt({
 
 **Key insight:** The transmission file is the **payload**. The SDK call is the **delivery mechanism**. Execution agents don't poll an inbox—they're invoked programmatically.
 
+### Human Observability
+
+**How humans monitor SDK-invoked execution agents:**
+
+1. **Session List** — Run `/sessions` (or `ctrl+x l`) to see all active sessions
+2. **Switch to Session** — Select the execution agent's session from the list
+3. **View in Real-Time** — Watch the agent's progress as it executes
+4. **Share Session** — Run `/share` to get a public URL for browser viewing
+5. **Export Session** — Run `/export` to get Markdown transcript
+
+All SDK-created sessions appear in the OpenCode session list. The human can switch between Governance and execution sessions at any time to observe progress.
+
 ---
 
 ## How Sessions Work
