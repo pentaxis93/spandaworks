@@ -162,11 +162,35 @@
     </verification-against-success-criteria>
     
     <issues-encountered>
-      <issue>None</issue>
+      <issue id="i1" severity="medium" status="corrected">
+        <description>Initial implementation included inbox/ directory based on incorrect assumption</description>
+        <discovery>
+          User question: "why does governance have its own inbox and outbox?"
+          Prompted investigation of OpenCode documentation to understand actual agent invocation model.
+        </discovery>
+        <root-cause>
+          Transmission specification mentioned "inbox/outbox protocol" but this was based on
+          vault-era architecture where file system polling was the only option. OpenCode provides
+          programmatic SDK for agent invocation—no inbox polling needed.
+        </root-cause>
+        <correction commit="38265f1">
+          - Removed governance/sessions/inbox/ directory
+          - Updated all three canon documents with SDK invocation model
+          - Added SDK code examples showing correct pattern
+          - Clarified: transmission file = payload, SDK call = delivery mechanism
+        </correction>
+        <documentation>
+          - https://opencode.ai/docs/sdk/
+          - https://opencode.ai/docs/server/
+          - session.prompt({ noReply: true }) for context injection
+          - session.prompt() for execution trigger
+        </documentation>
+      </issue>
+      
       <summary>
-        Translation work proceeded smoothly. All source documents were already
-        adapted for the repository environment, requiring no additional path updates.
-        Structure was clearly specified. No ambiguities encountered.
+        Translation work proceeded smoothly initially. User question revealed architectural
+        misunderstanding about agent invocation. Researched OpenCode docs, corrected to
+        SDK-based model. Final implementation now accurate to OpenCode capabilities.
       </summary>
     </issues-encountered>
   </content>
@@ -188,13 +212,15 @@
     The governance infrastructure is now live. A fresh Governance instance
     opening a session in this environment can:
     - Read canon from governance/canon/
-    - Check inbox for pending transmissions
+    - Review recent sessions from governance/sessions/archive/
     - Document sessions in governance/sessions/archive/
     - Write transmissions to governance/sessions/outbox/
+    - Invoke execution agents via OpenCode SDK
     - Propose evolution changes to governance/evolution/proposals/
     
-    The deliberation layer now has repository access. The friction of manual
-    transmission handoff is resolved.
+    The deliberation layer now has repository access AND programmatic agent
+    invocation. Governance can see (git/files), deliberate (sessions), decide
+    (canon evolution), and act (SDK invocation).
     
     May this work benefit all beings everywhere, without exception.
   </closing>
