@@ -8,15 +8,23 @@ Orphaned code, documentation, and infrastructure is deleted immediately.
 No "we might need this later." If it's not actively used, it's removed.
 This prevents accumulation of confusion and maintenance burden.
 
-### Inbox/Outbox Protocol
+### Agent Invocation via OpenCode SDK
 
-Agent-to-agent communication uses inbox/outbox directories:
-- `inbox/` — Incoming transmissions
-- `inbox/processed/` — Handled transmissions (archived after processing)
-- `outbox/` — Outgoing transmissions (responses, reports)
-- `outbox/processed/` — Sent transmissions (archived after sending)
+With OpenCode as our agent harness, agents are invoked **programmatically via the SDK**, not via filesystem polling.
 
-There is no separate "outputs" directory.
+**How it works:**
+1. **Governance writes transmission** → `governance/sessions/outbox/Transmission_X.xml`
+2. **Governance invokes execution agent** → OpenCode SDK creates session, injects transmission as context
+3. **Execution agent processes** → Works in fresh OpenCode session with full transmission context
+4. **Human observes execution** → `/sessions` command lists all sessions; can switch to view progress
+
+**Human observability:**
+- All SDK-created sessions appear in session list (`/sessions` or `ctrl+x l`)
+- Human can switch to any session to observe progress in real-time
+- Sessions can be shared (`/share`) for browser viewing
+- Sessions can be exported (`/export`) to Markdown
+
+**No inbox directories needed.** The OpenCode SDK handles agent invocation and context injection programmatically.
 
 ### Naming: aiandi
 
@@ -58,10 +66,12 @@ cd packages/pim/mcp-server && cargo build --release
 
 ## Transmissions
 
-When responding to governance transmissions:
-1. Read the instruction from inbox/ (or as provided)
-2. Execute tasks as specified
-3. Write report transmission to outbox/
-4. Format per the `transmission` skill
+When Governance invokes an execution agent via SDK:
+1. Transmission is injected as context via SDK
+2. Execute tasks as specified in transmission
+3. Write report transmission to `governance/sessions/outbox/` (if needed)
+4. Commit work to git
 
 See `skills/transmission/SKILL.md` for the full protocol.
+
+**Note:** Execution agents are invoked programmatically, not by polling directories.
