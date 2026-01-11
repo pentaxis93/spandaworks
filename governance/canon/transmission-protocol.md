@@ -40,56 +40,75 @@ For multi-transmission dialogues, explicit threading prevents lost context and e
 
 ---
 
-## Delivery Mechanism: OpenCode SDK
+## Delivery Mechanism: Task Tool
 
-Within aiandi, agent communication uses **transmission artifacts + OpenCode SDK invocation**.
+Within aiandi, governance invokes execution agents via the **Task tool** (`mcp_task`).
 
-**Key insight:** The transmission file is the **payload**. The SDK call is the **delivery mechanism**.
+**Key insight:** The transmission is the **payload**. The Task tool is the **delivery mechanism**.
 
 ### The Protocol
 
 1. **Governance writes transmission** — Structured XML artifact to `governance/sessions/outbox/`
-2. **Governance commits transmission** — `git add` + `git commit`
-3. **Governance invokes execution agent via SDK:**
+2. **Governance commits transmission** — `git add` + `git commit`  
+3. **Governance invokes execution agent via Task tool:**
 
-```javascript
-import { createOpencodeClient } from "@opencode-ai/sdk"
-import fs from "fs"
-
-const client = createOpencodeClient({ baseUrl: "http://localhost:4096" })
-
-// Create execution session
-const session = await client.session.create({
-  body: { title: "Governance: Transmission Execution" }
-})
-
-// Inject transmission as context (no AI response yet)
-await client.session.prompt({
-  path: { id: session.id },
-  body: {
-    noReply: true,  // Adds to context without triggering AI
-    parts: [{
-      type: "text",
-      text: fs.readFileSync('governance/sessions/outbox/Transmission_X.xml', 'utf-8')
-    }]
-  }
-})
-
-// Trigger execution
-await client.session.prompt({
-  path: { id: session.id },
-  body: {
-    model: { providerID: "anthropic", modelID: "claude-3-5-sonnet-20241022" },
-    parts: [{ type: "text", text: "Execute the transmission above." }]
-  }
-})
+```
+mcp_task(
+  description: "Execute governance transmission",
+  prompt: `
+    You are an execution agent receiving a governance transmission.
+    
+    <transmission>
+    ${transmission_content}
+    </transmission>
+    
+    Execute the tasks specified in the transmission.
+    Report results back to governance.
+  `,
+  subagent_type: "general"
+)
 ```
 
+### Why Task Tool (Not SDK)
+
+The Task tool is preferred over direct SDK invocation because:
+
+1. **Correct working directory** - Subagent inherits project root, sees correct AGENTS.md
+2. **Uses your subscription** - Runs within same OpenCode instance, uses anthropic credentials
+3. **No credential issues** - SDK-created sessions can't use anthropic provider (credential restriction)
+4. **Simpler** - No external scripts, raw fetch, or query parameter gymnastics
+
+### Alternative: SDK with Directory Parameter
+
+For external automation or cross-project invocation, the SDK can be used with `?directory=` query parameter:
+
+```javascript
+const baseUrl = "http://localhost:4096"
+const projectDir = "/path/to/aiandi"
+
+function apiUrl(path) {
+  const url = new URL(path, baseUrl)
+  url.searchParams.set("directory", projectDir)
+  return url.toString()
+}
+
+// Create session in project context
+const session = await fetch(apiUrl("/session"), {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ title: "Execution Agent" })
+}).then(r => r.json())
+
+// ... inject transmission and trigger execution
+```
+
+**Note:** SDK sessions require `opencode` provider (Zen), not `anthropic`.
+
 **What this means:**
-- Execution agents **do not poll an inbox**
-- They are **invoked programmatically** in fresh OpenCode sessions
-- The transmission provides complete context
-- The SDK call delivers and triggers execution
+- Execution agents are **invoked via Task tool** from governance sessions
+- They inherit project context automatically
+- The transmission provides complete instructions
+- Results return to the governance session
 
 ---
 

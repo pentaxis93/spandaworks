@@ -1,49 +1,95 @@
 # aiandi Agent Guidelines
 
+This is **aiandi** (AI and I) - infrastructure for human-AI collaboration.
+
 ## Policies
 
 ### Zero Tech Debt
 
 Orphaned code, documentation, and infrastructure is deleted immediately.
 No "we might need this later." If it's not actively used, it's removed.
-This prevents accumulation of confusion and maintenance burden.
 
-### Agent Invocation via OpenCode SDK
+### Naming
 
-With OpenCode as our agent harness, agents are invoked **programmatically via the SDK**, not via filesystem polling.
-
-**How it works:**
-1. **Governance writes transmission** → `governance/sessions/outbox/Transmission_X.xml`
-2. **Governance invokes execution agent** → OpenCode SDK creates session, injects transmission as context
-3. **Execution agent processes** → Works in fresh OpenCode session with full transmission context
-4. **Human observes execution** → `/sessions` command lists all sessions; can switch to view progress
-
-**Human observability:**
-- All SDK-created sessions appear in session list (`/sessions` or `ctrl+x l`)
-- Human can switch to any session to observe progress in real-time
-- Sessions can be shared (`/share`) for browser viewing
-- Sessions can be exported (`/export`) to Markdown
-
-**No inbox directories needed.** The OpenCode SDK handles agent invocation and context injection programmatically.
-
-### Naming: aiandi
-
-This project is "aiandi" (AI and I). The name "spandaworks" is deprecated.
-All new code, documentation, and references should use "aiandi".
+This project is "aiandi". The name "spandaworks" is deprecated.
 
 ### Test-Driven Development (TDD)
-
-All development follows TDD discipline:
 
 1. **RED** — Write a failing test that defines expected behavior
 2. **GREEN** — Write minimal code to make the test pass
 3. **REFACTOR** — Improve code quality while keeping tests green
 
-No production code without a failing test first. Tests are not afterthoughts;
-they are the specification. The test suite is the executable documentation
-of what the system does.
+Run tests: `cargo test`
 
-Run tests frequently: `cargo test`
+### Git Workflow
+
+- All changes via pull requests. Never commit directly to `main`.
+- Branch prefixes: `feature/`, `fix/`, `docs/`, `refactor/`, `chore/`
+- After PR merge: switch to `main`, delete local feature branch.
+
+---
+
+## Session Types
+
+### Standard Sessions
+
+Use `/open` to begin with the LBRP ceremony. Use `/close` to seal.
+
+Standard sessions handle:
+- Feature development
+- Bug fixes
+- Documentation
+- General coding work
+
+### Governance Sessions
+
+Use `/governance` to transform any session into Governance mode.
+
+Governance is the **deliberation layer** - meta to execution:
+- Architectural decisions
+- System evolution
+- Agent coordination via transmissions
+- Canon maintenance
+
+Governance resources live in `governance/`:
+- `sessions/archive/` - Session documentation
+- `sessions/outbox/` - Transmission artifacts
+- `evolution/` - Proposals and decisions
+- `transmission-protocol.md` - Agent communication format
+
+---
+
+## Agent Coordination
+
+### Execution Agents
+
+Governance coordinates work by spawning execution agents via `mcp_task`:
+
+```
+mcp_task(
+  description: "Brief description",
+  prompt: "Full context and instructions",
+  subagent_type: "general"
+)
+```
+
+Execution agents:
+- Inherit project root as working directory
+- See this AGENTS.md (project guidelines)
+- Use your anthropic subscription
+- Have full tool access
+
+### Transmissions
+
+Formal agent-to-agent communication uses the transmission protocol.
+See `governance/transmission-protocol.md` for the XML schema.
+
+Transmissions are:
+- Self-contained (no external context needed)
+- WHAT specified, HOW belongs to recipient
+- Written to `governance/sessions/outbox/`
+
+---
 
 ## Build & Test
 
@@ -58,20 +104,6 @@ cd packages/gtd/mcp-server && npm run build
 cd packages/pim/mcp-server && cargo build --release
 ```
 
-## Git Workflow
+---
 
-- All changes via pull requests. Never commit directly to `main`.
-- Branch prefixes: `feature/`, `fix/`, `docs/`, `refactor/`, `chore/`
-- After PR merge: switch to `main`, delete local feature branch.
-
-## Transmissions
-
-When Governance invokes an execution agent via SDK:
-1. Transmission is injected as context via SDK
-2. Execute tasks as specified in transmission
-3. Write report transmission to `governance/sessions/outbox/` (if needed)
-4. Commit work to git
-
-See `skills/transmission/SKILL.md` for the full protocol.
-
-**Note:** Execution agents are invoked programmatically, not by polling directories.
+*The work serves all beings everywhere, without exception.*
