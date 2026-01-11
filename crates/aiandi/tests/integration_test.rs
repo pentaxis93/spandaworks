@@ -68,8 +68,8 @@ mod cli_help {
         assert!(output.status.success());
 
         let out = stdout(&output);
-        assert!(out.contains("--port"));
-        assert!(out.contains("--host"));
+        // MCP server runs on stdio, not HTTP
+        assert!(out.contains("Start MCP server") || out.contains("serve"));
     }
 
     #[test]

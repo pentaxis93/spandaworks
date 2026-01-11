@@ -91,16 +91,47 @@ aiandi targets OpenCode as the agent runtime. OpenCode provides the conversation
 
 ## Installation
 
-### Prerequisites
+### Quick Install (Recommended)
 
+**Linux/macOS:**
+```bash
+curl -fsSL https://raw.githubusercontent.com/pentaxis93/aiandi/main/packaging/install.sh | bash
+```
+
+After installation:
+```bash
+aiandi init    # Extract skills to OpenCode
+aiandi --help  # See available commands
+```
+
+### Arch Linux (AUR)
+
+```bash
+yay -S aiandi
+# or
+paru -S aiandi
+```
+
+### From Source
+
+Requires [Rust](https://rustup.rs/):
+
+```bash
+cargo install --git https://github.com/pentaxis93/aiandi --package aiandi
+```
+
+### Full Development Setup
+
+For contributors or those wanting all MCP servers:
+
+**Prerequisites:**
 - **[OpenCode](https://opencode.ai)** (required — aiandi extends OpenCode)
-- **Rust** (latest stable) — for building the CLI and pim MCP server
+- **Rust** (latest stable) — for CLI and pim MCP server
 - **Python 3.11+** — for telemetry MCP server
 - **Node.js 18+** — for gtd MCP server
 - **TaskWarrior 3.x** — for GTD functionality
 
-### Quick Start
-
+**Setup:**
 ```bash
 # Clone repository
 git clone https://github.com/pentaxis93/aiandi.git

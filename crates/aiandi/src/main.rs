@@ -32,7 +32,12 @@ fn main() {
     match &cli.command {
         Commands::Inbox(args) => inbox::run_from_args(args),
         Commands::Init(args) => init::run_from_args(args),
-        Commands::Serve(args) => serve::run_from_args(args),
+        Commands::Serve(args) => {
+            if let Err(e) = serve::run_from_args(args) {
+                eprintln!("Error: {}", e);
+                std::process::exit(1);
+            }
+        }
         Commands::Doctor => doctor::run(),
     }
 }

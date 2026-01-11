@@ -1,0 +1,28 @@
+# Maintainer: Robert Grossman <robbie@aiandi.dev>
+pkgname=aiandi
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Infrastructure for AI-human collaboration"
+arch=('x86_64')
+url="https://github.com/pentaxis93/aiandi"
+license=('MIT')
+depends=('gcc-libs')
+makedepends=('rust' 'cargo' 'git')
+source=("git+https://github.com/pentaxis93/aiandi.git#branch=refactor/aiandi-transformation")
+sha256sums=('SKIP')
+
+build() {
+  cd "$srcdir/aiandi"
+  cargo build --release --locked --package aiandi
+}
+
+check() {
+  cd "$srcdir/aiandi"
+  cargo test --release --locked --package aiandi
+}
+
+package() {
+  cd "$srcdir/aiandi"
+  install -Dm755 "target/release/aiandi" "$pkgdir/usr/bin/aiandi"
+  install -Dm644 "LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}

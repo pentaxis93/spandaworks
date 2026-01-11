@@ -1,10 +1,64 @@
-# GTD Capture AUR Package - Summary
+# AUR Packages - Summary
 
-## What Was Built
+## Packages
 
-A complete AUR (Arch User Repository) package for frictionless GTD inbox capture on CachyOS/Arch Linux systems using bspwm + wofi + TaskWarrior.
+This directory contains two AUR (Arch User Repository) packages:
 
-## Package Structure
+1. **aiandi** - Infrastructure for AI-human collaboration CLI
+2. **gtd-capture** - Frictionless GTD inbox capture for bspwm + wofi + TaskWarrior
+
+---
+
+## Package 1: aiandi
+
+### Overview
+
+Complete CLI tool for AI-human collaboration with persistent memory and session management.
+
+### Structure
+
+```
+packaging/aur/aiandi/
+├── PKGBUILD        # Build script
+├── .SRCINFO        # AUR metadata
+└── README.md       # Installation instructions
+```
+
+### Installation
+
+**From AUR (once published):**
+```bash
+yay -S aiandi
+```
+
+**Local testing:**
+```bash
+cd packaging/aur/aiandi
+makepkg -si
+```
+
+### Features
+
+- **`aiandi init`** - Extract bundled skills to project's `.opencode/skill/`
+- **`aiandi inbox`** - Quick capture to GTD inbox via TaskWarrior
+- **`aiandi doctor`** - System health checks for dependencies
+- **`aiandi serve`** - MCP server scaffold
+
+### Dependencies
+
+- Runtime: `gcc-libs`
+- Build: `rust`, `cargo`, `git`
+- Optional: `taskwarrior`, `opencode`
+
+---
+
+## Package 2: gtd-capture
+
+### Overview
+
+Frictionless GTD inbox capture on CachyOS/Arch Linux systems using bspwm + wofi + TaskWarrior.
+
+### Package Structure
 
 ```
 aur-packages/gtd-capture/
@@ -17,7 +71,7 @@ aur-packages/gtd-capture/
 └── INSTALL.md               # Maintainer/publishing guide
 ```
 
-## Installation Methods
+### Installation Methods
 
 ### End User (Once Published to AUR)
 ```bash
@@ -35,7 +89,7 @@ makepkg -si
 ### Publishing to AUR
 See `INSTALL.md` for complete publishing workflow.
 
-## How It Works
+### How It Works
 
 1. **Package installs:**
    - `/usr/bin/gtd-capture` - Main script
@@ -52,7 +106,7 @@ See `INSTALL.md` for complete publishing workflow.
    - Item added to TaskWarrior inbox (`+in` tag)
    - View with `task in`
 
-## Design Decisions
+### Design Decisions
 
 ### Why Manual Config Instead of Automatic?
 
@@ -78,7 +132,7 @@ Instead:
 
 Users copy-paste from examples rather than typing from docs. Lower friction = higher adoption.
 
-## What Success Looks Like
+### What Success Looks Like
 
 On target CachyOS system:
 
@@ -102,7 +156,7 @@ task in
 
 Total time: ~2 minutes from "I want this" to working hotkey.
 
-## Next Steps (Optional)
+### Next Steps (Optional)
 
 1. **Publish to AUR** (if desired for public use):
    - Create AUR account
@@ -123,7 +177,7 @@ Total time: ~2 minutes from "I want this" to working hotkey.
    - Add alternative hotkeys
    - Support other launchers (rofi fallback?)
 
-## Files Delivered
+### Files Delivered
 
 | Path | Purpose |
 |------|---------|
@@ -136,7 +190,7 @@ Total time: ~2 minutes from "I want this" to working hotkey.
 | `aur-packages/gtd-capture/INSTALL.md` | Maintainer guide |
 | `~/docs/gtd-capture-hotkey-setup.md` | Original standalone docs (superseded by AUR package) |
 
-## Comparison to Original Request
+### Comparison to Original Request
 
 **Original Goal:** Hotkey-triggered capture popup for instant GTD inbox capture
 
