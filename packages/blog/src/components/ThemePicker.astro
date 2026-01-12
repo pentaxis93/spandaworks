@@ -1,0 +1,321 @@
+---
+/**
+ * Theme Picker Component
+ * 
+ * A showcase piece demonstrating craft over convenience.
+ * The interaction should feel like opening a well-made box.
+ */
+
+const themes = [
+	{
+		id: 'workbench',
+		name: 'Workbench',
+		description: 'Task light focus, clarity without distraction',
+	},
+];
+---
+
+<div class="theme-picker">
+	<button
+		id="theme-picker-button"
+		aria-label="Choose theme"
+		aria-expanded="false"
+		aria-haspopup="true"
+		class="theme-picker-button"
+	>
+		<svg 
+			width="20" 
+			height="20" 
+			viewBox="0 0 20 20" 
+			fill="none"
+			stroke="currentColor"
+			stroke-width="1.5"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			aria-hidden="true"
+		>
+			<path d="M7 3.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zM13 10.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/>
+		</svg>
+		<span id="current-theme-name" class="theme-name"></span>
+	</button>
+	
+	<div id="theme-picker-menu" class="theme-picker-menu" role="menu" aria-labelledby="theme-picker-button">
+		{themes.map((theme) => (
+			<button
+				class="theme-option"
+				role="menuitem"
+				data-theme={theme.id}
+				aria-label={`Switch to ${theme.name}`}
+			>
+				<span class="theme-option-name">{theme.name}</span>
+				<span class="theme-option-description">{theme.description}</span>
+			</button>
+		))}
+	</div>
+</div>
+
+<style>
+	.theme-picker {
+		position: relative;
+	}
+	
+	.theme-picker-button {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.5rem 0.75rem;
+		background: transparent;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-sm);
+		color: var(--color-text-secondary);
+		font-family: var(--font-mono);
+		font-size: 0.8125rem;
+		cursor: pointer;
+		transition: all var(--transition-normal) ease;
+	}
+	
+	.theme-picker-button:hover {
+		color: var(--color-accent);
+		border-color: var(--color-accent);
+	}
+	
+	.theme-picker-button:focus-visible {
+		outline: 2px solid var(--color-accent);
+		outline-offset: 2px;
+	}
+	
+	.theme-picker-button[aria-expanded="true"] {
+		color: var(--color-accent);
+		border-color: var(--color-accent);
+	}
+	
+	.theme-picker-button svg {
+		flex-shrink: 0;
+	}
+	
+	.theme-name {
+		white-space: nowrap;
+	}
+	
+	.theme-picker-menu {
+		position: absolute;
+		top: calc(100% + 0.5rem);
+		right: 0;
+		min-width: 16rem;
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-md);
+		padding: 0.5rem;
+		box-shadow: var(--shadow-lg);
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(-0.5rem);
+		transition: all var(--transition-normal) ease;
+		z-index: 50;
+	}
+	
+	.theme-picker-menu[data-open="true"] {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+	}
+	
+	.theme-option {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.125rem;
+		width: 100%;
+		padding: 0.75rem;
+		margin-bottom: 0.25rem;
+		background: transparent;
+		border: none;
+		border-radius: var(--radius-sm);
+		text-align: left;
+		cursor: pointer;
+		transition: background-color var(--transition-fast) ease;
+	}
+	
+	.theme-option:last-child {
+		margin-bottom: 0;
+	}
+	
+	.theme-option:hover {
+		background: var(--color-background);
+	}
+	
+	.theme-option:focus-visible {
+		outline: 2px solid var(--color-accent);
+		outline-offset: -2px;
+	}
+	
+	.theme-option[data-active="true"] {
+		background: var(--color-background);
+	}
+	
+	.theme-option[data-active="true"] .theme-option-name {
+		color: var(--color-accent);
+	}
+	
+	.theme-option-name {
+		font-family: var(--font-heading);
+		font-size: 0.9375rem;
+		font-weight: 600;
+		color: var(--color-text-primary);
+		transition: color var(--transition-fast) ease;
+	}
+	
+	.theme-option-description {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		color: var(--color-text-muted);
+		line-height: 1.4;
+	}
+	
+	/* Mobile adjustments */
+	@media (max-width: 640px) {
+		.theme-name {
+			display: none;
+		}
+		
+		.theme-picker-menu {
+			right: auto;
+			left: 50%;
+			transform: translateX(-50%) translateY(-0.5rem);
+		}
+		
+		.theme-picker-menu[data-open="true"] {
+			transform: translateX(-50%) translateY(0);
+		}
+	}
+</style>
+
+<script>
+	// Theme picker interaction
+	function initThemePicker() {
+		const button = document.getElementById('theme-picker-button');
+		const menu = document.getElementById('theme-picker-menu');
+		const themeName = document.getElementById('current-theme-name');
+		const themeOptions = document.querySelectorAll('.theme-option');
+		
+		if (!button || !menu || !themeName) return;
+		
+		// TypeScript narrowing - we've checked null above
+		const btn = button as HTMLButtonElement;
+		const mnu = menu as HTMLElement;
+		const name = themeName as HTMLElement;
+		
+		// Theme definitions
+		const themes: Record<string, {name: string}> = {
+			'workbench': { name: 'Workbench' },
+		};
+		
+		// Get current theme from localStorage or default
+		function getCurrentTheme(): string {
+			return localStorage.getItem('theme') || 'workbench';
+		}
+		
+		// Update UI to reflect current theme
+		function updateThemeUI(themeId: string) {
+			name.textContent = themes[themeId]?.name || themeId;
+			
+			// Mark active theme in menu
+			themeOptions.forEach(option => {
+				const isActive = option.getAttribute('data-theme') === themeId;
+				option.setAttribute('data-active', String(isActive));
+			});
+		}
+		
+		// Apply theme instantly via data-theme attribute
+		function applyTheme(themeId: string) {
+			const currentTheme = getCurrentTheme();
+			if (themeId === currentTheme) {
+				closeMenu();
+				return;
+			}
+			
+			// Store the choice
+			localStorage.setItem('theme', themeId);
+			
+			// Apply theme immediately by setting data-theme attribute
+			document.documentElement.setAttribute('data-theme', themeId);
+			
+			// Update UI
+			updateThemeUI(themeId);
+			
+			// Close menu
+			closeMenu();
+		}
+		
+		// Toggle menu
+		function toggleMenu() {
+			const isOpen = mnu.getAttribute('data-open') === 'true';
+			mnu.setAttribute('data-open', String(!isOpen));
+			btn.setAttribute('aria-expanded', String(!isOpen));
+			
+			if (!isOpen) {
+				// Focus first option when opening
+				const firstOption = mnu.querySelector('.theme-option');
+				if (firstOption instanceof HTMLElement) {
+					firstOption.focus();
+				}
+			}
+		}
+		
+		// Close menu
+		function closeMenu() {
+			mnu.setAttribute('data-open', 'false');
+			btn.setAttribute('aria-expanded', 'false');
+		}
+		
+		// Button click
+		btn.addEventListener('click', toggleMenu);
+		
+		// Theme option clicks
+		themeOptions.forEach(option => {
+			option.addEventListener('click', () => {
+				const themeId = option.getAttribute('data-theme');
+				if (themeId) {
+					applyTheme(themeId);
+				}
+			});
+		});
+		
+		// Close on outside click
+		document.addEventListener('click', (e) => {
+			if (!btn.contains(e.target as Node) && !mnu.contains(e.target as Node)) {
+				closeMenu();
+			}
+		});
+		
+		// Close on escape
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape' && mnu.getAttribute('data-open') === 'true') {
+				closeMenu();
+				btn.focus();
+			}
+		});
+		
+		// Keyboard navigation in menu
+		mnu.addEventListener('keydown', (e) => {
+			if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+				e.preventDefault();
+				const options = Array.from(themeOptions);
+				const currentIndex = options.indexOf(document.activeElement as HTMLElement);
+				const nextIndex = e.key === 'ArrowDown' 
+					? (currentIndex + 1) % options.length
+					: (currentIndex - 1 + options.length) % options.length;
+				(options[nextIndex] as HTMLElement).focus();
+			}
+		});
+		
+		// Initialize with current theme
+		updateThemeUI(getCurrentTheme());
+	}
+	
+	// Run on load
+	initThemePicker();
+	
+	// Re-run on view transitions
+	document.addEventListener('astro:after-swap', initThemePicker);
+</script>

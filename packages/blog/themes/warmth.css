@@ -1,0 +1,268 @@
+@import "tailwindcss";
+
+/**
+ * WARMTH THEME using Tailwind CSS v4
+ * 
+ * In Tailwind v4, theme customization is done via @theme{} block with CSS custom properties.
+ * This replaces the tailwind.config.js approach from v3.
+ */
+
+@theme {
+	/* ===== COLORS ===== */
+	
+	/* Warm base colors - cream backgrounds */
+	--color-cream: #FAF7F2;
+	--color-cream-dark: #F5F0E8;
+	
+	/* Warm text colors - brown instead of black */
+	--color-ink: #2D2520;
+	--color-ink-light: #5A4A42;
+	--color-ink-muted: #8A7A6F;
+	
+	/* Terracotta accent - warm, human, earthy */
+	--color-terracotta: #D97757;
+	--color-terracotta-light: #E8A996;
+	--color-terracotta-dark: #B85536;
+	
+	/* Ochre secondary - warm golden tones */
+	--color-ochre: #D4A574;
+	--color-ochre-light: #E8D4A2;
+	--color-ochre-dark: #B8894F;
+	
+	/* Sage tertiary - calm natural green */
+	--color-sage: #8FA888;
+	--color-sage-light: #B8C9B0;
+	--color-sage-dark: #6B8565;
+	
+	/* Dark mode - warm darks, not cold blacks */
+	--color-dark-surface: #1A1612;
+	--color-dark-surface-lighter: #2D2520;
+	--color-dark-ink: #F5F0E8;
+	--color-dark-ink-muted: #C4B8A8;
+	
+	/* ===== TYPOGRAPHY ===== */
+	
+	/* Font families - warm and characterful */
+	--font-serif: Georgia, Literata, Charter, Iowan Old Style, Palatino Linotype, URW Palladio L, P052, serif;
+	--font-display: Charter, Georgia, Iowan Old Style, Cambria, Times New Roman, serif;
+	--font-mono: JetBrains Mono, Fira Code, Cascadia Code, Consolas, Monaco, monospace;
+	
+	/* Font sizes with generous line heights */
+	--font-size-base: 1.125rem;
+	--line-height-base: 1.8;
+	
+	/* ===== SPACING ===== */
+	
+	/* Extended spacing scale for generous whitespace */
+	--spacing-18: 4.5rem;
+	--spacing-22: 5.5rem;
+	--spacing-26: 6.5rem;
+	--spacing-30: 7.5rem;
+	
+	/* ===== BORDER RADIUS ===== */
+	
+	--radius-soft: 0.25rem;
+	--radius-gentle: 0.5rem;
+}
+
+/* Screen reader only utility */
+.sr-only {
+	border: 0;
+	padding: 0;
+	margin: 0;
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	clip: rect(1px 1px 1px 1px);
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+/* ===== PROSE STYLING - WARMTH THEME ===== */
+/* Shared across BlogPost and About layouts */
+
+.prose-warmth {
+	font-size: 1.125rem;
+	line-height: 1.8;
+}
+
+.prose-warmth > * + * {
+	margin-top: 1.5rem;
+}
+
+.prose-warmth h2 {
+	font-family: var(--font-display);
+	font-size: 1.875rem;
+	color: var(--color-ink);
+	margin-top: 3rem;
+	margin-bottom: 1rem;
+}
+
+.prose-warmth h3 {
+	font-family: var(--font-display);
+	font-size: 1.5rem;
+	color: var(--color-ink);
+	margin-top: 2.5rem;
+	margin-bottom: 0.75rem;
+}
+
+.prose-warmth h4 {
+	font-family: var(--font-display);
+	font-size: 1.25rem;
+	color: var(--color-ink);
+	margin-top: 2rem;
+	margin-bottom: 0.5rem;
+}
+
+.prose-warmth p {
+	color: var(--color-ink);
+}
+
+.prose-warmth a {
+	color: var(--color-terracotta);
+	text-decoration: underline;
+	text-decoration-color: color-mix(in srgb, var(--color-terracotta) 30%, transparent);
+	text-decoration-thickness: 2px;
+	text-underline-offset: 2px;
+	transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.prose-warmth a:hover {
+	text-decoration-color: var(--color-terracotta);
+}
+
+.prose-warmth strong,
+.prose-warmth b {
+	color: var(--color-ink);
+	font-weight: 700;
+}
+
+.prose-warmth em,
+.prose-warmth i {
+	font-style: italic;
+}
+
+.prose-warmth code {
+	font-family: var(--font-mono);
+	font-size: 0.875rem;
+	background-color: var(--color-cream-dark);
+	padding: 0.125rem 0.375rem;
+	border-radius: var(--radius-soft);
+	color: var(--color-ink);
+}
+
+.prose-warmth pre {
+	background-color: var(--color-dark-surface-lighter);
+	padding: 1.5rem;
+	border-radius: var(--radius-gentle);
+	overflow-x: auto;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+
+.prose-warmth pre code {
+	background-color: transparent;
+	padding: 0;
+}
+
+.prose-warmth blockquote {
+	border-left: 4px solid var(--color-ochre);
+	padding-left: 1.5rem;
+	font-style: italic;
+	color: var(--color-ink-light);
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+
+.prose-warmth ul,
+.prose-warmth ol {
+	padding-left: 1.5rem;
+}
+
+.prose-warmth ul li,
+.prose-warmth ol li {
+	margin-top: 0.5rem;
+}
+
+.prose-warmth ul {
+	list-style-type: disc;
+}
+
+.prose-warmth ol {
+	list-style-type: decimal;
+}
+
+.prose-warmth li {
+	color: var(--color-ink);
+}
+
+.prose-warmth hr {
+	border: none;
+	border-top: 2px solid color-mix(in srgb, var(--color-ink) 10%, transparent);
+	margin-top: 3rem;
+	margin-bottom: 3rem;
+}
+
+.prose-warmth img {
+	border-radius: var(--radius-gentle);
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+
+.prose-warmth table {
+	width: 100%;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+	border-collapse: collapse;
+}
+
+.prose-warmth th,
+.prose-warmth td {
+	border: 1px solid color-mix(in srgb, var(--color-ink) 20%, transparent);
+	padding: 1rem;
+	text-align: left;
+}
+
+.prose-warmth th {
+	background-color: var(--color-cream-dark);
+	font-weight: 700;
+}
+
+/* Dark mode adjustments for prose */
+:is(.dark .prose-warmth) h2,
+:is(.dark .prose-warmth) h3,
+:is(.dark .prose-warmth) h4,
+:is(.dark .prose-warmth) p,
+:is(.dark .prose-warmth) strong,
+:is(.dark .prose-warmth) b,
+:is(.dark .prose-warmth) li {
+	color: var(--color-dark-ink);
+}
+
+:is(.dark .prose-warmth) a {
+	color: var(--color-terracotta-light);
+}
+
+:is(.dark .prose-warmth) code {
+	background-color: var(--color-dark-surface-lighter);
+	color: var(--color-dark-ink);
+}
+
+:is(.dark .prose-warmth) blockquote {
+	color: var(--color-dark-ink-muted);
+}
+
+:is(.dark .prose-warmth) th {
+	background-color: var(--color-dark-surface-lighter);
+}
+
+:is(.dark .prose-warmth) hr {
+	border-top-color: color-mix(in srgb, var(--color-dark-ink) 10%, transparent);
+}
+
+:is(.dark .prose-warmth) th,
+:is(.dark .prose-warmth) td {
+	border-color: color-mix(in srgb, var(--color-dark-ink) 20%, transparent);
+}
