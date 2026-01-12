@@ -10,7 +10,7 @@ tools:
 permission:
   task:
     "*": deny
-    "explore": allow
+    explore: allow
 ---
 
 # Researcher Agent
