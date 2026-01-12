@@ -25,7 +25,7 @@ Each stage has a quality gate. Cannot advance until gate passes.
 | **Draft** | Is there prose for every outline point? | All sections filled, [TODO] markers resolved |
 | **Voice** | Does it sound like you talking? | Read aloud, no stiff parts remain |
 | **Technical** | Would you stake reputation on every sentence? | All facts verified, code tested, links checked |
-| **Polish** | Clean read-through? | No typos, consistent style, tight prose |
+| **Polish** | Does the writing feel alive? | No slop, voice verified, specificity earned |
 | **Publish** | Live and rendering correctly? | Deployed, verified, announced |
 | **Maintain** | Still accurate? | 6-month review scheduled |
 
@@ -72,7 +72,7 @@ If you're spending 80% drafting, the outline isn't good enough.
 | **Voice** | `voice` | Check consistency with Robbie's voice |
 | | `dry-structural-irony` | Signature humor technique |
 | **Technical** | `technical-review` | Fact-check, verify code, check links |
-| **Polish** | - | Claude grammar/clarity pass |
+| **Polish** | `editors-table` | Kill slop, verify authenticity |
 | **Publish** | `publish-article` | Frontmatter, deploy, verify, announce |
 
 ### AI Integration Points
@@ -83,7 +83,7 @@ If you're spending 80% drafting, the outline isn't good enough.
 - **Outline**: Review structure for logic and flow
 - **Voice**: Check sections for voice consistency
 - **Technical**: Fact-check claims, verify code examples
-- **Polish**: Grammar, consistency, clarity improvements
+- **Polish**: Kill slop, verify authenticity, audit specificity
 
 **Low Value (Anti-patterns):**
 - Generating complete drafts (loses voice)
@@ -128,6 +128,11 @@ Each stage has associated skills. Load the skill for full process documentation.
 ### Technical
 **Skill:** `technical-review`
 **Method:** Verify code, check links, fact-check claims
+
+### Polish
+**Skill:** `editors-table`
+**Method:** Four-pass review (slop detection, voice verification, specificity audit, synthesis check)
+**Gate:** Does the writing feel alive? Would readers sense a specific human wrote this?
 
 ### Publish
 **Skill:** `publish-article`
