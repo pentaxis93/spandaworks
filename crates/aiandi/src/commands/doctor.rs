@@ -167,7 +167,10 @@ pub fn run_checks() -> DoctorResult {
         .unwrap_or_else(|| PathBuf::from("~/.config"))
         .join("opencode")
         .join("skill");
-    result.add(check_directory(&opencode_skill_dir, "OpenCode skills directory"));
+    result.add(check_directory(
+        &opencode_skill_dir,
+        "OpenCode skills directory",
+    ));
 
     result
 }
@@ -199,10 +202,7 @@ fn print_summary(result: &DoctorResult) {
     let mut parts = vec![];
 
     if result.passed > 0 {
-        parts.push(format!(
-            "{} passed",
-            result.passed.to_string().green()
-        ));
+        parts.push(format!("{} passed", result.passed.to_string().green()));
     }
     if result.warnings > 0 {
         parts.push(format!(
@@ -212,10 +212,7 @@ fn print_summary(result: &DoctorResult) {
         ));
     }
     if result.failed > 0 {
-        parts.push(format!(
-            "{} failed",
-            result.failed.to_string().red()
-        ));
+        parts.push(format!("{} failed", result.failed.to_string().red()));
     }
 
     println!("{}", parts.join(", "));

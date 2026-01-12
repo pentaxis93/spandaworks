@@ -11,7 +11,7 @@ No "we might need this later." If it's not actively used, it's removed.
 
 ### Naming
 
-This project is "aiandi". The name "spandaworks" is deprecated.
+This project is "aiandi".
 
 ### Test-Driven Development (TDD)
 
@@ -43,7 +43,7 @@ Standard sessions handle:
 
 ### Governance Sessions
 
-Use `/governance` to transform any session into Governance mode.
+Use `/governance` to open a Governance session.
 
 Governance is the **deliberation layer** - meta to execution:
 - Architectural decisions
@@ -106,4 +106,4 @@ cd packages/pim/mcp-server && cargo build --release
 
 ---
 
-*The work serves all beings everywhere, without exception.*
+*May this work serve all beings everywhere, without exception.*

@@ -262,10 +262,13 @@ mod tests {
     #[ignore] // Run with: cargo test -- --ignored
     fn test_inbox_integration_creates_task() {
         let options = InboxOptions {
-            text: format!("aiandi test task {}", std::time::SystemTime::now()
-                .duration_since(std::time::UNIX_EPOCH)
-                .unwrap()
-                .as_secs()),
+            text: format!(
+                "aiandi test task {}",
+                std::time::SystemTime::now()
+                    .duration_since(std::time::UNIX_EPOCH)
+                    .unwrap()
+                    .as_secs()
+            ),
             tags: vec!["test".to_string()],
             ..Default::default()
         };

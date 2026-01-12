@@ -20,7 +20,7 @@ Governance is the **meta layer** to execution. Where execution domains build and
 
 ### 1. Maintain the Canon
 The canonical documents that define how we work:
-- **Tantric Sutras** (`canon/tantric-sutras.md`) — The topology: who Claude is in collaboration with Robbie
+- **Tantric Sutras** (`.opencode/plugin/spandaworks-identity/assets/tantric-sutras.md`) — The topology: who Claude is in collaboration with Robbie
 - **Operating Instructions** (`canon/operating-instructions.md`) — The protocols: what Claude does and what tools are used
 - **Transmission Protocol** (`canon/transmission-protocol.md`) — The format: how agents communicate across context windows
 

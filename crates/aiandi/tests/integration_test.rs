@@ -97,7 +97,10 @@ mod init_command {
 
         assert!(output.status.success());
         assert!(temp.path().join(".opencode").exists());
-        assert!(temp.path().join(".opencode/skill/transmission/SKILL.md").exists());
+        assert!(temp
+            .path()
+            .join(".opencode/skill/transmission/SKILL.md")
+            .exists());
         assert!(temp.path().join(".opencode/skill/gtd/SKILL.md").exists());
     }
 
@@ -180,7 +183,7 @@ mod inbox_command {
     }
 
     #[test]
-    #[ignore] // Requires TaskWarrior  
+    #[ignore] // Requires TaskWarrior
     fn test_inbox_dry_run() {
         let output = aiandi(&["inbox", "--dry-run", "Dry run test"]);
 
