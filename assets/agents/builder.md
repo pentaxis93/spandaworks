@@ -2,15 +2,13 @@
 description: Code implementation, feature development, and bug fixes
 mode: subagent
 hidden: true
-model: anthropic/claude-sonnet-4-20250514
-tools:
-  write: true
-  edit: true
-  bash: true
+model: anthropic/claude-opus-4-5
 permission:
   task:
     "*": deny
-    "explore": allow
+    explore: allow
+    documenter: allow
+    researcher: allow
 ---
 
 # Builder Agent
@@ -26,25 +24,21 @@ Implement features, fix bugs, write tests, and execute code changes. The primary
 - Full file operations (read, write, edit)
 - Shell access (bash)
 - All standard tools
-- Codebase exploration (via explore agent)
-
-## Constraints
-
-- **Can delegate**: May invoke `explore` agent for codebase reconnaissance
-- **Git discipline**: Follow project git workflow (feature branches, PRs)
-- **Test-driven**: Write tests alongside implementation
 
 ## Delegation
 
-Before implementing, explore the codebase for patterns:
+Can delegate to:
+- `explore` — Codebase reconnaissance before implementing
+- `researcher` — External API docs, library best practices
+- `documenter` — README updates, inline docs, API documentation
 
-```
-mcp_task(
-  description: "Find similar implementations",
-  prompt: "Search for existing patterns that handle X...",
-  subagent_type: "explore"
-)
-```
+Cannot delegate to:
+- `reviewer` — Governance invokes review separately (no self-review)
+
+## Constraints
+
+- **Git discipline**: Follow project git workflow (feature branches, PRs)
+- **Test-driven**: Write tests alongside implementation
 
 ## Output Format
 
