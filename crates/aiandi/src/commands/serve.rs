@@ -5,12 +5,11 @@
 
 use anyhow::Result;
 use rmcp::{
-    ServerHandler, ServiceExt,
     handler::server::{router::tool::ToolRouter, wrapper::Parameters},
     model::*,
-    schemars, tool, tool_handler, tool_router,
+    schemars, tool, tool_handler, tool_router, ServerHandler, ServiceExt,
 };
-use tracing_subscriber::{EnvFilter, fmt, prelude::*};
+use tracing_subscriber::{fmt, prelude::*, EnvFilter};
 
 use crate::commands::{doctor, inbox, init};
 use inbox::InboxOptions;
@@ -79,13 +78,18 @@ impl AiandiServer {
         let options = InitOptions {
             skills: skills_opt.clone(),
             no_skills: false,
+            agents: None, // Install all agents
+            no_agents: false,
             force: req.force.unwrap_or(false),
             dry_run: false,
         };
 
         // Run init
         match init::run_with_options(&options) {
-            Ok(_result) => "✓ aiandi initialized successfully. Skills extracted to .opencode/skill/".to_string(),
+            Ok(_result) => {
+                "✓ aiandi initialized successfully. Skills extracted to .opencode/skill/"
+                    .to_string()
+            }
             Err(e) => format!("✗ Initialization failed: {}", e),
         }
     }
@@ -95,11 +99,15 @@ impl AiandiServer {
     )]
     async fn aiandi_inbox(&self, Parameters(req): Parameters<InboxRequest>) -> String {
         // Parse tags
-        let tags_vec = req.tags.as_ref().map(|t| {
-            t.split(',')
-                .map(|s| s.trim().to_string())
-                .collect::<Vec<_>>()
-        }).unwrap_or_default();
+        let tags_vec = req
+            .tags
+            .as_ref()
+            .map(|t| {
+                t.split(',')
+                    .map(|s| s.trim().to_string())
+                    .collect::<Vec<_>>()
+            })
+            .unwrap_or_default();
 
         // Build options
         let options = InboxOptions {
@@ -235,7 +243,7 @@ mod tests {
     fn test_server_info() {
         let server = AiandiServer::new();
         let info = server.get_info();
-        
+
         assert_eq!(info.server_info.name, "aiandi");
         assert_eq!(info.server_info.version, env!("CARGO_PKG_VERSION"));
         assert!(info.capabilities.tools.is_some());

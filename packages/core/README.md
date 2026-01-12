@@ -10,16 +10,14 @@ Spandaworks identity, ceremony, and shared protocols. The "who Spandaworks is" p
 
 ```
 core/
-├── assets/
-│   └── identity/
-│       └── tantric-sutras-v7.3.md   # Identity topology
+└── README.md
 ```
 
 ## Components
 
-- **Identity Documents:** Tantric Sutras v7.3 (assets/identity/)
-- **Ceremony Commands:** /open, /ops, /close (now in `.opencode/command/`)
-- **Plugins:** prayer-wheel, spandaworks-identity (now in `.opencode/plugin/`)
+- **Identity Documents:** Tantric Sutras (`.opencode/plugin/spandaworks-identity/assets/`)
+- **Ceremony Commands:** /open, /ops, /close (`.opencode/command/`)
+- **Plugins:** prayer-wheel, spandaworks-identity (`.opencode/plugin/`)
 
 **Note:** Skills, commands, and plugins are located at project root in `.opencode/` (see [ADR: Project-Level Skill Discovery](../../docs/adr/2026-01-08-project-level-skill-discovery.md))
 

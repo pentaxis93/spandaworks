@@ -9,6 +9,9 @@ pub const TRANSMISSION_SKILL: &str = include_str!("../../../skills/transmission/
 /// GTD skill - Getting Things Done with TaskWarrior
 pub const GTD_SKILL: &str = include_str!("../../../skills/gtd/SKILL.md");
 
+/// Governance skill - Identity and routing for Governance sessions
+pub const GOVERNANCE_SKILL: &str = include_str!("../../../skills/governance/SKILL.md");
+
 /// A bundled skill that can be extracted to a project
 #[derive(Debug, Clone)]
 pub struct BundledSkill {
@@ -28,6 +31,10 @@ pub fn bundled_skills() -> Vec<BundledSkill> {
         BundledSkill {
             name: "gtd",
             content: GTD_SKILL,
+        },
+        BundledSkill {
+            name: "governance",
+            content: GOVERNANCE_SKILL,
         },
     ]
 }
@@ -91,5 +98,18 @@ mod tests {
         let names = skill_names();
         assert!(names.contains(&"transmission"));
         assert!(names.contains(&"gtd"));
+        assert!(names.contains(&"governance"));
+    }
+
+    #[test]
+    fn test_governance_skill_has_content() {
+        assert!(
+            !GOVERNANCE_SKILL.is_empty(),
+            "Governance skill should have content"
+        );
+        assert!(
+            GOVERNANCE_SKILL.contains("Governance") || GOVERNANCE_SKILL.contains("governance"),
+            "Governance skill should mention governance"
+        );
     }
 }

@@ -78,11 +78,11 @@ Traditional tantra recognizes that constraints create freedom. By establishing c
 
 **File structure:**
 ```
-tantric-sutras/
+spandaworks-identity/
 ├── package.json              # Plugin metadata
 ├── tantric-sutras.ts         # Plugin implementation
 ├── assets/
-│   └── tantric-sutras-v7.3.md  # Full canonical content
+│   └── tantric-sutras.md     # Full canonical content (single source of truth)
 └── README.md                 # This file
 ```
 

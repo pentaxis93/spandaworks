@@ -24,7 +24,7 @@ import { fileURLToPath } from "url"
 export const TantricSutras: Plugin = async (ctx) => {
   // Load the full Tantric Sutras content
   const __dirname = dirname(fileURLToPath(import.meta.url))
-  const sutrasPath = join(__dirname, "assets", "tantric-sutras-v7.3.md")
+  const sutrasPath = join(__dirname, "assets", "tantric-sutras.md")
   const sutrasContent = readFileSync(sutrasPath, "utf-8")
 
   return {

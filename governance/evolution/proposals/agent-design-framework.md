@@ -88,7 +88,11 @@ An execution context is defined by:
 ```yaml
 agent:
   name: string           # Identifier (not a persona)
-  description: string    # What this agent does (for routing/docs)
+  description: string    # What this agent does (for routing/docs) [REQUIRED]
+  
+  # Mode layer
+  mode: primary | subagent | all   # How agent can be used [default: all]
+  hidden: boolean                   # Hide from @ autocomplete [default: false]
   
   # Capability layer
   tools:
@@ -100,22 +104,17 @@ agent:
     Domain expertise, reasoning patterns, and behavioral guidance.
     NOT a persona or backstory.
   
-  # Constraint layer
-  guardrails:
-    - type: input | output
-      rule: validation logic
-  
-  permissions:
-    edit: allow | ask | deny
-    bash: allow | ask | deny
+  # Constraint layer (OpenCode options - not used in aiandi)
+  # guardrails, permissions, temperature, maxSteps
     
   # Orchestration layer
-  handoffs: [agent_names]  # Valid transfer targets
+  permission:
+    task:                  # Controls which subagents this agent can invoke
+      "*": allow | ask | deny
+      agent_pattern: allow | ask | deny
   
   # Resource layer
-  model: provider/model-id  # Optional model override
-  temperature: float        # Optional temperature
-  max_steps: int           # Optional iteration limit
+  model: provider/model-id  # Model for this agent [REQUIRED for subagents]
 ```
 
 ---
@@ -308,15 +307,41 @@ Return structured findings, not recommendations.
 
 ### 6.2 Governance Agent Catalog
 
-Proposed initial agents for aiandi:
+The following 5 agents form the canonical subagent types for aiandi, replacing OpenCode's built-in types. Each agent specifies a fixed model—this is the **only mechanism** for controlling which model executes a delegated task.
 
-| Agent | Purpose | Model | Tools |
-|-------|---------|-------|-------|
-| `recon` | Fast codebase exploration | Haiku | read-only |
-| `researcher` | Web research and synthesis | Sonnet | webfetch, read |
-| `implementer` | Code execution | Sonnet/Opus | full |
-| `reviewer` | Code review | Sonnet | read-only |
-| `documenter` | Documentation writing | Sonnet | write, edit |
+| Agent | Function | Model | Tools | Can Delegate To |
+|-------|----------|-------|-------|-----------------|
+| `explore` | Fast codebase search | Haiku | read, glob, grep | none |
+| `researcher` | Web research + synthesis | Sonnet | read, webfetch | explore |
+| `builder` | Implementation | Opus | full | explore |
+| `reviewer` | Code analysis | Sonnet | read, glob, grep | none |
+| `documenter` | Documentation | Sonnet | read, write, edit | none |
+
+**Common Configuration (all agents):**
+- `mode: subagent` — Invoked via Task tool, not primary agents
+- `hidden: true` — Not visible in `@` autocomplete; only Governance invokes them
+
+**Model Selection Rationale:**
+- **Haiku** (`explore`): Token-efficient for high-volume codebase scanning
+- **Sonnet** (`researcher`, `reviewer`, `documenter`): Balanced capability for synthesis, evaluation, and writing
+- **Opus** (`builder`): Maximum reasoning capability for code implementation
+
+**Delegation Topology:**
+```
+Governance (primary)
+    ├── explore      (leaf - no delegation)
+    ├── researcher   (can delegate to explore)
+    ├── builder      (can delegate to explore)
+    ├── reviewer     (leaf - no delegation)
+    └── documenter   (leaf - no delegation)
+```
+
+Flat orchestration: Governance is the sole orchestrator. `researcher` and `builder` may delegate codebase exploration to `explore` for efficiency (Haiku vs Sonnet/Opus for search). All other agents are leaf nodes.
+
+**Routing Rules:**
+- `explore` vs `researcher`: Codebase (explore) vs external/web (researcher)
+- `builder` vs `documenter`: Code changes (builder) vs pure documentation (documenter)
+- `builder` vs `reviewer`: Creating/modifying (builder) vs evaluating (reviewer)
 
 ### 6.3 Transmission Integration
 
@@ -335,6 +360,222 @@ Agent processes with its tools/constraints
     ↓
 Results return to governance
 ```
+
+### 6.4 Implementation: Agent Embedding
+
+Agents are embedded in the `aiandi` binary and extracted via `aiandi init`, following the same pattern as skills.
+
+#### Source Structure
+
+```
+agents/
+  explore.md
+  researcher.md
+  builder.md
+  reviewer.md
+  documenter.md
+```
+
+Each agent file is OpenCode-compatible markdown with YAML frontmatter:
+
+```markdown
+---
+description: Fast codebase search and pattern discovery
+mode: subagent
+hidden: true
+model: anthropic/claude-3-5-haiku-20241022
+tools:
+  write: false
+  edit: false
+  bash: false
+permission:
+  task:
+    "*": deny
+---
+
+[Agent instructions...]
+```
+
+#### Rust Module (`crates/aiandi/src/agents.rs`)
+
+```rust
+//! Bundled agents embedded at compile time.
+
+pub const EXPLORE_AGENT: &str = include_str!("../../../agents/explore.md");
+pub const RESEARCHER_AGENT: &str = include_str!("../../../agents/researcher.md");
+pub const BUILDER_AGENT: &str = include_str!("../../../agents/builder.md");
+pub const REVIEWER_AGENT: &str = include_str!("../../../agents/reviewer.md");
+pub const DOCUMENTER_AGENT: &str = include_str!("../../../agents/documenter.md");
+
+pub struct BundledAgent {
+    pub name: &'static str,
+    pub content: &'static str,
+}
+
+pub fn bundled_agents() -> Vec<BundledAgent> {
+    vec![
+        BundledAgent { name: "explore", content: EXPLORE_AGENT },
+        BundledAgent { name: "researcher", content: RESEARCHER_AGENT },
+        BundledAgent { name: "builder", content: BUILDER_AGENT },
+        BundledAgent { name: "reviewer", content: REVIEWER_AGENT },
+        BundledAgent { name: "documenter", content: DOCUMENTER_AGENT },
+    ]
+}
+```
+
+#### Init Command Extension
+
+Extend `crates/aiandi/src/commands/init.rs`:
+
+1. Create `.opencode/agent/` directory
+2. Extract agents to `.opencode/agent/{name}.md` (flat, not nested)
+3. Add `--no-agents` flag for selective installation
+4. Add `--agents=a,b,c` for specific agent selection
+
+**Note:** OpenCode expects agent files directly in `.opencode/agent/` as `{name}.md`, unlike skills which use `{name}/SKILL.md`.
+
+#### Installation Result
+
+After `aiandi init`:
+
+```
+.opencode/
+  agent/
+    explore.md
+    researcher.md
+    builder.md
+    reviewer.md
+    documenter.md
+  skill/
+    governance/
+      SKILL.md
+    gtd/
+      SKILL.md
+    transmission/
+      SKILL.md
+```
+
+### 6.5 Governance Routing Skill
+
+Since all 5 subagents are hidden (`hidden: true`), the primary session needs explicit routing rules. The existing `governance` skill (`.opencode/skill/governance/SKILL.md`) must be **updated** to include routing rules for the new agent catalog.
+
+**Current state:** The skill references `subagent_type: "general"` for all agent invocations.
+
+**Required update:** Replace generic agent invocation with specific routing to the 5 specialized agents.
+
+#### Updated Agent Invocation Section (for `skills/governance/SKILL.md`)
+
+```markdown
+---
+name: governance
+description: Routing rules for Governance sessions. Defines when to delegate to subagents and which subagent for which task type.
+---
+
+# Governance Routing
+
+## Available Subagents
+
+| Agent | Model | Purpose |
+|-------|-------|---------|
+| `explore` | Haiku | Fast codebase search, pattern discovery |
+| `researcher` | Sonnet | Web research, external documentation, API investigation |
+| `builder` | Opus | Code implementation, feature development, bug fixes |
+| `reviewer` | Sonnet | Code review, security audit, quality analysis |
+| `documenter` | Sonnet | Documentation writing, README updates, inline docs |
+
+## When to Delegate
+
+**Delegate when:**
+- Task is self-contained (clear input → output)
+- Task benefits from model specialization (Haiku for search, Opus for implementation)
+- Task is parallelizable with other work
+- Task doesn't require iterative conversation with user
+
+**Do NOT delegate when:**
+- Task requires back-and-forth with user
+- Task needs context accumulated in current session
+- Task is trivial (faster to do directly than to formulate delegation)
+- Task outcome is uncertain and may need pivoting
+
+## Routing Decision Tree
+
+```
+1. Does task require web access (external docs, APIs)?
+   YES → researcher
+   
+2. Does task modify or create code?
+   YES → builder
+   
+3. Does task evaluate/review existing code?
+   YES → reviewer
+   
+4. Does task write documentation only (no code)?
+   YES → documenter
+   
+5. Does task search/explore the codebase?
+   YES → explore
+   
+6. None of the above?
+   → Do directly (no delegation)
+```
+
+## Invocation Pattern
+
+Use the Task tool to invoke subagents:
+
+```
+mcp_task(
+  description: "Brief task description",
+  prompt: "Complete task specification with context and success criteria",
+  subagent_type: "{agent_name}"
+)
+```
+
+**Critical:** The `subagent_type` must exactly match one of: `explore`, `researcher`, `builder`, `reviewer`, `documenter`.
+
+## Parallel Delegation
+
+Multiple independent tasks can be delegated in parallel:
+
+```
+# In a single response, invoke multiple Task tools:
+mcp_task(subagent_type: "explore", prompt: "Find all API endpoints...")
+mcp_task(subagent_type: "researcher", prompt: "Research OAuth 2.0 best practices...")
+```
+
+Results return to Governance for synthesis and next steps.
+
+## Delegation Topology
+
+```
+Governance (you)
+    ├── explore      (can't delegate further)
+    ├── researcher   → explore (can delegate codebase search)
+    ├── builder      → explore (can delegate codebase search)
+    ├── reviewer     (can't delegate further)
+    └── documenter   (can't delegate further)
+```
+
+Only `researcher` and `builder` can sub-delegate to `explore`. All other agents are leaf nodes.
+```
+
+#### Implementation
+
+1. **Update existing skill** at `.opencode/skill/governance/SKILL.md`
+2. **Update source** at `skills/governance/SKILL.md` (for embedding)
+3. **Add to `skills.rs`** if not already present:
+
+```rust
+pub const GOVERNANCE_SKILL: &str = include_str!("../../../skills/governance/SKILL.md");
+```
+
+4. **Add to `bundled_skills()`**:
+
+```rust
+BundledSkill { name: "governance", content: GOVERNANCE_SKILL },
+```
+
+The `/governance` command already loads this skill, so no command changes are needed—only the skill content must be updated with routing rules.
 
 ---
 
@@ -394,12 +635,11 @@ agent:
 
 ### 8.1 Model Selection Strategy
 
-Should agents specify their own models, or should orchestration control model selection based on task requirements?
+~~Should agents specify their own models, or should orchestration control model selection based on task requirements?~~
 
-**Options:**
-- Agent-defined: Each agent has a fixed model
-- Orchestration-defined: Governance selects model per task
-- Hybrid: Agent specifies default, orchestration can override
+**RESOLVED:** Agent-defined. Each agent specifies a fixed model. This is the **only mechanism** within OpenCode for controlling which model executes a delegated task. Governance selects the appropriate agent based on task requirements, which implicitly selects the model.
+
+See Section 6.2 for the canonical agent-to-model mapping.
 
 ### 8.2 Skill Loading Mechanism
 

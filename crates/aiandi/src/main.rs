@@ -1,5 +1,6 @@
 use clap::{Parser, Subcommand};
 
+mod agents;
 mod commands;
 mod skills;
 

@@ -1,7 +1,7 @@
 //! `aiandi init` command implementation.
 //!
 //! Initializes a project for aiandi/OpenCode workflows by creating the
-//! .opencode/ directory structure and extracting bundled skills.
+//! .opencode/ directory structure and extracting bundled skills and agents.
 
 use std::fs;
 use std::path::Path;
@@ -9,6 +9,7 @@ use std::path::Path;
 use anyhow::{Context, Result};
 use colored::Colorize;
 
+use crate::agents::{agent_names, bundled_agents, get_agent, BundledAgent};
 use crate::skills::{bundled_skills, get_skill, skill_names, BundledSkill};
 
 /// Standard .opencode/.gitignore content
@@ -25,6 +26,10 @@ pub struct InitOptions {
     pub skills: Option<Vec<String>>,
     /// Skip skill installation entirely
     pub no_skills: bool,
+    /// Comma-separated list of agents to install (None = all)
+    pub agents: Option<Vec<String>>,
+    /// Skip agent installation entirely
+    pub no_agents: bool,
     /// Overwrite existing files
     pub force: bool,
     /// Show what would be created without creating
@@ -42,6 +47,10 @@ pub struct InitResult {
     pub skills_installed: Vec<String>,
     /// Skills that were skipped
     pub skills_skipped: Vec<String>,
+    /// Agents that were installed
+    pub agents_installed: Vec<String>,
+    /// Agents that were skipped
+    pub agents_skipped: Vec<String>,
 }
 
 /// Run the init command with the given options
@@ -56,6 +65,7 @@ pub fn run_in_directory(base_path: &Path, options: &InitOptions) -> Result<InitR
     let opencode_dir = base_path.join(".opencode");
     let gitignore_path = opencode_dir.join(".gitignore");
     let skill_dir = opencode_dir.join("skill");
+    let agent_dir = opencode_dir.join("agent");
 
     // Create .opencode/ directory
     if !opencode_dir.exists() {
@@ -132,11 +142,7 @@ pub fn run_in_directory(base_path: &Path, options: &InitOptions) -> Result<InitR
 
             if should_write {
                 if options.dry_run {
-                    println!(
-                        "{} Would extract skill: {}",
-                        "[dry-run]".blue(),
-                        skill.name
-                    );
+                    println!("{} Would extract skill: {}", "[dry-run]".blue(), skill.name);
                 } else {
                     // Create skill directory
                     if !skill_path.exists() {
@@ -157,32 +163,116 @@ pub fn run_in_directory(base_path: &Path, options: &InitOptions) -> Result<InitR
         }
     }
 
+    // Handle agents
+    if options.no_agents {
+        println!("Skipping agent installation (--no-agents)");
+    } else {
+        // Create .opencode/agent/ directory
+        if !agent_dir.exists() {
+            if options.dry_run {
+                println!("{} Would create .opencode/agent/", "[dry-run]".blue());
+            } else {
+                fs::create_dir_all(&agent_dir)
+                    .with_context(|| format!("Failed to create {}", agent_dir.display()))?;
+                println!("Creating .opencode/agent/ directory");
+                result.created += 1;
+            }
+        } else {
+            println!("{} .opencode/agent/ already exists", "→".yellow());
+            result.skipped += 1;
+        }
+
+        // Determine which agents to install
+        let agents_to_install = get_agents_to_install(options)?;
+
+        // Extract each agent (flat files, not directories)
+        for agent in agents_to_install {
+            let agent_file = agent_dir.join(format!("{}.md", agent.name));
+
+            let should_write = if agent_file.exists() {
+                if options.force {
+                    true
+                } else {
+                    println!(
+                        "{} Skipped agent: {} (already exists, use --force to overwrite)",
+                        "→".yellow(),
+                        agent.name
+                    );
+                    result.agents_skipped.push(agent.name.to_string());
+                    false
+                }
+            } else {
+                true
+            };
+
+            if should_write {
+                if options.dry_run {
+                    println!("{} Would extract agent: {}", "[dry-run]".blue(), agent.name);
+                } else {
+                    // Write agent file directly (flat, not in subdirectory)
+                    fs::write(&agent_file, agent.content)
+                        .with_context(|| format!("Failed to write {}", agent_file.display()))?;
+
+                    println!("{} Extracted agent: {}", "✓".green(), agent.name);
+                    result.agents_installed.push(agent.name.to_string());
+                    result.created += 1;
+                }
+            }
+        }
+    }
+
     // Print summary
     println!();
     if options.dry_run {
         println!("Dry run complete. No files created.");
     } else {
-        let skill_summary = if options.no_skills {
-            String::new()
-        } else {
+        let mut summary_parts = Vec::new();
+
+        if !options.no_skills {
             let installed = result.skills_installed.len();
             let skipped = result.skills_skipped.len();
             if skipped > 0 {
-                format!(
-                    " {} skill{} installed, {} skipped.",
+                summary_parts.push(format!(
+                    "{} skill{} installed, {} skipped",
                     installed,
                     if installed == 1 { "" } else { "s" },
                     skipped
-                )
-            } else {
-                format!(
-                    " {} skill{} installed.",
+                ));
+            } else if installed > 0 {
+                summary_parts.push(format!(
+                    "{} skill{} installed",
                     installed,
                     if installed == 1 { "" } else { "s" }
-                )
+                ));
             }
+        }
+
+        if !options.no_agents {
+            let installed = result.agents_installed.len();
+            let skipped = result.agents_skipped.len();
+            if skipped > 0 {
+                summary_parts.push(format!(
+                    "{} agent{} installed, {} skipped",
+                    installed,
+                    if installed == 1 { "" } else { "s" },
+                    skipped
+                ));
+            } else if installed > 0 {
+                summary_parts.push(format!(
+                    "{} agent{} installed",
+                    installed,
+                    if installed == 1 { "" } else { "s" }
+                ));
+            }
+        }
+
+        let summary = if summary_parts.is_empty() {
+            String::new()
+        } else {
+            format!(" {}", summary_parts.join(", "))
         };
-        println!("aiandi initialized.{}", skill_summary);
+
+        println!("aiandi initialized.{}", summary);
     }
 
     Ok(result)
@@ -213,6 +303,31 @@ fn get_skills_to_install(options: &InitOptions) -> Result<Vec<BundledSkill>> {
     }
 }
 
+/// Get the list of agents to install based on options
+fn get_agents_to_install(options: &InitOptions) -> Result<Vec<BundledAgent>> {
+    match &options.agents {
+        Some(requested) => {
+            let mut agents = Vec::new();
+            let available = agent_names();
+
+            for name in requested {
+                let name = name.trim();
+                if let Some(agent) = get_agent(name) {
+                    agents.push(agent);
+                } else {
+                    anyhow::bail!(
+                        "Unknown agent: '{}'. Available agents: {}",
+                        name,
+                        available.join(", ")
+                    );
+                }
+            }
+            Ok(agents)
+        }
+        None => Ok(bundled_agents()),
+    }
+}
+
 /// CLI arguments for the init command
 #[derive(Debug, Clone, clap::Args)]
 pub struct Args {
@@ -223,6 +338,14 @@ pub struct Args {
     /// Skip skill installation
     #[arg(long)]
     pub no_skills: bool,
+
+    /// Comma-separated agents to install (default: all bundled)
+    #[arg(long, value_delimiter = ',')]
+    pub agents: Option<Vec<String>>,
+
+    /// Skip agent installation
+    #[arg(long)]
+    pub no_agents: bool,
 
     /// Overwrite existing files
     #[arg(long)]
@@ -238,6 +361,8 @@ impl From<&Args> for InitOptions {
         Self {
             skills: args.skills.clone(),
             no_skills: args.no_skills,
+            agents: args.agents.clone(),
+            no_agents: args.no_agents,
             force: args.force,
             dry_run: args.dry_run,
         }
@@ -272,16 +397,40 @@ mod tests {
         // Check directories exist
         assert!(temp.path().join(".opencode").exists());
         assert!(temp.path().join(".opencode/skill").exists());
+        assert!(temp.path().join(".opencode/agent").exists());
         assert!(temp.path().join(".opencode/.gitignore").exists());
 
         // Check skills extracted
-        assert!(temp.path().join(".opencode/skill/transmission/SKILL.md").exists());
+        assert!(temp
+            .path()
+            .join(".opencode/skill/transmission/SKILL.md")
+            .exists());
         assert!(temp.path().join(".opencode/skill/gtd/SKILL.md").exists());
+        assert!(temp
+            .path()
+            .join(".opencode/skill/governance/SKILL.md")
+            .exists());
 
-        // Check result
-        assert!(result.skills_installed.contains(&"transmission".to_string()));
+        // Check agents extracted (flat files, not directories)
+        assert!(temp.path().join(".opencode/agent/explore.md").exists());
+        assert!(temp.path().join(".opencode/agent/researcher.md").exists());
+        assert!(temp.path().join(".opencode/agent/builder.md").exists());
+        assert!(temp.path().join(".opencode/agent/reviewer.md").exists());
+        assert!(temp.path().join(".opencode/agent/documenter.md").exists());
+
+        // Check result - skills
+        assert!(result
+            .skills_installed
+            .contains(&"transmission".to_string()));
         assert!(result.skills_installed.contains(&"gtd".to_string()));
+        assert!(result.skills_installed.contains(&"governance".to_string()));
         assert!(result.skills_skipped.is_empty());
+
+        // Check result - agents
+        assert!(result.agents_installed.contains(&"explore".to_string()));
+        assert!(result.agents_installed.contains(&"builder".to_string()));
+        assert_eq!(result.agents_installed.len(), 5);
+        assert!(result.agents_skipped.is_empty());
     }
 
     #[test]
@@ -291,12 +440,15 @@ mod tests {
 
         // First run
         let result1 = run_in_directory(temp.path(), &options).expect("First init should succeed");
-        assert_eq!(result1.skills_installed.len(), 2);
+        assert_eq!(result1.skills_installed.len(), 3);
+        assert_eq!(result1.agents_installed.len(), 5);
 
         // Second run (should skip existing)
         let result2 = run_in_directory(temp.path(), &options).expect("Second init should succeed");
         assert_eq!(result2.skills_installed.len(), 0);
-        assert_eq!(result2.skills_skipped.len(), 2);
+        assert_eq!(result2.skills_skipped.len(), 3);
+        assert_eq!(result2.agents_installed.len(), 0);
+        assert_eq!(result2.agents_skipped.len(), 5);
     }
 
     #[test]
@@ -311,6 +463,10 @@ mod tests {
         let skill_file = temp.path().join(".opencode/skill/transmission/SKILL.md");
         fs::write(&skill_file, "modified content").expect("Should write");
 
+        // Modify an agent file
+        let agent_file = temp.path().join(".opencode/agent/explore.md");
+        fs::write(&agent_file, "modified content").expect("Should write");
+
         // Second run with force
         let options2 = InitOptions {
             force: true,
@@ -318,13 +474,25 @@ mod tests {
         };
         let result = run_in_directory(temp.path(), &options2).expect("Force init should succeed");
 
-        // Should have reinstalled both skills
-        assert_eq!(result.skills_installed.len(), 2);
+        // Should have reinstalled all skills and agents
+        assert_eq!(result.skills_installed.len(), 3);
         assert!(result.skills_skipped.is_empty());
+        assert_eq!(result.agents_installed.len(), 5);
+        assert!(result.agents_skipped.is_empty());
 
-        // Content should be restored
-        let content = fs::read_to_string(&skill_file).expect("Should read");
-        assert!(content.contains("transmission"), "Should have original content");
+        // Skill content should be restored
+        let skill_content = fs::read_to_string(&skill_file).expect("Should read");
+        assert!(
+            skill_content.contains("transmission"),
+            "Should have original skill content"
+        );
+
+        // Agent content should be restored
+        let agent_content = fs::read_to_string(&agent_file).expect("Should read");
+        assert!(
+            agent_content.contains("explore") || agent_content.contains("Explore"),
+            "Should have original agent content"
+        );
     }
 
     #[test]
@@ -344,6 +512,29 @@ mod tests {
         assert!(!temp.path().join(".opencode/skill/transmission").exists());
 
         assert!(result.skills_installed.is_empty());
+        // Agents should still be installed
+        assert_eq!(result.agents_installed.len(), 5);
+    }
+
+    #[test]
+    fn test_init_no_agents() {
+        let temp = create_temp_dir();
+        let options = InitOptions {
+            no_agents: true,
+            ..Default::default()
+        };
+
+        let result = run_in_directory(temp.path(), &options).expect("Init should succeed");
+
+        // .opencode should exist but not agent directory content
+        assert!(temp.path().join(".opencode").exists());
+        assert!(temp.path().join(".opencode/.gitignore").exists());
+        // agent directory shouldn't be created when --no-agents
+        assert!(!temp.path().join(".opencode/agent/explore.md").exists());
+
+        assert!(result.agents_installed.is_empty());
+        // Skills should still be installed
+        assert_eq!(result.skills_installed.len(), 3);
     }
 
     #[test]
@@ -358,7 +549,10 @@ mod tests {
 
         // Only gtd should be installed
         assert!(temp.path().join(".opencode/skill/gtd/SKILL.md").exists());
-        assert!(!temp.path().join(".opencode/skill/transmission/SKILL.md").exists());
+        assert!(!temp
+            .path()
+            .join(".opencode/skill/transmission/SKILL.md")
+            .exists());
 
         assert_eq!(result.skills_installed, vec!["gtd".to_string()]);
     }
@@ -388,5 +582,38 @@ mod tests {
         let result = run_in_directory(temp.path(), &options);
         assert!(result.is_err(), "Should fail with invalid skill");
         assert!(result.unwrap_err().to_string().contains("Unknown skill"));
+    }
+
+    #[test]
+    fn test_init_selective_agents() {
+        let temp = create_temp_dir();
+        let options = InitOptions {
+            agents: Some(vec!["explore".to_string(), "builder".to_string()]),
+            ..Default::default()
+        };
+
+        let result = run_in_directory(temp.path(), &options).expect("Init should succeed");
+
+        // Only selected agents should be installed
+        assert!(temp.path().join(".opencode/agent/explore.md").exists());
+        assert!(temp.path().join(".opencode/agent/builder.md").exists());
+        assert!(!temp.path().join(".opencode/agent/reviewer.md").exists());
+
+        assert_eq!(result.agents_installed.len(), 2);
+        assert!(result.agents_installed.contains(&"explore".to_string()));
+        assert!(result.agents_installed.contains(&"builder".to_string()));
+    }
+
+    #[test]
+    fn test_init_invalid_agent() {
+        let temp = create_temp_dir();
+        let options = InitOptions {
+            agents: Some(vec!["nonexistent".to_string()]),
+            ..Default::default()
+        };
+
+        let result = run_in_directory(temp.path(), &options);
+        assert!(result.is_err(), "Should fail with invalid agent");
+        assert!(result.unwrap_err().to_string().contains("Unknown agent"));
     }
 }
