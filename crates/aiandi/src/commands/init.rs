@@ -410,10 +410,17 @@ mod tests {
             .path()
             .join(".opencode/skill/governance/SKILL.md")
             .exists());
+        assert!(temp
+            .path()
+            .join(".opencode/skill/orchestration/SKILL.md")
+            .exists());
 
         // Check agents extracted (flat files, not directories)
         assert!(temp.path().join(".opencode/agent/explore.md").exists());
         assert!(temp.path().join(".opencode/agent/researcher.md").exists());
+        assert!(temp.path().join(".opencode/agent/story.md").exists());
+        assert!(temp.path().join(".opencode/agent/test-writer.md").exists());
+        assert!(temp.path().join(".opencode/agent/validator.md").exists());
         assert!(temp.path().join(".opencode/agent/builder.md").exists());
         assert!(temp.path().join(".opencode/agent/reviewer.md").exists());
         assert!(temp.path().join(".opencode/agent/documenter.md").exists());
@@ -424,12 +431,15 @@ mod tests {
             .contains(&"transmission".to_string()));
         assert!(result.skills_installed.contains(&"gtd".to_string()));
         assert!(result.skills_installed.contains(&"governance".to_string()));
+        assert!(result
+            .skills_installed
+            .contains(&"orchestration".to_string()));
         assert!(result.skills_skipped.is_empty());
 
         // Check result - agents
         assert!(result.agents_installed.contains(&"explore".to_string()));
         assert!(result.agents_installed.contains(&"builder".to_string()));
-        assert_eq!(result.agents_installed.len(), 5);
+        assert_eq!(result.agents_installed.len(), 8);
         assert!(result.agents_skipped.is_empty());
     }
 
@@ -440,15 +450,15 @@ mod tests {
 
         // First run
         let result1 = run_in_directory(temp.path(), &options).expect("First init should succeed");
-        assert_eq!(result1.skills_installed.len(), 3);
-        assert_eq!(result1.agents_installed.len(), 5);
+        assert_eq!(result1.skills_installed.len(), 4);
+        assert_eq!(result1.agents_installed.len(), 8);
 
         // Second run (should skip existing)
         let result2 = run_in_directory(temp.path(), &options).expect("Second init should succeed");
         assert_eq!(result2.skills_installed.len(), 0);
-        assert_eq!(result2.skills_skipped.len(), 3);
+        assert_eq!(result2.skills_skipped.len(), 4);
         assert_eq!(result2.agents_installed.len(), 0);
-        assert_eq!(result2.agents_skipped.len(), 5);
+        assert_eq!(result2.agents_skipped.len(), 8);
     }
 
     #[test]
@@ -475,9 +485,9 @@ mod tests {
         let result = run_in_directory(temp.path(), &options2).expect("Force init should succeed");
 
         // Should have reinstalled all skills and agents
-        assert_eq!(result.skills_installed.len(), 3);
+        assert_eq!(result.skills_installed.len(), 4);
         assert!(result.skills_skipped.is_empty());
-        assert_eq!(result.agents_installed.len(), 5);
+        assert_eq!(result.agents_installed.len(), 8);
         assert!(result.agents_skipped.is_empty());
 
         // Skill content should be restored
@@ -513,7 +523,7 @@ mod tests {
 
         assert!(result.skills_installed.is_empty());
         // Agents should still be installed
-        assert_eq!(result.agents_installed.len(), 5);
+        assert_eq!(result.agents_installed.len(), 8);
     }
 
     #[test]
@@ -534,7 +544,7 @@ mod tests {
 
         assert!(result.agents_installed.is_empty());
         // Skills should still be installed
-        assert_eq!(result.skills_installed.len(), 3);
+        assert_eq!(result.skills_installed.len(), 4);
     }
 
     #[test]

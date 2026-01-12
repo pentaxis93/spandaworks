@@ -9,8 +9,11 @@ pub const TRANSMISSION_SKILL: &str = include_str!("../../../assets/skills/transm
 /// GTD skill - Getting Things Done with TaskWarrior
 pub const GTD_SKILL: &str = include_str!("../../../assets/skills/gtd/SKILL.md");
 
-/// Governance skill - Identity and routing for Governance sessions
+/// Governance skill - Deliberation protocols for Governance sessions
 pub const GOVERNANCE_SKILL: &str = include_str!("../../../assets/skills/governance/SKILL.md");
+
+/// Orchestration skill - Agent coordination and TDD workflows
+pub const ORCHESTRATION_SKILL: &str = include_str!("../../../assets/skills/orchestration/SKILL.md");
 
 /// A bundled skill that can be extracted to a project
 #[derive(Debug, Clone)]
@@ -35,6 +38,10 @@ pub fn bundled_skills() -> Vec<BundledSkill> {
         BundledSkill {
             name: "governance",
             content: GOVERNANCE_SKILL,
+        },
+        BundledSkill {
+            name: "orchestration",
+            content: ORCHESTRATION_SKILL,
         },
     ]
 }
@@ -99,6 +106,7 @@ mod tests {
         assert!(names.contains(&"transmission"));
         assert!(names.contains(&"gtd"));
         assert!(names.contains(&"governance"));
+        assert!(names.contains(&"orchestration"));
     }
 
     #[test]
@@ -110,6 +118,18 @@ mod tests {
         assert!(
             GOVERNANCE_SKILL.contains("Governance") || GOVERNANCE_SKILL.contains("governance"),
             "Governance skill should mention governance"
+        );
+    }
+
+    #[test]
+    fn test_orchestration_skill_has_content() {
+        assert!(
+            !ORCHESTRATION_SKILL.is_empty(),
+            "Orchestration skill should have content"
+        );
+        assert!(
+            ORCHESTRATION_SKILL.contains("TDD") || ORCHESTRATION_SKILL.contains("pipeline"),
+            "Orchestration skill should mention TDD or pipeline"
         );
     }
 }

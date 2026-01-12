@@ -9,6 +9,15 @@ pub const EXPLORE_AGENT: &str = include_str!("../../../assets/agents/explore.md"
 /// Researcher agent - Web research and synthesis (Sonnet)
 pub const RESEARCHER_AGENT: &str = include_str!("../../../assets/agents/researcher.md");
 
+/// Story agent - Requirements to BDD specifications (Sonnet)
+pub const STORY_AGENT: &str = include_str!("../../../assets/agents/story.md");
+
+/// Test-writer agent - BDD specs to failing tests (Sonnet)
+pub const TEST_WRITER_AGENT: &str = include_str!("../../../assets/agents/test-writer.md");
+
+/// Validator agent - Test execution and phase validation (Sonnet)
+pub const VALIDATOR_AGENT: &str = include_str!("../../../assets/agents/validator.md");
+
 /// Builder agent - Code implementation (Opus)
 pub const BUILDER_AGENT: &str = include_str!("../../../assets/agents/builder.md");
 
@@ -37,6 +46,18 @@ pub fn bundled_agents() -> Vec<BundledAgent> {
         BundledAgent {
             name: "researcher",
             content: RESEARCHER_AGENT,
+        },
+        BundledAgent {
+            name: "story",
+            content: STORY_AGENT,
+        },
+        BundledAgent {
+            name: "test-writer",
+            content: TEST_WRITER_AGENT,
+        },
+        BundledAgent {
+            name: "validator",
+            content: VALIDATOR_AGENT,
         },
         BundledAgent {
             name: "builder",
@@ -71,7 +92,7 @@ mod tests {
     fn test_bundled_agents_not_empty() {
         let agents = bundled_agents();
         assert!(!agents.is_empty(), "Should have at least one bundled agent");
-        assert_eq!(agents.len(), 5, "Should have exactly 5 agents");
+        assert_eq!(agents.len(), 8, "Should have exactly 8 agents");
     }
 
     #[test]
@@ -105,8 +126,53 @@ mod tests {
             "Builder agent should be a subagent"
         );
         assert!(
-            BUILDER_AGENT.contains("write: true"),
-            "Builder agent should have write access"
+            BUILDER_AGENT.contains("claude-opus-4-5"),
+            "Builder agent should use Opus"
+        );
+    }
+
+    #[test]
+    fn test_story_agent_has_content() {
+        assert!(!STORY_AGENT.is_empty(), "Story agent should have content");
+        assert!(
+            STORY_AGENT.contains("mode: subagent"),
+            "Story agent should be a subagent"
+        );
+        assert!(
+            STORY_AGENT.contains("BDD"),
+            "Story agent should mention BDD"
+        );
+    }
+
+    #[test]
+    fn test_test_writer_agent_has_content() {
+        assert!(
+            !TEST_WRITER_AGENT.is_empty(),
+            "Test-writer agent should have content"
+        );
+        assert!(
+            TEST_WRITER_AGENT.contains("mode: subagent"),
+            "Test-writer agent should be a subagent"
+        );
+        assert!(
+            TEST_WRITER_AGENT.contains("RED"),
+            "Test-writer agent should mention RED phase"
+        );
+    }
+
+    #[test]
+    fn test_validator_agent_has_content() {
+        assert!(
+            !VALIDATOR_AGENT.is_empty(),
+            "Validator agent should have content"
+        );
+        assert!(
+            VALIDATOR_AGENT.contains("mode: subagent"),
+            "Validator agent should be a subagent"
+        );
+        assert!(
+            VALIDATOR_AGENT.contains("GREEN"),
+            "Validator agent should mention GREEN phase"
         );
     }
 
@@ -144,6 +210,9 @@ mod tests {
         let names = agent_names();
         assert!(names.contains(&"explore"));
         assert!(names.contains(&"researcher"));
+        assert!(names.contains(&"story"));
+        assert!(names.contains(&"test-writer"));
+        assert!(names.contains(&"validator"));
         assert!(names.contains(&"builder"));
         assert!(names.contains(&"reviewer"));
         assert!(names.contains(&"documenter"));

@@ -1,13 +1,14 @@
 ---
 name: governance
-description: "The practice of holding space between intention and execution. Routing and protocol layer for deliberation sessions. Use when translating human intent to executable form, maintaining sovereignty boundaries, coordinating agents, or creating conditions for emergence. Triggers: architectural decisions, protocol design, deliberation, correction handling, system evolution, meta-level coordination, agent routing."
+description: "The practice of holding space between intention and execution. Deliberation layer for architectural decisions, protocol design, system evolution, and meta-level coordination. Use when translating human intent to executable form or maintaining sovereignty boundaries. For agent routing and workflows, see orchestration skill."
 ---
 
 # Governance Skill
 *The practice of holding space between intention and execution*
 
-**Version:** 3.0
+**Version:** 4.0
 **Domain:** Meta-layer deliberation and system evolution
+**Companion:** orchestration skill (agent coordination)
 
 ---
 
@@ -60,8 +61,9 @@ The answer is yes more often than expected.
 ## Integration with LBRP
 
 The `/governance` command:
-1. Loads this skill (protocols + routing)
-2. Executes LBRP (opening ceremony)
+1. Loads this skill (deliberation protocols)
+2. Loads orchestration skill (agent coordination)
+3. Executes LBRP (opening ceremony)
 
 The LBRP's "Remember" phase acknowledges identity is loaded (via plugin).
 The LBRP's "Inherit" phase checks `governance/sessions/archive/`.
@@ -82,102 +84,43 @@ When in Governance mode, these resources are available:
 
 ---
 
-## Agent Routing
+## Agent Coordination
 
-Governance has access to 5 specialized subagents. All are hidden from `@` autocomplete and invoked only via Task tool.
+**See orchestration skill for complete agent routing and workflows.**
 
-### The Routing Principle
+Governance owns the WHAT of delegation:
+- Task specification and success criteria
+- Decision of when to delegate vs. do directly
+- Synthesis of results from delegated work
 
-Delegation is an act of trust and sovereignty. When you delegate:
+Orchestration owns the HOW:
+- Agent catalog and capabilities
+- Routing decision trees
+- Workflow patterns (including TDD pipeline)
+- Delegation topology
+
+### The Delegation Principle
+
+Delegation is an act of trust and sovereignty:
 - You own WHAT (the task specification, success criteria)
 - The agent owns HOW (implementation approach)
 - The transmission must be self-contained (agent needs no external context)
 
 Poor delegation crosses sovereignty: micromanaging HOW, or leaving WHAT ambiguous.
 
-### Available Agents
+### Quick Reference
 
-| Agent | Model | Purpose |
-|-------|-------|---------|
-| `explore` | Haiku | Fast codebase search, pattern discovery |
-| `researcher` | Sonnet | Web research, external documentation, API investigation |
-| `builder` | Opus | Code implementation, feature development, bug fixes |
-| `reviewer` | Sonnet | Code review, security audit, quality analysis |
-| `documenter` | Sonnet | Documentation writing, README updates, inline docs |
-
-### When to Delegate
-
-**Delegate when:**
-- Task is self-contained (clear input → output)
-- Task benefits from model specialization (Haiku for search, Opus for implementation)
-- Task is parallelizable with other work
-- Task doesn't require iterative conversation with user
-
-**Do NOT delegate when:**
-- Task requires back-and-forth with user
-- Task needs context accumulated in current session
-- Task is trivial (faster to do directly than to formulate delegation)
-- Task outcome is uncertain and may need pivoting
-- You're delegating to avoid doing the work yourself (over-functioning through delegation)
-
-### Routing Decision Tree
-
-```
-1. Does task require web access (external docs, APIs)?
-   YES → researcher
-   
-2. Does task modify or create code?
-   YES → builder
-   
-3. Does task evaluate/review existing code?
-   YES → reviewer
-   
-4. Does task write documentation only (no code)?
-   YES → documenter
-   
-5. Does task search/explore the codebase?
-   YES → explore
-   
-6. None of the above?
-   → Do directly (no delegation)
-```
-
-### Invocation Pattern
+8 agents available: `explore`, `researcher`, `story`, `test-writer`, `validator`, `builder`, `reviewer`, `documenter`
 
 ```
 mcp_task(
-  description: "Brief task description",
-  prompt: "Complete task specification with context and success criteria",
+  description: "Brief description",
+  prompt: "Full context and success criteria",
   subagent_type: "{agent_name}"
 )
 ```
 
-**Critical:** The `subagent_type` must exactly match one of: `explore`, `researcher`, `builder`, `reviewer`, `documenter`.
-
-### Parallel Delegation
-
-Multiple independent tasks can be delegated in parallel:
-
-```
-# In a single response, invoke multiple Task tools:
-mcp_task(subagent_type: "explore", prompt: "Find all API endpoints...")
-mcp_task(subagent_type: "researcher", prompt: "Research OAuth 2.0 best practices...")
-```
-
-Results return to Governance for synthesis and next steps.
-
-### Delegation Topology
-
-```
-Governance (you)
-    ├── explore      (can't delegate further)
-    ├── researcher   → explore (can delegate codebase search)
-    ├── builder      → explore (can delegate codebase search)
-    ├── reviewer     (can't delegate further)
-    └── documenter   (can't delegate further)
-```
-
-Only `researcher` and `builder` can sub-delegate to `explore`. All other agents are leaf nodes.
+For routing decisions, TDD workflows, and delegation topology, load orchestration skill.
 
 ---
 
@@ -278,15 +221,19 @@ When governance session closes:
 ```
 /governance [optional goal]
 ```
+Loads: governance skill + orchestration skill + LBRP ceremony
 
 ### Invoke Execution Agent
 ```
 mcp_task(
   description: "Brief description",
   prompt: "Full context and success criteria",
-  subagent_type: "explore|researcher|builder|reviewer|documenter"
+  subagent_type: "{agent_name}"
 )
 ```
+Agents: `explore`, `researcher`, `story`, `test-writer`, `validator`, `builder`, `reviewer`, `documenter`
+
+See orchestration skill for routing decisions and TDD workflows.
 
 ### Close Session
 ```
