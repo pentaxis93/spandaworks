@@ -50,6 +50,8 @@ Create an ADR when:
 
 | Date | Title | Status |
 |------|-------|--------|
+| 2026-01-12 | [TDD Pipeline and Agent Orchestration](2026-01-12-tdd-pipeline-and-agent-orchestration.md) | Accepted |
+| 2026-01-08 | [Project-Level Configuration](2026-01-08-project-level-skill-discovery.md) | Accepted |
 | 2026-01-07 | [Monorepo Architecture Exploration](2026-01-07-monorepo-architecture-exploration.md) | Accepted |
 
 ---
