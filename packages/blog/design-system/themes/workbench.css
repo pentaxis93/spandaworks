@@ -1,0 +1,243 @@
+/**
+ * WORKBENCH
+ * 
+ * Created: January 2026
+ * 
+ * A clean desk in a dim room with a single amber task light. The light is warm
+ * but focused. The surfaces are matte, not glossy. Everything is within reach.
+ * The type is quiet but perfectly legible. Nothing decorates; everything works.
+ * 
+ * PHILOSOPHY:
+ * This theme clarifies rather than styles. It's for focused work, for thinking
+ * clearly, for the kind of precision that doesn't announce itself. Every choice—
+ * the charcoal that's not pure black, the amber accent that recalls workshop
+ * lighting, the generous line-height for dense ideas—serves comprehension.
+ * 
+ * DESIGN PRINCIPLES:
+ * - Clarity over aesthetics: Every choice serves readability
+ * - Precision over warmth: Room temperature, not emotional color
+ * - Spacious over dense: Room to think between paragraphs
+ * - Delicate over bold: Softer emphasis, conversational tone
+ * 
+ * KEY CHARACTERISTICS:
+ * - Deep charcoal background (#1c1c1c) - inhabited darkness, not void
+ * - Near-white text (#ebebeb) - readable without glare
+ * - Amber accent (#d4a574) - task lighting, precision tools, illumination
+ * - Subtle elevation - surfaces lighter than background (light falls on them)
+ * - Humanist sans-serif - readable workhorse, not geometric coldness
+ * - Relaxed line-height (1.75) - dense meaning needs room to breathe
+ * - Delicate weights - bold maps to 600, not 700 (softer emphasis)
+ * 
+ * INTENDED MOOD:
+ * Focused. Clear-headed. Precise without coldness. The inside voice—the one
+ * you think in when you're working something out. Mid-morning mental clarity
+ * in dark-mode form.
+ */
+
+@theme {
+	/* ===== SURFACES ===== */
+	/* Philosophy: Warm charcoal, not pure black. Surfaces lighten with elevation. */
+	--color-background: #1c1c1c;        /* Deep charcoal - inhabited, not void */
+	--color-surface: #262626;           /* Lighter for elevation - light falls here */
+	--color-surface-alt: #2d2d2d;       /* Code blocks, asides - clear distinction */
+	--color-border: rgb(235 235 235 / 0.08); /* Subtle - defines edges without fighting */
+	
+	/* ===== TEXT ===== */
+	/* Philosophy: Clear hierarchy through lightness, not color */
+	--color-text-primary: #ebebeb;      /* Near-white - readable without glare */
+	--color-text-secondary: #a8a8a8;    /* Clear step down - still legible */
+	--color-text-muted: #787878;        /* De-emphasized but visible */
+	--color-text-inverse: #1c1c1c;      /* Dark on light (rare in dark theme) */
+	
+	/* ===== ACCENT COLORS ===== */
+	/* Philosophy: Amber = task lighting, precision, illumination. The ONLY emotional color. */
+	--color-accent: #d4a574;                    /* Amber - warm but not emotional */
+	--color-accent-hover: #c49760;              /* Slightly darker for interaction */
+	--color-accent-subtle: rgb(212 165 116 / 0.15); /* Low opacity for backgrounds */
+	
+	/* Single accent system - no secondary/tertiary. This theme is focused. */
+	
+	/* ===== TYPOGRAPHY ===== */
+	/* Philosophy: Humanist sans - readable, not geometric. Workhorse, not display. */
+	--font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	--font-heading: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	--font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+	
+	/* Font sizes - modest, not dramatic. This is working scale, not display scale. */
+	--font-size-base: 1rem;        /* 16px - standard readability */
+	--font-size-lg: 1.125rem;      /* 18px */
+	--font-size-xl: 1.25rem;       /* 20px */
+	--font-size-2xl: 1.5rem;       /* 24px */
+	--font-size-3xl: 1.875rem;     /* 30px */
+	--font-size-4xl: 2.25rem;      /* 36px */
+	--font-size-5xl: 3rem;         /* 48px */
+	--font-size-6xl: 3.75rem;      /* 60px */
+	
+	/* Line heights - relaxed for dense content, tight for structure */
+	--leading-tight: 1.3;           /* Headings - structural anchors */
+	--leading-normal: 1.5;          /* Standard */
+	--leading-relaxed: 1.75;        /* Body text - ideas need room */
+	--leading-loose: 2.0;           /* Maximum breathing room (rarely used) */
+	
+	/* Semantic line heights */
+	--leading-body: var(--leading-relaxed);     /* 1.75 for dense meaning */
+	--leading-heading: var(--leading-tight);    /* 1.3 for structure */
+	
+	/* Letter spacing - normal to slightly open, never tight */
+	--tracking-tight: -0.015em;     /* Slight tightening for large type */
+	--tracking-normal: 0;           /* Default - don't mess with it */
+	--tracking-wide: 0.015em;       /* Slight opening for legibility */
+	
+	/* Semantic letter spacing */
+	--tracking-body: var(--tracking-normal);    /* Body stays neutral */
+	--tracking-heading: var(--tracking-tight);  /* Large headings slightly tighter */
+	
+	/* Font weights - DELICATE theme. Bold = 600, not 700. */
+	--font-weight-thin: 100;
+	--font-weight-extralight: 200;
+	--font-weight-light: 300;       /* Could use for large elegant headings */
+	--font-weight-normal: 400;      /* Body text */
+	--font-weight-medium: 500;      /* Subtle UI emphasis */
+	--font-weight-semibold: 600;    /* THIS IS "BOLD" for this theme */
+	--font-weight-bold: 600;        /* Maps to semibold - softer emphasis */
+	--font-weight-extrabold: 700;   /* Available but discouraged */
+	--font-weight-black: 800;       /* Available but discouraged */
+	
+	/* ===== SPACING ===== */
+	/* Philosophy: Generous vertical (ideas settle), efficient horizontal (no waste) */
+	--space-xs: 0.5rem;      /* 8px - tight inline */
+	--space-sm: 0.75rem;     /* 12px - comfortable inline */
+	--space-md: 1.25rem;     /* 20px - base unit (slightly generous) */
+	--space-lg: 2rem;        /* 32px - section padding */
+	--space-xl: 3.5rem;      /* 56px - major breaks */
+	--space-2xl: 5rem;       /* 80px - chapter/hero spacing */
+	
+	/* Semantic spacing */
+	--space-section: var(--space-xl);           /* 3.5rem - clear idea breaks */
+	--space-card-padding: var(--space-lg);      /* 2rem - comfortable containment */
+	--space-inline: var(--space-sm);            /* 0.75rem - efficient but not tight */
+	
+	/* Container widths - prose-focused, reading measure matters */
+	--container-prose: 65ch;         /* Optimal reading measure */
+	--container-narrow: 42rem;       /* Focused content */
+	--container-normal: 52rem;       /* Balanced layout */
+	--container-wide: 64rem;         /* Not needed for this content */
+	--container-full: 80rem;         /* Not needed for this content */
+	
+	/* ===== EFFECTS ===== */
+	/* Border radius - subtle softening. Crafted, not designed. */
+	--radius-none: 0;
+	--radius-sm: 0.25rem;    /* 4px - inline code, small elements */
+	--radius-md: 0.375rem;   /* 6px - default (cards, buttons) */
+	--radius-lg: 0.5rem;     /* 8px - larger surfaces */
+	--radius-full: 9999px;   /* Pills, avatars */
+	
+	/* Shadows - SUBTLE elevation. Surfaces catch light, don't float dramatically. */
+	--shadow-color: rgb(0 0 0);     /* Pure black for shadows */
+	--shadow-none: none;
+	--shadow-sm: 0 2px 4px 0 rgb(0 0 0 / 0.12), 0 1px 2px 0 rgb(0 0 0 / 0.08);
+	--shadow-md: 0 4px 8px -1px rgb(0 0 0 / 0.16), 0 2px 4px -1px rgb(0 0 0 / 0.1);
+	--shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.2), 0 4px 6px -2px rgb(0 0 0 / 0.12);
+	/* Note: Subtle blur (4-15px), conservative opacity, minimal offset */
+	
+	/* Transitions - SNAPPY, responsive. Not performative. */
+	--duration-fast: 120ms;          /* Instant feedback - hovers */
+	--duration-normal: 180ms;        /* Comfortable - color changes */
+	--duration-slow: 250ms;          /* Rarely used */
+	--easing: ease-out;              /* Natural deceleration */
+	
+	/* Borders - delicate */
+	--border-width: 1px;             /* Subtle definition */
+	--border-width-thick: 2px;       /* Emphasis stays refined */
+	
+	/* Blur - MINIMAL. This is a flat theme. */
+	--blur-xs: 4px;          /* Available but discouraged */
+	--blur-sm: 8px;          /* Available but discouraged */
+	--blur-md: 12px;         /* Available but discouraged */
+	--blur-lg: 16px;         /* Available but discouraged */
+	--blur-xl: 24px;         /* Available but discouraged */
+	--blur-2xl: 40px;        /* Available but discouraged */
+	--blur-3xl: 64px;        /* Available but discouraged */
+	/* Rationale: Blur obscures. This theme REVEALS. Use only for modal overlays if needed. */
+	
+	/* Text shadow - NONE. Flat aesthetic, clarity over effects. */
+	--text-shadow-2xs: none;
+	--text-shadow-xs: none;
+	--text-shadow-sm: none;
+	--text-shadow-md: none;
+	--text-shadow-lg: none;
+	/* Rationale: Dark theme already has high contrast. No embossing, no glow. */
+	
+	/* Inset shadow - NOT USED. Not a tactile/neumorphic theme. */
+	--inset-shadow-xs: none;
+	--inset-shadow-sm: none;
+	--inset-shadow-md: none;
+	
+	/* Drop shadow - NOT USED. Text-focused theme, not illustrated. */
+	--drop-shadow-xs: none;
+	--drop-shadow-sm: none;
+	--drop-shadow-md: none;
+	--drop-shadow-lg: none;
+	--drop-shadow-xl: none;
+	--drop-shadow-2xl: none;
+}
+
+/**
+ * THEME-SPECIFIC CUSTOMIZATIONS
+ * 
+ * Workbench extends the base .prose styling for optimal readability.
+ */
+
+/* Prose styling - optimized for dense technical content */
+.prose {
+	font-size: var(--font-size-base);     /* 16px - standard, not oversized */
+	line-height: var(--leading-relaxed);  /* 1.75 - dense ideas need room */
+}
+
+/* Code blocks - clear distinction from prose */
+.prose pre {
+	background-color: var(--color-surface-alt);
+	border: 1px solid var(--color-border);
+}
+
+/* Inline code - subtle background */
+.prose code {
+	background-color: var(--color-surface);
+}
+
+/**
+ * DESIGN RATIONALE:
+ * 
+ * COLOR CHOICE (Amber accent):
+ * - Recalls incandescent task lighting (workshop context metaphor)
+ * - Warm but not emotional (room temperature precision)
+ * - High contrast on dark background (WCAG AAA for large text, AA for normal)
+ * - Timeless - not blue (too corporate), not green (too hacker), not purple (too mystical)
+ * - Connotes: precision tools, careful work, illumination
+ * 
+ * TYPOGRAPHY (System fonts):
+ * - No external font loading = faster, more reliable
+ * - Platform-native = familiar, comfortable
+ * - Humanist sans = readable at small sizes, not geometric coldness
+ * - Excellent hinting on all platforms
+ * 
+ * SPACING (Slightly generous):
+ * - Dense MEANING needs generous SPACE
+ * - Short paragraphs + relaxed line-height = comprehension
+ * - Not wasteful (no 6rem+ spacing), but unhurried
+ * 
+ * WEIGHT MAPPING (Delicate):
+ * - Bold → 600 instead of 700 = softer emphasis
+ * - Matches conversational precision of the voice
+ * - "Inside voice" = not shouting, even for emphasis
+ * 
+ * FLATNESS (Minimal depth):
+ * - No blur (obscures information)
+ * - No text shadow (adds noise)
+ * - Subtle box shadows only (surfaces catch light)
+ * - Clarity > depth
+ * 
+ * INEVITABILITY:
+ * Given the content (precise, playful, dry, focused), this theme should feel
+ * like the only possible visual expression. Not "nice" or "different," but RIGHT.
+ */

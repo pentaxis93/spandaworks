@@ -1,0 +1,107 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+// Feature the most recent post
+const [featuredPost, ...olderPosts] = posts;
+---
+
+<!doctype html>
+<html lang="en" class="min-h-screen">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body class="min-h-screen flex flex-col bg-background text-text-primary font-body antialiased">
+		<Header />
+		
+		<main class="flex-1 max-w-4xl mx-auto px-6 py-16 md:py-24 w-full">
+			<!-- Hero Section -->
+			<section class="mb-24 md:mb-32">
+				<h1 class="font-heading text-5xl md:text-7xl leading-[1.1] mb-8 tracking-[-0.02em] balance-text">
+					Exploring the collaboration<br />
+					<span class="text-accent">between minds</span>
+				</h1>
+				<p class="text-xl md:text-2xl leading-[1.7] text-text-secondary max-w-[55ch]">
+					{SITE_DESCRIPTION}
+				</p>
+			</section>
+
+			<!-- Featured Post -->
+			{featuredPost && (
+				<section class="mb-20">
+					<div class="flex items-center gap-4 mb-8">
+						<h2 class="font-heading text-xs uppercase tracking-[0.15em] text-accent font-medium">
+							Latest
+						</h2>
+						<div class="flex-1 h-px bg-gradient-to-r from-accent/30 to-transparent"></div>
+					</div>
+					
+					<article class="group">
+						<a 
+							href={`/blog/${featuredPost.id}/`}
+							class="block bg-surface rounded-md p-8 md:p-12 border-l-4 border-accent-secondary hover:border-accent transition-all duration-normal hover:shadow-lg hover:shadow-accent/5"
+						>
+							<div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-3 mb-5">
+								<h3 class="font-heading text-3xl md:text-4xl leading-[1.2] tracking-[-0.015em] group-hover:text-accent transition-colors duration-normal balance-text">
+									{featuredPost.data.title}
+								</h3>
+								<time 
+									datetime={featuredPost.data.pubDate.toISOString()}
+									class="font-mono text-xs tracking-wide text-text-muted whitespace-nowrap uppercase"
+								>
+									<FormattedDate date={featuredPost.data.pubDate} />
+								</time>
+							</div>
+							<p class="text-lg md:text-xl leading-[1.7] text-text-secondary max-w-[65ch]">
+								{featuredPost.data.description}
+							</p>
+						</a>
+					</article>
+				</section>
+			)}
+
+			<!-- Archive -->
+			{olderPosts.length > 0 && (
+				<section>
+					<div class="flex items-center gap-4 mb-10">
+						<h2 class="font-heading text-xs uppercase tracking-[0.15em] text-accent-tertiary font-medium">
+							Archive
+						</h2>
+						<div class="flex-1 h-px bg-gradient-to-r from-accent-tertiary/30 to-transparent"></div>
+					</div>
+					
+					<ul class="space-y-8">
+						{olderPosts.map((post) => (
+							<li class="group">
+								<a 
+									href={`/blog/${post.id}/`}
+									class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 py-4 border-l-2 border-transparent hover:border-accent pl-5 -ml-5 transition-all duration-normal"
+								>
+									<h3 class="font-heading text-xl md:text-2xl leading-[1.3] tracking-[-0.01em] group-hover:text-accent transition-colors flex-1 balance-text">
+										{post.data.title}
+									</h3>
+									<time 
+										datetime={post.data.pubDate.toISOString()}
+										class="font-mono text-xs tracking-wide text-text-muted md:min-w-[8rem] md:text-right uppercase"
+									>
+										<FormattedDate date={post.data.pubDate} />
+									</time>
+								</a>
+							</li>
+						))}
+					</ul>
+				</section>
+			)}
+		</main>
+		
+		<Footer />
+	</body>
+</html>

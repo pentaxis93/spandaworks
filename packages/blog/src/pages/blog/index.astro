@@ -1,0 +1,71 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import Header from '../../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<!doctype html>
+<html lang="en" class="min-h-screen">
+	<head>
+		<BaseHead title={`Blog - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+	</head>
+	<body class="min-h-screen flex flex-col bg-background text-text-primary font-body antialiased">
+		<Header />
+		
+		<main class="flex-1 max-w-6xl mx-auto px-6 py-16 md:py-22 w-full">
+			<h1 class="font-heading text-4xl md:text-5xl mb-16 text-center">
+				All Posts
+			</h1>
+			
+			<ul class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+				{posts.map((post) => (
+					<li class="group">
+						<a 
+							href={`/blog/${post.id}/`}
+							class="block h-full"
+						>
+							{post.data.heroImage && (
+								<div class="mb-4 overflow-hidden rounded-md">
+									<Image 
+										width={720} 
+										height={360} 
+										src={post.data.heroImage} 
+										alt=""
+										class="w-full h-auto transition-transform duration-slow group-hover:scale-105"
+									/>
+								</div>
+							)}
+							
+							<h2 class="font-heading text-2xl md:text-3xl group-hover:text-accent transition-colors duration-normal mb-2">
+								{post.data.title}
+							</h2>
+							
+							<time 
+								datetime={post.data.pubDate.toISOString()}
+								class="font-mono text-sm text-text-muted block mb-3"
+							>
+								<FormattedDate date={post.data.pubDate} />
+							</time>
+							
+							{post.data.description && (
+								<p class="text-base leading-relaxed text-text-secondary">
+									{post.data.description}
+								</p>
+							)}
+						</a>
+					</li>
+				))}
+			</ul>
+		</main>
+		
+		<Footer />
+	</body>
+</html>
