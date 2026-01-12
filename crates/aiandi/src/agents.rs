@@ -1,22 +1,22 @@
 //! Bundled agents embedded at compile time.
 //!
-//! Agents are extracted from the aiandi repo's agents/ directory and embedded
+//! Agents are extracted from the aiandi repo's assets/agents/ directory and embedded
 //! in the binary using include_str!(). This makes the binary self-contained.
 
 /// Explore agent - Fast codebase search (Haiku)
-pub const EXPLORE_AGENT: &str = include_str!("../../../agents/explore.md");
+pub const EXPLORE_AGENT: &str = include_str!("../../../assets/agents/explore.md");
 
 /// Researcher agent - Web research and synthesis (Sonnet)
-pub const RESEARCHER_AGENT: &str = include_str!("../../../agents/researcher.md");
+pub const RESEARCHER_AGENT: &str = include_str!("../../../assets/agents/researcher.md");
 
 /// Builder agent - Code implementation (Opus)
-pub const BUILDER_AGENT: &str = include_str!("../../../agents/builder.md");
+pub const BUILDER_AGENT: &str = include_str!("../../../assets/agents/builder.md");
 
 /// Reviewer agent - Code review and analysis (Sonnet)
-pub const REVIEWER_AGENT: &str = include_str!("../../../agents/reviewer.md");
+pub const REVIEWER_AGENT: &str = include_str!("../../../assets/agents/reviewer.md");
 
 /// Documenter agent - Documentation writing (Sonnet)
-pub const DOCUMENTER_AGENT: &str = include_str!("../../../agents/documenter.md");
+pub const DOCUMENTER_AGENT: &str = include_str!("../../../assets/agents/documenter.md");
 
 /// A bundled agent that can be extracted to a project
 #[derive(Debug, Clone)]

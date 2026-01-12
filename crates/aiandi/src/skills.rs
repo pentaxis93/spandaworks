@@ -1,16 +1,16 @@
 //! Bundled skills embedded at compile time.
 //!
-//! Skills are extracted from the aiandi repo's skills/ directory and embedded
+//! Skills are extracted from the aiandi repo's assets/skills/ directory and embedded
 //! in the binary using include_str!(). This makes the binary self-contained.
 
 /// Transmission protocol skill - XML governance communication
-pub const TRANSMISSION_SKILL: &str = include_str!("../../../skills/transmission/SKILL.md");
+pub const TRANSMISSION_SKILL: &str = include_str!("../../../assets/skills/transmission/SKILL.md");
 
 /// GTD skill - Getting Things Done with TaskWarrior
-pub const GTD_SKILL: &str = include_str!("../../../skills/gtd/SKILL.md");
+pub const GTD_SKILL: &str = include_str!("../../../assets/skills/gtd/SKILL.md");
 
 /// Governance skill - Identity and routing for Governance sessions
-pub const GOVERNANCE_SKILL: &str = include_str!("../../../skills/governance/SKILL.md");
+pub const GOVERNANCE_SKILL: &str = include_str!("../../../assets/skills/governance/SKILL.md");
 
 /// A bundled skill that can be extracted to a project
 #[derive(Debug, Clone)]
