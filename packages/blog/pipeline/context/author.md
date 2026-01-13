@@ -1,17 +1,26 @@
 # Author Context: Robbie
 
-*Biographical context for AI and I blog content generation.*
+*Quick reference for AI and I blog content generation.*
 
 **Last updated:** 2026-01-13
+
+**For detailed context, see:**
+- `timeline/overview.md` - Full chronological life arc
+- `people/family.md` - Family relationships
+- `themes/spiritual.md` - Buddhist practice and spiritual journey
+- `themes/career.md` - Professional history
 
 ---
 
 ## Identity
 
-- **Name:** Robbie (pentaxis93 on GitHub)
-- **Age:** 56 (born ~1969)
-- **Location:** Not specified publicly
-- **Philosophy:** Buddhist ("All phenomena is illusion" - GitHub bio)
+- **Name:** Robbie (Robert Grossman, pentaxis93 on GitHub)
+- **Age:** 56 (birthday November 1st)
+- **Location:** Pilis-Dunakanyar region, near Pomáz, Hungary (since 1992-1993)
+- **Origin:** American (Lang and Grossman families)
+- **Duration in Hungary:** 33+ years
+- **Philosophy:** Buddhist (Sakya tradition, "All phenomena is illusion")
+- **Family:** Partner Melinda Kovacs, son Mark (born Oct 4, 2009)
 
 ---
 
@@ -140,6 +149,30 @@ See `voice` skill for full details. Key traits:
 
 ---
 
+## Pre-Coding Life Context
+
+**Chronic illness (2009-early 2020s):**
+- Severely ill throughout this period
+- Business attempts (Perry Marshall, AdWords) were done *while sick*
+- High email volume ≠ career success; reflects attempts despite illness
+- Health began improving in early 2020s
+
+**Spiritual foundation:**
+- Decades of practice before coding began
+- 62 Aka Dua sessions with teacher Viento (2020-2021) - possibly healing-related
+- Shuar ceremony organization (2009)
+- Buddhist practice (Szakja Tasi Csöling)
+
+**The 2022 pivot (post-recovery):**
+- Health improved enough to undertake intensive study
+- CS50 completion - first code at age 53
+- Lowest email volume in decade (focused learning)
+- AI tool exploration (Dec 2022)
+
+**The deeper story:** The coding journey became possible because of health recovery. The "55-year-old beginner" narrative includes emerging from over a decade of chronic illness.
+
+---
+
 ## Update Protocol
 
 This file should be updated:
@@ -151,6 +184,8 @@ This file should be updated:
 **Source files:**
 - `~/src/eterne/vault/03-resources/reference-notes/github-journey-chronicle.md`
 - `~/src/eterne/vault/03-resources/reference-notes/github-journey-intelligence.md`
+- Email archive (notmuch): 149,763 emails
+- Calendar archive (khal): 8,000+ events
 
 ---
 
