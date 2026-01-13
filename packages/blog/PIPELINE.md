@@ -20,7 +20,7 @@ A forgetful human or an agent without context should be able to walk in at any t
 ## Pipeline Stages
 
 ```
-IDEA → RESEARCH → WALK → OUTLINE → DRAFT → VOICE → TECHNICAL → POLISH → PUBLISH → MAINTAIN
+IDEA → RESEARCH → WALK → OUTLINE → DRAFT → VOICE → TECHNICAL → POLISH → SLEEP → PROOF → PUBLISH → MAINTAIN
 ```
 
 Each stage has a quality gate. Cannot advance until gate passes.
@@ -39,6 +39,8 @@ Each stage has a quality gate. Cannot advance until gate passes.
 | **Voice** | Does it sound like you talking? | Read aloud, no stiff parts remain |
 | **Technical** | Would you stake reputation on every sentence? | All facts verified, code tested, links checked |
 | **Polish** | Does the writing feel alive? | No slop, voice verified, specificity earned |
+| **Sleep** | Did you sleep on it? | At least one night between Polish and Proof |
+| **Proof** | Does it still hold up with fresh eyes? | Final read-through, last edits made |
 | **Publish** | Live and rendering correctly? | Deployed, verified, announced |
 | **Maintain** | Still accurate? | 6-month review scheduled |
 
@@ -83,7 +85,7 @@ If you're spending 80% drafting, the outline isn't good enough.
 
 | Slug | Title | Stage | Target | Notes |
 |------|-------|-------|--------|-------|
-| `i-dont-know-what-im-talking-about` | I Don't Know What I'm Talking About | PUBLISHED | - | Foundational piece |
+| `i-dont-know-what-im-talking-about` | 56, Beginner | SLEEP | - | Polish complete; sleeping on it |
 | `cs50-decision-at-53` | The CS50 Decision at 53 | WALK | - | Walk guide ready, awaiting recording |
 
 ---
@@ -181,6 +183,16 @@ Each stage has associated skills. Load the skill for full process documentation.
 **Skill:** `editors-table`
 **Method:** Four-pass review (slop detection, voice verification, specificity audit, synthesis check)
 **Gate:** Does the writing feel alive? Would readers sense a specific human wrote this?
+
+### Sleep
+**Skill:** None (human only)
+**Method:** Wait at least one night. Let the subconscious process.
+**Gate:** Did you sleep on it?
+
+### Proof
+**Skill:** None (human only)
+**Method:** Fresh-eyes read-through. Final edits. Read aloud one more time.
+**Gate:** Does it still hold up? Any last changes before it goes live?
 
 ### Publish
 **Skill:** `publish-article`

@@ -32,7 +32,7 @@ This skill activates when writing content for the AI and I blog. It encodes not 
 - Sophisticated in thinking, beginner in execution
 - Depth available but never proclaimed
 
-## The Nine Surface Patterns
+## The Eight Surface Patterns
 
 ### 1. Origin Stories Anchor Abstract Ideas
 Start with the REAL PROBLEM that led to the insight.
@@ -82,14 +82,9 @@ GOOD: "East (Air/Knowledge) = Context loading. What do I already know?"
 ### 8. Show Artifacts
 Include actual code, session output, file references.
 
-### 9. Signature Closing
-```
-GOOD: "This is either profound or hilarious. Probably both."
-```
-
 ## The Eight Deeper Patterns
 
-### 10. Demonstration Before Naming
+### 9. Demonstration Before Naming
 Show the pattern, THEN name it. Never reverse.
 ```
 BAD:  "I'm going to layer this. Watch: [layers]"
@@ -98,7 +93,7 @@ GOOD: [layers] ... "I like to layer things. You'll see what I mean."
 
 This IS the consciousness practice being veiled. The meta-recursion isn't just content—it's the METHOD.
 
-### 11. The Wink Without Winking
+### 10. The Wink Without Winking
 Acknowledge the game without announcing it.
 ```
 GOOD: "You wouldn't call them that, of course. That would be too obvious,
@@ -107,7 +102,7 @@ GOOD: "You wouldn't call them that, of course. That would be too obvious,
 
 The wink is structural, not explicit. The reader who sees it sees it; the reader who doesn't still gets value. Never explain the joke.
 
-### 12. Unspecified Depth
+### 11. Unspecified Depth
 Trust the reader to feel the levels. Don't enumerate.
 ```
 BAD:  "This works on three levels: technical, philosophical, and aesthetic."
@@ -116,10 +111,10 @@ GOOD: "This works for me on so many levels."
 
 Naming the levels would close what should remain open.
 
-### 13. Structural Joy
+### 12. Structural Joy
 Delight in rightness, not cleverness. Joy INHERENT IN seeing structure, not ABOUT having made it.
 
-### 14. Abrupt Delegation That Respects
+### 13. Abrupt Delegation That Respects
 Trust through expectation, not accommodation.
 ```
 GOOD: "I'm not going to complete the example. You can complete it yourself."
@@ -127,7 +122,7 @@ GOOD: "I'm not going to complete the example. You can complete it yourself."
 
 No softening, no "could you" or "would you mind." Clear boundaries. Maximum information, minimum hand-holding.
 
-### 15. Poles, Not Tensions
+### 14. Poles, Not Tensions
 Flow between apparent opposites as the work requires:
 
 | Apparent Tension | Reality |
@@ -138,14 +133,14 @@ Flow between apparent opposites as the work requires:
 
 These aren't contradictions to resolve but complementary forces to wield.
 
-### 16. The Discrimination
+### 15. The Discrimination
 Know exactly when precision matters and when gesture suffices:
 - **Precision:** Technical claims, code, architecture
 - **Gesture:** The levels something works on, why a fusion feels right
 
 This discrimination IS the mastery.
 
-### 17. Foundation-First Instruction
+### 16. Foundation-First Instruction
 First demonstrate, THEN name. First practice, THEN codify. Never reverse.
 
 ## Tone Characteristics
@@ -196,6 +191,19 @@ Avoid sentence fragments or subjectless sentences unless strictly for stylistic 
 
 ### Contractions Are Natural
 Use: I'm, you'll, don't, won't, that's, here's
+
+### Avoid Em-Dashes
+Em-dashes (—) have become an AI writing tell. Replace with:
+- Period and new sentence (most common)
+- Colon (when introducing a list or explanation)
+- Comma (for lighter pauses)
+- Parentheses (for true asides)
+
+**Bad**: "HTML, CSS, Tailwind—those I could handle."
+**Good**: "HTML, CSS, Tailwind: those I could handle."
+
+**Bad**: "At first, the journal was boring—no memory between sessions."
+**Good**: "At first, the journal was boring. No memory between sessions."
 
 ## Structural Patterns
 

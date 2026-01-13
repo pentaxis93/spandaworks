@@ -1,9 +1,12 @@
+---
+name: orchestration
+description: "Agent coordination and workflow patterns for aiandi. Decision trees for agent routing, TDD pipeline, delegation rules and topologies. For agent routing and workflows, see orchestration skill."
+version: "1.0"
+---
+
 # Orchestration Skill
 
 *Agent coordination and workflow patterns for aiandi*
-
-**Version:** 1.0
-**Domain:** Multi-agent orchestration
 
 ---
 
