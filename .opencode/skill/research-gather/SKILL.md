@@ -32,13 +32,27 @@ At the RESEARCH stage of the blog pipeline, after IDEA is defined and before WAL
 
 ### 0. Load Author Context
 
-**Before any research**, read `packages/blog/pipeline/context/author.md`.
+**Before any research**, read from eterne (private vault):
+
+```
+~/src/eterne/vault/03-resources/blog-context/
+├── author.md           # Quick reference (always load)
+├── timeline/overview.md # For chronological articles
+├── people/family.md    # If relationships mentioned
+└── themes/
+    ├── spiritual.md    # If practice/philosophy relevant
+    └── career.md       # If professional history relevant
+```
+
+**Why eterne?** Biographical context is private (names, health history, location).
 
 This provides:
 - Verified biographical facts (prevents hallucination)
 - Current project metrics and scale
 - Key claims with evidence status
-- Voice characteristics for consistency
+- Family and relationship context
+- Spiritual/philosophical background
+- Career arc (including illness era context)
 
 ### 1. Define Research Questions
 

@@ -99,7 +99,7 @@ Each stage has associated skills. Load the skill for full process documentation.
 ### Research
 **Skill:** `research-gather`
 **Artifact:** `pipeline/research/[slug]-research.md`
-**Pre-requisite:** Load `pipeline/context/author.md` before gathering
+**Pre-requisite:** Load context from `~/src/eterne/vault/03-resources/blog-context/author.md`
 
 ### Walk
 **Skills:** `question-design` → `questions-[type]` → `walk-and-talk` → `transcribe-walk`
@@ -164,8 +164,6 @@ packages/blog/
 ├── src/content/
 │   └── blog/            # Published articles
 └── pipeline/
-    ├── context/         # Cross-cutting context (load before generation)
-    │   └── author.md    # Biographical facts, project metrics, voice
     ├── ideas/           # Stage: IDEA (one-pagers)
     ├── research/        # Stage: RESEARCH (gathered material)
     ├── outlines/        # Stage: OUTLINE (structured plans)
@@ -176,11 +174,27 @@ Artifacts move through directories as they advance. Published articles go to `sr
 
 ### Context Loading
 
-**Before any content generation**, load `pipeline/context/author.md`. This provides:
+**Before any content generation**, load biographical context from eterne (private vault):
+
+```
+~/src/eterne/vault/03-resources/blog-context/
+├── author.md           # Quick reference (always load)
+├── timeline/overview.md # Full chronological arc
+├── people/family.md    # Family relationships
+└── themes/
+    ├── spiritual.md    # Buddhist practice, Aka Dua
+    └── career.md       # Professional history
+```
+
+**Why eterne?** Biographical context contains sensitive personal information (full name, family names, health history, location) that should not be in the public aiandi repo.
+
+**What it provides:**
 - Verified biographical facts (age, journey timeline, metrics)
 - Current project status and scale
 - Key claims with evidence
-- Voice characteristics
+- Family and relationship context
+- Spiritual/philosophical background
+- Career arc (including illness era context)
 
 This prevents hallucinated details and ensures consistency across articles.
 
