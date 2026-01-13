@@ -20,7 +20,7 @@ A forgetful human or an agent without context should be able to walk in at any t
 ## Pipeline Stages
 
 ```
-IDEA → RESEARCH → WALK → SYNTHESIS-PREP → DRAFT → VOICE → TECHNICAL → POLISH → SLEEP → PROOF → PUBLISH → MAINTAIN
+IDEA → RESEARCH → WALK → OUTLINE → DRAFT → VOICE → TECHNICAL → POLISH → SLEEP → PROOF → PUBLISH → MAINTAIN
 ```
 
 Each stage has a quality gate. Cannot advance until gate passes.
@@ -34,8 +34,8 @@ Each stage has a quality gate. Cannot advance until gate passes.
 | **Idea** | Can you state the teaching in one sentence? | Single-sentence purpose written |
 | **Research** | Do you have examples for every claim? | All source material assembled, no gaps |
 | **Walk** | Did you extract the heart of the story? | Walk recording transcribed, insights captured |
-| **Synthesis-Prep** | Could someone else write from this? | Complete thematic guidance with evidence library |
-| **Draft** | Is there prose for every synthesis point? | All sections filled, [TODO] markers resolved |
+| **Outline** | Could someone else write from this? | Complete structure with section bullets |
+| **Draft** | Is there prose for every outline point? | All sections filled, [TODO] markers resolved |
 | **Voice** | Does it sound like you talking? | Read aloud, no stiff parts remain |
 | **Technical** | Would you stake reputation on every sentence? | All facts verified, code tested, links checked |
 | **Polish** | Does the writing feel alive? | No slop, voice verified, specificity earned |
@@ -73,20 +73,20 @@ For biographical articles, RESEARCH may be lighter (context already exists in et
 
 ## Time Allocation (40-20-40)
 
-- **40% Planning**: Idea + Research + Walk + Synthesis-Prep
+- **40% Planning**: Idea + Research + Walk + Outline
 - **20% Drafting**: Draft
 - **40% Revision**: Voice + Technical + Polish
 
-If you're spending 80% drafting, the synthesis-prep isn't good enough.
+If you're spending 80% drafting, the outline isn't good enough.
 
 ---
 
 ## Current Articles
 
-| # | Slug | Title | Stage | Notes |
-|---|------|-------|-------|-------|
-| 001 | `56-beginner` | 56, Beginner | SLEEP | Polish complete; sleeping on it |
-| 002 | `cs50-decision-at-53` | The CS50 Decision at 53 | DRAFT | Draft complete, ready for VOICE |
+| Slug | Title | Stage | Target | Notes |
+|------|-------|-------|--------|-------|
+| `i-dont-know-what-im-talking-about` | 56, Beginner | SLEEP | - | Polish complete; sleeping on it |
+| `cs50-decision-at-53` | The CS50 Decision at 53 | WALK | - | Walk guide ready, awaiting recording |
 
 ---
 
@@ -108,8 +108,7 @@ If you're spending 80% drafting, the synthesis-prep isn't good enough.
 | | `questions-[type]` | Story-type specific questions |
 | | `walk-and-talk` | Format for mobile/walking |
 | | `transcribe-walk` | Process recording into insights |
-| **Synthesis-Prep** | `synthesis-prep` | Prepare synthesis guidance for the-art |
-| | `synthesis-prep-review` | Review synthesis-prep artifact |
+| **Outline** | `outline-review` | Review structure, flow, completeness |
 | **Draft** | `the-art` (optional) | Synthesize research + voice |
 | **Voice** | `voice` | Check consistency with Robbie's voice |
 | | `dry-structural-irony` | Signature humor technique |
@@ -122,7 +121,7 @@ If you're spending 80% drafting, the synthesis-prep isn't good enough.
 **High Value:**
 - **Research**: Gather GitHub history, session transcripts, technical context
 - **Walk**: Design questions, generate walking guide
-- **Synthesis-Prep**: Review structure for logic and flow
+- **Outline**: Review structure for logic and flow
 - **Voice**: Check sections for voice consistency
 - **Technical**: Fact-check claims, verify code examples
 - **Polish**: Kill slop, verify authenticity, audit specificity
@@ -140,8 +139,8 @@ Each stage has associated skills. Load the skill for full process documentation.
 
 ### Research
 **Skill:** `research-gather`
-**Artifact:** `pipeline/active/NNN-slug/02-research.md`
-**Template:** `pipeline/_research-template.md`
+**Artifact:** `pipeline/research/[slug]-research.md`
+**Template:** `pipeline/research/_template.md`
 **Pre-requisite:** Load context from `~/src/eterne/vault/03-resources/blog-context/author.md`
 
 ### Walk
@@ -150,10 +149,10 @@ Each stage has associated skills. Load the skill for full process documentation.
 **Artifacts:**
 | File | Purpose |
 |------|---------|
-| `pipeline/active/NNN-slug/03-walk.md` | Walking guide with questions |
-| `pipeline/active/NNN-slug/03-walk-transcript.md` | Post-walk: cleaned transcript + extracted insights |
+| `pipeline/research/[slug]-walk.md` | Walking guide with questions |
+| `pipeline/research/[slug]-transcript.md` | Post-walk: cleaned transcript + extracted insights |
 
-**Template:** `pipeline/_transcript-template.md`
+**Template:** `pipeline/research/_transcript-template.md`
 
 | Story Type | Question Skill |
 |------------|----------------|
@@ -164,24 +163,13 @@ Each stage has associated skills. Load the skill for full process documentation.
 
 **When to skip:** Purely technical content, already articulated, time pressure.
 
-### Synthesis-Prep
-**Skills:** `synthesis-prep`, `synthesis-prep-review`
-**Artifact:** `pipeline/active/NNN-slug/04-synthesis-prep.md`
-
-**Key principle:** Thematic guidance for synthesis.
-
-Each section specifies:
-- What it does (purpose)
-- How it should feel (tone, rhythm)
-- Key material (evidence library, not expansion bullets)
-- Narrative intent (story arc function)
-- Voice opportunity (where authentic voice shines)
-
-This enables `the-art` to synthesize rather than mechanically expand.
+### Outline
+**Skill:** `outline-review`
+**Artifact:** `pipeline/outlines/[slug].md`
 
 ### Draft
 **Skill:** `the-art` (optional - for synthesis of research + voice)
-**Artifact:** `pipeline/active/NNN-slug/05-draft.md`
+**Artifact:** `pipeline/drafts/[slug].md`
 
 ### Voice
 **Skills:** `voice`, `dry-structural-irony`
@@ -208,8 +196,7 @@ This enables `the-art` to synthesize rather than mechanically expand.
 
 ### Publish
 **Skill:** `publish-article`
-**Destination:** `src/content/blog/NNN-slug.md`
-**Archive:** Move `pipeline/active/NNN-slug/` to `pipeline/published/NNN-slug/`
+**Destination:** `src/content/blog/[slug].md`
 
 ---
 
@@ -217,9 +204,8 @@ This enables `the-art` to synthesize rather than mechanically expand.
 
 ### Start New Article
 1. Add to Backlog with one-sentence teaching
-2. When ready to work: create `pipeline/active/NNN-slug/` folder (next sequential number)
-3. Add to Current Articles table at IDEA stage
-4. Progress through stages, checking gates
+2. When ready to work: move to Current Articles at IDEA stage
+3. Progress through stages, checking gates
 
 ### Stage Transitions
 Before advancing, ask the gate question. If answer is "no", stay in current stage.
@@ -233,25 +219,17 @@ After DRAFT stage, can invoke `the-art` skill to mix Sol (research material) wit
 
 ```
 packages/blog/
-├── PIPELINE.md              # This file (status tracking)
+├── PIPELINE.md          # This file (status tracking)
 ├── src/content/
-│   └── blog/                # Published articles (NNN-slug.md)
+│   └── blog/            # Published articles
 └── pipeline/
-    ├── _research-template.md
-    ├── _transcript-template.md
-    ├── active/
-    │   └── NNN-slug/
-    │       ├── 01-idea.md
-    │       ├── 02-research.md
-    │       ├── 03-walk.md
-    │       ├── 03-walk-transcript.md
-    │       ├── 04-synthesis-prep.md
-    │       └── 05-draft.md
-    └── published/           # Archived after publish
-        └── NNN-slug/
+    ├── ideas/           # Stage: IDEA (one-pagers)
+    ├── research/        # Stage: RESEARCH (gathered material)
+    ├── outlines/        # Stage: OUTLINE (structured plans)
+    └── drafts/          # Stage: DRAFT through POLISH
 ```
 
-Each article gets a sequentially numbered folder. All artifacts for that article live together. After publish, the folder moves to `published/` for reference.
+Artifacts move through directories as they advance. Published articles go to `src/content/blog/`.
 
 ### Context Loading
 
@@ -285,7 +263,7 @@ This prevents hallucinated details and ensures consistency across articles.
 
 | Pattern | Problem | Solution |
 |---------|---------|----------|
-| Writing without synthesis-prep | Wandering structure | 40% time on synthesis-prep |
+| Writing without outline | Wandering structure | 40% time on outline |
 | Editing while drafting | Never finish | Separate draft from edit |
 | Skipping voice pass | Generic tech blog voice | Read aloud, rewrite stiff parts |
 | Perfectionism loop | Never ship | Ship when gate passes, not when it feels perfect |
