@@ -46,6 +46,7 @@ If you're spending 80% drafting, the outline isn't good enough.
 | Slug | Title | Stage | Target | Notes |
 |------|-------|-------|--------|-------|
 | `i-dont-know-what-im-talking-about` | I Don't Know What I'm Talking About | PUBLISHED | - | Foundational piece |
+| `cs50-decision-at-53` | The CS50 Decision at 53 | WALK | - | Walk guide ready, awaiting recording |
 
 ---
 
