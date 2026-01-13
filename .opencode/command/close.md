@@ -130,31 +130,30 @@ git status --short
 #### Phase 2d: East Quarter (Air/Knowledge) - Context
 
 **Element:** Air - Knowledge
-**Question:** What was learned? What should be remembered?
+**Question (internal):** What was learned? What should be remembered?
 
-**First, check for outgoing transmissions:**
+**Check for outgoing transmissions:**
 
 ```bash
 # If transmission/response files created for Governance:
-# Check vault for transmission files that should go to outbox
+# Check governance/sessions/outbox/ for transmission files
 
-# Move any transmission reports to ~/spandaworks-outbox/
-# Example: transmission-*.md or response-*.md files
+# List any transmissions that should be noted
 ```
 
-**Prompt user:**
-```markdown
-Any insights from this session that should be recorded?
+**Answer internally (don't prompt user):**
+- Was this session routine or significant?
+- Were patterns discovered worth preserving?
+- Are there transmissions in outbox?
+- Is there knowledge that future sessions need?
 
-- Update remembrance.md?
-- Create a permanent note?
-- Note a pattern discovered?
-- File transmissions to ~/spandaworks-outbox/?
+**If governance session:** Session Notes and Meta-Observations already archived.
 
-(Or skip if session was routine)
-```
+**If significant learning:** Note it briefly in output.
 
-**Output:** "East Quarter sealed. Knowledge: [preserved/routine, transmissions filed]"
+**If routine:** Simply state "routine session" and proceed.
+
+**Output:** "East Quarter sealed. Knowledge: [preserved/routine/transmissions noted]"
 
 ---
 
