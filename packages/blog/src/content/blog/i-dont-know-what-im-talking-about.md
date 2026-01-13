@@ -1,12 +1,12 @@
 ---
 title: "I Don't Know What I'm Talking About (Which Is Why I'm Writing)"
-description: "I am learning to code at 55 with AI collaboration. I am moving from syntax struggles to architectural thinking."
+description: "Two years of syntax hell, then AI changed what 'learning to code' means. Now I'm thinking in systems, not semicolons."
 pubDate: 2025-10-21
 ---
 
 I'm 55 years old. I'm building a stock trading platform in Dart. And I don't know how to code.
 
-For two years, I fought the syntax. It was Sisyphean. Every tutorial was a trap; every package manager a labyrinth. I could build the "Hello World," but the moment I tried to connect a database to a UI, the complexity crushed me. The learning curve didn't flatten; it just reset.
+For two years, I fought the syntax. Every tutorial was a trap; every package manager a labyrinth. I could build the "Hello World," but the moment I tried to connect a database to a UI, the complexity crushed me. The learning curve didn't flatten; it just reset.
 
 Then the tools changed.
 
@@ -33,7 +33,7 @@ The blog is my thinking tool. You're invited to watch me think.
 This is the log of a 55-year-old beginner building production software with an alien intelligence.
 
 You'll see:
-- **Actual code** - Zenvestor (150k lines and counting), where the rubber meets the road.
+- **Actual code** - Zenvestor (six figures of code and counting), where the rubber meets the road.
 - **Architecture decisions** - Why I chose specific patterns, what worked, and what failed spectacularly.
 - **AI collaboration** - How I work with the machine. Where it shines, and where human mentation is non-negotiable.
 - **The struggles** - The authentic, messy learning process.
@@ -41,7 +41,7 @@ You'll see:
 You won't find:
 - **Expert advice** - I'm not qualified to give it.
 - **Best practices** - I don't know them.
-- **Polished retrospectives** - The messy middle is where the interesting stuff happens.
+- **Polished retrospectives** - The messy middle is where I discover my assumptions were wrong.
 
 ## Foundation First
 

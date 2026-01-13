@@ -43,9 +43,9 @@ If you're spending 80% drafting, the outline isn't good enough.
 
 ## Current Articles
 
-| Slug | Title | Stage | Target | Notes |
+| Slug | Title | Stage | Passes | Notes |
 |------|-------|-------|--------|-------|
-| `i-dont-know-what-im-talking-about` | I Don't Know What I'm Talking About | PUBLISHED | - | Foundational piece |
+| `i-dont-know-what-im-talking-about` | I Don't Know What I'm Talking About | PUBLISHED | polish@2026-01-13 | Foundational piece |
 
 ---
 
@@ -132,7 +132,9 @@ Each stage has associated skills. Load the skill for full process documentation.
 ### Polish
 **Skill:** `editors-table`
 **Method:** Four-pass review (slop detection, voice verification, specificity audit, synthesis check)
+**Artifact:** `pipeline/reviews/[slug]-polish-[YYYY-MM-DD].md` (temporary - delete when edits complete)
 **Gate:** Does the writing feel alive? Would readers sense a specific human wrote this?
+**Note:** Review artifacts are working documents for collaboration; delete when edits are applied.
 
 ### Publish
 **Skill:** `publish-article`
@@ -166,10 +168,13 @@ packages/blog/
     ├── ideas/           # Stage: IDEA (one-pagers)
     ├── research/        # Stage: RESEARCH (gathered material)
     ├── outlines/        # Stage: OUTLINE (structured plans)
-    └── drafts/          # Stage: DRAFT through POLISH
+    ├── drafts/          # Stage: DRAFT through POLISH
+    └── reviews/         # Temporary review artifacts (deleted when edits complete)
 ```
 
 Artifacts move through directories as they advance. Published articles go to `src/content/blog/`.
+
+**Post-publish refinements:** Track using version-style notation in "Passes" column (e.g., `polish@2026-01-13`, `technical@2026-02-15`). Rare but important for maintaining quality. Edits to published articles can be made directly; use branches only for substantial rewrites.
 
 ---
 

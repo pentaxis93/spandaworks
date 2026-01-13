@@ -1,3 +1,8 @@
+---
+name: editors-table
+description: "Kill slop, verify authenticity. Four-pass review (slop detection, voice verification, specificity audit, synthesis check) for blog posts. Use at POLISH stage of blog pipeline."
+---
+
 # Editors-Table: Blog Post Review for Authentic Voice
 
 Kill the slop. Keep the soul.
