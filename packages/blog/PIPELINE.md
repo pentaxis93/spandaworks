@@ -4,6 +4,19 @@
 
 ---
 
+## Core Principle
+
+**Each stage creates an artifact that persists progress to the next session.**
+
+A forgetful human or an agent without context should be able to walk in at any time and pick up wherever we left off. This means:
+
+- Every stage produces a file in `pipeline/`
+- `PIPELINE.md` tracks current stage for each article
+- Artifacts are self-contained (no context required to understand them)
+- Progress survives session boundaries
+
+---
+
 ## Pipeline Stages
 
 ```
