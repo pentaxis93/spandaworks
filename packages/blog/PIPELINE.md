@@ -45,7 +45,7 @@ If you're spending 80% drafting, the outline isn't good enough.
 
 | Slug | Title | Stage | Passes | Notes |
 |------|-------|-------|--------|-------|
-| `i-dont-know-what-im-talking-about` | I Don't Know What I'm Talking About | PUBLISHED | polish@2026-01-13 | Foundational piece |
+| `i-dont-know-what-im-talking-about` | I Don't Know What I'm Talking About | DRAFT | polish@2026-01-13 | Needs further stages before publish |
 
 ---
 
