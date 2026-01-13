@@ -53,9 +53,13 @@ Governance is the **deliberation layer** - meta to execution:
 
 Governance resources live in `governance/`:
 - `sessions/archive/` - Session documentation
-- `sessions/outbox/` - Transmission artifacts
+- `sessions/inbox/` - Human→AI file transfer (governance receives)
+- `sessions/outbox/` - AI→human artifacts (governance produces)
 - `evolution/` - Proposals and decisions
-- `transmission-protocol.md` - Agent communication format
+- `canon/transmission-protocol.md` - Agent communication format
+
+Project root also has:
+- `inbox/` - Human→AI file transfer (standard sessions receive)
 
 ---
 
