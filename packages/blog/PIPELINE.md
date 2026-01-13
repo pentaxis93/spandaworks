@@ -99,6 +99,7 @@ Each stage has associated skills. Load the skill for full process documentation.
 ### Research
 **Skill:** `research-gather`
 **Artifact:** `pipeline/research/[slug]-research.md`
+**Pre-requisite:** Load `pipeline/context/author.md` before gathering
 
 ### Walk
 **Skills:** `question-design` → `questions-[type]` → `walk-and-talk` → `transcribe-walk`
@@ -163,6 +164,8 @@ packages/blog/
 ├── src/content/
 │   └── blog/            # Published articles
 └── pipeline/
+    ├── context/         # Cross-cutting context (load before generation)
+    │   └── author.md    # Biographical facts, project metrics, voice
     ├── ideas/           # Stage: IDEA (one-pagers)
     ├── research/        # Stage: RESEARCH (gathered material)
     ├── outlines/        # Stage: OUTLINE (structured plans)
@@ -170,6 +173,16 @@ packages/blog/
 ```
 
 Artifacts move through directories as they advance. Published articles go to `src/content/blog/`.
+
+### Context Loading
+
+**Before any content generation**, load `pipeline/context/author.md`. This provides:
+- Verified biographical facts (age, journey timeline, metrics)
+- Current project status and scale
+- Key claims with evidence
+- Voice characteristics
+
+This prevents hallucinated details and ensures consistency across articles.
 
 ---
 

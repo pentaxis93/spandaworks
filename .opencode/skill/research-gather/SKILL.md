@@ -30,6 +30,16 @@ At the RESEARCH stage of the blog pipeline, after IDEA is defined and before WAL
 
 ## Process
 
+### 0. Load Author Context
+
+**Before any research**, read `packages/blog/pipeline/context/author.md`.
+
+This provides:
+- Verified biographical facts (prevents hallucination)
+- Current project metrics and scale
+- Key claims with evidence status
+- Voice characteristics for consistency
+
 ### 1. Define Research Questions
 
 Based on the one-sentence teaching from IDEA stage:
@@ -110,6 +120,7 @@ Source: [file path @ commit]
 **Gate question:** Do you have concrete examples for every claim?
 
 **Checklist:**
+- [ ] Author context loaded and referenced
 - [ ] Every claim has supporting evidence
 - [ ] Timeline is documented with sources
 - [ ] Code examples are extracted and verified
