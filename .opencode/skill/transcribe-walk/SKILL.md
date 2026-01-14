@@ -51,7 +51,7 @@ Recording → Transcription → Cleanup → Extraction → Integration
 whisper recording.m4a --model medium --language en --output_format txt
 ```
 
-**Output:** Raw transcript in `pipeline/research/[slug]-walk-raw.txt`
+**Output:** Raw transcript in `pipeline/active/NNN-slug/03-walk-raw.txt`
 
 ### 3. Cleanup
 
@@ -61,7 +61,7 @@ The raw transcript needs light editing:
 - Mark unclear sections with [?]
 - Don't over-edit - preserve natural speech
 
-**Output:** Cleaned transcript in `pipeline/research/[slug]-walk.md`
+**Output:** Cleaned transcript in `pipeline/active/NNN-slug/03-walk-transcript.md`
 
 ### 4. Extraction
 

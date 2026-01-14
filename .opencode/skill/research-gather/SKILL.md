@@ -89,7 +89,7 @@ gh pr list --state all --search "[keyword]"
 
 ### 3. Organize Material
 
-Create research file at `pipeline/research/[slug]-research.md`:
+Create research file at `pipeline/active/NNN-slug/02-research.md`:
 
 ```markdown
 # Research: [Article Title]
