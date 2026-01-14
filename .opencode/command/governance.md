@@ -33,7 +33,3 @@ If arguments provided, pass them to the LBRP as the session goal.
    - **Tasks (South)**: Break down governance goal
    - **Workspace (West)**: Verify working in project root
    - **Environment (North)**: None typically needed for governance
-
-## Override
-
-After Phase 3 completes, stop and wait for user input (do not proceed to first task).
