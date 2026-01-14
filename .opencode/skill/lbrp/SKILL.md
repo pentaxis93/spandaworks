@@ -169,15 +169,15 @@ Scope: [in] / [out]
 When no goal provided:
 
 ```markdown
-◈ GOAL (proposal)
-Purpose: [discovered through dialog]
-Success: [criteria]
-Scope: [in] / [out]
+◈ GOAL (undefined)
+No goal specified. Will present ready work in South Quarter.
 
-Approve? [GATE]
+→ Phase 1
 ```
 
-**Wait for user approval** before proceeding.
+**Do not block here.** Proceed through East Quarter (load general context), then South Quarter will query `bd ready` and present available tasks for selection. The goal gate moves to South Quarter when undefined.
+
+If user provides goal during ceremony, capture it and proceed normally.
 
 ### The Four Touches (internal refinement)
 
@@ -275,22 +275,67 @@ Goal: New feature
 **Execution:**
 ```markdown
 ◈ S🜂 (Tasks)
-1. [Task based on loaded context]
-2. [Task]
-...
+Ready: [N tasks from bd ready]
+  - [priority] task-id: title
+  - [priority] task-id: title
+Session: [tasks for this goal]
 ```
 
 **Implementation:**
 
-Works from what East Quarter loaded. **No additional context loading in this phase.**
+**Step 1: Query Beads for ready work**
 
-Break goal into tasks based on:
-- Context loaded in East
-- Patterns identified
+```bash
+bd ready --json
+```
+
+Display ready tasks (unblocked work). This shows what's available if no goal was pre-specified, or validates the chosen goal against the backlog.
+
+**Step 2: Reconcile goal with ready work**
+
+Three scenarios:
+
+1. **Goal matches a ready task** → Claim it:
+   ```bash
+   bd update <task-id> --claim
+   ```
+   Then break into session tasks via TodoWrite.
+
+2. **Goal is new work not in Beads** → Create it:
+   ```bash
+   bd create "Goal title" -p 1 --description "..."
+   bd update <new-id> --claim
+   ```
+   Then break into session tasks via TodoWrite.
+
+3. **No goal provided** → Present ready work for selection:
+   ```markdown
+   ◈ S🜂 (Tasks)
+   Ready work available:
+     [P1] aiandi-xxx: High priority task
+     [P2] aiandi-yyy: Another task
+   
+   Select a task or specify a new goal.
+   ```
+   Wait for user selection, then claim and proceed.
+
+**Step 3: Break into session tasks**
+
+Once goal is established (from Beads or new), use TodoWrite to create granular session tasks based on:
+- Context loaded in East Quarter
+- Acceptance criteria from the Beads task
 - Known constraints
-- Success criteria from goal
 
-Use TodoWrite tool to create task list.
+**Empty state handling:**
+
+If `bd ready` returns no tasks:
+```markdown
+◈ S🜂 (Tasks)
+Ready: No unblocked tasks
+Session: [tasks for provided goal, or prompt for goal]
+```
+
+This is fine—it means either all work is blocked, or no work has been created yet. Proceed with the provided goal or ask for direction.
 
 ---
 
@@ -404,6 +449,17 @@ This skill uses compressed notation from ceremony optimization v2.0:
 
 See `inbox-outbox-protocol.md` for complete specification.
 
+### Beads Integration
+
+**South Quarter** integrates with Beads for task management:
+- Query `bd ready --json` to show unblocked work
+- Claim tasks with `bd update <id> --claim`
+- Create new tasks with `bd create` if goal is new work
+
+**Binary path:** `/home/pentaxis93/.npm-global/bin/bd`
+
+For detailed Beads workflows, invoke the `beads-workflow` skill.
+
 ### Two Sovereignties in LBRP
 
 **User owns WHAT:**
@@ -436,6 +492,12 @@ See `inbox-outbox-protocol.md` for complete specification.
 ---
 
 ## Version History
+
+**v3.1 (2026-01-14):** Beads integration
+- South Quarter queries `bd ready` for available work
+- Task claiming via `bd update --claim`
+- Undefined goal path defers to South Quarter task selection
+- Empty state handling when no ready tasks
 
 **v3.0 (2026-01-11):** Precise loading architecture
 - Inbox/outbox inheritance pattern
