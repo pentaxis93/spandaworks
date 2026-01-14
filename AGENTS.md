@@ -97,10 +97,19 @@ Transmissions are:
 
 ## Task Tracking
 
-aiandi uses **Beads** (`bd`) for dependency-aware task tracking and **GitHub Issues** for human-facing requests.
+**Beads is PRIMARY** for all work tracking. Single source of truth.
 
-- **Beads**: Agent-discovered work, dependency graphs, session-local tasks
-- **GitHub**: Feature requests, public bugs, cross-repo coordination
+```
+Where does this task go?
+│
+├─ External contributor filing a bug? → GitHub Issue
+├─ Cross-repo coordination needed?    → GitHub Issue  
+├─ Need GitHub PR auto-close?         → GitHub Issue
+│
+└─ Everything else                    → Beads
+```
+
+**No dual-tracking.** A task lives in ONE place.
 
 **Binary path**: `/home/pentaxis93/.npm-global/bin/bd`
 
