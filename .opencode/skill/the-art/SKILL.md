@@ -62,12 +62,19 @@ The Art is invoked explicitly. The user says:
 - Note the Dreamer's associations (these often become the hook)
 
 **Load Luna (the voice):**
-```
-Read these files explicitly:
-1. /home/pentaxis/src/aiandi/docs/style-and-language-guide.md
-2. Published posts in /home/pentaxis/src/aiandi/content/posts/
-3. /home/pentaxis/src/aiandi/CLAUDE.md (voice section)
-```
+
+Invoke the `voice` skill. This single skill contains everything needed:
+- Core identity and balance
+- The sixteen patterns (surface and deep)
+- Precision and truth-telling
+- Tone characteristics
+- Language patterns
+- Structural discipline
+- Consciousness veiling
+- Dry structural irony (the signature humor)
+- Anti-patterns to avoid
+
+Luna is one unified thing, not multiple files to reconcile.
 
 **Report to user:**
 ```markdown
@@ -124,8 +131,9 @@ Before presenting, verify the mixture:
 - No invented or hallucinated details
 
 **Luna verification:**
-- Voice matches style guide characteristics
-- No forbidden patterns (tech bro speak, apologies, credential inflation)
+- Voice matches `voice` skill characteristics
+- No anti-patterns (check the anti-patterns table)
+- Dry structural irony used where appropriate, not overused
 - Consciousness veiled appropriately
 
 **Integration verification:**
@@ -179,7 +187,7 @@ If the draft needs heavy revision, the synthesis was incomplete. Return to Phase
 
 ### Why Explicit Voice Loading?
 
-Voice drifts. Each session accumulates context that may not align with the established voice. Explicit loading resets to the canonical source - the style guide and published posts that define what the voice IS, not what it's becoming through drift.
+Voice drifts. Each session accumulates context that may not align with the established voice. Explicit loading of the `voice` skill resets to the canonical source - the unified Luna that defines what the voice IS, not what it's becoming through drift. The skill contains everything: tone, patterns, humor, anti-patterns. One skill, fully internalized before synthesis begins.
 
 ### Why This Order?
 
@@ -199,11 +207,14 @@ You cannot skip stages. Synthesis before perception produces empty style. Percep
 | "Let me draft, then add voice" | Sol and Luna must be held simultaneously |
 | "I'll polish the style later" | If it needs polishing, it wasn't synthesized |
 | "This code example is close enough" | Sol demands precision - use actual code |
-| "The voice feels right" | Check against style guide explicitly |
+| "The voice feels right" | Check against `voice` skill explicitly |
 | "Let me iterate on this section" | If mixing is incomplete, remix entirely |
 | "I'll add consciousness themes" | Breadcrumbs emerge naturally or not at all |
 
 ## Integration with Other Skills
+
+**Luna is:**
+- `voice` - The unified voice skill (includes dry structural irony)
 
 **Preceded by:**
 - `lbrp` - Session opened, space cleared
@@ -215,6 +226,9 @@ You cannot skip stages. Synthesis before perception produces empty style. Percep
 
 **May invoke during:**
 - `inquire` - If clarification needed on content direction
+
+**After synthesis, if issues found:**
+- `skill-calibration` - Refine the voice skill from concrete failures
 
 ## The Invocation
 

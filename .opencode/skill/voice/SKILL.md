@@ -65,12 +65,7 @@ GOOD: "The symbols are just mnemonics for the structure."
 ```
 
 ### 6. Dry Structural Irony
-Surface absurdity + obvious underlying truth.
-```
-GOOD: "I'm a 55-year-old learning to code, using Victorian ceremonial magic patterns
-       to structure AI collaboration, building a stock trading platform in Dart."
-GOOD: "The ritual works. Because it was always just good engineering wearing a funny hat."
-```
+Surface absurdity + obvious underlying truth. This is the signature humor. See dedicated section below for full treatment.
 
 ### 7. Precision Reveals Congruence
 Specific mappings, not vague metaphors.
@@ -143,6 +138,46 @@ This discrimination IS the mastery.
 ### 16. Foundation-First Instruction
 First demonstrate, THEN name. First practice, THEN codify. Never reverse.
 
+## Precision and Truth-Telling
+
+### Temporal Precision
+Choose tense that matches the actual time structure:
+- **Simple present**: Timeless truths, current state ("I'm 56 years old")
+- **Present perfect**: Ongoing action with duration ("I've been building")
+- **Past tense**: Completed action ("I tried ceramic engineering")
+
+Test: Does the tense claim more immediacy or completion than is true?
+
+### Operational Truth Over Drama
+Describe what actually happened operationally, not the emotional story:
+- **No**: "Complexity crushed me"
+- **Yes**: "Forward progress slowed to a crawl"
+- **No**: "It became overwhelming"  
+- **Yes**: "I started questioning whether I was making the right choice"
+
+Test: Am I describing the observable situation or performing emotion?
+
+### Retrospective Honesty
+Only claim current understanding you actually have:
+- **No**: "I didn't know I was training for anything" (implies you now know what you were training for)
+- **Yes**: "I didn't know how I'd apply that approach" (true - you didn't know WHERE transfer would happen)
+
+Test: Does this imply I now know something I don't?
+
+### False Ignorance vs. Genuine Discovery
+Don't feign ignorance of obvious things:
+- **No**: "I just hadn't known it was applicable to code" (obvious that systems thinking applies)
+- **Yes**: Just end the paragraph before claiming fake ignorance
+
+Test: Would a reader think "of course you knew that"?
+
+### Load-Bearing Details
+Include technical specifics when they're core to the insight:
+- **Insufficient**: "I added persistent memory"
+- **Complete**: "I added persistent memory, but also gave it a recursive loop: a self-definition file it could update based on session notes and meta-observations"
+
+Test: Does omitting this detail lose what makes this interesting?
+
 ## Tone Characteristics
 
 ### Thoughtful, Not Academic
@@ -205,6 +240,37 @@ Em-dashes (—) have become an AI writing tell. Replace with:
 **Bad**: "At first, the journal was boring—no memory between sessions."
 **Good**: "At first, the journal was boring. No memory between sessions."
 
+## Structural Discipline
+
+### Multi-Dimensional Explanations
+When explaining what makes something work, give 2-3 factors, not one:
+- **Reductive**: "A technology that thrives on well-built foundations"
+- **Multi-dimensional**: "A technology that thrives on clear structure, explicit constraints, and well-built foundations"
+
+Single-cause explanations oversimplify. Reality has multiple load-bearing factors.
+
+### Cut Summary Paragraphs
+If you've demonstrated something through story, don't re-explain it:
+- **Redundant**: After showing foundation-first across career, ending with "I always expected my learning to transfer. That was the whole point..."
+- **Trust the reader**: End after the demonstration
+
+Test: Am I explaining what I just showed?
+
+### Delete Rather Than Patch
+If a section is confused or doesn't pull its weight, delete it entirely:
+- Don't try to fix muddled thinking with better sentences
+- Weak sections dilute strong ones
+- Better to have a shorter, coherent piece than a longer, uneven one
+
+Test: Can I explain this section's purpose in one sentence? If not, cut it.
+
+### Forward-Looking Brevity
+When gesturing toward future content, be maximally brief:
+- **Verbose**: "Architecture decisions: why I chose specific patterns, what worked, what failed. AI collaboration: where it shines, where human judgment is non-negotiable. The struggles. The messy middle."
+- **Brief**: "Architecture decisions, AI collaboration. The struggles."
+
+Test: Does this sound like a table of contents? If yes, compress ruthlessly.
+
 ## Structural Patterns
 
 ### Titles
@@ -254,7 +320,15 @@ Ask: "Would a purely technical reader get value from this article?"
 
 | Pattern | Why It Fails |
 |---------|--------------|
-| Starting with "I've been..." | Too passive, no stakes |
+| Simple present for ongoing work | "I'm building" inflates immediacy; use "I've been building" for duration |
+| Retrospective certainty | "I didn't know I was training for X" implies you now know; stick to what you actually understand |
+| Emotional hyperbole | "Crushed," "overwhelming" overstates; describe operational reality instead |
+| Omitting significant technical detail | Load-bearing specifics earn credibility with technical readers |
+| False ignorance for humility | Don't claim you didn't know obvious things; patronizes reader |
+| Single-cause explanations | Give 2-3 factors, not one; reality is multi-dimensional |
+| Self-satisfied summarizing | Don't re-explain what you've already demonstrated; trust the reader |
+| Patching confused sections | If it's muddled, delete it entirely rather than patch |
+| Future-content laundry lists | "I'll cover X, Y, and Z" sounds like a table of contents; be ruthlessly brief |
 | Mentioning credentials | Creates distance, sounds like ego |
 | "I adapted X as metaphor for Y" | Misses the point—it's not adaptation |
 | General claims without specifics | Unverifiable, loses trust |
@@ -301,4 +375,120 @@ The writing should feel like:
 
 ---
 
+## Dry Structural Irony (The Signature Humor)
+
+**Purpose:** Create humor that teaches by revealing hidden coherence in apparent absurdity.
+
+**Surface absurdity + obvious underlying truth.**
+
+The reader laughs at the juxtaposition, then realizes the joke IS the insight. The humor isn't decoration - it's the fastest path to understanding.
+
+### The Formula
+
+```
+[Incongruous elements presented matter-of-factly]
+  ↓
+[Reader notices the absurdity]
+  ↓
+[Reader realizes it's actually coherent]
+  ↓
+[The coherence IS the teaching]
+```
+
+### Examples
+
+**The Identity Statement:**
+> "I'm a 55-year-old learning to code, using Victorian ceremonial magic patterns to structure AI collaboration, building a stock trading platform in Dart."
+
+Why it works: Each element is true. The combination sounds absurd. But it's exactly what's happening. The absurdity reveals the real situation is more interesting than "normal."
+
+**The Deflation:**
+> "The ritual works. Because it was always just good engineering wearing a funny hat."
+
+Why it works: Sets up expectation of mysticism. Deflates to mundane. But the deflation IS the insight. Magic isn't magic; it's pattern recognition.
+
+**The Precision Joke:**
+> "East (Air/Knowledge) = Context loading. What do I already know?"
+
+Why it works: Elemental magic vocabulary mapped to software engineering. The precision makes it funnier AND more useful. Not "sort of like" - exactly equivalent.
+
+### The Mechanics
+
+**1. Matter-of-Fact Delivery**
+No winking. No "you might think this is weird, but..." Present the absurdity as if it's perfectly normal.
+
+- **Wrong:** "I know this sounds crazy, but I use ceremonial magic for coding."
+- **Right:** "I open each session with the Lesser Banishing Ritual of the Pentagram."
+
+**2. True Elements**
+Every component must be literally true. The humor comes from real incongruity, not exaggeration.
+
+- **Wrong:** "I'm basically a wizard who programs." (exaggeration)
+- **Right:** "I use Victorian ceremonial structures to organize AI collaboration." (literal)
+
+**3. The Landing**
+The joke should resolve into insight. If it's just funny, it's not structural irony - it's a gag.
+
+- **Just funny:** "My code has more incense than comments."
+- **Structural irony:** "The banishing ritual clears my workspace. Also my mind. Same thing, it turns out."
+
+**4. Earned Absurdity**
+The juxtaposition must be authentic. You can't manufacture it.
+
+- **Manufactured:** "I drink coffee like a samurai prepares for battle."
+- **Earned:** "I spent two years failing at syntax, then an AI made that irrelevant."
+
+### Where to Use
+
+- **Opening hooks** - Grab attention with unexpected juxtaposition
+- **Core insights** - The joke IS the teaching
+- **Signature moments** - Establish the voice's distinctiveness
+- **Deflations** - After building up complexity, reveal simplicity
+
+### Where NOT to Use
+
+- **Technical instructions** - Clarity beats cleverness
+- **Emotional moments** - Irony can undercut genuine feeling
+- **Every paragraph** - Overuse dilutes impact
+- **When the reader needs to trust you** - Establish credibility first
+
+### The Wink Problem
+
+**Never explain the joke.**
+
+The reader who sees the coherence sees it. The reader who just sees absurdity still gets value from the content. Explaining kills both experiences.
+
+- **Wrong:** "I'm being ironic here - the point is that these seemingly different things are actually the same."
+- **Right:** Just present it. Trust the reader.
+
+### Generating Dry Structural Irony
+
+When looking for opportunities:
+
+1. **Find real incongruities in the story** - What would surprise someone? What elements don't "belong" together?
+2. **Verify literal truth** - Is every element actually true? No exaggeration, no metaphor.
+3. **Identify the underlying coherence** - Why DO these things go together? What does the juxtaposition reveal?
+4. **Present matter-of-factly** - State it as simple fact. No setup, no punchline markers.
+5. **Let it land** - Don't explain. Move on. Trust the reader.
+
+### Quality Check
+
+Before using dry structural irony, verify:
+- Every element is literally true
+- The juxtaposition is real, not manufactured
+- The coherence teaches something
+- Delivery is matter-of-fact
+- No explanation follows
+- It serves the piece, not just the ego
+
+### The Signature Closing
+
+> "This is either profound or hilarious. Probably both."
+
+This IS dry structural irony about dry structural irony. It acknowledges the absurdity of the whole enterprise, claims profundity without pretension, deflates while affirming, winks without winking.
+
+---
+
 *The voice doesn't balance opposites—it flows between poles as the work requires.*
+
+*The joke is the teaching. The teaching is the joke.*
