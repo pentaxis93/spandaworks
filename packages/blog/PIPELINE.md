@@ -31,6 +31,31 @@ Each stage has a quality gate. Cannot advance until gate passes.
 
 ---
 
+## Stage Ordering
+
+**The pipeline order is canonical:** IDEA → RESEARCH → WALK → OUTLINE → ...
+
+RESEARCH must precede WALK because research informs the walking guide. You need to know what material exists before designing questions that surface what's *not* yet articulated.
+
+### Article Types
+
+| Type | RESEARCH Focus | WALK Focus |
+|------|----------------|------------|
+| **Technical** | Gather code, commits, docs | Surface the "why" behind decisions |
+| **Biographical** | Verify eterne context loaded, identify gaps | Extract tacit knowledge, emotional arc |
+| **Methodological** | Document current practice, find examples | Surface teaching approach, find stories |
+
+For biographical articles, RESEARCH may be lighter (context already exists in eterne), but it still happens:
+- Verify author context is loaded
+- Identify which claims need evidence
+- Note gaps the WALK should explore
+
+**There are no valid shortcuts that skip RESEARCH.** A light RESEARCH is still RESEARCH.
+
+**User-provided materials:** During RESEARCH, user may provide additional documents, notes, or references. These go in `inbox/` for the session to process.
+
+---
+
 ## Time Allocation (40-20-40)
 
 - **40% Planning**: Idea + Research + Walk + Outline
@@ -99,11 +124,19 @@ Each stage has associated skills. Load the skill for full process documentation.
 ### Research
 **Skill:** `research-gather`
 **Artifact:** `pipeline/research/[slug]-research.md`
+**Template:** `pipeline/research/_template.md`
 **Pre-requisite:** Load context from `~/src/eterne/vault/03-resources/blog-context/author.md`
 
 ### Walk
 **Skills:** `question-design` → `questions-[type]` → `walk-and-talk` → `transcribe-walk`
-**Artifact:** `pipeline/research/[slug]-walk.md`
+
+**Artifacts:**
+| File | Purpose |
+|------|---------|
+| `pipeline/research/[slug]-walk.md` | Walking guide with questions |
+| `pipeline/research/[slug]-transcript.md` | Post-walk: cleaned transcript + extracted insights |
+
+**Template:** `pipeline/research/_transcript-template.md`
 
 | Story Type | Question Skill |
 |------------|----------------|
