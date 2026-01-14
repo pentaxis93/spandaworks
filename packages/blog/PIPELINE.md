@@ -86,7 +86,7 @@ If you're spending 80% drafting, the outline isn't good enough.
 | # | Slug | Title | Stage | Notes |
 |---|------|-------|-------|-------|
 | 001 | `56-beginner` | 56, Beginner | SLEEP | Polish complete; sleeping on it |
-| 002 | `cs50-decision-at-53` | The CS50 Decision at 53 | WALK | Walk guide ready, awaiting recording |
+| 002 | `cs50-decision-at-53` | The CS50 Decision at 53 | VOICE | Draft complete (~2100 words); ready for voice review |
 
 ---
 

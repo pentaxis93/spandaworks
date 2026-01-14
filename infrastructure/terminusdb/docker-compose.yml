@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  terminusdb:
+    image: terminusdb/terminusdb-server:v12.0.2
+    container_name: aiandi-terminusdb
+    ports:
+      - "6363:6363"
+    environment:
+      - TERMINUSDB_ADMIN_PASS=${TERMINUSDB_ADMIN_PASS:-aiandi_memory_2024}
+      - TERMINUSDB_AUTOLOGIN=false
+      - TERMINUSDB_SERVER_NAME=localhost
+      - TERMINUSDB_SERVER_PORT=6363
+    volumes:
+      - terminusdb_data:/app/terminusdb/storage
+    restart: unless-stopped
+    # Note: healthcheck disabled - container doesn't have curl/wget
+    # The API endpoint http://localhost:6363/api/info can be checked externally
+
+volumes:
+  terminusdb_data:
+    driver: local
