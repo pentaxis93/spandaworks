@@ -20,7 +20,7 @@ At the PUBLISH stage, after POLISH is complete.
 Before publishing, verify:
 
 - [ ] POLISH stage gate passed
-- [ ] Article is in `pipeline/drafts/[slug].md`
+- [ ] Article is in `pipeline/active/NNN-slug/05-draft.md`
 - [ ] All images/assets are ready
 - [ ] Slug is URL-friendly (lowercase, hyphens, no special chars)
 
@@ -70,8 +70,9 @@ draft: false
 ### 1. Prepare Article
 
 ```bash
-# Move from drafts to content
-mv packages/blog/pipeline/drafts/[slug].md packages/blog/src/content/blog/[slug].md
+# Move draft to content, archive pipeline folder
+mv packages/blog/pipeline/active/NNN-slug/05-draft.md packages/blog/src/content/blog/NNN-slug.md
+mv packages/blog/pipeline/active/NNN-slug packages/blog/pipeline/published/
 ```
 
 ### 2. Add/Verify Frontmatter
