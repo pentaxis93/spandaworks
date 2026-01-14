@@ -83,10 +83,10 @@ If you're spending 80% drafting, the outline isn't good enough.
 
 ## Current Articles
 
-| Slug | Title | Stage | Target | Notes |
-|------|-------|-------|--------|-------|
-| `i-dont-know-what-im-talking-about` | 56, Beginner | SLEEP | - | Polish complete; sleeping on it |
-| `cs50-decision-at-53` | The CS50 Decision at 53 | WALK | - | Walk guide ready, awaiting recording |
+| # | Slug | Title | Stage | Notes |
+|---|------|-------|-------|-------|
+| 001 | `56-beginner` | 56, Beginner | SLEEP | Polish complete; sleeping on it |
+| 002 | `cs50-decision-at-53` | The CS50 Decision at 53 | WALK | Walk guide ready, awaiting recording |
 
 ---
 
@@ -139,8 +139,8 @@ Each stage has associated skills. Load the skill for full process documentation.
 
 ### Research
 **Skill:** `research-gather`
-**Artifact:** `pipeline/research/[slug]-research.md`
-**Template:** `pipeline/research/_template.md`
+**Artifact:** `pipeline/active/NNN-slug/02-research.md`
+**Template:** `pipeline/_research-template.md`
 **Pre-requisite:** Load context from `~/src/eterne/vault/03-resources/blog-context/author.md`
 
 ### Walk
@@ -149,10 +149,10 @@ Each stage has associated skills. Load the skill for full process documentation.
 **Artifacts:**
 | File | Purpose |
 |------|---------|
-| `pipeline/research/[slug]-walk.md` | Walking guide with questions |
-| `pipeline/research/[slug]-transcript.md` | Post-walk: cleaned transcript + extracted insights |
+| `pipeline/active/NNN-slug/03-walk.md` | Walking guide with questions |
+| `pipeline/active/NNN-slug/03-walk-transcript.md` | Post-walk: cleaned transcript + extracted insights |
 
-**Template:** `pipeline/research/_transcript-template.md`
+**Template:** `pipeline/_transcript-template.md`
 
 | Story Type | Question Skill |
 |------------|----------------|
@@ -165,11 +165,11 @@ Each stage has associated skills. Load the skill for full process documentation.
 
 ### Outline
 **Skill:** `outline-review`
-**Artifact:** `pipeline/outlines/[slug].md`
+**Artifact:** `pipeline/active/NNN-slug/04-outline.md`
 
 ### Draft
 **Skill:** `the-art` (optional - for synthesis of research + voice)
-**Artifact:** `pipeline/drafts/[slug].md`
+**Artifact:** `pipeline/active/NNN-slug/05-draft.md`
 
 ### Voice
 **Skills:** `voice`, `dry-structural-irony`
@@ -196,7 +196,8 @@ Each stage has associated skills. Load the skill for full process documentation.
 
 ### Publish
 **Skill:** `publish-article`
-**Destination:** `src/content/blog/[slug].md`
+**Destination:** `src/content/blog/NNN-slug.md`
+**Archive:** Move `pipeline/active/NNN-slug/` to `pipeline/published/NNN-slug/`
 
 ---
 
@@ -204,8 +205,9 @@ Each stage has associated skills. Load the skill for full process documentation.
 
 ### Start New Article
 1. Add to Backlog with one-sentence teaching
-2. When ready to work: move to Current Articles at IDEA stage
-3. Progress through stages, checking gates
+2. When ready to work: create `pipeline/active/NNN-slug/` folder (next sequential number)
+3. Add to Current Articles table at IDEA stage
+4. Progress through stages, checking gates
 
 ### Stage Transitions
 Before advancing, ask the gate question. If answer is "no", stay in current stage.
@@ -219,17 +221,25 @@ After DRAFT stage, can invoke `the-art` skill to mix Sol (research material) wit
 
 ```
 packages/blog/
-├── PIPELINE.md          # This file (status tracking)
+├── PIPELINE.md              # This file (status tracking)
 ├── src/content/
-│   └── blog/            # Published articles
+│   └── blog/                # Published articles (NNN-slug.md)
 └── pipeline/
-    ├── ideas/           # Stage: IDEA (one-pagers)
-    ├── research/        # Stage: RESEARCH (gathered material)
-    ├── outlines/        # Stage: OUTLINE (structured plans)
-    └── drafts/          # Stage: DRAFT through POLISH
+    ├── _research-template.md
+    ├── _transcript-template.md
+    ├── active/
+    │   └── NNN-slug/
+    │       ├── 01-idea.md
+    │       ├── 02-research.md
+    │       ├── 03-walk.md
+    │       ├── 03-walk-transcript.md
+    │       ├── 04-outline.md
+    │       └── 05-draft.md
+    └── published/           # Archived after publish
+        └── NNN-slug/
 ```
 
-Artifacts move through directories as they advance. Published articles go to `src/content/blog/`.
+Each article gets a sequentially numbered folder. All artifacts for that article live together. After publish, the folder moves to `published/` for reference.
 
 ### Context Loading
 
