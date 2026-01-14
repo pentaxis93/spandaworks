@@ -17,20 +17,120 @@ Beads is a git-native, offline-first issue tracker designed for AI agents. It pr
 
 ## When to Use Beads vs GitHub Issues
 
+**Beads is PRIMARY** for all work tracking in aiandi.
+
 **Use Beads for:**
-- Agent-discovered work during execution
+- All project tasks and work items
 - Dependency tracking (blocks, related, parent-child, discovered-from)
 - Session-local task management
 - Computing ready work queues (`bd ready`)
 - Multi-phase projects with blocking relationships
+- Agent-discovered work during execution
 
-**Use GitHub Issues for:**
-- Human-facing feature requests
-- Public bug reports
-- Cross-repo coordination
-- Long-term roadmap items
+**Use GitHub Issues ONLY for:**
+- External contributor interface (bug reports from outside)
+- Cross-repo coordination (referencing other repositories)
+- Items requiring GitHub PR auto-close workflow (`Closes #X`)
 
-**Integration:** Beads tasks can reference GitHub issues and vice versa. Use what fits the workflow.
+**No dual-tracking.** An item lives in ONE place. Single source of truth.
+
+---
+
+## Writing Good Tasks
+
+**Tasks must be self-contained.** Anyone picking up a task should be able to execute without chasing external references.
+
+### Task Description Template
+
+```markdown
+## Context
+
+Why does this task exist? What problem does it solve?
+Brief background for someone unfamiliar with the history.
+
+## Scope
+
+What specifically needs to be done?
+- Concrete deliverable 1
+- Concrete deliverable 2
+
+## Out of Scope (optional)
+
+What is explicitly NOT part of this task?
+Prevents scope creep and clarifies boundaries.
+
+## Acceptance Criteria
+
+- [ ] Checkable criterion 1
+- [ ] Checkable criterion 2
+- [ ] How do we know this is done?
+```
+
+### Example: Good Task
+
+```
+bd create "Integrate Beads into LBRP South Quarter" -p 1 --description "## Context
+
+The LBRP skill's South Quarter (Tasks) currently doesn't integrate with Beads.
+Sessions should load ready work from bd ready instead of creating tasks ad-hoc.
+
+## Scope
+
+Update LBRP skill Phase 2b (South Quarter) to:
+1. Query bd ready --json for available work
+2. Present ready tasks to inform session goal selection
+3. Allow claiming tasks via bd update --status in_progress
+
+## Out of Scope
+
+- Modifying other quarters (handled separately)
+- Creating tasks during LBRP (that's during-session work)
+
+## Acceptance Criteria
+
+- [ ] South Quarter queries bd ready
+- [ ] Ready tasks displayed during ceremony
+- [ ] Agent can claim a task as session goal
+- [ ] Works when no tasks exist (graceful empty state)"
+```
+
+### Example: Bad Task
+
+```
+bd create "Fix the login bug"
+```
+
+Why it's bad:
+- No context (which login? what bug?)
+- No acceptance criteria (how do we know it's fixed?)
+- No scope (what's included/excluded?)
+- Cannot be executed without asking questions
+
+### Creating Tasks with Long Descriptions
+
+For descriptions longer than a command line allows:
+
+```bash
+# Use --body-file to read from a file
+bd create "Task title" -p 1 --body-file task-spec.md
+
+# Or use stdin
+cat << 'EOF' | bd create "Task title" -p 1 --body-file -
+## Context
+...
+EOF
+```
+
+### Updating Sparse Tasks
+
+If you encounter a sparse task, **enrich it before starting work**:
+
+```bash
+bd update aiandi-xxxx --description "## Context
+..."
+```
+
+This is not overhead—it's essential for trust in the system.
 
 ---
 
