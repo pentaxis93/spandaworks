@@ -1,73 +1,121 @@
 # Walk-and-Talk Guide: The CS50 Decision at 53
 
-**Stage:** WALK
-**Story Type:** Journey
-**Created:** 2026-01-13
+**Stage:** WALK  
+**Story Type:** Journey  
+**Created:** 2026-01-14 (regenerated from corrected research)
 
 ---
 
 ## The Question
 
-> Why did you choose to start over with CS50 instead of jumping straight to modern frameworks — when you already knew programming existed?
+> You were coding again after 30 years. Nine months in, you chose to go backwards—Harvard's CS50, starting from "Hello, World." What did that choice make possible?
 
 ---
 
-## The Gap
+## The 30-Year Gap
 
-You programmed in college. You had a summer job coding. You ran Linux systems for years. Then... decades passed.
+College programming. A summer job writing code. Years maintaining Linux systems. Then... decades. No active programming from the early 1990s until 2022.
 
-**What was that gap like? When did you realize how much had changed?**
-
----
-
-## The Decision Point
-
-It's 2022. You're 53. You're ready to code again.
-
-The internet is full of options: bootcamps promising jobs in 12 weeks, YouTube tutorials, "learn React in a weekend," framework documentation.
-
-**What made you choose a Harvard intro course instead?**
+**What was it like when you first thought about coding again after all those years?**
 
 ---
 
-## What You Knew
+## April 2022: Breaking the Ice
 
-You weren't a complete beginner — you'd written code before, even if decades ago.
+First repo after 30 years: Albert. CSS. Then euler in May—Python puzzles.
 
-**What did that old experience tell you about what you needed? What did it tell you about what you were missing?**
+You were back. You could have just kept going.
 
----
-
-## The Experience
-
-CS50 is famously rigorous. Problem sets. C before Python. David Malan's lectures.
-
-**What was it actually like going through it at 53? What surprised you?**
+**What was that tinkering period like for you?**
 
 ---
 
-## The Counterfactual
+## The Realization
 
-Imagine you'd chosen differently — gone straight to a React tutorial or a bootcamp.
+Nine months of tinkering. Albert, euler, poking around. Then in February 2023, you started CS50—Harvard's intro course. From scratch. "Hello, World" in C.
 
-**What do you think would have happened? What would you have missed?**
+You went backwards.
+
+**What made you realize you needed foundations?**
+
+---
+
+## The Choice Point
+
+February 2023. You had options: keep tinkering, pick a bootcamp, dive into React tutorials. You chose an intro CS course. "Hello, World" at 53.
+
+**What were you choosing and what were you refusing?**
+
+---
+
+## The Intensity
+
+February 1-24, 2023. Twenty-four days. Thirty-one problem sets and labs. Daily work. C, Python, SQL, HTML/CSS, Flask. From "Hello, World" to a stock trading web app.
+
+You're 53. That's a sprint.
+
+**What was that intensity like for you?**
+
+---
+
+## Health & Timing
+
+The timeline shows chronic illness from 2009 to early 2020s. Health recovery in early 2020s. Then tinkering in 2022. Then the CS50 sprint in early 2023—24 days, 31 problem sets.
+
+**How did health recovery make this possible?**
+
+---
+
+## The Counterfactual: Just Keep Tinkering
+
+You'd already broken the ice. Albert worked. Euler worked. You were coding again.
+
+**What would have happened if you'd just kept building?**
+
+---
+
+## The Counterfactual: Bootcamp
+
+"Learn React in 12 weeks. Job-ready." That's the promise. Fast track to frameworks.
+
+**If you'd chosen a bootcamp, where would you be now?**
+
+---
+
+## What CS50 Actually Gave You
+
+After CS50: blooptwang (Next.js chatbot), framework exploration, Svelte, Dart. Then stockbook with Clean Architecture. Then Zenvestor—159,000 lines, full CI/CD, ADRs from the start.
+
+The foundation-first pattern shows up everywhere.
+
+**When did you realize CS50 had changed how you build?**
+
+---
+
+## Prior Experience as Context
+
+You weren't a complete beginner. You'd coded in college, had a programming job, ran Linux systems for years. Decades removed, but not zero.
+
+**How did that prior experience inform the choice?**
 
 ---
 
 ## The Teaching
 
-Someone reading this might be 45, or 55, or 60. They programmed once. They're considering starting again.
+Someone reading this is 45, 50, 60. They coded once—college, maybe a job. Decades ago. Life happened. Now they're thinking about coding again.
 
-**What do you want them to understand about the choice you made?**
+They'll tinker. They'll wonder if they need "real" training. They'll see bootcamp ads.
 
----
-
-## Anything Else
-
-Walking often surfaces thoughts that don't fit the questions.
-
-**What came up that we didn't ask about?**
+**What do you want them to understand about your choice?**
 
 ---
 
-*Take your time. The walk serves the thinking.*
+## What Else?
+
+Walking surfaces thoughts that don't fit in boxes.
+
+**What came up that these questions didn't ask about?**
+
+---
+
+*Take your time. Walk as long as you need. The insight will come.*
