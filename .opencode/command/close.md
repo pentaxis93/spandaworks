@@ -94,7 +94,7 @@ docker compose ps
 #### Phase 2b: West Quarter (Water/Flow) - Workspace
 
 **Element:** Water - Flow, the channel
-**Question:** What needs to be committed, stashed, or cleaned?
+**Question:** What needs to be committed, synced, and pushed?
 
 **This is the technical hygiene integration:**
 
@@ -105,6 +105,12 @@ git status --short
 # If work-in-progress that should be committed:
 # Offer: "Commit this work before closing? Message: [suggested]"
 
+# Landing the Plane workflow (MANDATORY):
+git pull --rebase
+bd sync                # 3-way merge with remote
+git push
+git status            # Verify up to date with origin
+
 # If experimental/temporary work:
 # Offer: "Stash these changes? (y/n)"
 
@@ -112,7 +118,9 @@ git status --short
 # Offer: "Return to main and remove worktree? (y/n)"
 ```
 
-**Output:** "West Quarter sealed. Workspace: [committed/stashed/clean]"
+**Critical:** Work is NOT complete until `git push` succeeds. If push fails, resolve and retry until it succeeds.
+
+**Output:** "West Quarter sealed. Workspace: [committed/synced/pushed]"
 
 #### Phase 2c: South Quarter (Fire/Action) - Tasks
 
