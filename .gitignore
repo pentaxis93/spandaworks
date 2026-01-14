@@ -26,7 +26,11 @@ Thumbs.db
 # Data
 *.db
 kuzu_data/
+
+# JSONL files (except Beads tracking files)
 *.jsonl
+!.beads/issues.jsonl
+!.beads/interactions.jsonl
 
 # Environment
 .env
