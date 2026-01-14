@@ -1,3 +1,8 @@
+---
+name: editors-table
+description: "Blog post review for authentic voice. Kill the slop. Keep the soul. Use before publishing blog posts or when a draft 'feels AI-generated'."
+---
+
 # Editors-Table: Blog Post Review for Authentic Voice
 
 Kill the slop. Keep the soul.
