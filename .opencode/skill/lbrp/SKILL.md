@@ -368,7 +368,7 @@ else:
 ◈ CIRCLE COMPLETE
 Goal ✓ | Context ✓ | Tasks ✓ | Workspace ✓ | Environment ✓
 
-→ Task 1
+Ready to proceed.
 ```
 
 **Verification questions:**
@@ -379,7 +379,7 @@ Goal ✓ | Context ✓ | Tasks ✓ | Workspace ✓ | Environment ✓
 
 **All verifications use already-loaded information.** No additional loading needed.
 
-**After confirmation:** Proceed directly to first task. **No gate here** - goal approval (when needed) was the only human gate.
+**After confirmation:** Brief pause for acknowledgment. This creates space for the user to course-correct if needed before execution begins. Not a gate requiring approval—just a breath between ceremony and work.
 
 ---
 
@@ -431,7 +431,7 @@ See `inbox-outbox-protocol.md` for complete specification.
 | Rerun git status in Phase 1 | Already done in Phase 0a. Don't repeat. |
 | Load context speculatively | East Quarter: Precise, goal-informed loading only. |
 | Create worktree in West Quarter | West verifies, doesn't create. User prepares workspace. |
-| Pause after Phase 3 for acknowledgment | Proceed directly to work. No gate after goal approval. |
+| Wait for explicit approval after Phase 3 | Brief pause for acknowledgment, not a gate. Creates space without blocking. |
 
 ---
 
