@@ -201,9 +201,87 @@ None significant. Human input (TerminusDB transmission) arrived at optimal time,
 
 ---
 
-**Session Duration:** ~2 hours  
-**Beads Task:** aiandi-ll1 (Research: Unified agentic memory for aiandi)  
-**Status:** Research complete, architectural synthesis updated, awaiting governance decision on TerminusDB migration
+## Session Part 2: Workflow Friction Investigation
+
+### 5. Beads/Worktree Friction
+
+**Problem surfaced:** Beads tasks created in governance worktree were going to main worktree's database. JSONL sync was confusing.
+
+**Investigation:**
+- Beads daemon runs in main worktree
+- All `bd` commands route to main's SQLite database
+- Feature worktrees need `bd sync --from-main` to see updates
+- This is **by design** — Beads daemon mode is incompatible with worktrees
+
+**Research commissioned:** 
+1. Canonical Beads workflow (researcher agent)
+2. Dev workflow best practices (researcher agent)
+3. Audit of worktree references in skills/commands (explore agents)
+
+### 6. Workflow Decision
+
+**Finding:** The worktree workflow is the friction source, not Beads.
+
+**Options considered:**
+- A) Fix Beads integration with `--no-db` mode
+- B) Find/build alternative task system
+- C) Stop using worktrees, adopt single-directory workflow
+
+**Decision:** Option C — Migrate to single-directory git workflow
+
+**Rationale:**
+- Beads is designed for agent swarms (atomic claim, dependency graph, ready queue)
+- Worktrees were convenience, not requirement
+- Single-directory + daemon mode = Beads works as designed
+- Agent swarms don't need parallel checkouts
+
+### 7. Implementation Plan Created
+
+**GitHub Issue:** #57 — Migrate from worktrees to single-directory git workflow
+
+**Files requiring changes:**
+- `.opencode/skill/lbrp/SKILL.md` — Remove worktree verification
+- `.opencode/skill/beads-workflow/SKILL.md` — Remove multi-directory examples
+- `.opencode/command/close.md` — Remove worktree cleanup
+- `docs/operating-instructions-opening-ceremony.md` — Update workspace observation
+- `docs/inbox-outbox-protocol.md` — Update observation phase
+- `AGENTS.md` — Clarify single-directory workflow
+
+**Migration steps:**
+1. Complete in-progress work in feature worktrees
+2. Merge or close open PRs
+3. Delete feature worktrees
+4. Update skills/commands/docs
+5. Verify Beads daemon works correctly
+
+---
+
+## Updated Decisions
+
+5. **Workflow Simplification:** Migrate from worktrees to single-directory git workflow (GitHub #57)
+
+6. **Task Tracking:** Beads remains primary (works correctly with single-directory workflow)
+
+---
+
+## Updated Artifacts
+
+### GitHub Issues
+- #57 — Migrate from worktrees to single-directory git workflow
+
+### Beads Tasks
+- `aiandi-dwz` — TerminusDB Migration epic (5 phases)
+- `aiandi-lbd` — Phase 0: Database migration (ready)
+
+---
+
+**Session Duration:** ~3 hours  
+**Beads Task:** aiandi-ll1 (Research: Unified agentic memory for aiandi) — closed  
+**GitHub Issue:** #57 (Workflow migration)  
+**Status:** 
+- Memory research complete
+- TerminusDB migration planned in Beads
+- Workflow simplification planned in GitHub
 
 ---
 
