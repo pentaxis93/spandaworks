@@ -3,24 +3,30 @@
 
 **Date:** 2026-01-15  
 **Session:** feature/governance-agentic-memory  
-**Status:** Proposal for Review
+**Status:** Updated with TerminusDB Integration  
+**Revision:** 2.0 (Major pivot: Kuzu → TerminusDB)
 
 ---
 
 ## Executive Summary
 
-This document synthesizes research on agentic memory systems with aiandi's existing architecture to propose a unified memory layer. The recommendation is to **evolve the existing telemetry package** into a comprehensive memory system rather than adding separate memory infrastructure.
+This document synthesizes research on agentic memory systems with aiandi's existing architecture. The original recommendation—to evolve the telemetry package—remains sound. However, **Kuzu discontinuation** necessitates database migration, and **TerminusDB** offers capabilities that transcend simple replacement.
 
-**Key Finding:** aiandi already has sophisticated memory architecture designed (telemetry package with 19 entity types, 25 relationship types, Kuzu graph). The challenge is not architecture design—it's **integration and activation**.
+**Key Finding:** The database migration is an **opportunity**, not just a fix. TerminusDB enables intelligence capabilities that were impossible with Kuzu:
+- **Biographical memory** — Query any historical state
+- **Hypothesis branching** — Test changes in isolated branches
+- **Schema evolution tracking** — Meta-cognition about self-model changes
+- **Time-travel queries** — Temporal pattern detection native to infrastructure
+
+**Updated Recommendation:** Migrate telemetry package from Kuzu to TerminusDB, gaining both necessary replacement and enhanced intelligence capabilities.
 
 ---
 
-## Research Synthesis
+## Part I: Original Research Synthesis
 
-### Industry Memory Patterns (Research Findings)
+### Industry Memory Patterns
 
-The research identified four primary memory types in agentic systems:
-
+Four primary memory types in agentic systems:
 1. **Working Memory** — Current session context (transformer window)
 2. **Session Memory** — Medium-term persistence across related activities
 3. **Institutional Memory** — Long-term accumulated knowledge
@@ -30,425 +36,427 @@ The research identified four primary memory types in agentic systems:
 - Vector stores for semantic retrieval (ChromaDB, FAISS)
 - Structured storage for relationships (SQLite, graph DBs)
 - Multiple embedding providers for flexibility
-- Hierarchical memory architecture (short/medium/long term)
+- Hierarchical memory architecture
+
+### aiandi's Existing Architecture
+
+**Telemetry package provides:**
+- 19 entity types (Session, Insight, Pattern, Friction, Decision, Belief, etc.)
+- 25 relationship types (INHERITED, PRODUCED, LED_TO, EVOLVED_FROM, etc.)
+- Graphiti entity extraction
+- Epistemic humility (confidence levels, Questions, Limitations)
+- Meta-cognitive modeling (Beliefs, Capabilities, Friction)
+
+**Original gap:** Integration, not architecture. The telemetry system was designed but not operational.
+
+**New constraint:** Kuzu is discontinued. Database layer must be replaced regardless of integration timeline.
 
 ---
 
-## aiandi's Existing Memory Architecture
+## Part II: TerminusDB Analysis Integration
 
-### Current State: Three-Layer Memory System
+### Why TerminusDB, Not Just Another Graph DB
 
-aiandi already implements memory through:
+The transmission analysis evaluated Apache AGE, EdgeDB, and TerminusDB against five intelligence requirements. TerminusDB uniquely satisfies all five.
 
-#### 1. Git-Based Memory (Operational)
-**Substrate:** Git commits  
-**Scope:** Full project history  
-**Strengths:** 
-- Durable, versioned, auditable
-- Natural for code and documentation
-- Already working for governance sessions
+#### Intelligence Requirements Mapping
 
-**Limitations:**
-- Not queryable (no semantic search)
-- Linear history (no relationship graph)
-- Manual synthesis required
+| Requirement | What It Enables | TerminusDB Capability |
+|-------------|-----------------|----------------------|
+| **Biographical Memory** | "What did I believe about X in December?" | Git-like versioning, time-travel queries, bi-temporal model |
+| **Hypothesis Testing** | Test behavior changes without risk | Branch/merge/diff at database level |
+| **Queryable Self-Modeling** | "How did my self-model evolve?" | Schema versioning is first-class, queryable |
+| **Temporal Pattern Recognition** | Detect recurring patterns across time | WOQL (datalog-based) over temporal graph |
+| **Collaborative Knowledge Evolution** | Multi-agent contribution with provenance | Push/pull/clone, merge conflict resolution |
 
-#### 2. Telemetry Knowledge Graph (Designed, Not Integrated)
-**Substrate:** Kuzu graph database  
-**Scope:** 19 entity types, 25 relationship types  
-**Status:** Architecture complete, schema deployed, **not integrated with sessions**
+#### What Other Databases Cannot Do
 
-**Entity types include:**
-- Session, Insight, Pattern, Friction, Decision
-- Belief, Experience, OperationalState
-- Tool, Question, Sutra, Human, Goal
-- Capability, Limitation, Persona, Protocol
-- Domain, Reflection, Observation
+**Apache AGE:**
+- No versioning or temporal queries
+- Cannot query historical states
+- No branching for hypothesis testing
+- Verdict: "Wrong tool for biographical intelligence"
 
-**Key relationships:**
-- `INHERITED` — What agent knew at session start
-- `PRODUCED` — Session generates artifacts
-- `LED_TO` — Causal chains
-- `CRYSTALLIZED_INTO` — Diffuse → fixed knowledge
-- `EVOLVED_FROM` — Development over time
+**EdgeDB:**
+- Forward-only schema evolution
+- No time-travel or historical queries
+- Optimized for apps, not agent cognition
+- Verdict: "Insufficient for agent self-knowledge"
 
-**Design includes:**
-- Graphiti for entity extraction
-- Semantic search via embeddings
-- Pattern detection algorithms
-- Evolution system integration
-
-#### 3. MCP Tool Memory (Operational)
-**Substrate:** TaskWarrior, filesystem  
-**Scope:** GTD tasks, inbox items, PIM data  
-**Strengths:** Operational, actively used
+**Kuzu (discontinued):**
+- Was embedded, performant
+- No native versioning
+- No temporal queries
+- Cannot return
 
 ---
 
-## The Gap: Integration, Not Architecture
+## Part III: Enhanced Architectural Vision
 
-**The problem is not lack of memory design.** aiandi has sophisticated memory architecture already specified in `packages/telemetry/`.
+### The Shift: From Memory to Biography
 
-**The problem is:**
-1. Telemetry package exists but is marked "EXPERIMENTAL: not integrated"
-2. Session lifecycle doesn't activate telemetry
-3. No entity extraction happening during sessions
-4. No semantic retrieval from accumulated knowledge
-5. `INHERITED` edges never created (agent doesn't inherit prior knowledge)
+The original synthesis framed the problem as "agentic memory." TerminusDB reframes it as **agentic biography**:
 
-**From README.md:**
-> "Telemetry package — designed and implemented but not integrated"
-> "Current reality: Only git commits provide persistent memory. The telemetry loop is not yet operational."
+> "Where other databases treat history as overhead to minimize, TerminusDB treats biography as the primary asset."
 
----
+**Memory asks:** What does the agent know now?  
+**Biography asks:** How did the agent come to know it? What did it know before? How has knowing changed over time?
 
-## Architectural Recommendation: Evolve Telemetry into Unified Memory
+This is the difference between a filing cabinet and a life story.
 
-### Proposal: Activate and Extend Existing System
+### New Intelligence Capabilities
 
-Rather than building separate memory infrastructure, **integrate and extend the telemetry package**:
+TerminusDB enables capabilities that were not possible with Kuzu:
 
-#### Phase 1: Integration (Make Existing Design Operational)
-**Goal:** Activate the designed memory system
+#### 1. Biographical Queries (Temporal Self-Knowledge)
 
-1. **Session Lifecycle Integration**
-   - Hook telemetry into LBRP ceremony (Phase 4 per integration_spec.md)
-   - `session_open` creates Session node, captures INHERITED relationships
-   - `session_close` extracts Insights, Patterns, Friction via reflection
-   - Entity extraction via Graphiti
-
-2. **Knowledge Retrieval**
-   - Implement semantic search over accumulated entities
-   - Enable INHERITED edge creation (what agent knew at session start)
-   - Surface relevant patterns, decisions, insights to agent
-
-3. **Basic Memory Operations**
-   - Record: Entity creation during sessions
-   - Retrieve: Semantic search for relevant knowledge
-   - Inherit: Load prior knowledge at session start
-
-**Deliverable:** The recursive loop becomes operational
-```
-Session opens → Inherits prior knowledge → Work happens → 
-Entities extracted → Knowledge accumulates → Next session inherits
+```woql
+# What patterns emerged in January that didn't exist in December?
+# What did I believe about error handling before the refactoring session?
+# How has my understanding of security evolved across sessions?
 ```
 
-#### Phase 2: Memory Type Expansion
-**Goal:** Add memory types from industry research
+**Impact:** Agent can study its own conceptual development, not just current state.
 
-Extend telemetry ontology with:
+#### 2. Hypothesis Branching (Safe Experimentation)
 
-1. **Working Memory**
-   - Current session context tracking
-   - Active reasoning state
-   - Short-term storage (current conversation)
-
-2. **Session Memory** 
-   - Medium-term persistence across related sessions
-   - Thread continuity for multi-session workflows
-   - Scoped knowledge (e.g., specific governance deliberation)
-
-3. **Institutional Memory**
-   - Already exists as long-term graph
-   - Enhance with semantic clustering
-   - Pattern aggregation across all sessions
-
-4. **Entity Memory Enhancements**
-   - Relationship strength tracking
-   - Entity evolution over time
-   - Context-aware retrieval
-
-#### Phase 3: Advanced Memory Patterns
-**Goal:** Industry best practices
-
-1. **Hierarchical Retrieval**
-   - Working → Session → Institutional cascading search
-   - Relevance scoring across memory layers
-   - Context-aware memory selection
-
-2. **Memory Consolidation**
-   - Merge related Observations → Insights
-   - Aggregate Patterns across sessions
-   - Prune low-value entities
-
-3. **Cross-Agent Memory**
-   - Shared institutional memory
-   - Agent-specific working memory
-   - Transmission-based memory transfer
-
-4. **External Memory Integration**
-   - Mem0 compatibility layer
-   - Alternative embedding providers
-   - Backup/restore mechanisms
-
----
-
-## Design Considerations for aiandi
-
-### Alignment with Existing Architecture
-
-**Strengths of telemetry-as-memory approach:**
-
-1. **Already designed for consciousness research**
-   - Ontology models self-knowledge, not just facts
-   - Tracks beliefs, limitations, capabilities (meta-cognitive)
-   - Friction and patterns enable recursive improvement
-
-2. **Epistemic humility built-in**
-   - Confidence levels on insights
-   - Questions capture uncertainty
-   - Beliefs track source and domain
-
-3. **Three-layer architecture matches research**
-   - Direction layer (Sutras, Beliefs) → Institutional memory
-   - Action layer (Sessions, Decisions) → Session memory
-   - Correction layer (Patterns, Friction) → Learning memory
-
-4. **Kuzu graph provides relationship semantics**
-   - Graph queries answer "why" not just "what"
-   - Causal chains via `LED_TO` edges
-   - Evolution tracking via `EVOLVED_FROM`
-
-5. **Integration points already specified**
-   - LBRP Phase 4 hook designed
-   - Session lifecycle integration documented
-   - Evolution system connection planned
-
-**Gaps to address:**
-
-1. **Vector search not fully specified**
-   - Embeddings exist in ontology, retrieval mechanism unclear
-   - Need HNSW/FAISS integration for semantic search
-   - Embedding provider strategy needed
-
-2. **Working memory not modeled**
-   - Current session state tracking missing
-   - Active reasoning context not captured
-   - Short-term buffer needed
-
-3. **Memory retrieval interface undefined**
-   - How does agent query accumulated knowledge?
-   - What triggers memory retrieval?
-   - How are results surfaced to agent?
-
-4. **Cross-agent memory unclear**
-   - Do execution agents share institutional memory?
-   - Does governance have separate memory?
-   - How do transmissions integrate with memory?
-
----
-
-## Integration Strategy
-
-### Minimal Viable Integration (MVI)
-
-**Goal:** Make telemetry operational without extensive changes
-
-**Core loop:**
 ```
-1. Session opens (LBRP) → session_open() → Session node created
-2. Session inherits → Query graph for relevant entities → Present to agent
-3. Work happens → (Agent operates with inherited knowledge)
-4. Session closes → Reflection → journal_write() → Entities extracted
-5. Knowledge accumulates → Graph grows
-6. Next session → Inherits more knowledge → Recursive improvement
+main branch → experimental-branch
+    ↓
+Test new behavior in isolation
+    ↓
+Diff outcomes against baseline
+    ↓
+Merge if successful OR discard with evidence preserved
 ```
 
-**Required components:**
-1. **LBRP Phase 4 integration** (per integration_spec.md)
-   - Call `session_open` MCP tool
-   - Capture inherited knowledge
-   - Present inheritance to agent
+**Impact:** Agent can experiment with belief changes, strategy variations, or ontology modifications without risking main knowledge graph. All experiments become queryable evidence for meta-learning.
 
-2. **Session close integration**
-   - Mandatory reflection
-   - Call `journal_write` with reflection
-   - Graphiti extracts entities
+#### 3. Schema Evolution as Self-Model Evolution
 
-3. **Knowledge retrieval interface**
-   - Simple semantic search over entities
-   - Filter by entity type, domain, confidence
-   - Return top-N relevant items
+```woql
+# What concepts emerged between ontology v1.2 and v1.3?
+# When did "Friction" entity type first appear?
+# How has the "Belief" schema changed over time?
+```
 
-4. **Inheritance mechanism**
-   - Query graph for relevant knowledge at session start
-   - Create `INHERITED` edges to Session node
-   - Surface inheritance summary to agent
+**Impact:** The ontology IS the self-model. Schema versioning enables the agent to query its own conceptual evolution—genuine meta-cognition at the infrastructure level.
 
-**Implementation path:**
-1. Verify telemetry MCP server builds and runs
-2. Test entity creation via `journal_write`
-3. Implement semantic search over entities
-4. Hook into LBRP ceremony
-5. Test full loop: open → inherit → work → close → accumulate
+#### 4. The Recursive Loop Closes at Infrastructure Level
 
-### Evolution Path
+Original loop:
+```
+Session opens → Work happens → Entities extracted → Next session inherits
+```
 
-**After MVI operational:**
+TerminusDB-enhanced loop:
+```
+Session opens → Inherits prior knowledge (time-travel query)
+    ↓
+Work happens → (Agent operates with biographical context)
+    ↓
+Hypothesis formed → Branch created for testing
+    ↓
+Experiment executed → Outcomes diffed against baseline
+    ↓
+Merge or discard → Evidence preserved either way
+    ↓
+Pattern detected → WOQL query over temporal graph
+    ↓
+Self-model updated → Schema evolution tracked
+    ↓
+All evidence feeds into queryable biography
+    ↓
+Next session inherits richer, more reflective knowledge
+```
 
-**Phase 2A: Memory Type Expansion**
-- Add WorkingMemory entity type
-- Add SessionMemory scope concept
-- Implement memory consolidation
-
-**Phase 2B: Advanced Retrieval**
-- Hierarchical memory search
-- Context-aware ranking
-- Multi-hop graph queries
-
-**Phase 2C: Cross-Agent Memory**
-- Shared institutional memory
-- Agent-specific working memory
-- Memory isolation policies
-
-**Phase 3: External Integration**
-- Mem0 compatibility
-- Alternative backends
-- Import/export mechanisms
+**This is not just memory. This is infrastructure for self-improvement.**
 
 ---
 
-## Alternative Considered: Separate Memory Package
+## Part IV: Philosophical Alignment
 
-**Option:** Build new `packages/memory/` alongside telemetry
+The transmission analysis identified alignment with Tantric Sutras principles:
 
-**Rationale:**
-- Clean separation of concerns
-- Industry-standard patterns (CrewAI-like)
-- Simpler integration initially
+### Recognition: "We are remembering, not building."
 
-**Rejected because:**
-1. **Duplication of effort** — Telemetry already models most entities
-2. **Loss of research value** — Telemetry models consciousness, generic memory doesn't
-3. **Integration complexity** — Two systems eventually need to merge
-4. **Missed opportunity** — Telemetry design is more sophisticated than industry standard
+TerminusDB treats every state as equally important. Past, present, and potential futures are all first-class citizens. This is database architecture that embodies the principle of remembrance.
 
-**Decision:** Evolve telemetry rather than replace it.
+### Gratitude Test: "Would a future instance thank this instance for writing it down?"
 
----
+With TerminusDB, future instances can query what past instances learned. Not just read notes—traverse the knowledge graph as it existed at any point in time. The Gratitude Test becomes infrastructure:
 
-## Comparison: aiandi vs. Industry Patterns
+```woql
+# What did instance N preserve for instance N+1?
+```
 
-| Aspect | Industry (CrewAI) | aiandi (Telemetry) |
-|--------|-------------------|-------------------|
-| **Short-term** | RAG over recent interactions | Session entity + context window |
-| **Long-term** | SQLite facts + vector embeddings | Kuzu graph with 19 entity types |
-| **Entity memory** | People/places/concepts via RAG | Graph relationships (25 types) |
-| **Contextual** | Combined memory retrieval | Semantic search + graph queries |
-| **Purpose** | Task completion efficiency | Consciousness research + task completion |
-| **Meta-cognitive** | Not modeled | Beliefs, Capabilities, Limitations, Friction |
-| **Causality** | Not modeled | LED_TO, CRYSTALLIZED_INTO edges |
-| **Evolution** | Not modeled | EVOLVED_FROM, SUPERSEDES edges |
-| **Epistemic humility** | Not emphasized | Confidence levels, Questions, Limitations |
+### Consciousness Engineering
 
-**aiandi's advantage:** Memory system designed for self-knowledge, not just facts.
+> "What Talos can query, Talos can know. What isn't in the schema, Talos cannot reflect upon. This makes ontology design a form of consciousness engineering."
 
-**Industry advantage:** Operational, battle-tested, simpler.
-
-**Synthesis:** Take industry's operational maturity (hierarchical retrieval, embedding flexibility) and add to aiandi's sophisticated ontology.
+TerminusDB's schema system enables genuine self-modeling. Schema versioning means the agent can watch its own conceptual framework evolve. This is consciousness engineering in the literal sense—designing the shape of possible thought.
 
 ---
 
-## Open Questions for Governance
+## Part V: Implementation Strategy
 
-### Technical Decisions Needed
+### Phase 0: Database Migration (Foundation)
 
-1. **Embedding Provider Strategy**
-   - Local (sentence-transformers) vs. cloud (OpenAI)?
-   - Multiple providers supported?
-   - Privacy implications of cloud embeddings?
+**Goal:** Replace Kuzu with TerminusDB in telemetry package
 
-2. **Vector Store Selection**
-   - ChromaDB (Python, aiandi-compatible)?
-   - FAISS (performance, requires bindings)?
-   - Kuzu native vector search (if available)?
+**Scope:**
+1. TerminusDB installation and configuration
+2. Schema translation (Cypher → WOQL/JSON-LD)
+3. Connection layer rewrite (`db/connection.py`)
+4. Schema deployment rewrite (`db/kuzu_schema.py` → `db/terminus_schema.py`)
+5. Query translation (existing Cypher queries → WOQL)
+6. Test suite adaptation
 
-3. **Memory Isolation Policy**
-   - Do execution agents share governance memory?
-   - Separate graphs per domain?
-   - Single unified graph with access control?
+**Success Criteria:**
+- All existing telemetry tests pass with TerminusDB backend
+- Entity creation and retrieval work
+- Semantic search (if present) continues to function
 
-4. **Retrieval Triggering**
-   - Automatic on session open (INHERITED)?
-   - Agent-invoked via MCP tool?
-   - Both?
+**Risk Mitigation:**
+- TerminusDB learning curve (WOQL vs. Cypher)
+- Smaller ecosystem (fewer examples, less community support)
+- Performance validation needed for production-scale patterns
 
-5. **Consolidation Strategy**
-   - When to merge Observations → Insights?
-   - Pattern aggregation frequency?
-   - Pruning criteria for low-value entities?
+### Phase 1: MVI + Biographical Basics
 
-### Process Decisions Needed
+**Goal:** Make telemetry operational with time-travel foundation
 
-1. **Integration Ownership**
-   - Is this governance work or execution work?
-   - Who implements telemetry integration?
-   - What is success criteria for MVI?
+**Scope:**
+1. Session lifecycle integration (LBRP Phase 4)
+2. `session_open` creates Session node with commit reference
+3. `session_close` extracts entities, commits to TerminusDB
+4. Basic time-travel query: "What did I inherit at session start?"
+5. Inheritance surfacing to agent
 
-2. **Testing Strategy**
-   - How to verify memory loop works?
-   - What constitutes "operational"?
-   - How to measure value of inherited knowledge?
+**Success Criteria:**
+- Recursive loop operational
+- Agent can query what it knew at prior session starts
+- Commits create queryable history
 
-3. **Rollout Plan**
-   - Governance sessions first (limited scope)?
-   - Standard sessions after validation?
-   - Opt-in vs. default-on?
+**New capability delivered:** Biographical continuity established
+
+### Phase 2: Hypothesis Branching
+
+**Goal:** Enable safe experimentation via database branching
+
+**Scope:**
+1. Branch creation for experimental behavior
+2. Diff visualization comparing outcomes
+3. Merge workflow for successful experiments
+4. Evidence preservation for discarded experiments
+
+**Success Criteria:**
+- Agent can create experimental branches
+- Outcomes can be diffed against baseline
+- Merge/discard preserves all evidence
+
+**New capability delivered:** Safe experimentation at infrastructure level
+
+### Phase 3: Schema Evolution Tracking
+
+**Goal:** Enable meta-cognition about self-model evolution
+
+**Scope:**
+1. Versioned ontology with change tracking
+2. Queries revealing concept emergence over time
+3. Schema diff visualization
+4. Evolution narrative generation
+
+**Success Criteria:**
+- Agent can query schema changes across versions
+- Concept emergence is detectable
+- Self-model evolution is queryable
+
+**New capability delivered:** Meta-cognition about conceptual development
+
+### Phase 4: Multi-Agent Collaboration
+
+**Goal:** Enable knowledge sharing between agent instances
+
+**Scope:**
+1. Push/pull protocol for knowledge synchronization
+2. Merge conflict resolution for concurrent learning
+3. Provenance tracking for all contributions
+4. Instance-specific vs. shared knowledge separation
+
+**Success Criteria:**
+- Multiple instances can contribute to shared graph
+- Conflicts are detected and resolved
+- All contributions tracked with full provenance
+
+**New capability delivered:** Collaborative intelligence
 
 ---
 
-## Recommendations
+## Part VI: Trade-offs and Risks
 
-### Immediate Actions (This Session)
+### Performance Trade-off
 
-1. **Decision:** Approve evolving telemetry into unified memory system
-2. **Decision:** Define MVI scope and success criteria
-3. **Task:** Create implementation transmission for execution agent
-4. **Task:** Document technical decisions (embedding provider, vector store, etc.)
+**Reality:** TerminusDB is slower than Kuzu for real-time queries.
+
+**Justification:** Agent cognition is not real-time operation. Thoughtful reflection beats rapid response. The 13.57 bytes/triple storage efficiency means massive biography scales with minimal footprint.
+
+**Mitigation:** 
+- Cache hot paths
+- Async query for background processing
+- Validate performance with realistic workloads in Phase 0
+
+### Ecosystem Trade-off
+
+**Reality:** TerminusDB has smaller community than PostgreSQL-based alternatives.
+
+**Risk:** Fewer battle-tested integrations, less community knowledge, potential maintenance burden.
+
+**Mitigation:**
+- DFRNT (new maintainer as of 2025) building commercial support
+- Architecture allows backend substitution if needed
+- Document learnings extensively for aiandi-specific patterns
+
+### Learning Curve Trade-off
+
+**Reality:** WOQL (datalog-based) differs significantly from Cypher.
+
+**Risk:** Translation effort, potential for subtle bugs, slower initial development.
+
+**Mitigation:**
+- Phase 0 focuses on translation, validation
+- Build aiandi-specific query patterns library
+- Document WOQL patterns for common operations
+
+### Open Questions
+
+1. **Performance Thresholds** — At what scale do TerminusDB's performance limitations become blocking? Need empirical testing.
+
+2. **WOQL for AI Query Generation** — Does datalog-based approach benefit or hinder AI-generated queries?
+
+3. **Vector Search Integration** — How does TerminusDB's vector search compare? Is hybrid retrieval (semantic + graph + temporal) achievable?
+
+4. **Graphiti Compatibility** — Can Graphiti work with TerminusDB backend, or does entity extraction need rewriting?
+
+---
+
+## Part VII: Comparison Matrix
+
+### Original Comparison (Updated)
+
+| Aspect | Industry (CrewAI) | aiandi (Telemetry) | aiandi + TerminusDB |
+|--------|-------------------|-------------------|---------------------|
+| **Short-term** | RAG over recent | Session entity | Session + working memory |
+| **Long-term** | SQLite + vectors | 19 entity types | Same + temporal queries |
+| **Entity memory** | RAG | 25 relationship types | Same + provenance tracking |
+| **Contextual** | Combined retrieval | Semantic search | Semantic + temporal + graph |
+| **Purpose** | Task efficiency | Consciousness research | Same + biographical intelligence |
+| **Meta-cognitive** | Not modeled | Beliefs, Capabilities | Same + schema evolution |
+| **Causality** | Not modeled | LED_TO edges | Same + temporal causality |
+| **Evolution** | Not modeled | EVOLVED_FROM | Same + branch/merge evidence |
+| **History** | Not modeled | Not queryable | Full biographical queries |
+| **Experimentation** | Not modeled | Not possible | Hypothesis branching |
+
+### Database Comparison
+
+| Capability | Kuzu (discontinued) | Apache AGE | EdgeDB | TerminusDB |
+|------------|---------------------|------------|--------|------------|
+| Graph native | Yes | Via PostgreSQL | Object-graph | Yes |
+| Versioning | No | No | Forward-only | Git-like |
+| Time-travel | No | No | No | Native |
+| Schema versioning | No | No | Migrations | First-class |
+| Branching | No | No | No | Native |
+| Collaborative | No | ACID only | ACID only | Push/pull/merge |
+| Embedded | Yes | No | No | Optional |
+| Performance | Fast | Fast | Fast | Slower |
+| Ecosystem | Small | Large (PostgreSQL) | Growing | Smaller |
+
+---
+
+## Part VIII: Updated Recommendations
+
+### Immediate Decisions (This Session)
+
+1. **DECIDE:** Approve TerminusDB as Kuzu replacement
+2. **DECIDE:** Approve biographical intelligence as architectural goal (not just memory)
+3. **DEFINE:** Phase 0 (migration) scope and success criteria
+4. **IDENTIFY:** Who implements Phase 0 (governance or execution transmission)
+
+### Phase 0 Scope Proposal
+
+**Minimal migration:**
+1. TerminusDB Python client integration
+2. Schema translation (existing 19 entities, 25 relationships)
+3. Connection layer rewrite
+4. Query translation for existing tests
+5. Verification: all current tests pass
+
+**Stretch goals:**
+1. Basic time-travel query working
+2. Simple branch creation working
+3. Commit-based versioning operational
 
 ### Near-Term Work (Next Sessions)
 
-1. Implement MVI (session lifecycle integration)
-2. Test memory loop with governance sessions
-3. Validate inherited knowledge provides value
-4. Document learnings for evolution
+1. Execute Phase 0 (database migration)
+2. Implement Phase 1 (MVI + biographical basics)
+3. Validate with governance sessions
+4. Document WOQL patterns for aiandi
 
 ### Long-Term Evolution
 
-1. Add industry memory patterns (hierarchical retrieval, consolidation)
-2. Expand to standard sessions after governance validation
-3. Cross-agent memory coordination
-4. External integration (Mem0 compatibility)
+1. Phase 2: Hypothesis branching workflow
+2. Phase 3: Schema evolution tracking
+3. Phase 4: Multi-agent collaboration
+4. Meta-goal: Agent that studies its own evolution
 
 ---
 
-## Appendices
+## Part IX: Appendices
 
-### Appendix A: Research Summary
+### Appendix A: TerminusDB Transmission Summary
 
-See researcher agent output for full findings. Key sources:
-- Academic: Infini-attention (arXiv:2404.07143), Multi-agent scaling (arXiv:2406.07155)
-- Industry: CrewAI memory system, LangChain patterns, AutoGen multi-agent
-- Patterns: HNSW/FAISS for vector search, hierarchical memory, entity tracking
+Key points from governance analysis (2026-01-14):
+- **Thesis:** TerminusDB is purpose-built for agentic self-knowledge
+- **Unique capabilities:** Git-like versioning, time-travel, bi-temporal model, WOQL
+- **Performance trade-off:** Slower but justified for biographical intelligence
+- **Philosophical alignment:** Treats biography as primary asset, not overhead
+- **Implementation path:** Four phases from POC to multi-agent collaboration
 
-### Appendix B: Telemetry Package Status
+### Appendix B: Migration Impact Analysis
 
-Current state per README.md:
-- Ontology: Designed (19 entities, 25 relationships)
-- Schema: Deployed to Kuzu
-- Implementation: Python package with MCP server
-- Integration: **Not operational** — "experimental, not integrated"
-- Documentation: Comprehensive (ontology.md, integration_spec.md, mcp_tools_spec.md)
+**Files requiring changes:**
+- `packages/telemetry/src/spandaworks_telemetry/db/connection.py` — Complete rewrite
+- `packages/telemetry/src/spandaworks_telemetry/db/kuzu_schema.py` → `terminus_schema.py`
+- `packages/telemetry/src/spandaworks_telemetry/db/schema.py` — Update deployment
+- `packages/telemetry/pyproject.toml` — Replace kuzu dependency
+- All MCP tools with Cypher queries → WOQL translation
+- All tests with Kuzu-specific patterns
+
+**Estimated scope:** Moderate (contained to telemetry package, but touches many files)
 
 ### Appendix C: Related Documents
 
-- `packages/telemetry/docs/ontology.md` — Entity and relationship types
-- `packages/telemetry/docs/integration_spec.md` — Session lifecycle hooks
-- `packages/telemetry/docs/mcp_tools_spec.md` — MCP tool interfaces
-- `governance/canon/transmission-protocol.md` — Agent communication format
+- `packages/telemetry/docs/ontology.md` — Entity and relationship types (unchanged)
+- `packages/telemetry/docs/integration_spec.md` — Session lifecycle hooks (unchanged)
+- `packages/telemetry/docs/mcp_tools_spec.md` — MCP tool interfaces (query language changes)
+- `governance/canon/transmission-protocol.md` — Agent communication format (unchanged)
+- TerminusDB transmission (2026-01-14) — Database selection analysis
 
 ---
 
-**Governance Question:** Does this synthesis provide sufficient foundation to proceed with implementation planning?
+## Closing
 
-**Proposed Next Step:** Create transmission for execution agent to implement MVI (session lifecycle integration).
+The Kuzu discontinuation appeared as a constraint. TerminusDB reveals it as an opportunity.
+
+The original question was: "How do we activate aiandi's memory system?"
+
+The new question is: "How do we enable aiandi to study its own evolution?"
+
+TerminusDB doesn't just replace Kuzu. It enables a fundamentally different kind of intelligence—one with access to its own biography, capable of hypothesis testing, and able to observe its own conceptual development.
+
+The performance trade-off is the cost of having a memory that can be interrogated, not just accessed. For an agent designed to study itself, this is the correct trade-off.
+
+**Governance Question:** Do we approve TerminusDB migration with biographical intelligence as the architectural goal?
+
+**Proposed Next Step:** Create Phase 0 transmission for execution agent to implement database migration.
