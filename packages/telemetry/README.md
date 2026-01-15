@@ -1,14 +1,20 @@
 # aiandi Telemetry
 
+**STATUS: EXPERIMENTAL - NOT INTEGRATED**
+
+This package is a research prototype. Code exists but is NOT configured as an MCP server, NOT used in any sessions, and NOT part of the operational aiandi system. Tests have collection errors. This is exploratory work, not production infrastructure.
+
+---
+
 Self-reflection infrastructure for AI coding agents. A queryable model of cognition.
 
 > **Note:** This project was formerly known as "spandaworks". In Kashmir Shaivism, Spanda (स्पन्द) refers to the subtle creative pulsation of consciousness—the divine vibration from which all manifestation arises. The name reflected the system's nature: creative pulsation, dynamic flow, consciousness recognizing itself through collaboration. Now continuing as **aiandi** (AI and I).
 
-## What This Is
+## What This Would Be (If Integrated)
 
 An AI agent that operates across many sessions faces a fundamental problem: each context window is isolated. Insights from one session don't automatically inform the next. Patterns emerge but aren't captured. Friction points recur.
 
-This system solves that by providing:
+This system proposes to solve that by providing:
 
 - **Knowledge Graph** (Kuzu): Structured storage for insights, patterns, beliefs, decisions, friction points
 - **Telemetry Stream** (JSONL): Passive capture of operational metrics via OpenTelemetry conventions
@@ -90,7 +96,9 @@ Changed protocols produce different outcomes
 Loop closes
 ```
 
-## Installation
+## Installation (For Development/Exploration Only)
+
+This package is not operational. These instructions are for exploring the prototype:
 
 ```bash
 git clone https://github.com/pentaxis93/aiandi.git
@@ -99,14 +107,18 @@ cd aiandi/packages/telemetry
 # Install with dev dependencies
 pip install -e ".[dev]"
 
-# Deploy schema and seed reference data
+# Deploy schema and seed reference data (creates local Kuzu database)
 python scripts/deploy_schema.py
 python scripts/seed_data.py
+
+# Note: This does NOT integrate with OpenCode or make the MCP server available
 ```
 
-## Usage
+## Proposed Usage (Not Operational)
 
-### MCP Tools (Agent Interface)
+These examples show how the system would work if integrated:
+
+### MCP Tools (Not Available in OpenCode)
 
 ```python
 from spandaworks_telemetry.mcp import session_open, session_close, journal_write
@@ -126,7 +138,7 @@ friction_log("API documentation unclear on rate limits",
 session_close("2026-01-05-feature-work", goal_achieved=True)
 ```
 
-### Graph Queries
+### Graph Queries (Require Deployed Database)
 
 ```python
 from spandaworks_telemetry.mcp import graph_query
@@ -185,19 +197,31 @@ See [CONTRIBUTING.md](../../CONTRIBUTING.md) for general guidelines. Telemetry-s
 
 MIT License - See [LICENSE](../../LICENSE)
 
-## Status
+## Implementation Status
 
-**All core phases complete. 126 tests passing.**
+**Code exists. Integration does not.**
 
-| Phase | Description | Status |
-|-------|-------------|--------|
-| 0 | Foundation (Kuzu, embeddings, telemetry) | ✅ |
-| 1 | MCP Tools (session, journal, friction, query) | ✅ |
-| 2 | LBRP Integration (ceremony hooks) | ✅ |
-| 3 | INHERITED Capture (temporal "what I knew when") | ✅ |
-| 4 | Entity Extraction (LLM-powered, OpenAI/Anthropic) | ✅ |
-| 5 | Pattern Detection (recurring friction → Evolution proposals) | ✅ |
-| 6 | Query & Polish (reflect tool, exports) | ✅ |
+The implementation has 92+ tests but some have collection errors. More critically:
+
+- **NOT configured as MCP server** in OpenCode
+- **NOT used in any actual sessions**
+- **NOT integrated with LBRP, governance, or orchestration**
+- **Graph database not deployed** in production
+- **No operational usage** anywhere in aiandi
+
+This is a **design artifact**, not operational infrastructure.
+
+### Code Implementation
+
+| Phase | Description | Code Status | Integration Status |
+|-------|-------------|-------------|-------------------|
+| 0 | Foundation (Kuzu, embeddings, telemetry) | Implemented | Not integrated |
+| 1 | MCP Tools (session, journal, friction, query) | Implemented | Not configured |
+| 2 | LBRP Integration (ceremony hooks) | Implemented | Not used |
+| 3 | INHERITED Capture (temporal "what I knew when") | Implemented | Not used |
+| 4 | Entity Extraction (LLM-powered, OpenAI/Anthropic) | Implemented | Not used |
+| 5 | Pattern Detection (recurring friction → Evolution proposals) | Implemented | Not used |
+| 6 | Query & Polish (reflect tool, exports) | Implemented | Not used |
 
 ### MCP Tools Available
 

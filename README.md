@@ -46,7 +46,7 @@ Skills distributed with aiandi and extracted to `~/.config/opencode/skill/`:
 Model Context Protocol servers that extend OpenCode:
 - **gtd** (TypeScript) — TaskWarrior integration, 22 GTD tools
 - **pim** (Rust) — Email, calendar, contacts via CLI wrappers
-- **telemetry** (Python) — Knowledge graph, pattern detection, session memory
+- **telemetry** (Python) — EXPERIMENTAL: Knowledge graph prototype (not integrated)
 
 ### 4. Supporting Packages
 
@@ -54,9 +54,9 @@ Model Context Protocol servers that extend OpenCode:
 - **packages/second-brain/** — Vault infrastructure, note processing
 - **shared/** — Event schemas, utilities
 
-## The Recursive Loop
+## The Vision: Recursive Loop
 
-Every session does two things:
+The design goal is for every session to do two things:
 
 1. **Object-level work**: Complete tasks, answer questions, build features
 2. **Meta-level observation**: What worked? What didn't? What patterns emerged?
@@ -64,30 +64,32 @@ Every session does two things:
 ```
 Session opens
     ↓
-Work happens → Telemetry observes
+Work happens → (Telemetry would observe)
     ↓              ↓
-Tasks done    Patterns detected
+Tasks done    (Patterns would be detected)
     ↓              ↓
-Session closes → Knowledge accumulates
+Session closes → (Knowledge would accumulate)
     ↓
 Next session inherits what previous sessions learned
 ```
 
-The system doesn't just *do* things. It **watches itself doing things**, then uses what it sees to improve.
+**Current reality:** Only git commits provide persistent memory. The telemetry loop is not yet operational.
 
 ## What Makes This Different
 
-**Knowledge persists across context windows.**  
-Telemetry maintains a Kuzu graph with 19 entity types (Session, Insight, Pattern, Friction, Decision, etc.) and 25 relationship types. INHERITED edges capture what the agent knew at session start. Semantic search via embeddings. Each session inherits from all previous sessions.
+**Knowledge persists across context windows (via git).**  
+Currently: Git commits preserve session documentation, governance decisions, and code evolution. The repository is the memory substrate.
 
-**Sessions have explicit lifecycle.**  
-Opening captures goal, workspace state, and inherited knowledge. Closing captures outcomes, insights, and friction points. Metadata is structured and queryable. Sessions aren't just conversation threads—they're first-class entities in the graph.
+Future vision: Telemetry would maintain a Kuzu graph with 19 entity types (Session, Insight, Pattern, Friction, Decision, etc.) and 25 relationship types. INHERITED edges would capture what the agent knew at session start. Semantic search via embeddings. Each session would inherit from all previous sessions. (This is designed but not integrated.)
+
+**Sessions have explicit lifecycle (via ceremony).**  
+Opening ceremonies (LBRP) establish goal, workspace state, and inherited knowledge. Closing ceremonies capture outcomes and insights. Git commits preserve session documentation.
 
 **Components connect through protocols, not imports.**  
-No cross-package dependencies. MCP servers expose capabilities. Event schemas define communication. Each component can evolve independently. The whole remains coherent.
+No cross-package dependencies. MCP servers expose capabilities. Event schemas define communication. Each component can evolve independently.
 
 **OpenCode is the harness.**  
-aiandi targets OpenCode as the agent runtime. OpenCode provides the conversation interface; aiandi provides the memory, skills, and tools.
+aiandi targets OpenCode as the agent runtime. OpenCode provides the conversation interface; aiandi provides skills, tools, and (eventually) persistent memory infrastructure.
 
 ## Installation
 
@@ -204,9 +206,9 @@ aiandi doctor
 /open "Implement authentication system"
 
 # Work with available MCP tools
-# - Task management (GTD)
-# - Email/calendar search (PIM)
-# - Knowledge capture (Telemetry)
+# - Task management (GTD) — operational
+# - Email/calendar search (PIM) — operational
+# - Knowledge capture (Telemetry) — not yet integrated
 
 # Close session
 /close
@@ -216,7 +218,18 @@ aiandi doctor
 
 **Active development. Foundation established.**
 
-The CLI compiles and runs with stub implementations. Skills are ready for bundling. MCP servers work independently. The knowledge graph architecture is designed but feedback loops are partial.
+What's operational:
+- CLI (`aiandi`) — inbox capture, skill extraction, system check
+- Bundled skills — transmission protocol, GTD procedures
+- MCP servers — GTD (TaskWarrior), PIM (email/calendar)
+- Governance framework — deliberation protocols, agent coordination
+- Git-based memory — session documentation, canon preservation
+
+What's experimental/in-progress:
+- Telemetry package — designed and implemented but not integrated
+- Knowledge graph — architecture exists but not deployed
+- LBRP integration — ceremony defined but not fully instrumented
+- Recursive learning loop — vision clear, feedback mechanisms partial
 
 This is research infrastructure for AI-human collaboration, not a stable product. Expect evolution.
 
