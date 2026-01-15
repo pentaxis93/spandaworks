@@ -133,9 +133,18 @@ git status            # Verify up to date with origin
 # Update TodoWrite with final status
 # Mark completed tasks as completed
 # Note any new tasks discovered during work
+
+# Beads task hygiene check
+bd lint               # Check for incomplete task descriptions
+bd status             # Show database overview
 ```
 
-**Output:** "South Quarter sealed. Tasks: [X completed, Y pending]"
+**If `bd lint` shows warnings:**
+- Review tasks with missing sections (Context, Scope, Acceptance Criteria)
+- Update task descriptions before closing if time permits
+- Note warnings in output if not addressed
+
+**Output:** "South Quarter sealed. Tasks: [X completed, Y pending]. Beads: [healthy/N warnings]"
 
 #### Phase 2d: East Quarter (Air/Knowledge) - Context
 

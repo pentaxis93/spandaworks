@@ -347,6 +347,38 @@ When delegating to agents, include:
 **Why it fails:** Confirmation bias, no fresh perspective
 **Fix:** Orchestrator invokes reviewer after builder completes
 
+### 6. Undocumented Emergent Work
+**Problem:** Agent discovers work during execution but creates ad-hoc task without linking
+**Why it fails:** No audit trail, governance can't see where work originates
+**Fix:** Always use `discovered-from` dependency when creating tasks during execution
+
+---
+
+## Emergent Work Protocol
+
+When agents discover new work during execution (bugs, missing features, edge cases), they must:
+
+```bash
+# Create task with discovered-from dependency
+bd create "Found: [description]" --deps discovered-from:<current-task-id> -p 2
+
+# If it blocks current work
+bd dep add <new-task-id> blocks <current-task-id>
+```
+
+**Why this matters:**
+- Creates audit trail of where work originates
+- Governance can see the discovery chain
+- Helps estimate scope creep in retrospective
+- Prevents orphaned tasks with no context
+
+**Builder agent responsibility:**
+When builder encounters issues during GREEN phase that require new work:
+1. Create task with `discovered-from` pointing to the task being implemented
+2. Decide: Does this block current work or can it be deferred?
+3. If blocking: add `blocks` dependency; current task moves to waiting
+4. If not blocking: continue current work; new task goes to backlog
+
 ---
 
 ## Integration with Governance

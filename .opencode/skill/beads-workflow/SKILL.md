@@ -184,20 +184,31 @@ bd show bd-1234
 
 **Pattern:** Use `blocks` to model sequential work; use `related` to track connections without blocking.
 
-### Update Status
+### Claim and Update Status
 
+**Claiming a task (MANDATORY format):**
 ```bash
-# Claim a task
-bd update bd-1234 --status in_progress --assignee agent-name
-
-# Complete a task
-bd update bd-1234 --status done
-
-# Mark as waiting
-bd update bd-1234 --status waiting
+# Always use BOTH --status AND --assignee when claiming
+bd update bd-1234 --status in_progress --assignee <your-identity>
 ```
 
-**Pattern:** Update status as you work to keep the system current.
+**Identity for assignee:**
+- Governance sessions: `governance`
+- Standard sessions: `agent` or your git user.name
+- Execution agents: agent type (e.g., `builder`, `reviewer`)
+
+**Status transitions:**
+```bash
+# Complete a task
+bd update bd-1234 --status closed
+
+# Mark as blocked/waiting
+bd update bd-1234 --status blocked
+```
+
+**Valid statuses:** `open`, `in_progress`, `blocked`, `closed`
+
+**Pattern:** Always claim with both status AND assignee so multi-agent coordination knows who owns what.
 
 ### Sync with Git
 
@@ -324,6 +335,7 @@ bd ready --assignee my-agent-name --json
 
 **Claiming work:**
 ```bash
+# Always use BOTH status AND assignee
 bd update bd-1234 --status in_progress --assignee agent-name
 ```
 
