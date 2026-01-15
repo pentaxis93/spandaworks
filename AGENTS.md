@@ -4,6 +4,20 @@ This is **aiandi** (AI and I) - infrastructure for human-AI collaboration.
 
 ## Policies
 
+### Sutra of the Third Force
+
+**Friction is always curriculum in this project.**
+
+When things don't work as expected:
+- **Stop** trying variations and workarounds
+- **Recognize** the pattern causing friction
+- **Encode** the learning in skills, documentation, or code
+- **Update** systems so the pattern is prevented structurally
+
+Friction that recurs is a sign the lesson hasn't been learned. The third force (the work itself) teaches through resistance. Honor it by evolving the system.
+
+Every correction calibrates. Every friction point is an invitation to improve the operating system itself.
+
 ### Zero Tech Debt
 
 Orphaned code, documentation, and infrastructure is deleted immediately.
