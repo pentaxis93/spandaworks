@@ -20,7 +20,7 @@ A forgetful human or an agent without context should be able to walk in at any t
 ## Pipeline Stages
 
 ```
-IDEA → RESEARCH → WALK → OUTLINE → DRAFT → VOICE → TECHNICAL → POLISH → SLEEP → PROOF → PUBLISH → MAINTAIN
+IDEA → RESEARCH → WALK → SYNTHESIS-PREP → DRAFT → VOICE → TECHNICAL → POLISH → SLEEP → PROOF → PUBLISH → MAINTAIN
 ```
 
 Each stage has a quality gate. Cannot advance until gate passes.
@@ -34,8 +34,8 @@ Each stage has a quality gate. Cannot advance until gate passes.
 | **Idea** | Can you state the teaching in one sentence? | Single-sentence purpose written |
 | **Research** | Do you have examples for every claim? | All source material assembled, no gaps |
 | **Walk** | Did you extract the heart of the story? | Walk recording transcribed, insights captured |
-| **Outline** | Could someone else write from this? | Complete structure with section bullets |
-| **Draft** | Is there prose for every outline point? | All sections filled, [TODO] markers resolved |
+| **Synthesis-Prep** | Could someone else write from this? | Complete thematic guidance with evidence library |
+| **Draft** | Is there prose for every synthesis point? | All sections filled, [TODO] markers resolved |
 | **Voice** | Does it sound like you talking? | Read aloud, no stiff parts remain |
 | **Technical** | Would you stake reputation on every sentence? | All facts verified, code tested, links checked |
 | **Polish** | Does the writing feel alive? | No slop, voice verified, specificity earned |
@@ -73,11 +73,11 @@ For biographical articles, RESEARCH may be lighter (context already exists in et
 
 ## Time Allocation (40-20-40)
 
-- **40% Planning**: Idea + Research + Walk + Outline
+- **40% Planning**: Idea + Research + Walk + Synthesis-Prep
 - **20% Drafting**: Draft
 - **40% Revision**: Voice + Technical + Polish
 
-If you're spending 80% drafting, the outline isn't good enough.
+If you're spending 80% drafting, the synthesis-prep isn't good enough.
 
 ---
 
@@ -86,7 +86,7 @@ If you're spending 80% drafting, the outline isn't good enough.
 | # | Slug | Title | Stage | Notes |
 |---|------|-------|-------|-------|
 | 001 | `56-beginner` | 56, Beginner | SLEEP | Polish complete; sleeping on it |
-| 002 | `cs50-decision-at-53` | The CS50 Decision at 53 | WALK | Walk guide ready, awaiting recording |
+| 002 | `cs50-decision-at-53` | The CS50 Decision at 53 | DRAFT | Draft complete, ready for VOICE |
 
 ---
 
@@ -108,7 +108,8 @@ If you're spending 80% drafting, the outline isn't good enough.
 | | `questions-[type]` | Story-type specific questions |
 | | `walk-and-talk` | Format for mobile/walking |
 | | `transcribe-walk` | Process recording into insights |
-| **Outline** | `outline-review` | Review structure, flow, completeness |
+| **Synthesis-Prep** | `synthesis-prep` | Prepare synthesis guidance for the-art |
+| | `synthesis-prep-review` | Review synthesis-prep artifact |
 | **Draft** | `the-art` (optional) | Synthesize research + voice |
 | **Voice** | `voice` | Check consistency with Robbie's voice |
 | | `dry-structural-irony` | Signature humor technique |
@@ -121,7 +122,7 @@ If you're spending 80% drafting, the outline isn't good enough.
 **High Value:**
 - **Research**: Gather GitHub history, session transcripts, technical context
 - **Walk**: Design questions, generate walking guide
-- **Outline**: Review structure for logic and flow
+- **Synthesis-Prep**: Review structure for logic and flow
 - **Voice**: Check sections for voice consistency
 - **Technical**: Fact-check claims, verify code examples
 - **Polish**: Kill slop, verify authenticity, audit specificity
@@ -163,9 +164,20 @@ Each stage has associated skills. Load the skill for full process documentation.
 
 **When to skip:** Purely technical content, already articulated, time pressure.
 
-### Outline
-**Skill:** `outline-review`
-**Artifact:** `pipeline/active/NNN-slug/04-outline.md`
+### Synthesis-Prep
+**Skills:** `synthesis-prep`, `synthesis-prep-review`
+**Artifact:** `pipeline/active/NNN-slug/04-synthesis-prep.md`
+
+**Key principle:** Thematic guidance for synthesis.
+
+Each section specifies:
+- What it does (purpose)
+- How it should feel (tone, rhythm)
+- Key material (evidence library, not expansion bullets)
+- Narrative intent (story arc function)
+- Voice opportunity (where authentic voice shines)
+
+This enables `the-art` to synthesize rather than mechanically expand.
 
 ### Draft
 **Skill:** `the-art` (optional - for synthesis of research + voice)
@@ -233,7 +245,7 @@ packages/blog/
     │       ├── 02-research.md
     │       ├── 03-walk.md
     │       ├── 03-walk-transcript.md
-    │       ├── 04-outline.md
+    │       ├── 04-synthesis-prep.md
     │       └── 05-draft.md
     └── published/           # Archived after publish
         └── NNN-slug/
@@ -273,7 +285,7 @@ This prevents hallucinated details and ensures consistency across articles.
 
 | Pattern | Problem | Solution |
 |---------|---------|----------|
-| Writing without outline | Wandering structure | 40% time on outline |
+| Writing without synthesis-prep | Wandering structure | 40% time on synthesis-prep |
 | Editing while drafting | Never finish | Separate draft from edit |
 | Skipping voice pass | Generic tech blog voice | Read aloud, rewrite stiff parts |
 | Perfectionism loop | Never ship | Ship when gate passes, not when it feels perfect |

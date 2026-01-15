@@ -13,6 +13,31 @@ No "we might need this later." If it's not actively used, it's removed.
 
 This project is "aiandi".
 
+### Skill Evolution (No Temporal Traces)
+
+When updating skills, documentation, or canonical patterns based on learning:
+
+**Timeless pattern encoding:**
+- Describe the pattern without reference to when it was discovered
+- Use present tense for principles ("First section gets no heading")
+- Update examples to demonstrate the pattern
+- No "added on DATE" or "learned in session X"
+
+**Wrong (temporal residue):**
+```markdown
+## Update 2026-01-15
+We discovered today that section headings should...
+```
+
+**Right (timeless pattern):**
+```markdown
+## Section Headings
+First section gets no heading (article title serves).
+Subsequent sections use ## headings with evocative names.
+```
+
+Skills self-improve through disciplined learning from real use. Each calibration removes temporal scaffolding and encodes only the pattern.
+
 ### Test-Driven Development (TDD)
 
 1. **RED** — Write a failing test that defines expected behavior

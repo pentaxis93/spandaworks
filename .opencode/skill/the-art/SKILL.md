@@ -31,9 +31,14 @@ invocation:
 
 **RIGHT (enables synthesis):**
 ```markdown
-## Opening Movement
+## Opening Movement: The Seed
 Thematic guidance: what this does, how it feels, narrative intent.
 Evidence library to draw from, not template to fill.
+Heading for draft: (none - first section)
+
+## Second Movement: The Gap
+Thematic guidance for second section.
+Heading for draft: "The Gap"
 ```
 
 ## The Protocol
@@ -48,6 +53,7 @@ Evidence library to draw from, not template to fill.
 - Generate from coherence (not expanding bullets)
 - Reference Sol as evidence library
 - Let Luna govern rhythm and flow
+- Use section headings from Sol (first section gets no heading; subsequent sections use ## headings)
 
 ### Phase 3: Proportion Check
 - Sol grounded? Luna aligned?

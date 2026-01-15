@@ -28,6 +28,10 @@ Each section contains:
 
 **Evidence:** [Sources with timestamps/references]
 
+**Heading for draft:** [Clear, natural section heading - not generic labels like "Opening Hook". First section gets no heading (article title serves as heading). Subsequent sections use ## headings.]
+
+**Note:** Section headings should be evocative and specific (e.g., "The Gap", "Why CS50", "What It Enabled") rather than generic structural labels (e.g., "Introduction", "Background", "Analysis").
+
 ## Anti-Pattern: Bullet Lists
 
 **WRONG:**
@@ -53,6 +57,8 @@ This invites: "Childhood memory. Terminal commands. Fascination." (mechanical ex
 **Narrative intent:** Plant seed without resolving
 
 **Voice opportunity:** Demonstration-before-naming
+
+**Heading for draft:** (none - first section, article title serves)
 ```
 
 This enables synthesis.
