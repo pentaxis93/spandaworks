@@ -2,23 +2,36 @@
 **Governance Synthesis Document**
 
 **Date:** 2026-01-15  
-**Session:** feature/governance-agentic-memory  
-**Status:** Updated with TerminusDB Integration  
-**Revision:** 2.0 (Major pivot: Kuzu → TerminusDB)
+**Session:** feature/terminusdb-phase0-migration  
+**Status:** SUPERSEDED - See Decision Section  
+**Revision:** 3.0 (GREENFIELD: Fresh build, not migration)
 
 ---
 
-## Executive Summary
+## CRITICAL DECISION (2026-01-15)
 
-This document synthesizes research on agentic memory systems with aiandi's existing architecture. The original recommendation—to evolve the telemetry package—remains sound. However, **Kuzu discontinuation** necessitates database migration, and **TerminusDB** offers capabilities that transcend simple replacement.
+**Telemetry package deleted.** Was an unsuccessful experiment that never achieved operational status.
 
-**Key Finding:** The database migration is an **opportunity**, not just a fix. TerminusDB enables intelligence capabilities that were impossible with Kuzu:
+**Approach:** Greenfield implementation, not migration.
+- No Kuzu to migrate from (was never installed/operational)
+- No telemetry code to preserve (prototype had collection errors, never integrated)
+- Fresh ontology design informed by TerminusDB capabilities from the start
+
+**This document preserved for research context only.** Implementation proceeds via fresh design leveraging TerminusDB's native strengths.
+
+---
+
+## Executive Summary (Historical Context)
+
+This document originally synthesized research assuming migration from Kuzu-based telemetry. That assumption was incorrect - telemetry was never operational.
+
+**TerminusDB selection remains valid** for biographical intelligence capabilities:
 - **Biographical memory** — Query any historical state
 - **Hypothesis branching** — Test changes in isolated branches
 - **Schema evolution tracking** — Meta-cognition about self-model changes
 - **Time-travel queries** — Temporal pattern detection native to infrastructure
 
-**Updated Recommendation:** Migrate telemetry package from Kuzu to TerminusDB, gaining both necessary replacement and enhanced intelligence capabilities.
+**Corrected Approach:** Build fresh memory system with TerminusDB, not migrating anything.
 
 ---
 
@@ -38,18 +51,16 @@ Four primary memory types in agentic systems:
 - Multiple embedding providers for flexibility
 - Hierarchical memory architecture
 
-### aiandi's Existing Architecture
+### aiandi's Existing Architecture (Historical - DELETED)
 
-**Telemetry package provides:**
-- 19 entity types (Session, Insight, Pattern, Friction, Decision, Belief, etc.)
-- 25 relationship types (INHERITED, PRODUCED, LED_TO, EVOLVED_FROM, etc.)
-- Graphiti entity extraction
-- Epistemic humility (confidence levels, Questions, Limitations)
-- Meta-cognitive modeling (Beliefs, Capabilities, Friction)
+**Telemetry package (DELETED 2026-01-15):**
+- Was experimental prototype, never operational
+- Had design artifacts (19 entity types, 25 relationships)
+- Never achieved MCP server configuration
+- Tests had collection errors
+- **Decision:** Delete entirely, build fresh
 
-**Original gap:** Integration, not architecture. The telemetry system was designed but not operational.
-
-**New constraint:** Kuzu is discontinued. Database layer must be replaced regardless of integration timeline.
+**Reality:** No existing memory system to migrate from. Greenfield implementation required.
 
 ---
 
