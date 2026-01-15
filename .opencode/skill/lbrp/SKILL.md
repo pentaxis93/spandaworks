@@ -118,7 +118,6 @@ priority: [high|medium|low]
 ```markdown
 ◈ STATUS
 Git: [status] | Branch: [name] | Last: [commit]
-Worktrees: [list or "main only"]
 Processes: [services or "none"]
 Docker: [up/down]
 ```
@@ -128,9 +127,7 @@ Docker: [up/down]
 # Git state (one command, compact output)
 git status --short
 git log --oneline -1
-
-# Worktrees
-git worktree list
+git branch --show-current
 
 # Processes (project-specific)
 ps aux | grep -E "(relevant-services)" | grep -v grep || echo "none"
@@ -139,7 +136,7 @@ ps aux | grep -E "(relevant-services)" | grep -v grep || echo "none"
 docker compose ps 2>/dev/null || echo "down"
 ```
 
-**No changes from v2.0** - this phase is already lean.
+**Note:** We work from a single directory with branch switching, not git worktrees. Branch is shown in git status output.
 
 ---
 
@@ -347,29 +344,31 @@ This is fine—it means either all work is blocked, or no work has been created 
 **Execution:**
 ```markdown
 ◈ W🜃 (Workspace)
-[worktree-path or "main"] ✓ [or ⚠ mismatch noted]
+Branch: [current branch] ✓ [or ⚠ mismatch noted]
 ```
 
 **Implementation:**
 
-**Verification only. User creates workspace BEFORE invoking `/open`.**
+**Verification only. User switches branches BEFORE invoking `/open`.**
 
 ```python
-current_worktree = get_current_worktree()
-goal_suggests_isolation = requires_feature_branch(goal)
+current_branch = get_current_branch()
+goal_suggests_feature_branch = requires_feature_branch(goal)
 
-if current_worktree == "main" and not goal_suggests_isolation:
+if current_branch == "main" and not goal_suggests_feature_branch:
     report("main ✓")
-elif current_worktree != "main" and goal_suggests_isolation:
-    report(f"{current_worktree} ✓")
+elif current_branch != "main" and goal_suggests_feature_branch:
+    report(f"{current_branch} ✓")
 else:
     # Potential mismatch - ask user
-    ask(f"Working in {current_worktree} for {goal.summary}. Intentional?")
+    ask(f"Working on branch '{current_branch}' for {goal.summary}. Intentional?")
 ```
 
-**Do NOT create worktrees in this phase.** Just verify alignment.
+**Do NOT create branches in this phase.** Just verify alignment.
 
-**Rationale:** Workspace creation is a deliberate user choice made before opening ceremony. Agent verifies it makes sense for the goal.
+**Rationale:** Branch creation is a deliberate user choice made before opening ceremony. Agent verifies it makes sense for the goal.
+
+**Note:** We use single-directory workflow with branch switching, not git worktrees. This is compatible with Beads daemon mode.
 
 ---
 
@@ -486,12 +485,18 @@ For detailed Beads workflows, invoke the `beads-workflow` skill.
 | Reload Sutras from file | Sutras via project knowledge. One-line acknowledgment. |
 | Rerun git status in Phase 1 | Already done in Phase 0a. Don't repeat. |
 | Load context speculatively | East Quarter: Precise, goal-informed loading only. |
-| Create worktree in West Quarter | West verifies, doesn't create. User prepares workspace. |
+| Create branch in West Quarter | West verifies, doesn't create. User prepares workspace. |
 | Wait for explicit approval after Phase 3 | Brief pause for acknowledgment, not a gate. Creates space without blocking. |
 
 ---
 
 ## Version History
+
+**v3.2 (2026-01-15):** Single-directory workflow (no worktrees)
+- Phase 0a: Show current branch, not worktree list
+- West Quarter: Verify branch alignment, not worktree
+- Compatible with Beads daemon mode (requires single worktree)
+- All references to git worktrees removed
 
 **v3.1 (2026-01-14):** Beads integration
 - South Quarter queries `bd ready` for available work

@@ -114,11 +114,13 @@ git status            # Verify up to date with origin
 # If experimental/temporary work:
 # Offer: "Stash these changes? (y/n)"
 
-# If worktree was created for this session:
-# Offer: "Return to main and remove worktree? (y/n)"
+# If feature branch was used:
+# Offer: "Switch back to main? (y/n)"
 ```
 
 **Critical:** Work is NOT complete until `git push` succeeds. If push fails, resolve and retry until it succeeds.
+
+**Note:** We use branch switching, not worktrees. Beads daemon mode requires single-directory workflow.
 
 **Output:** "West Quarter sealed. Workspace: [committed/synced/pushed]"
 

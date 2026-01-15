@@ -48,9 +48,11 @@ Run tests: `cargo test`
 
 ### Git Workflow
 
+- Single-directory workflow with branch switching (no git worktrees)
 - All changes via pull requests. Never commit directly to `main`.
 - Branch prefixes: `feature/`, `fix/`, `docs/`, `refactor/`, `chore/`
 - After PR merge: switch to `main`, delete local feature branch.
+- **Why single-directory:** Beads daemon mode requires it
 
 ---
 

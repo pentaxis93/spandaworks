@@ -33,7 +33,7 @@ The consciousness telemetry system hooks into the existing LBRP (Lesser Banishin
 │  LBRP SKILL (Phases 0-3)                                        │
 │                                                                 │
 │  Phase 0a: Opening Status Report                                │
-│      └─ git status, worktrees, processes, docker                │
+│      └─ git status, current branch, processes, docker           │
 │                                                                 │
 │  Phase 0b: Qabalistic Cross (Goal Definition)                   │
 │      └─ User states goal, Four Touches refinement               │

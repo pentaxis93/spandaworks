@@ -77,7 +77,7 @@ ls inbox/ 2>/dev/null
 ```bash
 git status --short
 git log --oneline -5
-git worktree list
+git branch --show-current
 ps aux | grep -E "(relevant-processes)" | grep -v grep || echo "None"
 docker compose ps 2>/dev/null || echo "No docker-compose"
 ```
@@ -88,8 +88,8 @@ docker compose ps 2>/dev/null || echo "No docker-compose"
 **Workspace Status**
 
 Git: [status]
+Branch: [current branch]
 Recent commits: [last 5]
-Worktrees: [list or none]
 Processes: [services or none]
 Environment: [docker or none]
 ```
@@ -213,21 +213,23 @@ Agent has full discretion (HOW territory). Based on goal, load relevant context:
 ## Phase 2c: West Quarter (Workspace)
 
 **Element:** Water - Adaptability, flow  
-**Question:** Does current workspace serve THIS GOAL?
+**Question:** Does current branch serve THIS GOAL?
 
 **VERIFICATION ONLY. NO CREATION.**
 
-User creates workspace before `/open`. This phase verifies alignment.
+User switches branches before `/open`. This phase verifies alignment.
 
 **Execution:**
 
-1. Check worktree name against goal
+1. Check current branch against goal
    - Match → confirm and proceed
    - Mismatch → ask user (may be intentional)
 
-2. Do NOT create worktrees in this phase (user sovereignty)
+2. Do NOT create branches in this phase (user sovereignty)
 
 **Output:** `West Quarter complete. Workspace: [verified/clarified]`
+
+**Note:** We use single-directory workflow with branch switching, not git worktrees. This is compatible with Beads daemon mode.
 
 ---
 
@@ -290,7 +292,7 @@ Session opened. Beginning work on first task.
 | 0-pre-b | Search last N sessions | Check inbox/ only | Explicit handoff vs speculation |
 | 1 | Rerun `git status` | Evaluate Phase 0a observations | No redundant commands |
 | 2a | Load context speculatively | Load goal-informed context | Precision (Phase 0b is pivot) |
-| 2c | Offer to create worktree | Verify workspace only | User sovereignty respected |
+| 2c | Offer to create branch | Verify branch only | User sovereignty respected |
 
 **Token savings:** ~30-50% per ceremony (fewer file reads, no speculative loading)
 
@@ -308,7 +310,7 @@ Session opened. Beginning work on first task.
 | Search session files | Inbox only. Explicit handoff. |
 | Rerun git status in Phase 1 | Evaluate Phase 0a. No redundant commands. |
 | Load context before goal | East loads AFTER Phase 0b (pivot). |
-| Create worktree in West | Verify only. Creation is user territory. |
+| Create branch in West | Verify only. Creation is user territory. |
 | Pause after Phase 3 | Proceed to work. No gate. |
 
 ---

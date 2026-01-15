@@ -149,7 +149,7 @@ Phase 0-pre-b: Inherit
   → No session file searching
   ↓
 Phase 0a: Opening Status
-  → Git, worktrees, processes, docker
+  → Git, current branch, processes, docker
   → Pure observation
   ↓
 Phase 0b: Goal Definition

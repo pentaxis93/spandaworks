@@ -479,17 +479,8 @@ Each aiandi project has its own `.beads/` directory with isolated database:
 - Tasks cannot reference tasks in other projects
 - Each database is completely isolated
 - If cross-project tracking needed, initialize Beads in parent directory
-
-**Multi-project on same machine:**
-```bash
-# Agent 1 working on webapp
-cd ~/work/webapp && bd ready    # Uses ~/work/webapp/.beads/webapp.db
-
-# Agent 2 working on API
-cd ~/work/api && bd ready       # Uses ~/work/api/.beads/api.db
-
-# No conflicts! Completely isolated databases
-```
+- **Single worktree per project** - Beads daemon mode requires this
+- Work via branch switching, not multiple worktrees
 
 ---
 
