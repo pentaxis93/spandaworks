@@ -254,6 +254,50 @@ Or manually: harvest → preserve → commit → evolve → dedicate
 
 ---
 
+## Friction as Curriculum
+
+### When Agents Don't Deliver Files
+
+**The Pattern:**
+- Agent receives "write file X" instruction
+- Agent generates content for file X  
+- Agent returns content in response (doesn't write file)
+- Orchestrator validates "was file written?" → NO
+- Orchestrator retries with more emphatic instructions
+- **Failure mode:** Infinite retry with escalating instructions
+
+**The Learning:**
+Agents invoked via `mcp_task` return content TO THE ORCHESTRATOR, not TO THE FILESYSTEM. The orchestrator must extract content from agent responses and write files itself.
+
+**The Fix:**
+```python
+# Agent returns content
+response = mcp_task(prompt="Create file X with content Y")
+
+# Orchestrator writes it
+if "file content:" in response:
+    content = extract_content(response)
+    write_file(path, content)
+```
+
+**The Sutra:**
+> Delegation is not abdication. When you delegate file creation, you delegate content generation. File writing remains your responsibility as orchestrator.
+
+**When this friction appears:**
+1. **Stop** trying variations of the same delegation
+2. **Recognize** the pattern: agent returns content, doesn't write file
+3. **Extract** content from agent response
+4. **Write** file yourself as orchestrator
+5. **Update** skills to encode this pattern
+
+**Prevention:**
+- Delegate content creation to agents
+- Orchestrator handles file I/O
+- Validation checks for content in response, not file on disk
+- Integration phase writes validated content to files
+
+---
+
 ## What Mastery Feels Like
 
 It feels like trust.
