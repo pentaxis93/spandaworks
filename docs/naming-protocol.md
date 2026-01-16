@@ -157,7 +157,7 @@ aiandi/
 **Why separate them?**
 - **Directories:** Navigate filesystem easily (`packages/gtd/`)
 - **Package names:** Import with clarity (`@aiandi/gtd`)
-- **Keeps paths short:** Not `packages/spandaworks-gtd/`
+- **Keeps paths short:** Not `packages/aiandi-gtd/`
 
 ---
 
@@ -240,30 +240,30 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://spandaworks.dev"
-Documentation = "https://docs.spandaworks.dev/packages/telemetry"
-Repository = "https://github.com/pentaxis93/spandaworks"
-Issues = "https://github.com/pentaxis93/spandaworks/issues"
+Homepage = "https://aiandi.dev"
+Documentation = "https://docs.aiandi.dev/packages/telemetry"
+Repository = "https://github.com/pentaxis93/aiandi"
+Issues = "https://github.com/pentaxis93/aiandi/issues"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/spandaworks_telemetry"]
+packages = ["src/aiandi_telemetry"]
 ```
 
 ### Rust Package (Cargo.toml)
 
 ```toml
 [package]
-name = "spandaworks-pim"
+name = "aiandi-pim"
 version = "1.0.0"
 edition = "2021"
 rust-version = "1.75"
-authors = ["Spandaworks Contributors"]
-description = "Personal information management for Spandaworks"
+authors = ["aiandi Contributors"]
+description = "Personal information management for aiandi"
 readme = "README.md"
-homepage = "https://spandaworks.dev"
-repository = "https://github.com/pentaxis93/spandaworks"
+homepage = "https://aiandi.dev"
+repository = "https://github.com/pentaxis93/aiandi"
 license = "MIT"
-keywords = ["pim", "contacts", "spandaworks"]
+keywords = ["pim", "contacts", "aiandi"]
 categories = ["database"]
 
 [dependencies]
@@ -289,28 +289,28 @@ rustdoc-args = ["--cfg", "docsrs"]
 
 ```toml
 [package]
-name = "spandaworks-cli"
+name = "aiandi-cli"
 version = "1.0.0"
 edition = "2021"
 rust-version = "1.75"
-authors = ["Spandaworks Contributors"]
-description = "Command-line interface for Spandaworks"
+authors = ["aiandi Contributors"]
+description = "Command-line interface for aiandi"
 readme = "README.md"
-homepage = "https://spandaworks.dev"
-repository = "https://github.com/pentaxis93/spandaworks"
+homepage = "https://aiandi.dev"
+repository = "https://github.com/pentaxis93/aiandi"
 license = "MIT"
-keywords = ["cli", "spandaworks"]
+keywords = ["cli", "aiandi"]
 categories = ["command-line-utilities"]
 
 [[bin]]
-name = "spandaworks"  # Binary name (what users run)
+name = "aiandi"  # Binary name (what users run)
 path = "src/main.rs"
 
 [dependencies]
 clap = { version = "4.4", features = ["derive"] }
 tokio = { version = "1.35", features = ["full"] }
 anyhow = "1.0"
-spandaworks-pim = { path = "../pim" }  # Workspace dependency
+aiandi-pim = { path = "../pim" }  # Workspace dependency
 
 [dev-dependencies]
 assert_cmd = "2.0"
@@ -319,9 +319,9 @@ predicates = "3.0"
 
 **Key points for CLI:**
 - `[[bin]]` section defines the binary
-- `name = "spandaworks"` creates the `spandaworks` executable
-- Users run: `spandaworks gtd add "task"`
-- Not: `spandaworks-cli gtd add "task"` ❌
+- `name = "aiandi"` creates the `aiandi` executable
+- Users run: `aiandi gtd add "task"`
+- Not: `aiandi-cli gtd add "task"` ❌
 
 ---
 
