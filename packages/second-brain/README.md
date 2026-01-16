@@ -16,7 +16,7 @@ second-brain/
 │   ├── 02-areas/             # Ongoing responsibilities
 │   ├── 03-resources/         # Reference materials
 │   ├── 05-knowledge/         # Knowledge assets
-│   ├── _spandaworks/        # Operational memory
+│   ├── _aiandi/             # Operational memory
 │   ├── archives/             # Historical records
 │   ├── permanent-notes/      # Atomic evergreen notes
 │   └── templates/            # Note templates
