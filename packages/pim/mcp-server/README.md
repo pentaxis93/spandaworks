@@ -39,9 +39,7 @@ cd packages/pim/mcp-server
 cargo build --release
 ```
 
-Binary: `target/release/spandaworks-pim`
-
-> **Note:** Binary name is still `spandaworks-pim` for now. Will be renamed to `aiandi-pim` in future release.
+Binary: `target/release/aiandi-pim`
 
 ## OpenCode Configuration
 
@@ -52,7 +50,7 @@ Add to `~/.config/opencode/opencode.json`:
   "mcp": {
     "aiandi_pim": {
       "type": "local",
-      "command": ["/path/to/aiandi/packages/pim/mcp-server/target/release/spandaworks-pim"],
+      "command": ["/path/to/aiandi/packages/pim/mcp-server/target/release/aiandi-pim"],
       "enabled": true
     }
   }

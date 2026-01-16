@@ -164,9 +164,6 @@ For detailed workflows, dependency types, and patterns, invoke the `beads-workfl
 # Build CLI
 cargo build
 
-# Build gtd MCP server
-cd packages/gtd/mcp-server && npm run build
-
 # Build pim MCP server
 cd packages/pim/mcp-server && cargo build --release
 ```

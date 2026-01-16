@@ -21,7 +21,7 @@ These references cannot be changed yet without breaking functionality:
 
 ```toml
 # packages/pim/mcp-server/Cargo.toml
-name = "spandaworks-pim"      # Binary name used in MCP config
+name = "aiandi-pim"           # Binary name used in MCP config
 ```
 
 **Reason:** Existing installations reference this binary name. Will rename in coordinated release.
@@ -30,7 +30,7 @@ name = "spandaworks-pim"      # Binary name used in MCP config
 
 ```toml
 # shared/utils/rust-cli/Cargo.toml (likely)
-name = "spandaworks-cli"
+name = "aiandi-cli"
 ```
 
 **Reason:** Used as dependency by pim MCP server. Needs coordinated update.
@@ -39,7 +39,7 @@ name = "spandaworks-cli"
 
 ```python
 # packages/telemetry/ (setup.py or pyproject.toml)
-from spandaworks_telemetry.mcp import ...
+from aiandi_telemetry.mcp import ...
 ```
 
 **Reason:** Import paths used by MCP integration. Needs version bump and migration path.
@@ -48,7 +48,7 @@ from spandaworks_telemetry.mcp import ...
 
 Many docs still reference "spandaworks" in:
 - Code examples
-- File paths (~/.spandaworks/)
+- File paths (~/.aiandi/)
 - Event schemas
 - Architecture diagrams
 
@@ -62,11 +62,11 @@ Many docs still reference "spandaworks" in:
    - Provide migration guide
 
 2. **Python package rename**
-   - `spandaworks_telemetry` → `aiandi_telemetry`
+   - `aiandi_telemetry` (Python module name)
    - Provide compatibility shim for transition
 
 3. **Shared utilities**
-   - `spandaworks-cli` → `aiandi-cli`
+   - `aiandi-cli` (Rust crate name)
    - Update all dependent crates
 
 4. **Documentation sweep**
@@ -75,7 +75,7 @@ Many docs still reference "spandaworks" in:
    - Update architecture diagrams
 
 5. **Config/data paths**
-   - Consider: ~/.spandaworks/ → ~/.aiandi/
+   - Consider: ~/.aiandi/ (config/data directory)
    - Provide migration script for existing users
 
 ## Not Changed

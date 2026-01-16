@@ -227,7 +227,7 @@ agent:
     {skill:taskwarrior-gtd}
     
     Process inbox items using GTD methodology.
-    Every task needs status: +next, +in, +sdm, +waiting, or +incubating.
+    Every task needs status: +next, +inbox, +someday, +waiting, or +incubating.
 ```
 
 ### 4.3 When to Use Which

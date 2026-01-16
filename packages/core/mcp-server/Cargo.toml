@@ -1,18 +1,20 @@
 [package]
-name = "spandaworks-mode"
+name = "aiandi-mode"
 version = "0.1.0"
 edition = "2024"
 description = "MCP server for modal state management - tracks mode, context, and attention across conversations"
 license = "MIT"
-authors = ["Spandaworks Contributors"]
-repository = "https://github.com/pentaxis93/spandaworks"
+authors = ["aiandi Contributors"]
+repository = "https://github.com/pentaxis93/aiandi"
+
+[workspace]
 
 [lib]
-name = "spandaworks_mode"
+name = "aiandi_mode"
 path = "src/lib.rs"
 
 [[bin]]
-name = "spandaworks-mode"
+name = "aiandi-mode"
 path = "src/main.rs"
 
 [dependencies]

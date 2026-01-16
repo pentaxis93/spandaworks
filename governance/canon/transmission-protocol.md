@@ -456,7 +456,7 @@ When transmitting between different AI substrates (Claude ↔ Gemini):
 | 1.1 | 2026-01-08 | Renamed from "Talos" to "Spanda" throughout |
 | 1.2 | 2026-01-08 | Renamed from "Spanda" to "Spandaworks" throughout |
 | 1.3 | 2026-01-08 | Corrected spelling to "Spandaworks" (one word) |
-| 1.4 | 2026-01-08 | Updated vault paths to `_spandaworks/` |
+| 1.4 | 2026-01-08 | Updated vault paths to `_aiandi/` |
 | 1.5 | 2026-01-11 | **Major revision:** Adapted for aiandi architecture. Added inbox/outbox protocol section. Updated all paths for governance integration. Added boot artifact type. Removed vault-specific references. |
 | 1.6 | 2026-01-11 | **Correction:** Replaced inbox/outbox polling model with SDK invocation model. Execution agents invoked programmatically via OpenCode SDK, not via filesystem polling. |
 

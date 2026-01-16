@@ -1,10 +1,10 @@
 # Core
 
-**The identity** - defines who Spandaworks is, how sessions flow.
+**The identity** - defines who aiandi is, how sessions flow.
 
 ## Purpose
 
-Spandaworks identity, ceremony, and shared protocols. The "who Spandaworks is" package.
+aiandi identity, ceremony, and shared protocols. The "who aiandi is" package.
 
 ## Structure
 
@@ -15,9 +15,9 @@ core/
 
 ## Components
 
-- **Identity Documents:** Tantric Sutras (`.opencode/plugin/spandaworks-identity/assets/`)
+- **Identity Documents:** Tantric Sutras (`.opencode/plugin/aiandi-identity/assets/`)
 - **Ceremony Commands:** /open, /ops, /close (`.opencode/command/`)
-- **Plugins:** prayer-wheel, spandaworks-identity (`.opencode/plugin/`)
+- **Plugins:** prayer-wheel, aiandi-identity (`.opencode/plugin/`)
 
 **Note:** Skills, commands, and plugins are located at project root in `.opencode/` (see [ADR: Project-Level Skill Discovery](../../docs/adr/2026-01-08-project-level-skill-discovery.md))
 
@@ -31,7 +31,7 @@ See [ADR: Project-Level Skill Discovery](../../docs/adr/2026-01-08-project-level
 
 - Defines identity, does not implement domain logic
 - Provides ceremony structure, does not manage tasks or knowledge
-- Shapes all Spandaworks behavior through topology, not prescription
+- Shapes all aiandi behavior through topology, not prescription
 
 ## Language
 

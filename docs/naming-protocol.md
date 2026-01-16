@@ -1,4 +1,4 @@
-# Spandaworks Naming Protocol
+# aiandi Naming Protocol
 **Version:** 1.1  
 **Last Updated:** January 8, 2026  
 **Status:** Canonical  
@@ -7,9 +7,9 @@
 
 ## Overview
 
-This document defines the complete naming convention for the Spandaworks ecosystem, covering repositories, packages, directories, imports, URLs, and all other contexts where naming consistency matters.
+This document defines the complete naming convention for the aiandi ecosystem, covering repositories, packages, directories, imports, URLs, and all other contexts where naming consistency matters.
 
-**Core principle:** Use scoped packages (`@spandaworks/[name]`) for namespace protection and industry-standard structure.
+**Core principle:** Use scoped packages (`@aiandi/[name]`) for namespace protection and industry-standard structure.
 
 ---
 
@@ -17,28 +17,28 @@ This document defines the complete naming convention for the Spandaworks ecosyst
 
 | Context | Format | Example | Notes |
 |---------|--------|---------|-------|
-| **Repository** | lowercase | `spandaworks` | GitHub repo name |
-| **Monorepo root** | lowercase | `/spandaworks/` | Root directory |
+| **Repository** | lowercase | `aiandi` | GitHub repo name |
+| **Monorepo root** | lowercase | `/aiandi/` | Root directory |
 | **Package directories** | lowercase | `/packages/gtd/` | Simple, short paths |
-| **Package names** | @scope/name | `@spandaworks/gtd` | npm package identifier |
-| **Import statements** | @scope/name | `import { } from '@spandaworks/gtd'` | TypeScript/JavaScript |
-| **Domain** | lowercase | `spandaworks.dev` | Primary domain |
-| **Documentation URLs** | lowercase paths | `docs.spandaworks.dev/packages/gtd` | No @ in URLs |
-| **CLI commands** | hyphenated | `spandaworks gtd add "task"` | Command-line interface |
-| **English text** | Spandaworks | "Spandaworks is a collaboration engine" | Proper noun, one word |
+| **Package names** | @scope/name | `@aiandi/gtd` | npm package identifier |
+| **Import statements** | @scope/name | `import { } from '@aiandi/gtd'` | TypeScript/JavaScript |
+| **Domain** | lowercase | `aiandi.dev` | Primary domain |
+| **Documentation URLs** | lowercase paths | `docs.aiandi.dev/packages/gtd` | No @ in URLs |
+| **CLI commands** | hyphenated | `aiandi gtd add "task"` | Command-line interface |
+| **English text** | aiandi | "aiandi is a collaboration engine" | Proper noun, one word |
 
 ---
 
 ## Why Scoped Packages?
 
-### The `@spandaworks/` Namespace
+### The `@aiandi/` Namespace
 
-**Format:** `@spandaworks/[package-name]`
+**Format:** `@aiandi/[package-name]`
 
 **Benefits:**
 
-1. **Namespace ownership**: Only you can publish `@spandaworks/*` packages on npm
-2. **Cleaner than prefixes**: `@spandaworks/gtd` > `spandaworks-gtd`
+1. **Namespace ownership**: Only you can publish `@aiandi/*` packages on npm
+2. **Cleaner than prefixes**: `@aiandi/gtd` > `aiandi-gtd`
 3. **Industry standard**: `@react/router`, `@babel/core`, `@anthropic/sdk`
 4. **Private by default**: Scoped packages are private unless explicitly made public
 5. **Grouped in listings**: All your packages appear together in npm/pnpm
@@ -61,54 +61,54 @@ This document defines the complete naming convention for the Spandaworks ecosyst
 - `@vercel/edge`
 - `@vercel/postgres`
 
-**Spandaworks:**
-- `@spandaworks/telemetry`
-- `@spandaworks/gtd`
-- `@spandaworks/pim`
-- `@spandaworks/cli`
+**aiandi:**
+- `@aiandi/telemetry`
+- `@aiandi/gtd`
+- `@aiandi/pim`
+- `@aiandi/cli`
 
 ---
 
 ## Multi-Language Package Naming
 
-Spandaworks is a polyglot monorepo with packages in **Node.js/TypeScript**, **Python**, and **Rust**. Each language ecosystem has different conventions for package naming and namespacing.
+aiandi is a polyglot monorepo with packages in **Node.js/TypeScript**, **Python**, and **Rust**. Each language ecosystem has different conventions for package naming and namespacing.
 
 ### Language-Specific Patterns
 
 | Language | Package Format | Example | Import Format | Registry |
 |----------|---------------|---------|---------------|----------|
-| **Node.js/TypeScript** | `@spandaworks/[name]` | `@spandaworks/gtd` | `from '@spandaworks/gtd'` | npm |
-| **Python** | `spandaworks-[name]` | `spandaworks-telemetry` | `import spandaworks_telemetry` | PyPI |
-| **Rust** | `spandaworks-[name]` | `spandaworks-pim` | `use spandaworks_pim::` | crates.io |
+| **Node.js/TypeScript** | `@aiandi/[name]` | `@aiandi/gtd` | `from '@aiandi/gtd'` | npm |
+| **Python** | `aiandi-[name]` | `aiandi-telemetry` | `import aiandi_telemetry` | PyPI |
+| **Rust** | `aiandi-[name]` | `aiandi-pim` | `use aiandi_pim::` | crates.io |
 
 ### Current Package Assignments
 
 ```
 packages/
-├── gtd/              # Node.js/TypeScript → @spandaworks/gtd
-├── telemetry/        # Python → spandaworks-telemetry  
-├── pim/              # Rust → spandaworks-pim
-└── cli/              # Rust → spandaworks-cli (provides 'spandaworks' binary)
+├── gtd/              # Node.js/TypeScript → @aiandi/gtd
+├── telemetry/        # Python → aiandi-telemetry  
+├── pim/              # Rust → aiandi-pim
+└── cli/              # Rust → aiandi-cli (provides 'aiandi' binary)
 ```
 
 ### Why Different Formats?
 
 **Node.js (npm):**
-- ✅ **Native scope support**: `@spandaworks/gtd`
+- ✅ **Native scope support**: `@aiandi/gtd`
 - ✅ **Best practice**: Scopes provide namespace protection
 - ✅ **Private by default**: Scoped packages require `--access public` to publish
-- ✅ **Grouped listings**: All `@spandaworks/*` packages appear together in npm
+- ✅ **Grouped listings**: All `@aiandi/*` packages appear together in npm
 
 **Python (PyPI):**
 - ❌ **No scope support**: PyPI doesn't have npm-style organizational scopes
-- ✅ **Hyphenated package**: `spandaworks-telemetry` (hyphens in package name on PyPI)
-- ✅ **Underscored module**: `import spandaworks_telemetry` (underscores in Python code)
+- ✅ **Hyphenated package**: `aiandi-telemetry` (hyphens in package name on PyPI)
+- ✅ **Underscored module**: `import aiandi_telemetry` (underscores in Python code)
 - ⚠️ **Namespace via convention**: Project prefix acts as namespace, but not enforced by PyPI
 
 **Rust (crates.io):**
 - ❌ **No scope support**: Similar to PyPI, flat global namespace
-- ✅ **Hyphenated crate**: `spandaworks-pim` in Cargo.toml
-- ✅ **Underscored module**: `use spandaworks_pim::` in Rust code
+- ✅ **Hyphenated crate**: `aiandi-pim` in Cargo.toml
+- ✅ **Underscored module**: `use aiandi_pim::` in Rust code
 - ⚠️ **Namespace via convention**: Crate name prefix, but not enforced by crates.io
 
 ---
@@ -118,28 +118,28 @@ packages/
 ### Monorepo Layout
 
 ```
-spandaworks/
+aiandi/
 ├── packages/
 │   ├── telemetry/          # Directory: simple lowercase
 │   │   ├── src/
 │   │   ├── tests/
-│   │   └── package.json    # name: "@spandaworks/telemetry"
+│   │   └── package.json    # name: "@aiandi/telemetry"
 │   ├── gtd/
 │   │   ├── src/
 │   │   ├── tests/
-│   │   └── package.json    # name: "@spandaworks/gtd"
+│   │   └── package.json    # name: "@aiandi/gtd"
 │   ├── pim/
 │   │   ├── src/
-│   │   └── package.json    # name: "@spandaworks/pim"
+│   │   └── package.json    # name: "@aiandi/pim"
 │   ├── cli/
 │   │   ├── src/
-│   │   └── package.json    # name: "@spandaworks/cli"
+│   │   └── package.json    # name: "@aiandi/cli"
 │   └── core/
 │       ├── src/
-│       └── package.json    # name: "@spandaworks/core"
+│       └── package.json    # name: "@aiandi/core"
 ├── apps/
 │   ├── web/                # Web application
-│   │   └── package.json    # name: "@spandaworks/web" or private
+│   │   └── package.json    # name: "@aiandi/web" or private
 │   └── mobile/             # Mobile application
 │       └── package.json
 ├── tools/
@@ -156,7 +156,7 @@ spandaworks/
 
 **Why separate them?**
 - **Directories:** Navigate filesystem easily (`packages/gtd/`)
-- **Package names:** Import with clarity (`@spandaworks/gtd`)
+- **Package names:** Import with clarity (`@aiandi/gtd`)
 - **Keeps paths short:** Not `packages/spandaworks-gtd/`
 
 ---
@@ -167,9 +167,9 @@ spandaworks/
 
 ```json
 {
-  "name": "@spandaworks/gtd",
+  "name": "@aiandi/gtd",
   "version": "1.0.0",
-  "description": "GTD task management for Spandaworks",
+  "description": "GTD task management for aiandi",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -186,7 +186,7 @@ spandaworks/
     "lint": "eslint src/"
   },
   "dependencies": {
-    "@spandaworks/telemetry": "workspace:*"
+    "@aiandi/telemetry": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.3.0",
@@ -207,16 +207,16 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "spandaworks-telemetry"
+name = "aiandi-telemetry"
 version = "1.0.0"
-description = "Telemetry and observability for Spandaworks"
+description = "Telemetry and observability for aiandi"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
 authors = [
-    {name = "Spandaworks Contributors"}
+    {name = "aiandi Contributors"}
 ]
-keywords = ["telemetry", "observability", "spandaworks"]
+keywords = ["telemetry", "observability", "aiandi"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",

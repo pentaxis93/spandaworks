@@ -25,7 +25,7 @@ Every coding session begins with the Lesser Banishing Ritual of the Pentagram (L
 
 **Execution:**
 
-The Tantric Sutras are loaded via the spandaworks-identity plugin at session start. They are already in project knowledge. Agent does NOT reload them.
+The Tantric Sutras are loaded via the aiandi-identity plugin at session start. They are already in project knowledge. Agent does NOT reload them.
 
 **Output:** One symbolic line.
 

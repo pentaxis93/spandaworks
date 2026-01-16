@@ -4,7 +4,7 @@ Frictionless GTD inbox capture via keyboard hotkey for bspwm + wofi + TaskWarrio
 
 ## What This Does
 
-Press `Super+i` from anywhere → floating input popup appears → type capture text → press Enter → item added to TaskWarrior inbox (`+in` tag) → popup disappears.
+Press `Super+i` from anywhere → floating input popup appears → type capture text → press Enter → item added to TaskWarrior inbox (`+inbox` tag) → popup disappears.
 
 **Total capture time: < 3 seconds**
 
@@ -119,7 +119,7 @@ Create `~/.config/wofi/style.css` for custom styling. See [wofi documentation](h
 - Check bspwm rules: `bspc rule -l`
 
 ### Items not added to TaskWarrior
-- Verify TaskWarrior works: `task add +in "test"`
+- Verify TaskWarrior works: `task add +inbox "test"`
 - Check inbox: `task in`
 - Ensure TaskWarrior is configured (run `task` first time to create config)
 

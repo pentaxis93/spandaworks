@@ -95,7 +95,7 @@ impl AiandiServer {
     }
 
     #[tool(
-        description = "Capture text to GTD inbox via TaskWarrior. Adds task with +in tag for later processing."
+        description = "Capture text to GTD inbox via TaskWarrior. Adds task with +inbox tag for later processing."
     )]
     async fn aiandi_inbox(&self, Parameters(req): Parameters<InboxRequest>) -> String {
         // Parse tags

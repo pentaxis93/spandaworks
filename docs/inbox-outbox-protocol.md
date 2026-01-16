@@ -13,7 +13,7 @@ Enable explicit session-to-session inheritance via handoff directories, replacin
 **Previous approach:**
 ```
 Phase 0-pre: Inherit
-  → Read vault/_spandaworks/remembrance.md → "This Rotation"
+  → Read vault/_aiandi/remembrance.md → "This Rotation"
   → Search /home/pentaxis93/shared/sessions/ → last 3-5 summaries
   → Hope something relevant is found
   → Load 5 session files, find 1 relevant paragraph
@@ -43,7 +43,7 @@ Session N+1 opens
 ## Directory Structure
 
 ```
-spandaworks/                   (project root)
+aiandi/                        (project root)
 ├── inbox/                     (NEW - items FOR current session)
 │   ├── context-001.md         (Inheritance item from predecessor)
 │   ├── warning-api-change.md  (Alert about breaking change)
@@ -197,7 +197,7 @@ from-session: 2026-01-10-gtd-capture
 
 # AUR Package Location Pattern
 
-When creating AUR packages for Spandaworks tooling:
+When creating AUR packages for aiandi tooling:
 
 **Location:** `aur-packages/` at repo root (parallel to `packages/`)
 
@@ -209,7 +209,7 @@ When creating AUR packages for Spandaworks tooling:
 ## Example Structure
 
 ```
-spandaworks/
+aiandi/
 ├── packages/       (app code)
 ├── aur-packages/   (system utilities)
 ```

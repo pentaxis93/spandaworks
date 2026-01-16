@@ -4,7 +4,7 @@
 
 ## Purpose
 
-Personal Information Management infrastructure for Spandaworks. Natural, fluid access to email, calendar, and contacts through MCP tools that feel like nervous system extensions.
+Personal Information Management infrastructure for aiandi. Natural, fluid access to email, calendar, and contacts through MCP tools that feel like nervous system extensions.
 
 ## Architecture
 
@@ -50,7 +50,7 @@ cd mcp-server
 cargo build --release
 ```
 
-Binary: `target/release/spandaworks-pim`
+Binary: `target/release/aiandi-pim`
 
 ### Configure OpenCode
 
@@ -59,9 +59,9 @@ Add to `~/.config/opencode/opencode.json`:
 ```json
 {
   "mcp": {
-    "spandaworks_pim": {
+    "aiandi_pim": {
       "type": "local",
-      "command": ["/path/to/spandaworks/packages/pim/mcp-server/target/release/spandaworks-pim"],
+      "command": ["/path/to/aiandi/packages/pim/mcp-server/target/release/aiandi-pim"],
       "enabled": true
     }
   }

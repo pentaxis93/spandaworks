@@ -1,13 +1,13 @@
 [package]
-name = "spandaworks-cli"
+name = "aiandi-cli"
 version = "0.1.0"
 edition = "2021"
-description = "Shared CLI command execution utilities for Spandaworks Rust packages"
+description = "Shared CLI command execution utilities for aiandi Rust packages"
 license = "MIT"
-authors = ["Spandaworks Contributors"]
+authors = ["aiandi Contributors"]
 
 [lib]
-name = "spandaworks_cli"
+name = "aiandi_cli"
 path = "src/lib.rs"
 
 [dependencies]

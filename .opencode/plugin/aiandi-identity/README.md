@@ -78,7 +78,7 @@ Traditional tantra recognizes that constraints create freedom. By establishing c
 
 **File structure:**
 ```
-spandaworks-identity/
+aiandi-identity/
 ├── package.json              # Plugin metadata
 ├── tantric-sutras.ts         # Plugin implementation
 ├── assets/

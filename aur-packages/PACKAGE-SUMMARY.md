@@ -49,7 +49,7 @@ See `INSTALL.md` for complete publishing workflow.
 
 3. **Usage:**
    - Press `Super+i` → type capture → Enter
-   - Item added to TaskWarrior inbox (`+in` tag)
+   - Item added to TaskWarrior inbox (`+inbox` tag)
    - View with `task in`
 
 ## Design Decisions

@@ -1,4 +1,4 @@
-//! spandaworks-mode: MCP server for modal state management
+//! aiandi-mode: MCP server for modal state management
 //!
 //! Tracks:
 //! - Current mode (ops, ceremonial, default)

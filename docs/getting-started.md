@@ -1,8 +1,8 @@
-# Getting Started with Spandaworks
+# Getting Started with aiandi
 
-## What is Spandaworks?
+## What is aiandi?
 
-Spandaworks is infrastructure for AI-human collaboration that remembers. It combines:
+aiandi is infrastructure for AI-human collaboration that remembers. It combines:
 
 - **Telemetry:** Self-reflection infrastructure (knowledge graph)
 - **GTD:** AI-augmented task management
@@ -21,13 +21,13 @@ Spandaworks is infrastructure for AI-human collaboration that remembers. It comb
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/pentaxis93/spandaworks.git ~/spandaworks
+git clone https://github.com/pentaxis93/aiandi.git ~/aiandi
 ```
 
 ### 2. Set up telemetry
 
 ```bash
-cd ~/spandaworks/packages/telemetry
+cd ~/aiandi/packages/telemetry
 python -m venv .venv
 source .venv/bin/activate
 pip install -e .
@@ -36,7 +36,7 @@ pip install -e .
 ### 3. Set up GTD
 
 ```bash
-cd ~/spandaworks/packages/gtd/mcp-server
+cd ~/aiandi/packages/gtd/mcp-server
 npm install
 npm run build
 ```
@@ -46,9 +46,9 @@ Configure in your MCP settings (e.g., `~/.config/opencode/mcp.json`):
 ```json
 {
   "mcpServers": {
-    "spandaworks_gtd": {
+    "aiandi_gtd": {
       "command": "node",
-      "args": ["~/spandaworks/packages/gtd/mcp-server/dist/index.js"]
+      "args": ["~/aiandi/packages/gtd/mcp-server/dist/index.js"]
     }
   }
 }
@@ -56,19 +56,19 @@ Configure in your MCP settings (e.g., `~/.config/opencode/mcp.json`):
 
 ### 4. Set up core (OpenCode integration)
 
-**Skills** are auto-discovered by OpenCode from `.opencode/skill/` when you work in the Spandaworks directory. No installation needed.
+**Skills** are auto-discovered by OpenCode from `.opencode/skill/` when you work in the aiandi directory. No installation needed.
 
 **Commands and plugins** require symlinking to OpenCode config:
 
 ```bash
 # Ceremony commands
-ln -sf ~/spandaworks/packages/core/ceremony/*.md ~/.config/opencode/command/
+ln -sf ~/aiandi/packages/core/ceremony/*.md ~/.config/opencode/command/
 
 # Other commands
-ln -sf ~/spandaworks/packages/core/commands/*.md ~/.config/opencode/command/
+ln -sf ~/aiandi/packages/core/commands/*.md ~/.config/opencode/command/
 
 # Plugins
-ln -sf ~/spandaworks/packages/core/plugins/* ~/.config/opencode/plugin/
+ln -sf ~/aiandi/packages/core/plugins/* ~/.config/opencode/plugin/
 ```
 
 ### 5. Set up vault
@@ -76,7 +76,7 @@ ln -sf ~/spandaworks/packages/core/plugins/* ~/.config/opencode/plugin/
 Copy vault template to your Obsidian vault location:
 
 ```bash
-cp -r ~/spandaworks/packages/second-brain/vault-template/* ~/your-vault/
+cp -r ~/aiandi/packages/second-brain/vault-template/* ~/your-vault/
 ```
 
 Or reference the protocols directly in your vault's CLAUDE.md.

@@ -1,10 +1,10 @@
 //! Calendar tools - wraps khal CLI
 //!
 //! Calendars:
-//! - RDG Personal (read/write) - the user's main calendar
-//! - Meli (read-only) - Wife's calendar
-//! - Dennis (read-only) - Son's calendar  
-//! - Holidays (read-only) - Hungarian holidays
+//! - robbie (read/write) - Robbie's personal calendar
+//! - meli (read-only) - Wife's calendar (shared)
+//! - dennis (read-only) - Son's calendar (shared)
+//! - holidays (read-only) - Hungarian holidays
 
 use crate::cli::run_command_stdout;
 use chrono::Local;
@@ -29,7 +29,11 @@ impl CalendarTools {
         let days = days.unwrap_or(7);
         let range = format!("{}d", days);
 
-        match run_command_stdout("khal", &["list", &start, &range]).await {
+        // Format: [calendar] time-time title
+        // This makes calendar source visible in output
+        let format = "[{calendar}] {start-end-time-style} {title}";
+        
+        match run_command_stdout("khal", &["list", "-f", format, &start, &range]).await {
             Ok(output) => {
                 if output.trim().is_empty() {
                     format!("No events found from {} for {} days.", start, days)
@@ -56,9 +60,9 @@ impl CalendarTools {
 
         let mut args: Vec<&str> = vec!["new"];
 
-        // Always use personal calendar for writes
+        // Always use robbie's personal calendar for writes
         args.push("-a");
-        args.push("personal");
+        args.push("robbie");
 
         // Build the datetime string
         let datetime_str: String;

@@ -36,10 +36,10 @@ The system only works if it's trusted. Trust comes from consistent, complete pra
 For immediate capture, use MCP tools:
 
 ```
-spandaworks_gtd_add_task(description="...", tags=["in"])
+spandaworks_gtd_add_task(description="...", tags=["inbox"])
 ```
 
-The `+in` tag marks items for processing. Capture should be frictionless—get it out of your head immediately.
+The `+inbox` tag marks items for processing. Capture should be frictionless—get it out of your head immediately.
 
 ### Mass Capture (Comprehensive)
 
@@ -174,11 +174,11 @@ Processing transforms raw "stuff" into actionable items. **Every inbox item must
 |----------|-------------------|
 | Delete | `task <id> delete` |
 | Reference | Don't use TaskWarrior—use a reference system |
-| Someday/Maybe | `task <id> modify +sdm -in` |
-| Incubate | `task <id> modify +incubating -in project:domain.topic` |
-| Delegate | `task <id> modify +waiting -in` + annotation |
-| Defer | `task <id> modify +next -in project:X +@context` |
-| Tickle | `task <id> modify +tickle -in wait:DATE` |
+| Someday/Maybe | `task <id> modify +someday -inbox` |
+| Incubate | `task <id> modify +incubating -inbox project:domain.topic` |
+| Delegate | `task <id> modify +waiting -inbox` + annotation |
+| Defer | `task <id> modify +next -inbox project:X +@context` |
+| Tickle | `task <id> modify +tickle -inbox wait:DATE` |
 
 ### The Incubating Pattern
 
@@ -201,7 +201,7 @@ task add +incubating project:family.mark "Build a bridge—find a way in despite
 
 ### Processing Session Protocol
 
-1. View inbox: `task in` or `spandaworks_gtd_process_inbox()`
+1. View inbox: `task inbox` or `spandaworks_gtd_process_inbox()`
 2. Process from top, one item at a time
 3. Never skip—decide and act on each item
 4. Ask the clarifying questions in order
@@ -257,11 +257,11 @@ task context computer
 
 | Tag | Purpose | Urgency |
 |-----|---------|---------|
-| `+in` | Inbox (unprocessed) | +15.0 |
+| `+inbox` | Inbox (unprocessed) | +15.0 |
 | `+next` | Next action for project | +15.0 |
 | `+waiting` | Delegated/blocked on someone | -3.0 |
 | `+tickle` | Deferred visibility (tickler) | -5.0 |
-| `+sdm` | Someday/maybe | -20.0 |
+| `+someday` | Someday/maybe | -20.0 |
 | `+incubating` | Committed but not yet actionable | -10.0 |
 
 ### User-Defined Attributes
@@ -428,7 +428,7 @@ AI cultivates the GTD garden while human retains sovereignty.
 | `task ID delete` | Delete task |
 | `task ID annotate "NOTE"` | Add annotation |
 | `task next` | View next actions |
-| `task in` | View inbox |
+| `task inbox` | View inbox |
 | `task projects` | List all projects |
 | `task ID info` | Full task details |
 
@@ -468,17 +468,17 @@ default.command=next
 weekstart=monday
 
 # Inbox
-urgency.user.tag.in.coefficient=15.0
-report.in.columns=id,description
-report.in.description=Inbox
-report.in.filter=status:pending limit:page (+in)
-report.in.labels=ID,Description
+urgency.user.tag.inbox.coefficient=15.0
+report.inbox.columns=id,description
+report.inbox.description=Inbox
+report.inbox.filter=status:pending limit:page (+inbox)
+report.inbox.labels=ID,Description
 
 # GTD Tags
 urgency.user.tag.next.coefficient=15.0
 urgency.user.tag.waiting.coefficient=-3.0
 urgency.user.tag.tickle.coefficient=-5.0
-urgency.user.tag.sdm.coefficient=-20.0
+urgency.user.tag.someday.coefficient=-20.0
 urgency.user.tag.incubating.coefficient=-10.0
 
 # Contexts
@@ -502,11 +502,11 @@ uda.reviewed.label=Reviewed
 ### Shell Aliases
 
 ```bash
-alias in='task add +in'
-alias inbox='task in'
+alias in='task add +inbox'
+alias inbox='task inbox'
 alias next='task next'
 alias waiting='task +waiting'
-alias sdm='task +sdm'
+alias someday='task +someday'
 
 tickle() {
   deadline=$1
@@ -522,7 +522,7 @@ alias think='tickle +1d'
 ## Common Workflows
 
 ### Morning Routine
-1. Check inbox count: `task +in count`
+1. Check inbox count: `task +inbox count`
 2. Process any inbox items
 3. Review today's calendar
 4. Set context: `task context work`

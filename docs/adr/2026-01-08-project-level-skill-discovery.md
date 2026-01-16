@@ -8,7 +8,7 @@
 
 ## Context
 
-OpenCode supports custom agent skills, commands, and plugins through a discovery mechanism. Initially, Spandaworks stored these components in various subdirectories of `packages/core/`:
+OpenCode supports custom agent skills, commands, and plugins through a discovery mechanism. Initially, aiandi stored these components in various subdirectories of `packages/core/`:
 - Skills: `packages/core/skills/`
 - Commands: `packages/core/ceremony/` and `packages/core/commands/`
 - Plugins: `packages/core/plugins/`
@@ -23,7 +23,7 @@ This approach had several problems:
 
 ## Decision
 
-**Move all Spandaworks skills, commands, and plugins to the top-level `.opencode/` directory** and rely on OpenCode's native project-level discovery mechanism.
+**Move all aiandi skills, commands, and plugins to the top-level `.opencode/` directory** and rely on OpenCode's native project-level discovery mechanism.
 
 ### OpenCode Discovery (Canonical)
 
@@ -35,7 +35,7 @@ Per the [OpenCode documentation](https://opencode.ai/docs/), OpenCode recursivel
 ### Our Structure
 
 ```
-spandaworks/
+aiandi/
 ├── .opencode/
 │   ├── command/
 │   │   ├── close.md
@@ -45,7 +45,7 @@ spandaworks/
 │   │   └── the-art.md
 │   ├── plugin/
 │   │   ├── prayer-wheel/
-│   │   └── spandaworks-identity/
+│   │   └── aiandi-identity/
 │   └── skill/
 │       ├── lbrp/
 │       │   └── SKILL.md
@@ -56,7 +56,7 @@ spandaworks/
 │       │   └── examples/
 │       ├── save-transcript/
 │       │   └── SKILL.md
-│       ├── spandaworks-docs/
+│       ├── aiandi-docs/
 │       │   └── SKILL.md
 │       ├── taskwarrior-gtd/
 │       │   └── SKILL.md
@@ -95,7 +95,7 @@ spandaworks/
 
 ### Neutral
 
-- Capabilities only available when working within the Spandaworks project
+- Capabilities only available when working within the aiandi project
 - For global availability, users can manually symlink from `.opencode/` subdirectories to `~/.config/opencode/` if desired
 
 ### Maintenance

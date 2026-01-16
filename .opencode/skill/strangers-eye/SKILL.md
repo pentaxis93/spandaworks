@@ -272,7 +272,7 @@ Personas are bespoke to each documentation. The dimensional space emerges from t
 
 ## Integration Notes
 
-**Complements spandaworks-docs skill:** That skill provides writing guidelines. This skill provides review methodology. Use strangers-eye to verify documentation meets spandaworks-docs standards.
+**Complements aiandi-docs skill:** That skill provides writing guidelines. This skill provides review methodology. Use strangers-eye to verify documentation meets aiandi-docs standards.
 
 **Minimal orchestration required:** Only Phase 1 (intent mapping) requires user input. Phases 2-4 execute independently. Phase 5 delivers results.
 

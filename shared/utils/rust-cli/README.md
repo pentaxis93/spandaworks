@@ -1,10 +1,10 @@
-# spandaworks-cli
+# aiandi-cli
 
-Shared CLI command execution utilities for Spandaworks Rust packages.
+Shared CLI command execution utilities for aiandi Rust packages.
 
 ## Overview
 
-`spandaworks-cli` provides a clean, ergonomic API for wrapping external CLI tools in async Rust code. It handles the common patterns needed when building MCP servers that delegate to command-line utilities.
+`aiandi-cli` provides a clean, ergonomic API for wrapping external CLI tools in async Rust code. It handles the common patterns needed when building MCP servers that delegate to command-line utilities.
 
 **Design extracted from:** `packages/pim/mcp-server/src/cli.rs`
 
@@ -25,7 +25,7 @@ Add to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-spandaworks-cli = { path = "../../../shared/utils/rust-cli" }
+aiandi-cli = { path = "../../../shared/utils/rust-cli" }
 ```
 
 ## Usage
@@ -33,7 +33,7 @@ spandaworks-cli = { path = "../../../shared/utils/rust-cli" }
 ### Simple Execution
 
 ```rust
-use spandaworks_cli::run_command_stdout;
+use aiandi_cli::run_command_stdout;
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
@@ -46,9 +46,9 @@ async fn main() -> anyhow::Result<()> {
 ### With Stdin
 
 ```rust
-use spandaworks_cli::run_command_with_stdin;
+use aiandi_cli::run_command_with_stdin;
 
-let email_body = "Hello from Spandaworks!";
+let email_body = "Hello from aiandi!";
 let result = run_command_with_stdin(
     "himalaya",
     &["message", "write", "--to", "user@example.com"],
@@ -59,7 +59,7 @@ let result = run_command_with_stdin(
 ### Advanced Builder Pattern
 
 ```rust
-use spandaworks_cli::CommandBuilder;
+use aiandi_cli::CommandBuilder;
 
 let output = CommandBuilder::new("cargo")
     .args(&["build", "--release"])
@@ -72,7 +72,7 @@ let output = CommandBuilder::new("cargo")
 ### Lossy Execution (for grep-like tools)
 
 ```rust
-use spandaworks_cli::run_command_stdout_lossy;
+use aiandi_cli::run_command_stdout_lossy;
 
 // grep returns exit code 1 when no matches found
 // This doesn't treat that as an error
@@ -103,7 +103,7 @@ let result = run_command_stdout_lossy("grep", &["pattern", "file.txt"]).await;
 ## Used By
 
 - `packages/pim/mcp-server` - Email (notmuch, himalaya), Calendar (khal), Contacts (khard)
-- *(Future)* Any Spandaworks Rust package that wraps CLI tools
+- *(Future)* Any aiandi Rust package that wraps CLI tools
 
 ## Testing
 

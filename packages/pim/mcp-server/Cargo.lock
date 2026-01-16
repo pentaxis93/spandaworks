@@ -12,6 +12,32 @@ dependencies = [
 ]
 
 [[package]]
+name = "aiandi-cli"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "thiserror",
+ "tokio",
+]
+
+[[package]]
+name = "aiandi-pim"
+version = "0.1.0"
+dependencies = [
+ "aiandi-cli",
+ "anyhow",
+ "chrono",
+ "regex",
+ "rmcp",
+ "serde",
+ "serde_json",
+ "thiserror",
+ "tokio",
+ "tracing",
+ "tracing-subscriber",
+]
+
+[[package]]
 name = "android_system_properties"
 version = "0.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -660,32 +686,6 @@ checksum = "17129e116933cf371d018bb80ae557e889637989d8638274fb25622827b03881"
 dependencies = [
  "libc",
  "windows-sys 0.60.2",
-]
-
-[[package]]
-name = "spandaworks-cli"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "thiserror",
- "tokio",
-]
-
-[[package]]
-name = "spandaworks-pim"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "chrono",
- "regex",
- "rmcp",
- "serde",
- "serde_json",
- "spandaworks-cli",
- "thiserror",
- "tokio",
- "tracing",
- "tracing-subscriber",
 ]
 
 [[package]]

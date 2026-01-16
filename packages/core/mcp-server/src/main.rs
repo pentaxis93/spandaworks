@@ -1,4 +1,4 @@
-//! spandaworks-mode: MCP server for modal state management
+//! aiandi-mode: MCP server for modal state management
 //!
 //! Provides tools for:
 //! - Mode management (enter ops, ceremonial, or default mode)
@@ -320,10 +320,10 @@ async fn main() -> Result<()> {
     // Initialize logging to stderr (NEVER stdout - would corrupt JSON-RPC)
     tracing_subscriber::registry()
         .with(fmt::layer().with_writer(std::io::stderr))
-        .with(EnvFilter::from_default_env().add_directive("spandaworks_mode=info".parse()?))
+        .with(EnvFilter::from_default_env().add_directive("aiandi_mode=info".parse()?))
         .init();
 
-    tracing::info!("Starting spandaworks-mode MCP server");
+    tracing::info!("Starting aiandi-mode MCP server");
 
     // Create server and run with stdio transport
     let transport = (tokio::io::stdin(), tokio::io::stdout());

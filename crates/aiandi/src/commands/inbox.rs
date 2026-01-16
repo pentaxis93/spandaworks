@@ -69,8 +69,8 @@ pub fn build_task_command(options: &InboxOptions) -> Vec<String> {
     // Add the description
     args.push(options.text.clone());
 
-    // Always add +in tag for inbox
-    args.push("+in".to_string());
+    // Always add +inbox tag for inbox
+    args.push("+inbox".to_string());
 
     // Add additional tags
     for tag in &options.tags {
@@ -180,7 +180,10 @@ mod tests {
 
         assert_eq!(args[0], "add");
         assert_eq!(args[1], "Buy milk");
-        assert!(args.contains(&"+in".to_string()), "Should have +in tag");
+        assert!(
+            args.contains(&"+inbox".to_string()),
+            "Should have +inbox tag"
+        );
     }
 
     #[test]
@@ -192,7 +195,7 @@ mod tests {
         };
         let args = build_task_command(&options);
 
-        assert!(args.contains(&"+in".to_string()));
+        assert!(args.contains(&"+inbox".to_string()));
         assert!(args.contains(&"+phone".to_string()));
         assert!(args.contains(&"+urgent".to_string()));
     }
