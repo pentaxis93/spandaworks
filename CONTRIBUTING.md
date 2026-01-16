@@ -108,8 +108,8 @@ See individual package READMEs for specific setup instructions.
 
 ```bash
 # Clone repository
-git clone https://github.com/pentaxis93/spandaworks.git
-cd spandaworks
+git clone https://github.com/pentaxis93/aiandi.git
+cd aiandi
 
 # Install packages (choose what you need)
 cd packages/telemetry && pip install -e ".[dev]"

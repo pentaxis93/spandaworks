@@ -1,6 +1,6 @@
 # Vault Template
 
-Standard PARA structure for Obsidian vault with Spandaworks operational directories.
+Standard PARA structure for Obsidian vault with aiandi operational directories.
 
 ## Structure
 
@@ -18,7 +18,7 @@ vault/
 ├── 05-knowledge/       # Knowledge assets
 │   ├── consolidated/   # Frameworks from fusion
 │   └── patterns/       # Recognized patterns
-├── _spandaworks/       # Spandaworks operational memory
+├── _aiandi/            # aiandi operational memory
 │   ├── reference/      # Quick reference system
 │   ├── protocols/      # Operational protocols
 │   ├── evolution/      # System evolution tracking

@@ -457,7 +457,7 @@ cargo build --workspace
 npm login
 
 # Create organization (one-time)
-npm org create spandaworks
+npm org create aiandi
 
 # Navigate to package
 cd packages/gtd
@@ -504,12 +504,12 @@ cargo publish --dry-run
 ### Repository Configuration
 
 ```
-Repository name: spandaworks
-URL: https://github.com/pentaxis93/spandaworks
-Clone: git clone https://github.com/pentaxis93/spandaworks.git
+Repository name: aiandi
+URL: https://github.com/pentaxis93/aiandi
+Clone: git clone https://github.com/pentaxis93/aiandi.git
 ```
 
-**NOT** `@spandaworks/spandaworks` - the `@scope/` syntax is only for npm.
+**NOT** `@aiandi/aiandi` - the `@scope/` syntax is only for npm.
 
 ### Branch Naming
 
@@ -547,7 +547,7 @@ git commit -m "feat(gtd,pim): integrate contact linking in tasks"
 ### Documentation Site Structure
 
 ```
-docs.spandaworks.dev/
+docs.aiandi.dev/
 ├── /                          # Home
 ├── /getting-started/          # Quick start
 ├── /packages/                 # Package listing
@@ -570,10 +570,10 @@ docs.spandaworks.dev/
 ### CLI Binary Name
 
 ```json
-// In @spandaworks/cli or spandaworks-cli package
+// In @aiandi/cli or aiandi-cli package
 {
   "bin": {
-    "spandaworks": "./dist/cli.js"
+    "aiandi": "./dist/cli.js"
   }
 }
 ```
@@ -582,40 +582,40 @@ docs.spandaworks.dev/
 
 ```bash
 # Main command
-spandaworks
+aiandi
 
 # Subcommands by package
-spandaworks gtd add "Write naming protocol"
-spandaworks gtd list --project work
-spandaworks gtd complete 123
+aiandi gtd add "Write naming protocol"
+aiandi gtd list --project work
+aiandi gtd complete 123
 
-spandaworks telemetry dashboard
-spandaworks telemetry export --format json
+aiandi telemetry dashboard
+aiandi telemetry export --format json
 
-spandaworks pim contact add "Jane Doe"
-spandaworks pim contact search "acme"
+aiandi pim contact add "Jane Doe"
+aiandi pim contact search "acme"
 
 # Global options
-spandaworks --version
-spandaworks --help
-spandaworks gtd --help
+aiandi --version
+aiandi --help
+aiandi gtd --help
 ```
 
 ### Installation
 
 ```bash
 # Global install (Node.js)
-npm install -g @spandaworks/cli
+npm install -g @aiandi/cli
 
 # Global install (Rust)
-cargo install spandaworks-cli
+cargo install aiandi-cli
 
 # Run without install (npx)
-npx @spandaworks/cli gtd list
+npx @aiandi/cli gtd list
 
 # Run from monorepo
-pnpm --filter @spandaworks/cli start gtd list
-cargo run -p spandaworks-cli -- gtd list
+pnpm --filter @aiandi/cli start gtd list
+cargo run -p aiandi-cli -- gtd list
 ```
 
 ---
@@ -625,25 +625,25 @@ cargo run -p spandaworks-cli -- gtd list
 ### Primary Domain
 
 ```
-spandaworks.dev
+aiandi.dev
 ```
 
 ### Subdomain Strategy
 
 ```
-www.spandaworks.dev          # Marketing site
-app.spandaworks.dev          # Web application
-docs.spandaworks.dev         # Documentation
-api.spandaworks.dev          # API endpoints
-cdn.spandaworks.dev          # Static assets
+www.aiandi.dev          # Marketing site
+app.aiandi.dev          # Web application
+docs.aiandi.dev         # Documentation
+api.aiandi.dev          # API endpoints
+cdn.aiandi.dev          # Static assets
 ```
 
 ### API Endpoints
 
 ```
-https://api.spandaworks.dev/v1/gtd/tasks
-https://api.spandaworks.dev/v1/telemetry/events
-https://api.spandaworks.dev/v1/pim/contacts
+https://api.aiandi.dev/v1/gtd/tasks
+https://api.aiandi.dev/v1/telemetry/events
+https://api.aiandi.dev/v1/pim/contacts
 ```
 
 ---
@@ -652,10 +652,10 @@ https://api.spandaworks.dev/v1/pim/contacts
 
 ### Local Data Directories
 
-All Spandaworks system data is stored under a single root:
+All aiandi system data is stored under a single root:
 
 ```
-~/.spandaworks/
+~/.aiandi/
 ├── telemetry/              # Telemetry database and logs
 │   ├── kuzu/               # Knowledge graph database
 │   ├── events.jsonl        # Event stream
@@ -666,18 +666,18 @@ All Spandaworks system data is stored under a single root:
 └── config/                 # System configuration
 ```
 
-**Pattern:** `~/.spandaworks/[subsystem]/`
+**Pattern:** `~/.aiandi/[subsystem]/`
 
 ### Environment Variables
 
 | Variable | Purpose | Example |
 |----------|---------|---------|
-| `SPANDAWORKS_DB_PATH` | Override database location | `~/.spandaworks/telemetry/kuzu` |
-| `SPANDAWORKS_SESSION_ID` | Current session identifier | `2026-01-08-naming-001` |
-| `SPANDAWORKS_TELEMETRY_PATH` | Event log location | `~/.spandaworks/telemetry/events.jsonl` |
-| `SPANDAWORKS_EVOLUTION_DIR` | Evolution proposals directory | `~/vault/_spandaworks/evolution/proposals/` |
+| `AIANDI_DB_PATH` | Override database location | `~/.aiandi/telemetry/kuzu` |
+| `AIANDI_SESSION_ID` | Current session identifier | `2026-01-08-naming-001` |
+| `AIANDI_TELEMETRY_PATH` | Event log location | `~/.aiandi/telemetry/events.jsonl` |
+| `AIANDI_EVOLUTION_DIR` | Evolution proposals directory | `~/vault/_aiandi/evolution/proposals/` |
 
-**Pattern:** `SPANDAWORKS_[COMPONENT]_[PURPOSE]`
+**Pattern:** `AIANDI_[COMPONENT]_[PURPOSE]`
 
 ### MCP Server Names
 
@@ -686,23 +686,23 @@ MCP server identifiers in OpenCode configuration:
 ```json
 {
   "mcp": {
-    "spandaworks_gtd": {
+    "aiandi_gtd": {
       "type": "local",
       "command": ["node", "/path/to/packages/gtd/mcp-server/dist/index.js"]
     },
-    "spandaworks_pim": {
+    "aiandi_pim": {
       "type": "local",
-      "command": ["/path/to/packages/pim/mcp-server/target/release/spandaworks-pim"]
+      "command": ["/path/to/packages/pim/mcp-server/target/release/aiandi-pim"]
     },
-    "spandaworks_telemetry": {
+    "aiandi_telemetry": {
       "type": "local",
-      "command": ["python", "-m", "spandaworks_telemetry.mcp"]
+      "command": ["python", "-m", "aiandi_telemetry.mcp"]
     }
   }
 }
 ```
 
-**Pattern:** `spandaworks_[package]` (underscored, not hyphenated)
+**Pattern:** `aiandi_[package]` (underscored, not hyphenated)
 
 **Rationale:** MCP server identifiers use underscores (not hyphens) to align with JSON key naming conventions and to avoid ambiguity in configuration contexts.
 
@@ -712,39 +712,39 @@ MCP server identifiers in OpenCode configuration:
 
 ### OpenTelemetry Custom Attributes
 
-Spandaworks uses the `spandaworks.*` namespace for all custom OpenTelemetry attributes:
+aiandi uses the `aiandi.*` namespace for all custom OpenTelemetry attributes:
 
 ```json
 {
-  "spandaworks.session.id": "2026-01-08-naming-001",
-  "spandaworks.session.goal": "Complete naming migration",
-  "spandaworks.session.persona": "assistant",
-  "spandaworks.tool.name": "read",
-  "spandaworks.tool.success": true,
-  "spandaworks.state.from": "exploring",
-  "spandaworks.state.to": "executing"
+  "aiandi.session.id": "2026-01-08-naming-001",
+  "aiandi.session.goal": "Complete naming migration",
+  "aiandi.session.persona": "assistant",
+  "aiandi.tool.name": "read",
+  "aiandi.tool.success": true,
+  "aiandi.state.from": "exploring",
+  "aiandi.state.to": "executing"
 }
 ```
 
-**Pattern:** `spandaworks.[domain].[attribute]`
+**Pattern:** `aiandi.[domain].[attribute]`
 
 ### Attribute Domains
 
 | Domain | Purpose | Examples |
 |--------|---------|----------|
-| `spandaworks.session.*` | Session metadata | `session.id`, `session.goal`, `session.persona` |
-| `spandaworks.tool.*` | Tool call tracking | `tool.name`, `tool.success`, `tool.duration_ms` |
-| `spandaworks.state.*` | State transitions | `state.from`, `state.to`, `state.trigger` |
-| `spandaworks.context.*` | Contextual metrics | `context.pressure`, `context.token_count` |
-| `spandaworks.insight.*` | Knowledge capture | `insight.id`, `insight.domain`, `insight.confidence` |
-| `spandaworks.friction.*` | Friction logging | `friction.id`, `friction.category`, `friction.recurrence` |
-| `spandaworks.pattern.*` | Pattern detection | `pattern.id`, `pattern.name`, `pattern.occurrence_count` |
-| `spandaworks.goal.*` | Goal tracking | `goal.id`, `goal.scope`, `goal.status` |
+| `aiandi.session.*` | Session metadata | `session.id`, `session.goal`, `session.persona` |
+| `aiandi.tool.*` | Tool call tracking | `tool.name`, `tool.success`, `tool.duration_ms` |
+| `aiandi.state.*` | State transitions | `state.from`, `state.to`, `state.trigger` |
+| `aiandi.context.*` | Contextual metrics | `context.pressure`, `context.token_count` |
+| `aiandi.insight.*` | Knowledge capture | `insight.id`, `insight.domain`, `insight.confidence` |
+| `aiandi.friction.*` | Friction logging | `friction.id`, `friction.category`, `friction.recurrence` |
+| `aiandi.pattern.*` | Pattern detection | `pattern.id`, `pattern.name`, `pattern.occurrence_count` |
+| `aiandi.goal.*` | Goal tracking | `goal.id`, `goal.scope`, `goal.status` |
 
-**Why not shorten to `spanda.*`?**
-- Consistency: All package identifiers use "spandaworks"
+**Why this namespace?**
+- Consistency: All package identifiers use "aiandi"
 - Clarity: No ambiguity about what system generated the telemetry
-- Future-proofing: If "spanda" becomes a generic term, "spandaworks" remains specific
+- Stability: aiandi is the project's permanent name
 
 ---
 
@@ -756,19 +756,19 @@ Event schemas are identified by canonical URLs:
 
 ```json
 {
-  "$schema": "https://spandaworks.dev/schemas/event.json",
-  "$id": "https://spandaworks.dev/schemas/session-event.json"
+  "$schema": "https://aiandi.dev/schemas/event.json",
+  "$id": "https://aiandi.dev/schemas/session-event.json"
 }
 ```
 
 **Available schemas:**
-- `https://spandaworks.dev/schemas/event.json` - Base event schema
-- `https://spandaworks.dev/schemas/session-event.json` - Session lifecycle events
-- `https://spandaworks.dev/schemas/telemetry-event.json` - Telemetry events
-- `https://spandaworks.dev/schemas/gtd-event.json` - GTD task events
-- `https://spandaworks.dev/schemas/knowledge-event.json` - Knowledge capture events
+- `https://aiandi.dev/schemas/event.json` - Base event schema
+- `https://aiandi.dev/schemas/session-event.json` - Session lifecycle events
+- `https://aiandi.dev/schemas/telemetry-event.json` - Telemetry events
+- `https://aiandi.dev/schemas/gtd-event.json` - GTD task events
+- `https://aiandi.dev/schemas/knowledge-event.json` - Knowledge capture events
 
-**Pattern:** `https://spandaworks.dev/schemas/[domain]-event.json`
+**Pattern:** `https://aiandi.dev/schemas/[domain]-event.json`
 
 **Note:** These URLs are canonical identifiers. Actual schema files live in `shared/events/` in the monorepo.
 
@@ -777,8 +777,8 @@ Event schemas are identified by canonical URLs:
 Events are stored in JSONL format:
 
 ```
-~/.spandaworks/telemetry/events.jsonl
-~/.spandaworks/gtd-telemetry/YYYY-MM-DD.jsonl
+~/.aiandi/telemetry/events.jsonl
+~/.aiandi/gtd-telemetry/YYYY-MM-DD.jsonl
 ```
 
 Each line is a complete JSON event document conforming to a schema.
@@ -791,10 +791,10 @@ Each line is a complete JSON event document conforming to a schema.
 
 | Language | Package Name | Module/Import | Registry |
 |----------|-------------|---------------|----------|
-| **Node.js/TS** | `@spandaworks/gtd` | `from '@spandaworks/gtd'` | npm |
-| **Python** | `spandaworks-telemetry` | `import spandaworks_telemetry` | PyPI |
-| **Rust** | `spandaworks-pim` | `use spandaworks_pim::` | crates.io |
-| **Rust CLI** | `spandaworks-cli` (package) | `spandaworks` (binary) | crates.io |
+| **Node.js/TS** | `@aiandi/gtd` | `from '@aiandi/gtd'` | npm |
+| **Python** | `aiandi-telemetry` | `import aiandi_telemetry` | PyPI |
+| **Rust** | `aiandi-pim` | `use aiandi_pim::` | crates.io |
+| **Rust CLI** | `aiandi-cli` (package) | `aiandi` (binary) | crates.io |
 
 ### Common Commands
 
@@ -805,14 +805,14 @@ pip install -e packages/telemetry               # Python
 cargo build --workspace                         # Rust
 
 # Build a package
-pnpm --filter @spandaworks/gtd build            # Node.js
+pnpm --filter @aiandi/gtd build            # Node.js
 python -m build                                  # Python (in package dir)
-cargo build -p spandaworks-pim                  # Rust
+cargo build -p aiandi-pim                  # Rust
 
 # Test a package
-pnpm --filter @spandaworks/gtd test             # Node.js
+pnpm --filter @aiandi/gtd test             # Node.js
 pytest                                          # Python (in package dir)
-cargo test -p spandaworks-pim                   # Rust
+cargo test -p aiandi-pim                   # Rust
 
 # Publish package
 npm publish --access public                      # Node.js (in package dir)
@@ -823,12 +823,12 @@ cargo publish                                    # Rust (in package dir)
 ### File Paths Quick Reference
 
 ```
-Repository:     spandaworks
+Repository:     aiandi
 Directory:      packages/gtd/
-Package name:   @spandaworks/gtd (Node.js) or spandaworks-gtd (Python/Rust)
-Import:         from '@spandaworks/gtd' (Node.js)
-URL:            docs.spandaworks.dev/packages/gtd
-CLI:            spandaworks gtd add "task"
+Package name:   @aiandi/gtd (Node.js) or aiandi-gtd (Python/Rust)
+Import:         from '@aiandi/gtd' (Node.js)
+URL:            docs.aiandi.dev/packages/gtd
+CLI:            aiandi gtd add "task"
 ```
 
 ---
@@ -839,38 +839,38 @@ When adding a new package:
 
 ### Node.js/TypeScript Package
 - [ ] Directory name is lowercase: `packages/[name]/`
-- [ ] package.json name is scoped: `"name": "@spandaworks/[name]"`
-- [ ] Imports use scope: `from '@spandaworks/[name]'`
-- [ ] Dependencies reference scope: `"@spandaworks/[name]": "workspace:*"`
-- [ ] TypeScript paths include scope: `"@spandaworks/*": ["packages/*/src"]`
-- [ ] README uses scoped name: `# @spandaworks/[name]`
+- [ ] package.json name is scoped: `"name": "@aiandi/[name]"`
+- [ ] Imports use scope: `from '@aiandi/[name]'`
+- [ ] Dependencies reference scope: `"@aiandi/[name]": "workspace:*"`
+- [ ] TypeScript paths include scope: `"@aiandi/*": ["packages/*/src"]`
+- [ ] README uses scoped name: `# @aiandi/[name]`
 - [ ] publishConfig sets access: `"access": "public"`
 
 ### Python Package
 - [ ] Directory name is lowercase: `packages/[name]/`
-- [ ] pyproject.toml name is hyphenated: `"spandaworks-[name]"`
-- [ ] Module directory is underscored: `spandaworks_[name]/`
-- [ ] Imports use underscores: `import spandaworks_[name]`
+- [ ] pyproject.toml name is hyphenated: `"aiandi-[name]"`
+- [ ] Module directory is underscored: `aiandi_[name]/`
+- [ ] Imports use underscores: `import aiandi_[name]`
 - [ ] `py.typed` marker file present for type hints
 - [ ] `__init__.py` exports public API
-- [ ] README uses hyphenated name: `# spandaworks-[name]`
+- [ ] README uses hyphenated name: `# aiandi-[name]`
 
 ### Rust Package
 - [ ] Directory name is lowercase: `packages/[name]/`
-- [ ] Cargo.toml name is hyphenated: `"spandaworks-[name]"`
-- [ ] Imports use underscores: `use spandaworks_[name]::`
-- [ ] For CLI: `[[bin]]` name is `"spandaworks"` (no suffix)
+- [ ] Cargo.toml name is hyphenated: `"aiandi-[name]"`
+- [ ] Imports use underscores: `use aiandi_[name]::`
+- [ ] For CLI: `[[bin]]` name is `"aiandi"` (no suffix)
 - [ ] `README.md` uses crates.io package name
 - [ ] `lib.rs` or `main.rs` exists as entry point
 
 ### All Packages
-- [ ] Documentation URL is simple: `docs.spandaworks.dev/packages/[name]`
-- [ ] Repository field points to: `https://github.com/pentaxis93/spandaworks`
-- [ ] MCP server name (if applicable): `spandaworks_[name]`
-- [ ] System paths use: `~/.spandaworks/[name]/`
-- [ ] Telemetry attributes use: `spandaworks.[name].*`
-- [ ] Event schemas reference: `https://spandaworks.dev/schemas/[name]-event.json`
-- [ ] Environment variables use: `SPANDAWORKS_[NAME]_[PURPOSE]`
+- [ ] Documentation URL is simple: `docs.aiandi.dev/packages/[name]`
+- [ ] Repository field points to: `https://github.com/pentaxis93/aiandi`
+- [ ] MCP server name (if applicable): `aiandi_[name]`
+- [ ] System paths use: `~/.aiandi/[name]/`
+- [ ] Telemetry attributes use: `aiandi.[name].*`
+- [ ] Event schemas reference: `https://aiandi.dev/schemas/[name]-event.json`
+- [ ] Environment variables use: `AIANDI_[NAME]_[PURPOSE]`
 
 ---
 
@@ -893,4 +893,4 @@ When adding a new package:
 
 ---
 
-*This is the canonical naming protocol for Spandaworks. All code, documentation, and infrastructure must follow these conventions.*
+*This is the canonical naming protocol for aiandi. All code, documentation, and infrastructure must follow these conventions.*

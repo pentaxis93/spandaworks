@@ -1,6 +1,6 @@
-# _spandaworks Directory
+# _aiandi Directory
 
-Spandaworks operational memory. System configuration and self-knowledge.
+aiandi operational memory. System configuration and self-knowledge.
 
 ## Contents
 

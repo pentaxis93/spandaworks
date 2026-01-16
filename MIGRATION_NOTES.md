@@ -2,7 +2,11 @@
 
 This document tracks the internal transformation from "spandaworks" to "aiandi".
 
-## Completed
+## Status: Migration Complete (2026-01-16)
+
+The complete transformation from spandaworks to aiandi is now finished.
+
+## Phase 1: Foundation (2026-01-14)
 
 - [x] Repository renamed: `~/src/spandaworks` → `~/src/aiandi`
 - [x] Cargo workspace created at repo root
@@ -13,80 +17,45 @@ This document tracks the internal transformation from "spandaworks" to "aiandi".
 - [x] README.md updated to explain aiandi
 - [x] Key documentation updated (pim/README.md, telemetry/README.md)
 
-## Still Using "spandaworks" (Intentionally)
+## Phase 2: Complete Renaming (2026-01-16)
 
-These references cannot be changed yet without breaking functionality:
+### Package & Binary Names
+- [x] `spandaworks-cli` → `aiandi-cli` (shared/utils/rust-cli/Cargo.toml)
+- [x] `spandaworks-pim` → `aiandi-pim` (packages/pim/mcp-server/Cargo.toml)
+- [x] `spandaworks-mode` → `aiandi-mode` (packages/core/mcp-server/Cargo.toml)
 
-### Package Names
+### Directory Renames
+- [x] `.opencode/plugin/spandaworks-identity` → `.opencode/plugin/aiandi-identity`
+- [x] `.opencode/skill/spandaworks-docs` → `.opencode/skill/aiandi-docs`
+- [x] `vault-template/_spandaworks` → `vault-template/_aiandi`
 
-```toml
-# packages/pim/mcp-server/Cargo.toml
-name = "aiandi-pim"           # Binary name used in MCP config
-```
+### Code & Documentation
+- [x] Import statements: `use spandaworks_cli::` → `use aiandi_cli::`
+- [x] Dependency references in all Cargo.toml files
+- [x] Documentation sweep: 20 files updated, ~165 references changed
+  - docs/naming-protocol.md (110 changes)
+  - docs/getting-started.md
+  - packages/*/README.md
+  - governance/canon/*.md
+  - All ADRs and protocols
 
-**Reason:** Existing installations reference this binary name. Will rename in coordinated release.
+## Intentionally Preserved
 
-### Internal Library Names
+These references keep "spandaworks" naming:
 
-```toml
-# shared/utils/rust-cli/Cargo.toml (likely)
-name = "aiandi-cli"
-```
+### External MCP Tool Names
+- `spandaworks_gtd_*` functions in GTD skills documentation
+- **Reason:** External GTD MCP server package, not part of aiandi repository
 
-**Reason:** Used as dependency by pim MCP server. Needs coordinated update.
+### Historical Records
+- Git commit history (preserved as-is)
+- Archived transmissions in governance/sessions/outbox/
+- Historical session documentation
+- "Formerly known as spandaworks" references in README
 
-### Python Package Names
-
-```python
-# packages/telemetry/ (setup.py or pyproject.toml)
-from aiandi_telemetry.mcp import ...
-```
-
-**Reason:** Import paths used by MCP integration. Needs version bump and migration path.
-
-### Documentation References
-
-Many docs still reference "spandaworks" in:
-- Code examples
-- File paths (~/.aiandi/)
-- Event schemas
-- Architecture diagrams
-
-**Strategy:** Update incrementally as features are implemented. Low priority for now.
-
-## Future Work
-
-1. **Coordinated binary rename**
-   - Release v0.2.0 with `aiandi-pim` binary
-   - Update MCP config examples
-   - Provide migration guide
-
-2. **Python package rename**
-   - `aiandi_telemetry` (Python module name)
-   - Provide compatibility shim for transition
-
-3. **Shared utilities**
-   - `aiandi-cli` (Rust crate name)
-   - Update all dependent crates
-
-4. **Documentation sweep**
-   - Search all .md files for "spandaworks"
-   - Update code examples
-   - Update architecture diagrams
-
-5. **Config/data paths**
-   - Consider: ~/.aiandi/ (config/data directory)
-   - Provide migration script for existing users
-
-## Not Changed
-
-These keep original names intentionally:
-
-- Git commit history (preserved)
-- Archived transmissions in outputs/
-- Historical documentation references
-- Blog posts (separate repo: aiandi-blog)
+### Separate Repositories
+- Blog posts (separate repo with independent naming)
 
 ---
 
-**Status:** Foundation established. Internal structure transformed. Binary/package names to follow in phased releases.
+**Migration complete.** All internal references to "spandaworks" have been replaced with "aiandi". The project is now consistently named throughout.
