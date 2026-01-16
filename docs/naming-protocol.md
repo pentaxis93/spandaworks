@@ -331,16 +331,16 @@ predicates = "3.0"
 
 ```typescript
 // ✅ CORRECT: Scoped imports
-import { Task, TaskList } from '@spandaworks/gtd';
-import { track, event } from '@spandaworks/telemetry';
-import { Contact, Organization } from '@spandaworks/pim';
-import { CLI } from '@spandaworks/cli';
+import { Task, TaskList } from '@aiandi/gtd';
+import { track, event } from '@aiandi/telemetry';
+import { Contact, Organization } from '@aiandi/pim';
+import { CLI } from '@aiandi/cli';
 
 // ❌ INCORRECT: Unscoped
 import { Task } from 'gtd';  // Ambiguous
 
 // ❌ INCORRECT: Prefixed
-import { Task } from 'spandaworks-gtd';  // Old pattern
+import { Task } from 'aiandi-gtd';  // Old pattern
 
 // ❌ INCORRECT: Wrong scope
 import { Task } from '@spanda/gtd';  // Wrong namespace
@@ -350,15 +350,15 @@ import { Task } from '@spanda/gtd';  // Wrong namespace
 
 ```python
 # ✅ CORRECT: Import with underscores
-import spandaworks_telemetry
-from spandaworks_telemetry import track, event
-from spandaworks_telemetry.tracker import Tracker
+import aiandi_telemetry
+from aiandi_telemetry import track, event
+from aiandi_telemetry.tracker import Tracker
 
 # ❌ INCORRECT: Hyphens don't work in Python imports
-import spandaworks-telemetry  # SyntaxError!
+import aiandi-telemetry  # SyntaxError!
 
 # Usage
-from spandaworks_telemetry import track
+from aiandi_telemetry import track
 
 track("user.login", {"user_id": 123})
 ```
@@ -367,11 +367,11 @@ track("user.login", {"user_id": 123})
 
 ```rust
 // ✅ CORRECT: Import with underscores
-use spandaworks_pim::{Contact, Organization};
-use spandaworks_pim::error::PimError;
+use aiandi_pim::{Contact, Organization};
+use aiandi_pim::error::PimError;
 
 // In main.rs or lib.rs
-use spandaworks_pim::Contact;
+use aiandi_pim::Contact;
 
 fn main() {
     let contact = Contact::new("Jane Doe");
@@ -380,8 +380,8 @@ fn main() {
 
 // Workspace dependencies (in other Cargo.toml files)
 [dependencies]
-spandaworks-pim = { path = "../pim" }  # Hyphenated in Cargo.toml
-// Then in code: use spandaworks_pim::  # Underscored in Rust
+aiandi-pim = { path = "../pim" }  # Hyphenated in Cargo.toml
+// Then in code: use aiandi_pim::  # Underscored in Rust
 ```
 
 ---
@@ -395,21 +395,21 @@ spandaworks-pim = { path = "../pim" }  # Hyphenated in Cargo.toml
 pnpm install
 
 # Add a dependency to a specific package
-pnpm --filter @spandaworks/gtd add lodash
+pnpm --filter @aiandi/gtd add lodash
 
 # Add workspace dependency
-pnpm --filter @spandaworks/gtd add @spandaworks/telemetry
+pnpm --filter @aiandi/gtd add @aiandi/telemetry
 
 # Run script in a specific package
-pnpm --filter @spandaworks/gtd test
-pnpm --filter @spandaworks/gtd build
+pnpm --filter @aiandi/gtd test
+pnpm --filter @aiandi/gtd build
 
 # Run script in all packages
 pnpm --filter './packages/*' build
 pnpm --filter './packages/*' test
 
 # Run script in multiple specific packages
-pnpm --filter @spandaworks/gtd --filter @spandaworks/pim test
+pnpm --filter @aiandi/gtd --filter @aiandi/pim test
 ```
 
 ### pip/uv (Python)
@@ -419,7 +419,7 @@ pnpm --filter @spandaworks/gtd --filter @spandaworks/pim test
 pip install -e packages/telemetry
 
 # Install from PyPI
-pip install spandaworks-telemetry
+pip install aiandi-telemetry
 
 # Run tests
 cd packages/telemetry
@@ -434,13 +434,13 @@ uv run pytest
 
 ```bash
 # Build specific package
-cargo build -p spandaworks-pim
+cargo build -p aiandi-pim
 
 # Test specific package
-cargo test -p spandaworks-pim
+cargo test -p aiandi-pim
 
 # Run CLI binary
-cargo run -p spandaworks-cli -- --help
+cargo run -p aiandi-cli -- --help
 
 # Build all workspace packages
 cargo build --workspace
